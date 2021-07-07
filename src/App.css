@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,41 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* Resetea bordes */
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding: 0;
+}
+
+.App{
+  text-align:center;
+  min-height: 100vh;
+  display: grid;
+  /* gap: 10px; */
+
+  grid-template:
+  "nav" 70px
+  "navBar" 60px
+  "Maine"
+  "footer" 40px
+}
+
+/*GRID HERE*/ 
+.nav{
+  grid-area: nav;
+}
+
+.navBar{
+  grid-area: navBar;
+}
+
+.footer{
+  grid-area: footer;
+}
+
+.Maine{
+  grid-area: Main;
 }

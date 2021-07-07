@@ -1,0 +1,11 @@
+
+
+  /*GRID HERE*/ 
+
+  
+.Main{
+    grid-area: Main;
+    background-color:dodgerblue;
+    height: 767px;
+}
+  
