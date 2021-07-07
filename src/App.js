@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
 
-      <Nav className='nav'></Nav>
+      <Nav></Nav>
       <NavBar></NavBar>
 
       <Route path='/' exact component={Home}></Route>
