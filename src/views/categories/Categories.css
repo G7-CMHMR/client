@@ -1,3 +1,8 @@
+#Separate{
+    width: 20%;
+    background-color:lightslategrey;
+}
+
 #Container{
     display: flex;
 }
@@ -6,10 +11,7 @@
     height: 150px;
 }
 
-#Separate{
-    width: 20%;
-    background-color:lightslategrey;
-}
+
 
 #CategoriesContainer{
     width: 80%;
@@ -26,6 +28,7 @@
 width: 30%;
 background-color:burlywood;
 }
+
 #Cards{
 width: 70%;
 justify-content: center;

@@ -2,12 +2,12 @@ import './App.css';
 
 import { Route } from 'react-router'
 
-import Home from './views/home/home'
-import Home2 from './views/home/home2'
+import Home from './views/home/Home'
 import Nav from './views/_GeneralComponents/Nav/Nav'
 import NavBar from './views/_GeneralComponents/NavBar/NavBar'
 import Footer from './views/_GeneralComponents/footer/Footer'
 import Categories from './views/categories/Categories';
+import Detail from './views/detail/detail'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
 
       <Route path='/' exact component={Home}></Route>
       <Route path='/Categorias' exact component={Categories}></Route>
-      <Route path='/Home2' exact component={Home2}></Route>
+      <Route path='/Producto' exact component={Detail}></Route>
 
       <Footer></Footer>
 

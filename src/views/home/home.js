@@ -1,10 +1,10 @@
-import './home.css'
+import './Home.css'
 
 
 
 function Home() {
     return (
-        <div className='HomeContainer'>
+        <div className='Container'>
             <div id='Separate'></div>
 
             <div id='Content'>

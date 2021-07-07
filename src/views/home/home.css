@@ -1,13 +1,12 @@
-
-
-.HomeContainer{
-    display: flex;
-}
-
 #Separate{
     width: 20%;
     background-color:lightslategrey;
 }
+
+.Container{
+    display: flex;
+}
+
 
 #Content{
     width: 80%;

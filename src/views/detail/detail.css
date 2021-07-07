@@ -1,0 +1,68 @@
+.DetailContainer{
+ display: flex;
+ flex-direction: row;
+}
+
+#Separate{
+    width: 20%;
+    background-color:lightslategrey;
+}
+
+#ContentDetail{
+    width: 80%;
+}
+
+#SecondNav{
+    height: 80px;
+    background-color: mediumaquamarine;
+}
+
+
+#FirstSection{
+display: flex;
+flex-direction: row;
+}
+
+#ProductInfo{
+    width: 35%;
+    height: 800px;
+    background-color:mediumpurple;
+}
+
+#ImagesAndSimilars{
+    width: 75%;
+    height: 800px;
+}
+
+#Images{
+height: 65%;
+background-color:plum;
+}
+
+#Similars{
+height: 35%;
+background-color:rosybrown;
+}
+
+
+
+#SecondSection{
+    display: flex;
+    flex-direction: row;
+    height: 850px;
+}
+
+#Description{
+    width: 75%;
+    background-color: salmon;
+}
+
+#SellerInfo{
+    width: 35%;
+    background-color: seagreen;
+}
+
+#Questions{
+    height: 800px;
+    background-color:steelblue;
+}
