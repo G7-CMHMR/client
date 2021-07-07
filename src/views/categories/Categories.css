@@ -1,0 +1,32 @@
+#Container{
+    display: flex;
+}
+#Carrousel{
+    background-color:forestgreen;
+    height: 150px;
+}
+
+#Separate{
+    width: 20%;
+    background-color:lightslategrey;
+}
+
+#CategoriesContainer{
+    width: 80%;
+}
+
+#FilterAndCards{
+    background-color:lightpink;
+    display: flex;
+    flex-direction: row;
+    height: 1200px;
+}
+  
+#Filter{
+width: 30%;
+background-color:burlywood;
+}
+#Cards{
+width: 70%;
+justify-content: center;
+}

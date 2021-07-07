@@ -1,11 +1,33 @@
 
 
-  /*GRID HERE*/ 
+.HomeContainer{
+    display: flex;
+}
 
-  
-.Main{
+#Separate{
+    width: 20%;
+    background-color:lightslategrey;
+}
+
+#Content{
+    width: 80%;
+}
+
+#PhotosHome{
     grid-area: Main;
     background-color:dodgerblue;
-    height: 767px;
+    height: 700px;
+}
+
+#CarrouselHome{
+    grid-area: Main;
+    background-color:forestgreen;
+    height: 350px;
+}
+
+#CardsHome{
+    grid-area: Main;
+    background-color:lightpink;
+    height: 900px;
 }
   

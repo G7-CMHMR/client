@@ -51,7 +51,7 @@
   /* gap: 10px; */
 
   grid-template:
-  "nav" 70px
+  "nav" 90px
   "navBar" 60px
   "Maine"
   "footer" 40px
@@ -68,8 +68,4 @@
 
 .footer{
   grid-area: footer;
-}
-
-.Maine{
-  grid-area: Main;
 }
