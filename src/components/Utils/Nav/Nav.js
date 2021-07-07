@@ -1,4 +1,5 @@
 import "./Nav.css"
+//importar Searchbar
 
 function Nav() {
     return (

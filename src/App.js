@@ -2,23 +2,24 @@ import './App.css';
 
 import { Route } from 'react-router'
 
-import Home from './views/home/Home'
-import Nav from './views/_GeneralComponents/Nav/Nav'
-import NavBar from './views/_GeneralComponents/NavBar/NavBar'
-import Footer from './views/_GeneralComponents/footer/Footer'
-import Categories from './views/categories/Categories';
-import Detail from './views/detail/detail'
+import Nav from './components/Utils/Nav/Nav'
+import NavBar from './components/Utils/NavBar/NavBar'
+import Footer from './components/Utils/footer/Footer'
+
+import Home from './views/Home'
+import Categories from './views/Categories'
+import Product from './views/Product';
 
 function App() {
   return (
     <div className="App">
 
-      <Nav></Nav>
+      <Nav className='nav'></Nav>
       <NavBar></NavBar>
 
       <Route path='/' exact component={Home}></Route>
       <Route path='/Categorias' exact component={Categories}></Route>
-      <Route path='/Producto' exact component={Detail}></Route>
+      <Route path='/Producto' exact component={Product}></Route> 
 
       <Footer></Footer>
 

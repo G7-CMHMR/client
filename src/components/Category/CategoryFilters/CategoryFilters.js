@@ -1,6 +1,9 @@
 //Filtros de Categorias
 function CategoryFilters() {
-    
+    return (
+        <>
+        </>
+    )
 }
 
 

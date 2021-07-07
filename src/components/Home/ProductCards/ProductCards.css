@@ -1,0 +1,5 @@
+#ProductCardsContainer{
+    grid-area: Main;
+    background-color:lightpink;
+    height: 900px;
+}

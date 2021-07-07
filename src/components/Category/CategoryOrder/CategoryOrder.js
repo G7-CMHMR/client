@@ -1,7 +1,10 @@
 //Ordenamiento en Categorias
 
 function CategoryOrder() {
-    
+    return(
+    <>
+    </>    
+    )
 }
 
 

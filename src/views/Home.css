@@ -1,0 +1,16 @@
+#Separate{
+    width: 20%;
+    background-color:rgb(91, 173, 255);
+}
+
+#HomeContent{
+    width: 80%;
+}
+
+.Container{
+    display: flex;
+}
+
+
+
+

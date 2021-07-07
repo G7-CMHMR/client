@@ -14,7 +14,7 @@ function Categories() {
 
                 <div id='FilterAndCards'>
                     <div id='Filter'>
-                        <h1>Filters</h1>
+                        
                     </div>
                     <div id='Cards'>
                         <h1>Cards</h1>
