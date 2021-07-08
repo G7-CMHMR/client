@@ -1,5 +1,5 @@
 import axios from 'axios' 
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, UPDATE_PRODUCT, POST_PRODUCT } from './ActionsName'
 
 export function getAllProducts() {
     return (dispatch) => {
