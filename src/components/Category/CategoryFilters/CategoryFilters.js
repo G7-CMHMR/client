@@ -1,4 +1,4 @@
-//Filtros de Categorias
+
 import './CategoryFilters.css'
 function CategoryFilters() {
     return (

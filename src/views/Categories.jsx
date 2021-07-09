@@ -5,12 +5,9 @@ import CategoryProductCards from '../components/Category/CategoryProductCards/Ca
 import Separate from '../components/Utils/Separate/Separate'
 
 
-
-
 function Categories() {
 
     return (
-
         <div className='Container'>
             <Separate></Separate>
         <div id='CategoriesContent'>  
