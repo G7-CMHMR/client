@@ -1,14 +1,24 @@
-import axios from 'axios' 
-import {  } from './ActionsName'
+//import axios from 'axios' 
+import {
+    CHANGE_LOGIN,
+    CHANGE_REGISTER
+  } from './ActionsName';
 
-// export function getAllProducts() {
-//     return (dispatch) => {
-
-//         axios.get('http://localhost:3001/products')
-//             .then(response => {
-//                 dispatch({ type: GET_PRODUCTS, payload: response.data })
-//             })
-//     }
-// }
-
-
+  export function changeStateLoginAction(opposite) {
+    return (dispatch) => {
+        dispatch(changeStateLogin(opposite))
+    }
+}
+export function changeStateRegisterAction (opposite) {
+    return (dispatch) => {
+        dispatch(changeStateRegister(opposite))
+    }
+}
+const changeStateLogin = (opposite) => ({
+    type:CHANGE_LOGIN,
+    payload:opposite
+})
+const changeStateRegister = (opposite) => ({
+    type:CHANGE_REGISTER,
+    payload:opposite
+})
