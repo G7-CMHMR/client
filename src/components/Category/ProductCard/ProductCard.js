@@ -1,8 +1,14 @@
 //card dentro de Categorias, REsultados, favoritos
-function ProductCard() {
-    
-}
+import './ProductCard.css'
 
+
+function ProductCard() {
+    return(
+        <div id="ProductCard">
+            
+        </div>    
+        )
+    }
 
 
 export default ProductCard

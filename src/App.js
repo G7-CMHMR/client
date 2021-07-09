@@ -17,7 +17,7 @@ function App() {
       <Nav></Nav>
       <NavBar></NavBar>
       
-      <Route path='/' exact component={Home}></Route>
+      <Route exact path='/' exact component={Home}></Route>
       <Route path='/Categorias' exact component={Categories}></Route>
       <Route path='/Producto' exact component={Product}></Route> 
 
