@@ -10,13 +10,13 @@ function Categories() {
     return (
         <div className='Container'>
             <Separate></Separate>
-        <div id='CategoriesContent'>  
-                    <Carousel></Carousel>
+            <div id='CategoriesContent'>
+                <Carousel></Carousel>
                 <div id="Categories">
                     <CategoryFilters></CategoryFilters>
                     <CategoryProductCards></CategoryProductCards>
                 </div>
-                </div>
+            </div>
             <Separate></Separate>
         </div>
     )

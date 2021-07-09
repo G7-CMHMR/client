@@ -40,8 +40,7 @@ function ProductCard() {
 	    </div>
     </div>
             
-            product card
-        </div>    
+           
         )
     }
 
