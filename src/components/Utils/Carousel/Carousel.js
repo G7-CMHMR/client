@@ -12,10 +12,10 @@ const Carrousel = () => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="https://http2.mlstatic.com/D_NQ_945964-MLA46582738101_072021-OO.webp" className="d-block w-100" alt="..." />
+                        <img src="https://http2.mlstatic.com/D_NQ_945964-MLA46582738101_072021-OO.webp" className="d-block w-100" alt="..." width='80%' height='200px' />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1606832971353-headerdesktop.jpg" className="d-block w-100" alt="Imagen" />
+                        <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1606832971353-headerdesktop.jpg" className="d-block w-100" alt="Imagen" width='80%' height='200px' />
                     </div>
                 </div>
                 

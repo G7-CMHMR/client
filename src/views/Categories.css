@@ -1,7 +1,12 @@
 #CategoriesContent{
     background-color: rgb(204 224 36);
+    width: 80%;
 }
 #Categories{
     display: flex;
     
+}
+
+.Container{
+   width: 100%;
 }
