@@ -60,7 +60,7 @@
         display: inline-block;
         position: relative;
         overflow: hidden;
-        width: 185px;
+        width: 30%;
         border-bottom-left-radius: 15px;
         border-top-left-radius: 15px;
     }
@@ -101,6 +101,7 @@
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+        width:18%
     }
     #off{
         color: white;
