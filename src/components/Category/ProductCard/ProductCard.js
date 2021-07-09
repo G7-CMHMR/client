@@ -5,7 +5,7 @@ import './ProductCard.css'
 function ProductCard() {
     return(
         <div id="ProductCard">
-            
+            product card
         </div>    
         )
     }
