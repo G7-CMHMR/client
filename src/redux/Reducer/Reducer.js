@@ -5,5 +5,6 @@ import userReducer from '../Actions/User/Reducer'
 
 export default combineReducers({
   productsReducer,
+  userReducer
   
 })

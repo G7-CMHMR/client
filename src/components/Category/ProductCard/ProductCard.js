@@ -16,6 +16,7 @@ var prueba= {
     imagen:"https://www.fullh4rd.com.ar/img/productos/Pics_Prod/mouse-logitech-g203-0.jpg"
 }
 
+
 function ProductCard() {
     return(
         <div id="ProductCard">
@@ -39,6 +40,8 @@ function ProductCard() {
 	    </div>
     </div>
             
+            product card
+        </div>    
         )
     }
 
