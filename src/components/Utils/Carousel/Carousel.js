@@ -3,31 +3,41 @@ import './Carousel.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap'
 
+
+
 const Carrousel = () => {
     return (
         <div className='CarouselContainer'>
-
-            <Carousel id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-indicators">
-                </div>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="https://http2.mlstatic.com/D_NQ_945964-MLA46582738101_072021-OO.webp" className="d-block w-100" alt="..." width='80%' height='200px' />
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://http2.mlstatic.com/storage/splinter-admin/o:f_webp,q_auto:best/1606832971353-headerdesktop.jpg" className="d-block w-100" alt="Imagen" width='80%' height='200px' />
-                    </div>
-                </div>
-                
-                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  
-                </button>
-                <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-
-                </button>
-            </Carousel>
+<Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://http2.mlstatic.com/D_NQ_731316-MLA46625389859_072021-OO.webp"
+      alt="First slide" height="230px"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://www.fullh4rd.com.ar/adminrgb/img/banner/69.png"
+      alt="Second slide" height="230px"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://www.fullh4rd.com.ar/adminrgb/img/banner/52.png"
+      alt="Third slide" height="230px"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="https://http2.mlstatic.com/D_NQ_713440-MLA46669463157_072021-OO.webp"
+      alt="Second slide" height="230px"
+    />
+  </Carousel.Item>
+</Carousel>
 
         </div>
     )
