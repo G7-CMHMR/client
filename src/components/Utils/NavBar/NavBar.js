@@ -1,9 +1,24 @@
+import React, { useDispatch, useSelector } from 'react-redux';
+
 import './NavBar.css'
 import {Navbar ,Nav, NavDropdown} from 'react-bootstrap'
 import {FaHeart} from 'react-icons/fa'
 import {IoCartSharp} from 'react-icons/io5'
 
+import { changeStateLoginAction, changeStateRegisterAction } from '../../../redux/Actions/User/Actions';
+
 function NavBar() {
+    const dispatch = useDispatch();
+    const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
+    const stateRegister = useSelector((state) => state.userReducer.registerwindow);
+
+    const openLogin = () => {
+        dispatch(changeStateLoginAction(!stateLogin))
+    }
+    const openRegister = () => {
+        dispatch(changeStateRegisterAction(!stateRegister))
+    }
+
     return (
     <div className="ContainerNavBar">
        <Navbar bg="light" expand="lg">
@@ -23,8 +38,8 @@ function NavBar() {
              <NavDropdown.Item href="#action/3.8">Teclados y mouse </NavDropdown.Item>
              <NavDropdown.Item href="#action/3.9">Audio </NavDropdown.Item>
         </NavDropdown>   
-         <Nav.Link href="#login">LOGIN</Nav.Link>
-         <Nav.Link href="#signup">REGISTRATE</Nav.Link>
+         <Nav.Link href="#login" onClick={openLogin}>LOGIN</Nav.Link>
+         <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>
          <Nav.Link href="#panel">PANEL</Nav.Link>
          <NavDropdown title="RAUL" id="basic-nav-dropdown">
          <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
