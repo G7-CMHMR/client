@@ -1,5 +1,5 @@
 #CategoryFilters{
-    background-color: rebeccapurple;
+    background-color: #dfdfdf;
     width: 31%;
     min-height: 1200px;
 }
@@ -10,38 +10,40 @@
 
 
 #ContainerGroupCategory{
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    margin-left: 2vh;
+    text-align: left;
+    background-color: #dfdfdf;
 }
 
 #CategoryType{
     width: 239px;
     height: 200px;
     margin-top: 70px;
-    background-color: aqua;
+    
 }
 
 #CategoryShipping{
     width: 239px;
     height: 200px;
-    background-color:darkcyan;
+    
 }
 
 #CategoryCondition{
     width: 239px;
     height: 200px;
-    background-color: aqua;
+  
 }
 
 #CategoryPrice{
     width: 239px;
     height: 200px;;
-    background-color:darkcyan;
+    
 }
 
 #CategoryBrand{
     width: 239px;
     height: 200px;
-    background-color: aqua;
+
 }
