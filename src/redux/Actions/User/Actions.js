@@ -1,7 +1,8 @@
 //import axios from 'axios' 
 import {
     CHANGE_LOGIN,
-    CHANGE_REGISTER
+    CHANGE_REGISTER,
+    LOGGED_IN
   } from './ActionsName';
 
   export function changeStateLoginAction(opposite) {
@@ -14,6 +15,20 @@ export function changeStateRegisterAction (opposite) {
         dispatch(changeStateRegister(opposite))
     }
 }
+
+//prueba
+export function changelogin(opposite){
+    return(dispatch)=>{
+        dispatch(cambiarlogin(opposite))
+    }
+}
+const cambiarlogin = (opposite) =>({
+    type:LOGGED_IN,
+    payload: opposite
+})
+
+
+
 const changeStateLogin = (opposite) => ({
     type:CHANGE_LOGIN,
     payload:opposite
