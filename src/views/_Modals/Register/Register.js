@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import {changeStateRegisterAction, changeStateLoginAction} from '../../../redux/Actions/User/Actions';
+import {changeStateRegisterAction, changeStateLoginAction, attemptRegisterAction } from '../../../redux/Actions/User/Actions';
 
 import './Register.css'
 const Register = () => {
@@ -45,10 +45,10 @@ const Register = () => {
             const tryRegister = {
                 email: email,
                 name: name,
-                lastname: lastname,
+                lastName: lastname,
                 password: password
             }
-            console.log(tryRegister)
+            dispatch(attemptRegisterAction(tryRegister))
         }
         
 

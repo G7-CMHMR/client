@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import {changeStateLoginAction, changeStateRegisterAction} from '../../../redux/Actions/User/Actions';
+import {changeStateLoginAction, changeStateRegisterAction, attemptLoginAction} from '../../../redux/Actions/User/Actions';
 import "./Login.css";
 
 const Login = () => {
@@ -40,10 +40,10 @@ const Login = () => {
         if(username.trim() === '' || password.length === 0) return;
         
         const tryLogin = {
-            username: username,
+            email: username,
             password: password
         }
-        console.log(tryLogin)
+        dispatch(attemptLoginAction(tryLogin))
 
     }
     //FACEBOOK AND GOOGLE RESPONSES
