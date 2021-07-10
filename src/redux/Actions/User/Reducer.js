@@ -1,12 +1,14 @@
 //import axios from 'axios' 
 import {
     CHANGE_LOGIN,
-    CHANGE_REGISTER
+    CHANGE_REGISTER,
+    LOGGED_IN
   } from './ActionsName'
 
   const initialState = {
       loginwindow: false,
-      registerwindow: false
+      registerwindow: false,
+      loggedin:false
   }
 
 export default function userReducer(state = initialState, action){
@@ -22,6 +24,12 @@ export default function userReducer(state = initialState, action){
                 ...state,
                 registerwindow: action.payload,
                 loginwindow: false
+            }
+        }
+        case LOGGED_IN:{
+            return{
+                ...state,
+                loggedin:action.payload
             }
         }
         default:

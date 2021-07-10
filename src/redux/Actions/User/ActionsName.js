@@ -1,2 +1,3 @@
 export const CHANGE_LOGIN = "CHANGE_LOGIN";
 export const CHANGE_REGISTER = "CHANGE_REGISTER";
+export const LOGGED_IN = "LOGGED_IN"
