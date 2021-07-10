@@ -1,0 +1,18 @@
+#ContainerImages{
+    max-height: 200px;
+}
+
+#MiniImages{
+width: 20px;
+position: relative;
+bottom: 29rem;
+left: 3rem;
+}
+
+
+#LargeImage{
+    position: relative;
+    left: 6rem;
+    top: 20px;
+
+}
