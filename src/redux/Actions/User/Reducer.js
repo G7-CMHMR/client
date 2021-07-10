@@ -2,13 +2,21 @@
 import {
     CHANGE_LOGIN,
     CHANGE_REGISTER,
-    LOGGED_IN
+    ATTEMPT_LOGIN,
+    ATTEMPT_LOGIN_SUCCESS,
+    ATTEMPT_LOGIN_FAILED,
+    ATTEMPT_REGISTER,
+    ATTEMPT_REGISTER_SUCCESS,
+    ATTEMPT_REGISTER_FAILED
+
   } from './ActionsName'
 
   const initialState = {
       loginwindow: false,
       registerwindow: false,
-      loggedin:false
+      loading: false,
+      attempt: null,
+      error: false
   }
 
 export default function userReducer(state = initialState, action){
@@ -26,10 +34,28 @@ export default function userReducer(state = initialState, action){
                 loginwindow: false
             }
         }
-        case LOGGED_IN:{
-            return{
+        case ATTEMPT_REGISTER:
+        case ATTEMPT_LOGIN: {
+            return {
                 ...state,
-                loggedin:action.payload
+                loading: action.payload
+            }
+        }
+        case ATTEMPT_REGISTER_SUCCESS:
+        case ATTEMPT_LOGIN_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                attempt: action.payload
+            }
+        }
+        case ATTEMPT_REGISTER_FAILED:
+        case ATTEMPT_LOGIN_FAILED: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+
             }
         }
         default:
