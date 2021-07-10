@@ -1,9 +1,24 @@
 import Link from 'react-router-dom'
 import './CategoryFilters.css'
 //import TextField from '@material-ui/inputs/TextField'
+import { getAllProducts, getProductDetail } from '../../../redux/Actions/Products/Actions'
+import {useEffect, useState} from 'react'
 
 function CategoryFilters(props) {
 
+    useEffect(() => {  
+        // props.getAllProducts() 
+        // props.getProductDetail()
+    }, []) 
+
+
+    const [input, setInput] = useState({
+        categoryName: '',
+        products: '',
+        filtroPrecio: '',
+
+    })
+    
 
     var CategoriaTest = {
         Categoria: "Procesadores",
@@ -52,7 +67,6 @@ function CategoryFilters(props) {
                         <TextField id="filled-basic" label="Filled" variant="filled" />
                         <TextField id="outlined-basic" label="Outlined" variant="outlined" />
                     </form> */}
-
                     </ul>
                 </div>
                 <div id='CategoryBrand'>

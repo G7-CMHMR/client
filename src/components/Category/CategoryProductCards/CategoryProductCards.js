@@ -1,6 +1,7 @@
 import CategoryOrder from '../CategoryOrder/CategoryOrder'
 import ProductCard from '../ProductCard/ProductCard'
 import './CategoryProductCards.css'
+import { getFilters } from '../CategoryFilters/CategoryFilters'
 
 var prueba= [{
     titulo:"Producto de prueba",
