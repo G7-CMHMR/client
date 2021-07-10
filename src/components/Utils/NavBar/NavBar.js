@@ -18,10 +18,10 @@ function NavBar() {
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
-
+    // BackgroundColor #14213D;
     return (
     <div className="ContainerNavBar">
-       <Navbar bg="light" expand="lg">
+       <Navbar id='backgroundColor' expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
          <Navbar.Collapse id="basic-navbar-nav">
         <Nav id="navcontainer" className="mr-auto">

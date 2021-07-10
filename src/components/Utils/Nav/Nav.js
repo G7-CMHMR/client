@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 function Nav() {
     return (
         <div id='ContainerNav'>
-            <Link to='/'>aca logo</Link>
+            <h2 id='logo'><Link to='/'>CompuMundoHiperMegaRed</Link></h2>
             <SearchBar/>
         </div>
     )

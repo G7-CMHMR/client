@@ -1,6 +1,16 @@
 #ContainerNav{
-    background-color:#f8f9fa;
+    background-color:#14213D;
     display:flex;
     justify-content: space-around;
     align-items: center;
+}
+
+#logo{
+    text-decoration: none;
+    text-decoration-style: none;
+    color: white;
+}
+
+#logo-hover{
+    text-decoration: none;
 }
