@@ -8,6 +8,7 @@ import {
     ATTEMPT_REGISTER,
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED
+
   } from './ActionsName';
 
 import clientAxios from '../../../config/axios';
@@ -29,6 +30,7 @@ export function changeStateRegisterAction (opposite) {
         dispatch(changeStateRegister(opposite))
     }
 }
+
 
 const changeStateRegister = (opposite) => ({
     type:CHANGE_REGISTER,

@@ -1,5 +1,49 @@
 #CategoryFilters{
-    background-color: rebeccapurple;
+    background-color: #dfdfdf;
     width: 31%;
-    height: 344px;
+    min-height: 1200px;
+}
+
+#Resultados{
+    margin-right: 70px;
+}
+
+
+#ContainerGroupCategory{
+    margin: 0;
+    padding: 0;
+    margin-left: 2vh;
+    text-align: left;
+    background-color: #dfdfdf;
+}
+
+#CategoryType{
+    width: 239px;
+    height: 200px;
+    margin-top: 70px;
+    
+}
+
+#CategoryShipping{
+    width: 239px;
+    height: 200px;
+    
+}
+
+#CategoryCondition{
+    width: 239px;
+    height: 200px;
+  
+}
+
+#CategoryPrice{
+    width: 239px;
+    height: 200px;;
+    
+}
+
+#CategoryBrand{
+    width: 239px;
+    height: 200px;
+
 }
