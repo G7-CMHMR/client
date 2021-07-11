@@ -19,7 +19,7 @@ export function changeStateLoginAction(opposite) {
         dispatch(changeStateLogin(opposite))
     }
 }
-const changeStateLogin = (opposite) => ({
+export const changeStateLogin = (opposite) => ({
     type:CHANGE_LOGIN,
     payload:opposite
 })
@@ -46,6 +46,7 @@ export function attemptRegisterAction (attempt) {
             dispatch(attemptRegisterSuccess(attempt))
             alert('Usuario creado con exito')
         } catch (error) {
+            console.log('ESTE ES EL ERROR EN EL FRONT: ',error)
             dispatch(attemptRegisterFailed(true))
         }
     }

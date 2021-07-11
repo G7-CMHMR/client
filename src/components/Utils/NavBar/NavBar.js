@@ -5,7 +5,8 @@ import {Navbar ,Nav, NavDropdown} from 'react-bootstrap'
 import {FaHeart} from 'react-icons/fa'
 import {IoCartSharp} from 'react-icons/io5'
 
-import { changeStateLoginAction, changelogin, changeStateRegisterAction }from '../../../redux/Actions/User/Actions';
+// import { changeStateLoginAction, changelogin, changeStateRegisterAction } from '../../../redux/Actions/User/Actions';
+import { changeStateLoginAction,  changeStateRegisterAction } from '../../../redux/Actions/User/Actions';
 import { useEffect } from 'react';
 
 function NavBar() {
@@ -13,14 +14,14 @@ function NavBar() {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
-    //prueba
-    useEffect(() => {
-        dispatch(changelogin())
-    },[dispatch])    
-     const loggedin = useSelector((state) => state.userReducer.loggedin)
-     const cambiar = () => {
-         dispatch(changelogin(!loggedin))
-     }
+    // //prueba
+    // useEffect(() => {
+    //     dispatch(changelogin())
+    // },[dispatch])    
+    //  const loggedin = useSelector((state) => state.userReducer.loggedin)
+    //  const cambiar = () => {
+    //      dispatch(changelogin(!loggedin))
+    //  }
 
 
     const openLogin = () => {
@@ -51,27 +52,31 @@ function NavBar() {
         </NavDropdown> 
 
         {/* se va a tener que cambiar el estado loggein por el que corresponda */}
-            {loggedin === true ? 
+            {/*{loggedin === true ? */}
+            {stateLogin === true ? 
             <Nav.Link href="#panel">PANEL</Nav.Link>
              : 
             <Nav.Link href="#login" onClick={openLogin}>LOGIN</Nav.Link> 
              }
-            {loggedin === true ?
+            {/*{loggedin === true ?*/}
+            {stateLogin === true ?
             <NavDropdown title="RAUL" id="basic-nav-dropdown">
          <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
          <NavDropdown.Item href="#fav">MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="historyshop">HISTORIAL DE COMPRAS </NavDropdown.Item>
-         <NavDropdown.Item href="#signout" onClick={cambiar}>CERRAR SESIÓN </NavDropdown.Item>
+         {/*<NavDropdown.Item href="#signout" onClick={cambiar}>CERRAR SESIÓN </NavDropdown.Item>*/}
+         <NavDropdown.Item href="#signout" onClick={changeStateLoginAction}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :
         <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>}
 
 {/* botones para probar si cambia usuario-registrado , no-registrado */}
-            {loggedin === true ? 
+            {/*{loggedin === true ? */}
+{/*            {stateLogin === true ? 
             <button onClick={cambiar}>SALIR</button>   
              : 
              <button onClick={cambiar}>ENTRAR</button>    
-             }
+             }*/}
           
         </Nav>
         <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
