@@ -6,28 +6,43 @@ import {IoCartSharp} from 'react-icons/io5'
 import { Link } from 'react-router-dom';
 
 
-function ProductCard({precio,precioviejo,imagen,titulo,vendedor,estado,stars,freeship}) {
-    var porcentaje= (precio / precioviejo)*100;
-    var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
+function ProductCard({price,discount,images,name,seller,status,valuation,delivery}) {
+    // var porcentaje= (price / precioviejo)*100;
+    // var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
+
+    let addCommas = function(nStr)
+    {
+        nStr += '';
+        let x = nStr.split('.');
+        let x1 = x[0];
+        let x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
 
     return(
         <div id="ProductCard">
            <div id="container">	
 	            <div class="product-image">
-                	<img src={imagen} alt="Omar Dsoky"/>
+                	<img src={images[0]} alt="Omar Dsoky"/>
                 </div>
                 <Link id="link" to="/">
                 	<div class="product-details">
-	                    <h1>{titulo}</h1>
-                		<p id="seller">Vendido por {vendedor}</p>
-                        <div id="price"><h3>${precio}</h3><span>${precioviejo}</span></div>
-	                	<p class="information">{estado}</p>
-                      <Rating name="half-rating-read" defaultValue={stars} precision={0.5} readOnly />
+	                    <h1>{name}</h1>
+                		<p id="seller">Vendido por {seller}</p>
+                        <div id="price"><h3>${addCommas(Math.floor(price*171 - (price*171/100)*discount))}</h3>
+                        {discount>0? <span> ${addCommas(Math.floor(price*171))}</span> : <p></p>}
+                        </div>
+	                	<p class="information">{status}</p>
+                      <Rating name="half-rating-read" defaultValue={valuation} precision={0.5} readOnly />
 		            </div>
                 </Link>
                 <div id="offandship">
-                        { freeship? <div id="ship">Envio gratis</div> :  <p></p> }
-                       { precioviejo? <div id="off">{intPorcentaje} OFF</div> : <p></p> }
+                        { delivery? <div id="ship">Envio gratis</div> :  <p></p> }
+                       { discount>0? <div id="off">{discount}% OFF</div> : <p></p> }
                        
                 </div>
                 <div id="icons">
