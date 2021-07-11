@@ -37,7 +37,7 @@ const Login = () => {
     const submitLogin = e => {
         e.preventDefault();
         //Validation
-        if(username.trim() === '' || password.length === 0) return;
+        // if(username.trim() === '' || password.length === 0) return;
         
         const tryLogin = {
             email: username,

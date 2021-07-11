@@ -62,9 +62,7 @@
     font-weight:bold;
 }
 .containerButtons {
-    /* padding: 0;
-    margin: 0;
-    padding-top: 1rem;*/
+
     padding-top: 1rem;
     display: flex;
     width: 90%;

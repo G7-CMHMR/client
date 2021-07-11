@@ -7,7 +7,8 @@ import {
     ATTEMPT_LOGIN_FAILED,
     ATTEMPT_REGISTER,
     ATTEMPT_REGISTER_SUCCESS,
-    ATTEMPT_REGISTER_FAILED
+    ATTEMPT_REGISTER_FAILED,
+    ATTEMPT_LOGOUT,
 
   } from './ActionsName';
 
@@ -19,7 +20,7 @@ export function changeStateLoginAction(opposite) {
         dispatch(changeStateLogin(opposite))
     }
 }
-const changeStateLogin = (opposite) => ({
+export const changeStateLogin = (opposite) => ({
     type:CHANGE_LOGIN,
     payload:opposite
 })
@@ -68,9 +69,12 @@ export function attemptLoginAction (attempt) {
     return async (dispatch) => {
         dispatch(attemptLogin() );
         try {
-            await clientAxios.post('/auth/login', attempt)
-            dispatch( attemptLoginSuccess(attempt))
-            alert('Usuario logueado')
+            const { data } = await clientAxios.post('/auth/login', attempt)
+            dispatch( attemptLoginSuccess(attempt, data.name ))
+
+            localStorage.setItem('token', data.token);
+            
+            // alert('Usuario logueado')
         } catch (error) {
             console.log(error)
             dispatch(attemptLoginFailed(true))
@@ -78,16 +82,32 @@ export function attemptLoginAction (attempt) {
         }
     }
 }
+
+export function attemptLogoutAction() {
+    return (dispatch) => {
+        
+        dispatch(attemptLogout());
+    
+        localStorage.removeItem('token');
+    
+    }
+}
+
+
 const attemptLogin = () => ({
     type:ATTEMPT_LOGIN,
     payload: true
-
+    
 })
-const attemptLoginSuccess = (attempt) => ({
+const attemptLoginSuccess = (attempt, username) => ({
     type:ATTEMPT_LOGIN_SUCCESS,
-    payload: attempt
+    payload: {attempt, username}
 }) 
 const attemptLoginFailed = (newstate) => ({
     type:ATTEMPT_LOGIN_FAILED,
     payload:newstate
+})
+
+const attemptLogout = () => ({
+    type:ATTEMPT_LOGOUT
 })
