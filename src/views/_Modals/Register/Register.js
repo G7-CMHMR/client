@@ -3,8 +3,9 @@ import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props
 import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
+import clientAxios from '../../../config/axios';
 
-import {changeStateRegisterAction, changeStateLoginAction, attemptRegisterAction } from '../../../redux/Actions/User/Actions';
+import {changeStateRegisterAction, changeStateLoginAction, attemptRegisterAction, attemptLoginGoogle } from '../../../redux/Actions/User/Actions';
 
 import './Register.css'
 const Register = () => {
@@ -53,6 +54,19 @@ const Register = () => {
         
 
     }
+
+    const onSignIn = async (googleUser) => {
+      
+      var id_token = googleUser.getAuthResponse().id_token;
+      
+      const googleToken = { id_token }
+      
+      const { data } = await clientAxios.post('/auth/google', googleToken);
+      
+      dispatch(attemptLoginGoogle(data.name, data.token))
+
+  }
+
     //FACEBOOK AND GOOGLE RESPONSES
     const responseGoogle = (response) => {
         console.log(response)
@@ -63,7 +77,7 @@ const Register = () => {
 
   return (
     <div className="superposition">
-      <div id="registerBox">
+      <div id="registerBox" className="animate__animated animate__fadeIn animate_faster">
         <div className="contenedorX">
           <button id="X" onClick={openRegister}>X</button>
         </div>
@@ -80,7 +94,7 @@ const Register = () => {
             )}
           />
           <GoogleLogin
-            clientId="65251733284-bo53rdsnme3vupgk05c1l5v91uof8b8i.apps.googleusercontent.com"
+            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
             render={(renderProps) => (
                 
               <button
@@ -93,8 +107,8 @@ const Register = () => {
               
             )}
             buttonText=""
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle} 
+            onSuccess={onSignIn}
+            // onFailure={responseGoogle} 
             cookiePolicy={"single_host_origin"}
           />
         </div>
