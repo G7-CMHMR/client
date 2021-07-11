@@ -38,7 +38,6 @@ function productsReducer(state = initialState, action) {
             }
         }
 
-        } 
         case SORT: {
             return {
                 ...state,
