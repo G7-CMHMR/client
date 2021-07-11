@@ -1,44 +1,34 @@
+import React, { useEffect } from 'react';
 import CategoryOrder from '../CategoryOrder/CategoryOrder'
 import ProductCard from '../ProductCard/ProductCard'
 import './CategoryProductCards.css'
-import { getFilters } from '../CategoryFilters/CategoryFilters'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllProducts } from '../../../redux/Actions/Products/Actions';
 
-var prueba= [{
-    titulo:"Producto de prueba",
-    precio:4354,
-    precioviejo:10000,
-    vendedor:"Fulanito",
-    estado:"Nuevo",
-    freeship:true,
-    stars:3.5,
-    imagen:"https://www.fullh4rd.com.ar/img/productos/Pics_Prod/mouse-logitech-g203-0.jpg"
-},
-{
-    titulo:"Producto de prueba 2",
-    precio:201,
-    precioviejo:1000,
-    vendedor:"Pirulo",
-    estado:"Racondicionado",
-    freeship:false,
-    stars:5,
-    imagen:"https://http2.mlstatic.com/D_NQ_NP_948354-MLA45141563332_032021-W.jpg"
-}]
+
 
 function CategoryProductCards() {
+    
+    const productsReducer = useSelector (state => state.productsReducer)
+    const dispatch = useDispatch()
+    useEffect(() => {
+		dispatch(getAllProducts())
+	}, [dispatch])
+    
     return(
         <div id="CategoryProductCards">
             <CategoryOrder></CategoryOrder>
-            {prueba.map((x)=>{
+            {productsReducer.products.map((x)=>{
 			return(
-				<ProductCard titulo={x.titulo} imagen={x.imagen} 
-                stars={x.stars} freeship={x.freeship} precio={x.precio}
-                precioviejo={x.precioviejo} vendedor={x.vendedor}
-                estado={x.estado} />
+				<ProductCard name={x.name} images={x.images} 
+                valuation={x.valuation} delivery={x.delivery} price={x.price}
+                discount={x.discount} serller={x.seller}
+                status={x.status} />
 			)
 		})}
         </div>
     )
-}
+}      
 
 
 

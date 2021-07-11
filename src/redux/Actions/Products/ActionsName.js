@@ -6,3 +6,4 @@ export let GET_CATEGORIES = 'GET_CATEGORIES'
 
 export let UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 export let POST_PRODUCT = 'POST_PRODUCT'
+export let SORT = 'SORT'

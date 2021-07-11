@@ -1,10 +1,12 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT } from './ActionsName'
+
 
 const initialState = {
     products: [],
     productsOffer: [],
     productDetail: undefined,
     categories: [],
+
 }
 
 function productsReducer(state = initialState, action) {
@@ -21,6 +23,7 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 productDetail: action.payload
             }
+
         }
         case GET_PRODUCTS_OFFER: {
             return {
@@ -34,6 +37,14 @@ function productsReducer(state = initialState, action) {
                 categories: action.payload
             }
         }
+
+        } 
+        case SORT: {
+            return {
+                ...state,
+                products: action.payload
+            }
+        }          
         default: return state;
     }
 
