@@ -1,6 +1,7 @@
 import './App.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route } from 'react-router'
+import { useEffect } from 'react';
 
 import Nav from './components/Utils/Nav/Nav'
 import NavBar from './components/Utils/NavBar/NavBar'
@@ -12,8 +13,17 @@ import Product from './views/Product';
 
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
+import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+
+      dispatch(attemptVerifyLogin());
+  
+  }, [dispatch]);
 
   const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
   const stateRegister = useSelector((state) => state.userReducer.registerwindow);

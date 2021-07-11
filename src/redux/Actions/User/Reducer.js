@@ -49,8 +49,9 @@ export default function userReducer(state = initialState, action){
                 ...state,
                 loading: false,
                 attempt: action.payload,
-                username: action.payload.username,
-                loginwindow: false
+                username: action.payload,
+                loginwindow: false,
+                registerwindow: false
             }
         }
         case ATTEMPT_REGISTER_FAILED:

@@ -8,6 +8,7 @@ import {IoCartSharp} from 'react-icons/io5'
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
 import { useEffect } from 'react';
 
+
 function NavBar() {
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
@@ -25,19 +26,15 @@ function NavBar() {
 
 
     const openLogin = () => {
-        console.log(username);
         dispatch(changeStateLoginAction(!stateLogin))
 
     }
     const openRegister = () => {
-        console.log(username);
-
         dispatch(changeStateRegisterAction(!stateRegister))
     }
 
     const logout = () => {
         dispatch(attemptLogoutAction())
-        console.log(username);
     }
 
     // BackgroundColor #14213D;
@@ -65,7 +62,7 @@ function NavBar() {
             {username ? 
             <Nav.Link href="#panel">PANEL</Nav.Link>
              : 
-            <Nav.Link href="#login" onClick={openLogin}>LOGIN</Nav.Link> 
+            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
              }
             {username ?
             <NavDropdown title={username} id="basic-nav-dropdown">
