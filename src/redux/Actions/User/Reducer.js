@@ -7,7 +7,8 @@ import {
     ATTEMPT_LOGIN_FAILED,
     ATTEMPT_REGISTER,
     ATTEMPT_REGISTER_SUCCESS,
-    ATTEMPT_REGISTER_FAILED
+    ATTEMPT_REGISTER_FAILED,
+    ATTEMPT_LOGOUT
 
   } from './ActionsName'
 
@@ -16,7 +17,8 @@ import {
       registerwindow: false,
       loading: false,
       attempt: null,
-      error: false
+      error: false,
+      username: null
   }
 
 export default function userReducer(state = initialState, action){
@@ -46,7 +48,9 @@ export default function userReducer(state = initialState, action){
             return {
                 ...state,
                 loading: false,
-                attempt: action.payload
+                attempt: action.payload,
+                username: action.payload.username,
+                loginwindow: false
             }
         }
         case ATTEMPT_REGISTER_FAILED:
@@ -58,6 +62,13 @@ export default function userReducer(state = initialState, action){
 
             }
         }
+
+        case ATTEMPT_LOGOUT: {
+            return {
+                state: ''
+            }
+        }
+
         default:
             return state;
     }
