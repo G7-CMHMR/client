@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
+import clientAxios from '../../../config/axios';
 
-import {changeStateLoginAction, changeStateRegisterAction, attemptLoginAction} from '../../../redux/Actions/User/Actions';
+import {changeStateLoginAction, changeStateRegisterAction, attemptLoginAction, attemptLoginGoogle} from '../../../redux/Actions/User/Actions';
 import "./Login.css";
+
 
 const Login = () => {
     //Redux
@@ -13,8 +15,11 @@ const Login = () => {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
+
+
   const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
+
     }
 
     const openLogin = () => {
@@ -47,16 +52,43 @@ const Login = () => {
 
     }
     //FACEBOOK AND GOOGLE RESPONSES
-    const responseGoogle = (response) => {
-        console.log(response)
+    // const responseGoogle = async (response) => {
+    //     console.log(response)
+    //     try {
+          
+    //       const resp = await clientAxios.get('/auth/google', { headers: { 'id_token': response.tokenId }})
+    //     } catch (error) {
+    //       console.log(error);
+          
+    //     }
+    // }
+
+    const onSignIn = async (googleUser) => {
+    
+        // var profile = googleUser.getBasicProfile();
+        // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        
+        var id_token = googleUser.getAuthResponse().id_token;
+        
+        const googleToken = { id_token }
+        
+        const { data } = await clientAxios.post('/auth/google', googleToken);
+        
+        dispatch(attemptLoginGoogle(data.name, data.token))
+
     }
+ 
+
     const responseFacebook = (response) => {
         console.log(response)
     }
 
   return (
     <div className="superposition">
-      <div id="loginBox">
+      <div id="loginBox" className="animate__animated animate__fadeIn animate_faster">
         <div className="contenedorX">
           <button id="X" onClick={openLogin}>X</button>
         </div>
@@ -73,7 +105,7 @@ const Login = () => {
             )}
           />
           <GoogleLogin
-            clientId="65251733284-bo53rdsnme3vupgk05c1l5v91uof8b8i.apps.googleusercontent.com"
+            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
             render={(renderProps) => (
               <button
                 id="botonGoogle"
@@ -84,8 +116,8 @@ const Login = () => {
               </button>
             )}
             buttonText=""
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle} 
+            onSuccess={onSignIn}
+            // onFailure={onSignIn} 
             cookiePolicy={"single_host_origin"}
           />
         </div>
@@ -115,7 +147,7 @@ const Login = () => {
             <br />
           </div>
           <div className="submit">
-            <input type="submit" value="INICIAR" className="buttonInitiate" />
+            <input disabled={!username || !password} type="submit" value="INICIAR" className="buttonInitiate" />
           </div>
         </form>
       </div>

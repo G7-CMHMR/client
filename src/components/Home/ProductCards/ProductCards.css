@@ -1,5 +1,28 @@
-#ProductCardsContainer{
-    grid-area: Main;
-    background-color:lightpink;
-    height: 900px;
+#productsBar {
+    background:#D5D5D5;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 21rem;
+}
+
+ .HomeCard{
+    background: white;
+    max-width: 224px;
+    margin: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+#price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.titleCardHome{
+    background: #9c9a97;
+} 
+
+#cardsbottom{
+    background: grey;
 }

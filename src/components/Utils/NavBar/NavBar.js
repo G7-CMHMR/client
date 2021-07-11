@@ -5,31 +5,40 @@ import {Navbar ,Nav, NavDropdown} from 'react-bootstrap'
 import {FaHeart} from 'react-icons/fa'
 import {IoCartSharp} from 'react-icons/io5'
 
-// import { changeStateLoginAction, changelogin, changeStateRegisterAction } from '../../../redux/Actions/User/Actions';
-import { changeStateLoginAction,  changeStateRegisterAction } from '../../../redux/Actions/User/Actions';
+
+import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
 import { useEffect } from 'react';
+
 
 function NavBar() {
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
+    const username = useSelector((state) => state.userReducer.username); 
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
-    // //prueba
+
+    //prueba
     // useEffect(() => {
-    //     dispatch(changelogin())
+    //     dispatch(changeStateLogin())
     // },[dispatch])    
     //  const loggedin = useSelector((state) => state.userReducer.loggedin)
     //  const cambiar = () => {
-    //      dispatch(changelogin(!loggedin))
+    //      dispatch(changeStateLogin(!loggedin))
     //  }
 
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
+
     }
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
+
+    const logout = () => {
+        dispatch(attemptLogoutAction())
+    }
+
     // BackgroundColor #14213D;
     return (
     <div className="ContainerNavBar">
@@ -50,34 +59,27 @@ function NavBar() {
              <NavDropdown.Item href="#action/3.8">Teclados y mouse </NavDropdown.Item>
              <NavDropdown.Item href="#action/3.9">Audio </NavDropdown.Item>
         </NavDropdown> 
-
-        {/* se va a tener que cambiar el estado loggein por el que corresponda */}
-            {/*{loggedin === true ? */}
-            {stateLogin === true ? 
+            {username ? 
             <Nav.Link href="#panel">PANEL</Nav.Link>
              : 
-            <Nav.Link href="#login" onClick={openLogin}>LOGIN</Nav.Link> 
+            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
              }
-            {/*{loggedin === true ?*/}
-            {stateLogin === true ?
-            <NavDropdown title="RAUL" id="basic-nav-dropdown">
+            {username ?
+            <NavDropdown title={username} id="basic-nav-dropdown">
          <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
          <NavDropdown.Item href="#fav">MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="historyshop">HISTORIAL DE COMPRAS </NavDropdown.Item>
-         {/*<NavDropdown.Item href="#signout" onClick={cambiar}>CERRAR SESIÓN </NavDropdown.Item>*/}
-         <NavDropdown.Item href="#signout" onClick={changeStateLoginAction}>CERRAR SESIÓN </NavDropdown.Item>
+         <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :
         <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>}
 
 {/* botones para probar si cambia usuario-registrado , no-registrado */}
-            {/*{loggedin === true ? */}
-{/*            {stateLogin === true ? 
-            <button onClick={cambiar}>SALIR</button>   
+            {/* {username ? 
+            <button onClick={logout}>SALIR</button>   
              : 
              <button onClick={cambiar}>ENTRAR</button>    
-             }*/}
-          
+             } */}          
         </Nav>
         <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
         <Nav.Link href="#fav"><FaHeart/></Nav.Link>

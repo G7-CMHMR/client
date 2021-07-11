@@ -47,6 +47,7 @@
     box-sizing: border-box;
     padding: 3rem 2rem;
     background: white;   
+    z-index: 999999;
 }
 #containerName {
     display: flex;

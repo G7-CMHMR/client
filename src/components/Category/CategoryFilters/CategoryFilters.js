@@ -29,6 +29,11 @@ function CategoryFilters(props) {
         Brands: [["AMD"], ['INTEL']]
     }
 
+    function Alert (e){
+        alert(e.target.name)
+    }
+    
+
 
     return (
         <div id="CategoryFilters">
@@ -41,7 +46,7 @@ function CategoryFilters(props) {
                 <div id='CategoryType'>
                     <h4>Tipos:</h4>
                     <ul>
-                        <h5>{CategoriaTest.Tipos[0]}</h5>
+                        <h5 name='Hola' onClick={Alert}>{CategoriaTest.Tipos[0]}</h5>
                         <h5>{CategoriaTest.Tipos[1]}</h5>
                     </ul>
                 </div>
