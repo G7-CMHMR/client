@@ -1,9 +1,8 @@
-import {GET_PRODUCTS, GET_PRODUCT_DETAIL} from './ActionsName'
+import {GET_PRODUCTS, GET_PRODUCT_DETAIL, SORT} from './ActionsName'
 
 const initialState = {
     products: [],
     productDetail: undefined,
-
 }
 
 function productsReducer (state = initialState, action) {
@@ -19,7 +18,13 @@ function productsReducer (state = initialState, action) {
                 ...state,
                 productDetail: action.payload
             }
-        }           
+        } 
+        case SORT: {
+            return {
+                ...state,
+                products: action.payload
+            }
+        }          
         default: return state;
     }
     
