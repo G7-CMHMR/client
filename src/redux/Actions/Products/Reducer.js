@@ -1,16 +1,21 @@
-import {GET_PRODUCTS, GET_PRODUCT_DETAIL, SORT} from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT } from './ActionsName'
+
 
 const initialState = {
     products: [],
+    productsOffer: [],
     productDetail: undefined,
+    categories: [],
+
 }
 
-function productsReducer (state = initialState, action) {
-    switch (action.type){
+function productsReducer(state = initialState, action) {
+    switch (action.type) {
         case GET_PRODUCTS: {
             return {
                 ...state,
                 products: action.payload
+                
             }
         }
         case GET_PRODUCT_DETAIL: {
@@ -18,6 +23,21 @@ function productsReducer (state = initialState, action) {
                 ...state,
                 productDetail: action.payload
             }
+
+        }
+        case GET_PRODUCTS_OFFER: {
+            return {
+                ...state,
+                productsOffer: action.payload
+            }
+        }
+        case GET_CATEGORIES: {
+            return {
+                ...state,
+                categories: action.payload
+            }
+        }
+
         } 
         case SORT: {
             return {
@@ -27,7 +47,7 @@ function productsReducer (state = initialState, action) {
         }          
         default: return state;
     }
-    
+
 }
 
 export default productsReducer
