@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT } from './ActionsName'
 
@@ -26,8 +25,16 @@ export function getProductDetail(id) {
 export function sort(order, array){
     let sortArray = [...array]
     sortArray.sort(function (a, b) {
-        var a = parseFloat(a.price)
-        var b = parseFloat(b.price)
+
+        function priceToDisplay (x){
+            let price = x.price
+            if (x.discount>0){price =Math.floor(x.price*171 - (x.price*171/100 )*x.discount)}
+            else { price = Math.floor(price*171) }  
+            return price 
+        }
+        var a = parseFloat(priceToDisplay(a))
+        var b = parseFloat(priceToDisplay(b))
+
         if (order === 'minmax') {
             if (a < b) { return -1 }
             if (a > b) { return 1  }

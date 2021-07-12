@@ -6,7 +6,6 @@ const initialState = {
     productsOffer: [],
     productDetail: undefined,
     categories: [],
-
 }
 
 function productsReducer(state = initialState, action) {
@@ -23,6 +22,7 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 productDetail: action.payload
             }
+        } 
 
         }
         case GET_PRODUCTS_OFFER: {
@@ -37,7 +37,6 @@ function productsReducer(state = initialState, action) {
                 categories: action.payload
             }
         }
-
         case SORT: {
             return {
                 ...state,
