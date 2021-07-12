@@ -1,35 +1,29 @@
 import Link from 'react-router-dom'
 import './CategoryFilters.css'
 //import TextField from '@material-ui/inputs/TextField'
-import { getProductsFilter } from '../../../redux/Actions/Products/Actions'
-import {useEffect, useState} from 'react'
+import { getProductsFilter, getProductsOfCategory } from '../../../redux/Actions/Products/Actions'
+import {useEffect, useState, React} from 'react'
+import { useParams } from "react-router";
+import { useDispatch, useSelector } from 'react-redux';
 
 function CategoryFilters(props) {
 
-    useEffect(() => {  
-        //props.getProductsFilter(categoryName, type, shipping, condition, brand, priceMin, PriceMax) 
-        // props.getProductDetail()
-    }, []) 
+    const { categoryName } = useParams()
 
+    const productsReducer = useSelector (state => state.productsReducer)
+    const dispatch = useDispatch()
 
-    const [input, setInput] = useState({
-        categoryName: '',
-        type: '',
-        shipping: '',
-        condition: '',
-        brand: '',
-        priceMin: '',
-        priceMax: '',
-    })
-    
+    useEffect(() => {
+        dispatch(getProductsOfCategory(categoryName))
+	}, [dispatch, categoryName])
+
 
     var CategoriaTest = {
-        Categoria: "Procesadores",
         resultados: 24,
-        Tipos: ['Socket AM2', 'Socket AM3', 'Socket AM4', 'Socket 1200'],
+        Tipos: [],
         CostoDeEnvio: 'gratis',
         Condiciones: [["Nuevo"], ['Usado'], ['Reacondicionado']],
-        Brands: [["AMD"], ['INTEL']]
+        Brands: []
     }
 
     function onChangeFilters (e){
@@ -41,9 +35,10 @@ function CategoryFilters(props) {
     return (
         <div id="CategoryFilters">
             <div id='CategoryAndResults'>
+                {console.log(productsReducer)}
                 <br></br>
-                <h2>{CategoriaTest.Categoria}</h2>
-                <h5 id='Resultados'>{CategoriaTest.resultados} resultados</h5>
+                <h2>{categoryName}</h2>
+                <h5 id='Resultados'>{productsReducer.products.length} resultados</h5>
             </div>
             <div id='ContainerGroupCategory'>
                 <div id='CategoryType'>

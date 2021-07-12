@@ -5,12 +5,12 @@
 
 #HomeContent{
     width: 80%;
+    background-color: #E5E5E5;
 }
 
 .Container{
     display: flex;
 }
-
 
 
 

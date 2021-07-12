@@ -27,8 +27,13 @@ function Home(props) {
       <div id='HomeContent'>
         <QuizAndBuild></QuizAndBuild>
         <Carousel></Carousel>
+        <br></br>
         <ProductCards products={productsReducer.productsOffer} title={"Ofertas"}></ProductCards>
+        <br></br>
+        <br></br>
         <ProductCards products={productsReducer.products} title={"Destacados"}></ProductCards>
+        <br></br>
+        <br></br>
       </div>
 
       <Separate></Separate>

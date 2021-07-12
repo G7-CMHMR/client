@@ -1,5 +1,5 @@
 #productsBar {
-    background:#D5D5D5;
+    background:#E5E5E5;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -20,9 +20,9 @@
 }
 
 .titleCardHome{
-    background: #9c9a97;
+    background: #FCA311;
 } 
 
 #cardsbottom{
-    background: grey;
+    background: #E5E5E5;
 }
