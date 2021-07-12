@@ -1,5 +1,8 @@
 #ContainerQuizAndBuild{
     grid-area: Main;
-    background-color:dodgerblue;
-    height: 500px;
+    background: url('./PhotoHome.png');
+    background-size:cover;
+
+    height: 560px;
+    background-repeat: no-repeat;
 }

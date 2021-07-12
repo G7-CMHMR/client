@@ -9,7 +9,6 @@ function CategoryOrder() {
   const dispatch = useDispatch()
   const productsReducer = useSelector (state => state.productsReducer)
     useEffect(() => {
-		dispatch(getAllProducts())
 	}, [dispatch])
 
   function handleOrder(e){
