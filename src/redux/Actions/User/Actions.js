@@ -46,7 +46,7 @@ export function attemptRegisterAction (attempt) {
             // dispatch(attemptRegisterSuccess(attempt))
             alert('Usuario creado con exito')
         } catch (error) {
-            console.log('ESTE ES EL ERROR EN EL FRONT: ',error)
+            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
             dispatch(attemptRegisterFailed(true))
         }
     }
@@ -76,7 +76,7 @@ export function attemptLoginAction (attempt) {
             
             // alert('Usuario logueado')
         } catch (error) {
-            console.log(error)
+            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
             dispatch(attemptLoginFailed(true))
             alert('Error al conectar con usuario')
         }
