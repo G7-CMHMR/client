@@ -43,12 +43,21 @@ export default function userReducer(state = initialState, action){
                 loading: action.payload
             }
         }
-        case ATTEMPT_REGISTER_SUCCESS:
+        case ATTEMPT_REGISTER_SUCCESS:{
+            return {
+                ...state,
+                loading: false,
+                attempt: null,
+                username: null,
+                loginwindow: false,
+                registerwindow: false
+            }
+        }
         case ATTEMPT_LOGIN_SUCCESS: {
             return {
                 ...state,
                 loading: false,
-                attempt: action.payload,
+                attempt: null,
                 username: action.payload,
                 loginwindow: false,
                 registerwindow: false
@@ -66,7 +75,13 @@ export default function userReducer(state = initialState, action){
 
         case ATTEMPT_LOGOUT: {
             return {
-                state: ''
+                ...state,
+                loginwindow: false,
+                registerwindow: false,
+                loading: false,
+                attempt: null,
+                error: false,
+                username: null
             }
         }
 
