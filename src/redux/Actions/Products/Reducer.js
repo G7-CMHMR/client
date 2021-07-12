@@ -9,6 +9,7 @@ const initialState = {
 }
 
 function productsReducer(state = initialState, action) {
+
     switch (action.type) {
         case GET_PRODUCTS: {
             return {
@@ -24,7 +25,6 @@ function productsReducer(state = initialState, action) {
             }
         } 
 
-        }
         case GET_PRODUCTS_OFFER: {
             return {
                 ...state,
@@ -42,7 +42,8 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 products: action.payload
             }
-        }          
+        }     
+
         default: return state;
     }
 
