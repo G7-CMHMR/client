@@ -43,9 +43,12 @@ export function attemptRegisterAction (attempt) {
         dispatch(attemptRegister() );
         try {
             await clientAxios.post('/auth/create', attempt)
-            // dispatch(attemptRegisterSuccess(attempt))
-            alert('Usuario creado con exito')
+            
+            dispatch(attemptRegisterSuccess(attempt.name))
+            
+            //alert('Usuario creado con exito')
         } catch (error) {
+            
             dispatch(attemptRegisterFailed(true))
         }
     }
@@ -69,15 +72,17 @@ export function attemptLoginAction (attempt) {
         dispatch(attemptLogin() );
         try {
             const { data } = await clientAxios.post('/auth/login', attempt)
+            
             dispatch( attemptLoginSuccess( data.name ))
 
             localStorage.setItem('token', data.token);
             
             // alert('Usuario logueado')
         } catch (error) {
+            
             console.log(error)
             dispatch(attemptLoginFailed(true))
-            alert('Error al conectar con usuario')
+            //alert('Error al conectar con usuario')
         }
     }
 }
@@ -110,7 +115,7 @@ export function attemptVerifyLogin () {
             // alert('Usuario logueado')
         } catch (error) {
             console.log(error)
-            // dispatch(attemptLoginFailed(true))
+            dispatch(attemptLoginFailed(true))
         }
     }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+//import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -13,6 +13,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
+    const error = useSelector((state) => state.userReducer.error)
 
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
@@ -22,6 +23,12 @@ const Register = () => {
     }
     //UseState
     const [terms, setTerms] = useState(false);
+    /* const [errors, setErrors] = useState({
+      email: false,
+      name: false,
+      lastname: false,
+      password: false      
+    }) */
     const [data, setData] = useState({
         email:'',
         name:'',
@@ -41,7 +48,12 @@ const Register = () => {
         e.preventDefault();
         //Validation
         
-        if(email.trim() === '' ||name.trim() === '' ||lastname.trim() === '' || password.length === 0 ) return;
+        if(password.length < 8){
+
+        }
+
+
+        if(email.trim() === '' ||name.trim() === '' ||lastname.trim() === '' || password.length < 8) return;
         else if(terms) {
             const tryRegister = {
                 email: email,
@@ -67,32 +79,33 @@ const Register = () => {
 
   }
 
-    //FACEBOOK AND GOOGLE RESPONSES
+    /* //FACEBOOK AND GOOGLE RESPONSES
     const responseGoogle = (response) => {
         console.log(response)
     }
     const responseFacebook = (response) => {
         console.log(response)
-    }
+    } */
 
   return (
     <div className="superposition">
       <div id="registerBox" className="animate__animated animate__fadeIn animate_faster">
-        <div className="contenedorX">
+        <div className="contenedorX">        
           <button id="X" onClick={openRegister}>X</button>
         </div>
+        { error ?<p className="alert alert-danger">Todos los campos son obligatorios</p> : null}
         <h1 id="register">REGISTRARSE</h1>
         <div className="containerButtons">
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="548046433216347"
-            /* autoLoad */
+            // autoLoad 
             callback={responseFacebook} 
             render={(renderProps) => (
               <button id="botonFacebook" onClick={renderProps.onClick}>
                 f
               </button>
             )}
-          />
+          /> */}
           <GoogleLogin
             clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
             render={(renderProps) => (

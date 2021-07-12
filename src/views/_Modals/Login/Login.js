@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import React, { //useEffect, 
+  useState } from 'react';
+//import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { GoogleLogin } from "react-google-login";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -14,6 +15,7 @@ const Login = () => {
     const dispatch = useDispatch();    
     const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
+    const error = useSelector((state) => state.userReducer.error)
 
 
 
@@ -27,10 +29,10 @@ const Login = () => {
     }
     //UseState
     const [data, setData] = useState({
-        username: '',
+        email: '',
         password: ''
     });
-    const { username, password} = data;
+    const { email, password} = data;
     const onChangeForm = e => {
         setData({
             ...data,
@@ -42,10 +44,10 @@ const Login = () => {
     const submitLogin = e => {
         e.preventDefault();
         //Validation
-        if(username.trim() === '' || password.length === 0) return;
+        if(email.trim() === '' || password.length === 0) return;
         
         const tryLogin = {
-            email: username,
+            email: email,
             password: password
         }
         dispatch(attemptLoginAction(tryLogin))
@@ -82,9 +84,9 @@ const Login = () => {
     }
  
 
-    const responseFacebook = (response) => {
+    /* const responseFacebook = (response) => {
         console.log(response)
-    }
+    } */
 
   return (
     <div className="superposition">
@@ -92,18 +94,19 @@ const Login = () => {
         <div className="contenedorX">
           <button id="X" onClick={openLogin}>X</button>
         </div>
+        { error ?<p className="alert alert-danger">Usuario o Contraseña Invalido</p> : null}
         <h1 id="login">Login</h1>
         <div className="containerButtons">
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="548046433216347"
-            /* autoLoad */
+            // autoLoad 
             callback={responseFacebook} 
             render={(renderProps) => (
               <button id="botonFacebook" onClick={renderProps.onClick}>
                 f
               </button>
             )}
-          />
+          /> */}
           <GoogleLogin
             clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
             render={(renderProps) => (
@@ -124,11 +127,12 @@ const Login = () => {
 
         <form
             onSubmit={submitLogin}
-        >
+      >   
           <p className="subtitle">Usuario</p>
-          <input name='username' type="text" placeholder="Usuario" onChange={onChangeForm} className="inputslogin" />
+          <input name='email' type="email" placeholder="Email" onChange={onChangeForm} className="inputslogin" />
 
           <p className="subtitle">Contraseña</p>
+          
           <input
             onChange={onChangeForm}
             type="password"
@@ -147,7 +151,7 @@ const Login = () => {
             <br />
           </div>
           <div className="submit">
-            <input disabled={!username || !password} type="submit" value="INICIAR" className="buttonInitiate" />
+            <input disabled={!email || !password} type="submit" value="INICIAR" className="buttonInitiate" />
           </div>
         </form>
       </div>
