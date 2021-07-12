@@ -24,7 +24,6 @@ function productsReducer(state = initialState, action) {
             }
         } 
 
-        }
         case GET_PRODUCTS_OFFER: {
             return {
                 ...state,

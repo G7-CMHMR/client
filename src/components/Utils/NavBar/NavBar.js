@@ -8,7 +8,7 @@ import {FaHeart} from 'react-icons/fa'
 import {IoCartSharp} from 'react-icons/io5'
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
-import {getProductsOfCategory} from '../../../redux/Actions/Products/Actions'
+import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
@@ -21,7 +21,7 @@ function NavBar() {
 
   
     useEffect(() => {
-      dispatch(getProductsOfCategory())
+      dispatch(getCategories())
     }, [dispatch])
 
     // useEffect(() => {
