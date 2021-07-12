@@ -61,7 +61,7 @@ export function getProductsOffer() {
     }
 }
 
-export function getProductsOfCategory() {
+export function getCategories() {
     return (dispatch) => {
 
         axios.get(`http://localhost:3001/category`)
@@ -70,6 +70,14 @@ export function getProductsOfCategory() {
             })
     }
 }
+export function getProductsOfCategory(categoryName) {     
+    return (dispatch) => {          
+        axios.get(`http://localhost:3001/products/category/${categoryName}`)
+            .then(response => {                 
+                dispatch({ type: GET_PRODUCTS, payload: response.data })             
+            })     
+        } 
+    }
 
 
 export function getProductsFilter(categoryName, type, shipping, condition, brand, MinPrice, MaxPrice) {
