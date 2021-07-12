@@ -1,19 +1,33 @@
 //Ordenamiento en Categorias
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import './CategoryOrder.css'
 import {Form} from 'react-bootstrap'
+import { getAllProducts, sort } from '../../../redux/Actions/Products/Actions';
 
 function CategoryOrder() {
+  const dispatch = useDispatch()
+  const productsReducer = useSelector (state => state.productsReducer)
+    useEffect(() => {
+		dispatch(getAllProducts())
+	}, [dispatch])
+
+  function handleOrder(e){
+    dispatch(sort(e.target.value, productsReducer.products)) 
+  }
+
+  
     return(
     <div id="order">
        <Form.Control
         as="select"
         className="mr-sm-2"
         id="inlineFormCustomSelect"
-        custom
+        custom onChange={handleOrder}
       >
         <option value="0">ORDER</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
+        <option value="minmax">Menor a mayor precio</option>
+        <option value="maxmin">Mayor a menor precio </option>
       </Form.Control>
 
     </div>    

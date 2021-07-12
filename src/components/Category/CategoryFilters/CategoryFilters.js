@@ -1,22 +1,25 @@
 import Link from 'react-router-dom'
 import './CategoryFilters.css'
 //import TextField from '@material-ui/inputs/TextField'
-import { getAllProducts, getProductDetail } from '../../../redux/Actions/Products/Actions'
+import { getProductsFilter } from '../../../redux/Actions/Products/Actions'
 import {useEffect, useState} from 'react'
 
 function CategoryFilters(props) {
 
     useEffect(() => {  
-        // props.getAllProducts() 
+        //props.getProductsFilter(categoryName, type, shipping, condition, brand, priceMin, PriceMax) 
         // props.getProductDetail()
     }, []) 
 
 
     const [input, setInput] = useState({
         categoryName: '',
-        products: '',
-        filtroPrecio: '',
-
+        type: '',
+        shipping: '',
+        condition: '',
+        brand: '',
+        priceMin: '',
+        priceMax: '',
     })
     
 
@@ -29,7 +32,7 @@ function CategoryFilters(props) {
         Brands: [["AMD"], ['INTEL']]
     }
 
-    function Alert (e){
+    function onChangeFilters (e){
         alert(e.target.name)
     }
     
@@ -46,7 +49,7 @@ function CategoryFilters(props) {
                 <div id='CategoryType'>
                     <h4>Tipos:</h4>
                     <ul>
-                        <h5 name='Hola' onClick={Alert}>{CategoriaTest.Tipos[0]}</h5>
+                        <h5 name='Hola' onClick={onChangeFilters}>{CategoriaTest.Tipos[0]}</h5>
                         <h5>{CategoriaTest.Tipos[1]}</h5>
                     </ul>
                 </div>

@@ -1,4 +1,6 @@
 import React, { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import './NavBar.css'
 import {Navbar ,Nav, NavDropdown} from 'react-bootstrap'
@@ -7,7 +9,7 @@ import {IoCartSharp} from 'react-icons/io5'
 
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
-import { useEffect } from 'react';
+import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
@@ -17,7 +19,14 @@ function NavBar() {
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
 
-    //prueba
+    const productsReducer = useSelector(state => state.productsReducer)
+
+  
+    useEffect(() => {
+      dispatch(getCategories())
+    }, [dispatch])
+
+
     // useEffect(() => {
     //     dispatch(changeStateLogin())
     // },[dispatch])    
@@ -49,15 +58,10 @@ function NavBar() {
          <Nav.Link href="#link">OFERTAS</Nav.Link>
          <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
          <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
-             <NavDropdown.Item href="#action/3.1">Equipos y Notebooks</NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.2">Procesadores y coolers cpus</NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.3">Memorias Ram</NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.4">Almacenamiento</NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.5">Placas de video</NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.6">Gabinetes </NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.7">Monitores </NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.8">Teclados y mouse </NavDropdown.Item>
-             <NavDropdown.Item href="#action/3.9">Audio </NavDropdown.Item>
+             {productsReducer.categories.map(element => (
+                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
+             ))//<Link to={`/categorias/${element}`}>
+            }
         </NavDropdown> 
             {username ? 
             <Nav.Link href="#panel">PANEL</Nav.Link>
@@ -93,3 +97,16 @@ function NavBar() {
 
 
 export default NavBar
+
+//
+{/* <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
+<NavDropdown.Item href="#action/3.1">Equipos y Notebooks</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.2">Procesadores y coolers cpus</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.3">Memorias Ram</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.4">Almacenamiento</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.5">Placas de video</NavDropdown.Item>
+<NavDropdown.Item href="#action/3.6">Gabinetes </NavDropdown.Item>
+<NavDropdown.Item href="#action/3.7">Monitores </NavDropdown.Item>
+<NavDropdown.Item href="#action/3.8">Teclados y mouse </NavDropdown.Item>
+<NavDropdown.Item href="#action/3.9">Audio </NavDropdown.Item>
+</NavDropdown>  */}

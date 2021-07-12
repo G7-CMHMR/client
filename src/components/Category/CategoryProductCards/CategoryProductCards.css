@@ -1,6 +1,6 @@
 #CategoryProductCards{
     background-color: white;
-    height: 1200px;
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
