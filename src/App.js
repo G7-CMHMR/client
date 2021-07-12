@@ -39,7 +39,7 @@ function App() {
       <Route exact path='/' component={Home}/>
       <Route exact path='/Categorias' component={Categories}/>
       <Route path='/Categorias/:categoryName' component={Categories}/>
-      <Route exact path='/Producto' component={Product}/>
+      <Route path='/Producto/:idProducto' component={Product}/>
 
       <Footer></Footer>
 

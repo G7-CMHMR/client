@@ -13,7 +13,6 @@ function CategoryProductCards() {
     const dispatch = useDispatch()
     const { categoryName } = useParams()
     useEffect(() => {
-		dispatch(getAllProducts())
         dispatch(getProductsOfCategory(categoryName))
 	}, [dispatch, categoryName])
     
