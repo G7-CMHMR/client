@@ -1,14 +1,31 @@
 //Imagenes de la publiacion
 import './Images.css'
+
+import React, { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from "react-router";
+
+import { getProductDetail } from '../../../redux/Actions/Products/Actions'
+
 function Images() {
+
+    const { idProducto } = useParams()
+    const dispatch = useDispatch();
+    const productsReducer = useSelector(state => state.productsReducer.productDetail)
+    useEffect(() => {
+        dispatch(getProductDetail(idProducto))
+    }, [dispatch])
+
+
     return (
         <div id='ContainerImages'>
-            <img id='LargeImage' src='https://http2.mlstatic.com/D_NQ_NP_600196-MLA44913483868_022021-O.webp' width='600px'></img>
+            <img id='LargeImage' src={productsReducer.images? productsReducer.images[0] : ''} width='600px'></img>
             <div id='MiniImages'>
-                <img src='https://http2.mlstatic.com/D_NQ_NP_600196-MLA44913483868_022021-O.webp' width='140px'></img>
-                <img src='https://http2.mlstatic.com/D_NQ_NP_855306-MLA44913483869_022021-O.webp' width='140px'></img>
-                <img src='https://http2.mlstatic.com/D_NQ_NP_635841-MLA44913483867_022021-O.webp' width='140px'></img>
-                <img src='https://http2.mlstatic.com/D_NQ_NP_822291-MLA44913624340_022021-O.webp' width='140px'></img>
+                {}
+                <img src={productsReducer.images? productsReducer.images[1] : ''} width='140px' height='120px'></img>
+                <img src={productsReducer.images? productsReducer.images[2] : ''} width='140px' height='120px'></img>
+                <img src={productsReducer.images? productsReducer.images[3] : ''} width='140px' height='120px'></img>
+                <img src={productsReducer.images? productsReducer.images[4] : ''} width='140px' height='120px'></img>
             </div>
             
         </div>

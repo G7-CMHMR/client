@@ -1,25 +1,46 @@
 //Info del producto en publicacion 
+import React, { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useParams } from "react-router";
+
+import { getProductDetail } from '../../../redux/Actions/Products/Actions'
+
+
+
 
 function ProductInfo() {
+
+    const { idProducto } = useParams()
+
+    const dispatch = useDispatch();
+    const productsReducer = useSelector(state => state.productsReducer.productDetail)
+
+
+    useEffect(() => {
+        dispatch(getProductDetail(idProducto))
+    }, [dispatch])
+
+
     return (
         <div>
             <br></br>
-            <h4>Nuevo | 24 vendidos</h4>
+            <h4>{productsReducer.status} | 24 vendidos</h4>
             <br></br>
-            <h2>Monitor Samsung 24 Pulgadas</h2>
+            <h2>{productsReducer.name}</h2>
             <br></br>
             <div>
                 <h1>$23.000</h1>
-                <h3>$25.000</h3>
+                <h3>{productsReducer.price}</h3>
             </div>
 
             <div>
-                <h2>Envio a la dirección:</h2>
-                <h2>Alsina 1328, Lomas</h2>
+                <h3 color='green' >{productsReducer.discount? 'Envio Gratis!' : 'Precio del envio: $400'}</h3>
+                {/* <h2>Envio a la dirección:</h2> */}
+                {/* <h2></h2> */}
             </div>
             <div>
-                <h2>Devolución:</h2>
-                <h2>Tenes 10 dias desde que lo recibis</h2>
+                <h3>Devolución:</h3>
+                <h3>Tenes 10 dias desde que lo recibis</h3>
             </div>
             <div>
                 <button>Comprar Ahora</button>
