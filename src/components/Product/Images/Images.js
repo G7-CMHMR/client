@@ -1,6 +1,6 @@
 //Imagenes de la publiacion
 import './Images.css'
-
+import { Carousel } from 'react-bootstrap'
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
@@ -19,16 +19,6 @@ function Images() {
 
     return (
         <div id='ContainerImages'>
-<<<<<<< Updated upstream
-            <img id='LargeImage' src={productsReducer.images? productsReducer.images[0] : ''} width='600px'></img>
-            <div id='MiniImages'>
-                {}
-                <img src={productsReducer.images? productsReducer.images[1] : ''} width='140px' height='120px'></img>
-                <img src={productsReducer.images? productsReducer.images[2] : ''} width='140px' height='120px'></img>
-                <img src={productsReducer.images? productsReducer.images[3] : ''} width='140px' height='120px'></img>
-                <img src={productsReducer.images? productsReducer.images[4] : ''} width='140px' height='120px'></img>
-            </div>
-=======
             <Carousel>
   <Carousel.Item>
     <img
@@ -61,7 +51,6 @@ function Images() {
     />
   </Carousel.Item>
 </Carousel>
->>>>>>> Stashed changes
             
         </div>
     )

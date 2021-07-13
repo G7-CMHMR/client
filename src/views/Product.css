@@ -23,15 +23,9 @@
    }
    
    #ProductInfo{
-<<<<<<< Updated upstream
-       width: 35%;
-       height: 800px;
-       background-color:mediumpurple;
-=======
     width: 35%;
     height: auto;
     background-color: #efefef;
->>>>>>> Stashed changes
    }
    
    #ImagesAndSimilars{
@@ -40,13 +34,14 @@
    }
    
    #Images{
-   height: 65%;
+   height: auto;
    background-color:plum;
    }
    
    #Similars{
-   height: 35%;
-   background-color:rosybrown;
+    height: 61%;
+    background-color: #f9f9f9;
+    margin-top: 1%;
    }
    
    
@@ -58,8 +53,11 @@
    }
    
    #Description{
-       width: 75%;
-       background-color: salmon;
+    width: 75%;
+    background-color: #f9f9f9;
+    border-radius: 14px;
+    margin-right: 8px;
+    margin-top: 19%;
    }
    
    #SellerInfo{
@@ -70,4 +68,7 @@
    #Questions{
        height: 800px;
        background-color:steelblue;
+   }
+   #similarCard{
+    display: flex;
    }

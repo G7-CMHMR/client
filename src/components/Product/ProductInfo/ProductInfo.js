@@ -53,7 +53,9 @@ function ProductInfo() {
                 {/* <h2>Envio a la dirección:</h2> */}
                 {/* <h2></h2> */}
             </div>
+            
             <div id="devolucion">
+                <h5>Quedan {productsReducer.stock} unidades</h5>
                 <h3>Devolución:</h3>
                 <h4>Tenes 10 dias desde que lo recibis</h4>
             </div>
