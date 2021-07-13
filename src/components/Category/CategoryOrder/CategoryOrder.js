@@ -27,6 +27,8 @@ function CategoryOrder() {
         <option value="0">ORDER</option>
         <option value="minmax">Menor a mayor precio</option>
         <option value="maxmin">Mayor a menor precio </option>
+        <option value="AZ">A - Z</option>
+        <option value="ZA">Z - A</option>
       </Form.Control>
 
     </div>    

@@ -23,14 +23,13 @@ function Product() {
   
     useEffect(() => {
       dispatch(getProductDetail(idProducto))
-    }, [dispatch])
+    }, [dispatch, idProducto])
 
 
     return (
     
         <div className='DetailContainer'>
             <Separate></Separate>
-            {console.log(productsReducer)}
             <div id='ContentDetail'>
 
                 <div id='SecondNav'>

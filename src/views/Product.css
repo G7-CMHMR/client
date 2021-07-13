@@ -20,9 +20,9 @@
    }
    
    #ProductInfo{
-       width: 35%;
-       height: 800px;
-       background-color:mediumpurple;
+    width: 35%;
+    height: auto;
+    background-color: #31313114;
    }
    
    #ImagesAndSimilars{
@@ -31,7 +31,6 @@
    }
    
    #Images{
-   height: 65%;
    background-color:plum;
    }
    

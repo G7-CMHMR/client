@@ -1,0 +1,21 @@
+.HomeCard{
+    background: white;
+    width: auto;
+    margin: 0.25rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+#price h2{
+    color: teal;
+}  
+
+#offoff{
+    color: white;
+    background-color: darkmagenta;
+    padding: 3px;
+    display: flex;
+    width: fit-content;
+    font-size: 20px;
+    align-items: center;
+}
