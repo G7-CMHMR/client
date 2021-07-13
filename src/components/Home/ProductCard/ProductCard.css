@@ -1,3 +1,4 @@
+
  .homeCard{
  	display: flex;
  	flex-flow: column nowrap;
@@ -83,4 +84,18 @@
 	} 100%{
 		height: 100%;
 	}
+}
+
+#price h2{
+    color: teal;
+}  
+
+#offoff{
+    color: white;
+    background-color: darkmagenta;
+    padding: 3px;
+    display: flex;
+    width: fit-content;
+    font-size: 20px;
+    align-items: center;
 }

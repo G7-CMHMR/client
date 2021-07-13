@@ -4,7 +4,7 @@ import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, S
 const initialState = {
     products: [],
     productsOffer: [],
-    productDetail: undefined,
+    productDetail: [],
     categories: [],
 }
 

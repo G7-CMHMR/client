@@ -13,7 +13,7 @@ function CategoryProductCards() {
     const dispatch = useDispatch()
     const { categoryName } = useParams()
     useEffect(() => {
-		dispatch(getAllProducts())
+        dispatch(getAllProducts())
         dispatch(getProductsOfCategory(categoryName))
 	}, [dispatch, categoryName])
     
@@ -26,7 +26,7 @@ function CategoryProductCards() {
 				<ProductCard name={x.name} images={x.images} 
                 valuation={x.valuation} delivery={x.delivery} price={x.price}
                 discount={x.discount} seller={x.seller}
-                status={x.status} />
+                status={x.status} id={x.id} />
 			)
 		}): <h5>No hay productos en esta categroia</h5>}
         </div>

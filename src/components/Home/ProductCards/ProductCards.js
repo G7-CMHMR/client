@@ -4,7 +4,8 @@ import ProductCard from '../ProductCard/ProductCard';
 import './ProductCards.css'
 
  function ProductCards(props) {
-    
+
+
     return (
         <div>
             <div className="titleCardHome" >
@@ -14,8 +15,9 @@ import './ProductCards.css'
             {
                props.products ? (
                 props.products.slice(0,5).map((product) => (
-                <Link to={`/${product.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                    <ProductCard name={product.name} price={product.price} discount={product.discount} valuation={product.valuation} delivery={product.delivery} img={product.images[0]}/>
+                <Link to={`Producto/${product.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    <ProductCard name={product.name} price={product.price} discount={product.discount} 
+                    valuation={product.valuation} delivery={product.delivery} img={product.images[0]}/>
                 </Link>
                 ))
                ) : (

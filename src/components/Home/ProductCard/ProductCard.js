@@ -1,7 +1,5 @@
 import React , { useState } from 'react';
-import ('./ProductCard.css');
-
-
+import './ProductCard.css'
 
 function ProductCard(props) {
     

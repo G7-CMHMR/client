@@ -13,6 +13,7 @@ import {
   } from './ActionsName';
 
 import clientAxios from '../../../config/axios';
+import { toast } from 'react-toastify';
 
 //OPEN LOGIN
 export function changeStateLoginAction(opposite) {
@@ -42,9 +43,12 @@ export function attemptRegisterAction (attempt) {
     return async (dispatch) => {
         dispatch(attemptRegister() );
         try {
-            await clientAxios.post('/auth/create', attempt)
-            // dispatch(attemptRegisterSuccess(attempt))
-            alert('Usuario creado con exito')
+            const { data } = await clientAxios.post('/auth/create', attempt)
+            console.log(data)
+            
+            dispatch(attemptRegisterSuccess(attempt.name))
+            
+            toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
             console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
             dispatch(attemptRegisterFailed(true))
@@ -64,18 +68,24 @@ const attemptRegisterFailed = (newstate) => ({
     payload: newstate
 })
 
+const setToLocalStorage = (token, username) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', username);
+};
+
 // Trying to Login
 export function attemptLoginAction (attempt) {
     return async (dispatch) => {
         dispatch(attemptLogin() );
         try {
             const { data } = await clientAxios.post('/auth/login', attempt)
+            
             dispatch( attemptLoginSuccess( data.name ))
 
-            localStorage.setItem('token', data.token);
+            setToLocalStorage(data.token, data.name);
             
-            // alert('Usuario logueado')
         } catch (error) {
+
             console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
             dispatch(attemptLoginFailed(true))
             alert('Error al conectar con usuario')
@@ -87,7 +97,7 @@ export function attemptLoginGoogle(name, token) {
     return (dispatch) => {
         dispatch( attemptLoginSuccess(name));
 
-        localStorage.setItem('token', token);
+        setToLocalStorage(token, name);
     }
 }
 
@@ -97,6 +107,9 @@ export function attemptVerifyLogin () {
 
         try {
             const token = localStorage.getItem('token') || '';
+            const username = localStorage.getItem('username') || '';
+
+            if (username) dispatch( attemptLoginSuccess( username ))
 
             if (token) {
 
@@ -105,13 +118,13 @@ export function attemptVerifyLogin () {
                 )
                 dispatch( attemptLoginSuccess( data.name ))
                 
-                localStorage.setItem('token', data.token);
+                setToLocalStorage(data.token, data.name);
             }
             
             // alert('Usuario logueado')
         } catch (error) {
             console.log(error)
-            // dispatch(attemptLoginFailed(true))
+            dispatch(attemptLoginFailed(error.response.data.error))
         }
     }
 }
@@ -120,8 +133,9 @@ export function attemptLogoutAction() {
     return (dispatch) => {
         
         dispatch(attemptLogout());
-    
+        
         localStorage.removeItem('token');
+        localStorage.removeItem('username');
     
     }
 }

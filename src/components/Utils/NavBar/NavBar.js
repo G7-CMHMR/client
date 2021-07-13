@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import './NavBar.css'
-import {Navbar ,Nav, NavDropdown} from 'react-bootstrap'
-import {FaHeart} from 'react-icons/fa'
-import {IoCartSharp} from 'react-icons/io5'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { FaHeart } from 'react-icons/fa'
+import { IoCartSharp } from 'react-icons/io5'
 
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
@@ -14,16 +14,16 @@ import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 function NavBar() {
     const dispatch = useDispatch();
-    const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
-    const username = useSelector((state) => state.userReducer.username); 
+    const stateLogin = useSelector((state) => state.userReducer.loginwindow);
+    const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
 
     const productsReducer = useSelector(state => state.productsReducer)
 
-  
+
     useEffect(() => {
-      dispatch(getCategories())
+        dispatch(getCategories())
     }, [dispatch])
 
 
@@ -50,6 +50,7 @@ function NavBar() {
 
     // BackgroundColor #14213D;
     return (
+
     <div className="ContainerNavBar">
        <Navbar id='backgroundColor' expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -90,6 +91,7 @@ function NavBar() {
     
   </Navbar.Collapse>
 </Navbar>
+
         </div>
     )
 }

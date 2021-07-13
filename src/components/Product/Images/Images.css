@@ -1,5 +1,7 @@
+
 #ContainerImages{
-    max-height: 200px;
+    padding: 23px;
+    background-color: white;
 }
 
 #MiniImages{
