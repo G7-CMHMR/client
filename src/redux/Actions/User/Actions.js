@@ -50,8 +50,8 @@ export function attemptRegisterAction (attempt) {
             
             toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
-            
-            dispatch(attemptRegisterFailed(error.response.data.error))
+            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
+            dispatch(attemptRegisterFailed(true))
         }
     }
 }
@@ -85,10 +85,10 @@ export function attemptLoginAction (attempt) {
             setToLocalStorage(data.token, data.name);
             
         } catch (error) {
-            
-            console.log(error)
-            dispatch(attemptLoginFailed(error.response.data.error))
-            //alert('Error al conectar con usuario')
+
+            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
+            dispatch(attemptLoginFailed(true))
+            alert('Error al conectar con usuario')
         }
     }
 }

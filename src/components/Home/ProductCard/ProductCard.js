@@ -1,7 +1,6 @@
 import React , { useState } from 'react';
 import './ProductCard.css'
 
-
 function ProductCard(props) {
     
     const [show, setShow] = useState(false);
@@ -26,19 +25,23 @@ function ProductCard(props) {
     }
 
     return (
-        <div className="HomeCard" onMouseEnter={mouseEnter} onMouseLeave={MouseLeave}>
-            <div style={{height: 224}}>
-                {props.img && <img src={props.img} width="213px" height="213px" alt="" />}
+        <div className="homeCard" onMouseEnter={mouseEnter} onMouseLeave={MouseLeave}>
+            <div className="homeCard_imageContainer">
+                {/*{props.img && <img src={props.img} width="224px" height="224px" alt="" />}*/}
+                {props.img && <img className="homeCard_image" src={props.img} alt="" />}
             </div>
-            <div>
-                {props.discount && props.discount > 0 && show ? <h4 style={{color:"gray", textDecoration:"line-through"}} >${addCommas(Math.floor(props.price*171))}</h4> : show && <br/>}
-                <div id="price">
-                    {props.price && <h2>${addCommas(Math.floor(props.price*171 - (props.price*171/100)*props.discount))}</h2>}
-                    { props.discount > 0 && <h4 id="offoff">{props.discount}% OFF</h4>}
+            <div className="homeCard_info">
+                {/*{props.discount && props.discount > 0 && show ? <h4 style={{textDecoration:"line-through"}} >${addCommas(Math.floor(props.price*171))}</h4> : show && <br/>}*/}
+                {props.discount && props.discount > 0 && show ? 
+                    <h4 className="homeCard_price">${addCommas(Math.floor(props.price*171))}</h4> 
+                    : show && 
+                    <br/>}
+                <div className="homeCard_price_discountCointainer">
+                    {props.price && <h2 className="homeCard_price_discount">${addCommas(Math.floor(props.price*171 - (props.price*171/100)*props.discount))}</h2>}
+                    { props.discount > 0 && <h4 className="homeCard_discount">{props.discount}% OFF</h4>}
                 </div>
-                {props.delivery ? <span >envío gratis</span> : (!show && <br></br>)}
-                {show && <td >{props.name}</td>}
-                
+                {props.delivery ? <span style={{color: 'green'}}>envío gratis</span> : (!show && <br></br>)}
+                {show && <div className="homeCard_detailContainer"><p className="homeCard_detail">{props.name}</p></div>}
             </div>
         </div>
     );

@@ -7,8 +7,9 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { FaHeart } from 'react-icons/fa'
 import { IoCartSharp } from 'react-icons/io5'
 
-import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction } from '../../../redux/Actions/User/Actions';
-import { getCategories } from '../../../redux/Actions/Products/Actions'
+
+import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
+import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
@@ -17,12 +18,14 @@ function NavBar() {
     const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
 
+
     const productsReducer = useSelector(state => state.productsReducer)
 
 
     useEffect(() => {
         dispatch(getCategories())
     }, [dispatch])
+
 
     // useEffect(() => {
     //     dispatch(changeStateLogin())
@@ -47,51 +50,48 @@ function NavBar() {
 
     // BackgroundColor #14213D;
     return (
-        <div className="ContainerNavBar">
-            <Navbar id='backgroundColor' expand="lg">
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav id="navcontainer" className="mr-auto">
-                        <div id="MenuContainer">
-                        <Nav.Link href="#link">OFERTAS</Nav.Link>
-                        <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
-                        <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
-                            {productsReducer.categories.map(element => (
-                                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
-                            ))//<Link to={`/categorias/${element}`}>
-                            }
-                        </NavDropdown>
-                        </div>
-                        <div id="UserContainer">
-                        {/* se va a tener que cambiar el estado loggein por el que corresponda */}
-                        {username ?
-                            <Nav.Link href="#panel">PANEL</Nav.Link>
-                            :
-                            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>
-                        }
-                        {username ?
-                            <NavDropdown title={username} id="basic-nav-dropdown">
-                                <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
-                                <NavDropdown.Item href="#fav">MIS FAVORITOS </NavDropdown.Item>
-                                <NavDropdown.Item href="historyshop">HISTORIAL DE COMPRAS </NavDropdown.Item>
-                                <NavDropdown.Item onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
-                            </NavDropdown>
-                            :
-                            <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>}
-                        </div>
-                        {/* botones para probar si cambia usuario-registrado , no-registrado */}
-                        {/* {username ? 
+
+    <div className="ContainerNavBar">
+       <Navbar id='backgroundColor' expand="lg">
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+         <Navbar.Collapse id="basic-navbar-nav">
+        <Nav id="navcontainer" className="mr-auto">
+         <Nav.Link href="#link">OFERTAS</Nav.Link>
+         <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
+         <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
+             {productsReducer.categories.map(element => (
+                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
+             ))//<Link to={`/categorias/${element}`}>
+            }
+        </NavDropdown> 
+            {username ? 
+            <Nav.Link href="#panel">PANEL</Nav.Link>
+             : 
+            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
+             }
+            {username ?
+            <NavDropdown title={username} id="basic-nav-dropdown">
+         <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
+         <NavDropdown.Item href="#fav">MIS FAVORITOS </NavDropdown.Item>
+         <NavDropdown.Item href="historyshop">HISTORIAL DE COMPRAS </NavDropdown.Item>
+         <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+        </NavDropdown>
+        :
+        <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>}
+
+{/* botones para probar si cambia usuario-registrado , no-registrado */}
+            {/* {username ? 
             <button onClick={logout}>SALIR</button>   
              : 
              <button onClick={cambiar}>ENTRAR</button>    
-             } */}
+             } */}          
+        </Nav>
+        <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
+        <Nav.Link href="#fav"><FaHeart/></Nav.Link>
+    
+  </Navbar.Collapse>
+</Navbar>
 
-                    </Nav>
-                    <Nav.Link href="#cart"><IoCartSharp /></Nav.Link>
-                    <Nav.Link href="#fav"><FaHeart /></Nav.Link>
-
-                </Navbar.Collapse>
-            </Navbar>
         </div>
     )
 }
