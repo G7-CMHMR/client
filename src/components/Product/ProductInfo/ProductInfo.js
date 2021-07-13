@@ -18,7 +18,7 @@ function ProductInfo() {
 
     useEffect(() => {
         dispatch(getProductDetail(idProducto))
-    }, [dispatch])
+    }, [dispatch, idProducto])
 
     let addCommas = function(nStr)
     {

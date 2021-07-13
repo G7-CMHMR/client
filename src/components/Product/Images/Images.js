@@ -1,10 +1,11 @@
+
 //Imagenes de la publiacion
 import './Images.css'
 import { Carousel } from 'react-bootstrap'
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
-
+import { Carousel } from 'react-bootstrap'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
 
 function Images() {
@@ -27,7 +28,6 @@ function Images() {
       alt="First slide" height="500px"
     />
   </Carousel.Item>
-
   <Carousel.Item>
     <img
       className="d-block w-100"
@@ -35,7 +35,6 @@ function Images() {
       alt="Second slide" height="500px"
     />
   </Carousel.Item>
-  
   <Carousel.Item>
     <img
       className="d-block w-100"
