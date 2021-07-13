@@ -1,11 +1,14 @@
 .DetailContainer{
     display: flex;
     flex-direction: row;
+    background-color:#efefef
    }
    
    
    #ContentDetail{
        width: 80%;
+       margin-top: 2%;
+    background-color:#efefef
    }
    
    #SecondNav{
@@ -22,7 +25,8 @@
    #ProductInfo{
     width: 35%;
     height: auto;
-    background-color: #31313114;
+    background-color: #efefef;
+
    }
    
    #ImagesAndSimilars{
@@ -31,12 +35,14 @@
    }
    
    #Images{
+   height: auto;
    background-color:plum;
    }
    
    #Similars{
-   height: 35%;
-   background-color:rosybrown;
+    height: 61%;
+    background-color: #f9f9f9;
+    margin-top: 1%;
    }
    
    
@@ -48,8 +54,11 @@
    }
    
    #Description{
-       width: 75%;
-       background-color: salmon;
+    width: 75%;
+    background-color: #f9f9f9;
+    border-radius: 14px;
+    margin-right: 8px;
+    margin-top: 19%;
    }
    
    #SellerInfo{
@@ -60,4 +69,7 @@
    #Questions{
        height: 800px;
        background-color:steelblue;
+   }
+   #similarCard{
+    display: flex;
    }

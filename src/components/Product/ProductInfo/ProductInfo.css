@@ -1,0 +1,55 @@
+#oldprice{
+    text-decoration: line-through;
+    font-size: x-large;
+    color: #7d7d7c;
+}
+#delivery{
+    background-color: #328032;
+    width: fit-content;
+    padding: 3px;
+    color: white;
+}
+#discount{
+    background-color: #825ca5;
+    width: fit-content;
+    padding: 3px;
+    color: white;
+    margin-left: 3%;
+}
+#delidis{
+    display: flex;
+    justify-content: center;
+}
+#devolucion{
+    margin-top: 5%;
+}
+#btnbuy{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#btn1{
+    color: white;
+    background-color: chocolate;
+    border: none;
+    font-size: x-large;
+    padding: 1%;
+    border-radius: 5px;
+}
+#btn2{
+    color: white;
+    background-color: #4a5a88;
+    border: none;
+    font-size: x-large;
+    padding: 1%;
+    margin-top: 2%;
+    border-radius: 5px;
+}
+#seguridad{
+    margin: 6%;
+}
+h4{
+    color: rgb(100, 100, 100);
+}

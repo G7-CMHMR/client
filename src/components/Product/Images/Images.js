@@ -1,7 +1,7 @@
 
 //Imagenes de la publiacion
 import './Images.css'
-
+import { Carousel } from 'react-bootstrap'
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
