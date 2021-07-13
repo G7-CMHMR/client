@@ -28,13 +28,13 @@ function ProductCard(props) {
     return (
         <div className="HomeCard" onMouseEnter={mouseEnter} onMouseLeave={MouseLeave}>
             <div style={{height: 224}}>
-                {props.img && <img src={props.img} width="213px" alt="" />}
+                {props.img && <img src={props.img} width="213px" height="213px" alt="" />}
             </div>
             <div>
                 {props.discount && props.discount > 0 && show ? <h4 style={{color:"gray", textDecoration:"line-through"}} >${addCommas(Math.floor(props.price*171))}</h4> : show && <br/>}
                 <div id="price">
                     {props.price && <h2>${addCommas(Math.floor(props.price*171 - (props.price*171/100)*props.discount))}</h2>}
-                    { props.discount > 0 && <h4 id="off">{props.discount}% OFF</h4>}
+                    { props.discount > 0 && <h4 id="offoff">{props.discount}% OFF</h4>}
                 </div>
                 {props.delivery ? <span >envío gratis</span> : (!show && <br></br>)}
                 {show && <td >{props.name}</td>}

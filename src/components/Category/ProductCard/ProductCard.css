@@ -7,10 +7,10 @@
 }
     #container{
         display: flex;
-    box-shadow: 0 15px 30px 1px rgb(128 128 128 / 31%);
-    background: rgb(255 255 255 / 90%);
-    border-radius: 5px;
-    width: 100%;
+        box-shadow: 0 15px 30px 1px rgb(128 128 128 / 31%);
+        background: rgb(255 255 255 / 90%);
+        border-radius: 5px;
+        width: 100%;
         
     }
     
@@ -62,6 +62,7 @@
         position: relative;
         overflow: hidden;
         width: 30%;
+        height: 243px;
         border-bottom-left-radius: 15px;
         border-top-left-radius: 15px;
     }
