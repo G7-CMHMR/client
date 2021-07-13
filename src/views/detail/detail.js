@@ -10,9 +10,9 @@ function Detail() {
 
             <div id='ContentDetail'>
 
-                <div id='SecondNav'>
+                {/* <div id='SecondNav'>
                     <h1>Aca van las categorias donde estoy con ref links /Monitores/NombreProducto</h1>
-                </div>
+                </div> */}
 
                 <div id='FirstSection'>
                     <div id='ImagesAndSimilars'>

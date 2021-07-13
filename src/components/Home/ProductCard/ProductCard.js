@@ -38,6 +38,7 @@ function ProductCard(props) {
                 </div>
                 {props.delivery ? <span >envío gratis</span> : (!show && <br></br>)}
                 {show && <td >{props.name}</td>}
+                
             </div>
         </div>
     );

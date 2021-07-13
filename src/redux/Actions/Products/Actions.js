@@ -32,19 +32,32 @@ export function sort(order, array){
             else { price = Math.floor(price*171) }  
             return price 
         }
-        var a = parseFloat(priceToDisplay(a))
-        var b = parseFloat(priceToDisplay(b))
+        var priceA = parseFloat(priceToDisplay(a))
+        var priceB = parseFloat(priceToDisplay(b))
+        var nameA = a.name.toUpperCase()
+        var nameB = b.name.toUpperCase()
 
+        if (order === 'AZ') {
+            if (nameA < nameB) { return -1 }
+            if (nameA > nameB) { return 1 }
+            return 0
+        }
+        if (order === 'ZA') {
+            if (nameA < nameB) { return 1 }
+            if (nameA > nameB) { return -1 }
+            return 0
+        }
         if (order === 'minmax') {
-            if (a < b) { return -1 }
-            if (a > b) { return 1  }
+            if (priceA < priceB) { return -1 }
+            if (priceA > priceB) { return 1  }
             return 0
         }
         if (order === 'maxmin') {
-            if (a < b) { return 1 }
-            if (a > b) { return -1 }
+            if (priceA < priceB) { return 1 }
+            if (priceA > priceB) { return -1 }
             return 0
         }
+
     })
     return function (dispatch) {
         dispatch({ type: SORT, payload: sortArray })

@@ -6,7 +6,7 @@ import {IoCartSharp} from 'react-icons/io5'
 import { Link } from 'react-router-dom';
 
 
-function ProductCard({price,discount,images,name,seller,status,valuation,delivery}) {
+function ProductCard({price,discount,images,name,seller,status,valuation,delivery,id}) {
     // var porcentaje= (price / precioviejo)*100;
     // var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
 
@@ -29,7 +29,7 @@ function ProductCard({price,discount,images,name,seller,status,valuation,deliver
 	            <div class="product-image">
                 	<img src={images[0]} alt="Omar Dsoky"/>
                 </div>
-                <Link id="link" to="/">
+                <Link id="link" to={`/Producto/${id}`}>
                 	<div class="product-details">
 	                    <h1>{name}</h1>
                 		<p id="seller">Vendido por {seller}</p>
