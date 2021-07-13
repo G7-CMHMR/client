@@ -87,6 +87,33 @@ const Login = () => {
     /* const responseFacebook = (response) => {
         console.log(response)
     } */
+    var showError = null;
+    var secError = null;
+
+    if(typeof error === 'object' && error !== null){
+      if(error.email &&  error.email !== null && error.password && error.password !== null){
+        if(error.email &&  error.email !== null){
+          showError = error.email
+        }
+        if(error.password && error.password !== null){
+          secError = error.password
+        }
+
+      } else {
+        if(error.email &&  error.email !== null){
+          showError = error.email
+        }
+        if(error.password && error.password !== null){
+          secError = error.password
+        }
+      }
+
+      
+    }else {
+      showError = error;
+    }
+
+
 
   return (
     <div className="superposition">
@@ -94,45 +121,20 @@ const Login = () => {
         <div className="contenedorX">
           <button id="X" onClick={openLogin}>X</button>
         </div>
-        { error ?<p className="alert alert-danger">Usuario o Contraseña Invalido</p> : null}
+        
+        
         <h1 id="login">Login</h1>
-        <div className="containerButtons">
-          {/* <FacebookLogin
-            appId="548046433216347"
-            // autoLoad 
-            callback={responseFacebook} 
-            render={(renderProps) => (
-              <button id="botonFacebook" onClick={renderProps.onClick}>
-                f
-              </button>
-            )}
-          /> */}
-          <GoogleLogin
-            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <button
-                id="botonGoogle"
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                G
-              </button>
-            )}
-            buttonText=""
-            onSuccess={onSignIn}
-            // onFailure={onSignIn} 
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
+       
 
         <form
             onSubmit={submitLogin}
       >   
           <p className="subtitle">Usuario</p>
+          {  showError ?<p className="alert alert-danger">{showError}</p> : null }
           <input name='email' type="email" placeholder="Email" onChange={onChangeForm} className="inputslogin" />
-
-          <p className="subtitle">Contraseña</p>
           
+          <p className="subtitle">Contraseña</p>
+          {  secError ?<p className="alert alert-danger">{secError}</p> : null }
           <input
             onChange={onChangeForm}
             type="password"
@@ -153,7 +155,43 @@ const Login = () => {
           <div className="submit">
             <input disabled={!email || !password} type="submit" value="INICIAR" className="buttonInitiate" />
           </div>
+          <div className="containerButtons">
+          {/* <FacebookLogin
+            appId="548046433216347"
+            // autoLoad 
+            callback={responseFacebook} 
+            render={(renderProps) => (
+              <button id="botonFacebook" onClick={renderProps.onClick}>
+                f
+              </button>
+            )}
+          />  <GoogleLogin
+            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
+            render={(renderProps) => (
+              <button
+                id="botonGoogle"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                G
+              </button>
+            )}
+            buttonText=""
+            onSuccess={onSignIn}
+            // onFailure={onSignIn} 
+            cookiePolicy={"single_host_origin"}
+          /> */}
+          
+          <GoogleLogin
+            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
+            buttonText="Ingresar con Google"
+            onSuccess={onSignIn}
+            //onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
+        </div>
         </form>
+        
       </div>
     </div>
   );

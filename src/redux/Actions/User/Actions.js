@@ -43,14 +43,15 @@ export function attemptRegisterAction (attempt) {
     return async (dispatch) => {
         dispatch(attemptRegister() );
         try {
-            await clientAxios.post('/auth/create', attempt)
+            const { data } = await clientAxios.post('/auth/create', attempt)
+            console.log(data)
             
             dispatch(attemptRegisterSuccess(attempt.name))
             
             toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
             
-            dispatch(attemptRegisterFailed(true))
+            dispatch(attemptRegisterFailed(error.response.data.error))
         }
     }
 }
@@ -86,7 +87,7 @@ export function attemptLoginAction (attempt) {
         } catch (error) {
             
             console.log(error)
-            dispatch(attemptLoginFailed(true))
+            dispatch(attemptLoginFailed(error.response.data.error))
             //alert('Error al conectar con usuario')
         }
     }
@@ -123,7 +124,7 @@ export function attemptVerifyLogin () {
             // alert('Usuario logueado')
         } catch (error) {
             console.log(error)
-            dispatch(attemptLoginFailed(true))
+            dispatch(attemptLoginFailed(error.response.data.error))
         }
     }
 }

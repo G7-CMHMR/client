@@ -17,7 +17,7 @@ import {
       registerwindow: false,
       loading: false,
       attempt: null,
-      error: false,
+      error: null,
       username: null
   }
 
@@ -27,20 +27,24 @@ export default function userReducer(state = initialState, action){
             return {
                 ...state,
                 loginwindow: action.payload,
-                registerwindow: false
+                registerwindow: false,
+                error: null
             }
         case CHANGE_REGISTER:{
             return {
                 ...state,
                 registerwindow: action.payload,
-                loginwindow: false
+                loginwindow: false,
+                error: null
             }
         }
         case ATTEMPT_REGISTER:
         case ATTEMPT_LOGIN: {
             return {
                 ...state,
-                loading: action.payload
+                loading: action.payload,
+                error: null
+
             }
         }
         case ATTEMPT_REGISTER_SUCCESS:{
@@ -50,7 +54,8 @@ export default function userReducer(state = initialState, action){
                 attempt: null,
                 username: null,
                 loginwindow: false,
-                registerwindow: false
+                registerwindow: false,
+                error: null
             }
         }
         case ATTEMPT_LOGIN_SUCCESS: {
@@ -60,7 +65,8 @@ export default function userReducer(state = initialState, action){
                 attempt: null,
                 username: action.payload,
                 loginwindow: false,
-                registerwindow: false
+                registerwindow: false,
+                error: null
             }
         }
         case ATTEMPT_REGISTER_FAILED:
@@ -80,7 +86,7 @@ export default function userReducer(state = initialState, action){
                 registerwindow: false,
                 loading: false,
                 attempt: null,
-                error: false,
+                error: null,
                 username: null
             }
         }
