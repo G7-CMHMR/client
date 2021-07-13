@@ -19,6 +19,7 @@ function Images() {
 
     return (
         <div id='ContainerImages'>
+<<<<<<< Updated upstream
             <img id='LargeImage' src={productsReducer.images? productsReducer.images[0] : ''} width='600px'></img>
             <div id='MiniImages'>
                 {}
@@ -27,6 +28,40 @@ function Images() {
                 <img src={productsReducer.images? productsReducer.images[3] : ''} width='140px' height='120px'></img>
                 <img src={productsReducer.images? productsReducer.images[4] : ''} width='140px' height='120px'></img>
             </div>
+=======
+            <Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={productsReducer.images? productsReducer.images[0] : ''}
+      alt="First slide" height="500px"
+    />
+  </Carousel.Item>
+
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={productsReducer.images? productsReducer.images[1] : ''}
+      alt="Second slide" height="500px"
+    />
+  </Carousel.Item>
+  
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={productsReducer.images? productsReducer.images[2] : ''}
+      alt="Third slide" height="500px"
+    />
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={productsReducer.images? productsReducer.images[3] : ''}
+      alt="Second slide" height="500px"
+    />
+  </Carousel.Item>
+</Carousel>
+>>>>>>> Stashed changes
             
         </div>
     )

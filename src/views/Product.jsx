@@ -33,9 +33,9 @@ function Product() {
             {console.log(productsReducer)}
             <div id='ContentDetail'>
 
-                <div id='SecondNav'>
+                {/* <div id='SecondNav'>
                     <h3>SecondNav</h3>
-                </div>
+                </div> */}
 
                 <div id='FirstSection'>
                     <div id='ImagesAndSimilars'>

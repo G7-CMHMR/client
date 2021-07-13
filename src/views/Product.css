@@ -1,11 +1,14 @@
 .DetailContainer{
     display: flex;
     flex-direction: row;
+    background-color:#efefef
    }
    
    
    #ContentDetail{
        width: 80%;
+       margin-top: 2%;
+    background-color:#efefef
    }
    
    #SecondNav{
@@ -20,9 +23,15 @@
    }
    
    #ProductInfo{
+<<<<<<< Updated upstream
        width: 35%;
        height: 800px;
        background-color:mediumpurple;
+=======
+    width: 35%;
+    height: auto;
+    background-color: #efefef;
+>>>>>>> Stashed changes
    }
    
    #ImagesAndSimilars{
