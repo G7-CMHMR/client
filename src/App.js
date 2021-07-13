@@ -15,6 +15,9 @@ import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
 import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 function App() {
 
   const dispatch = useDispatch();
@@ -30,10 +33,8 @@ function App() {
   
   return (
     <div className="App">
-
       <Nav></Nav>
       <NavBar></NavBar>
-
       {stateLogin? <Login /> :null }
       {stateRegister? <Register /> :null }
       <Route exact path='/' component={Home}/>
@@ -42,7 +43,8 @@ function App() {
       <Route path='/Producto/:idProducto' component={Product}/>
 
       <Footer></Footer>
-
+      <ToastContainer position="top-center" /> 
+      
     </div>
   );
 }
