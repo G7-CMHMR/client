@@ -23,12 +23,12 @@ const Register = () => {
     }
     //UseState
     const [terms, setTerms] = useState(false);
-    /* const [errors, setErrors] = useState({
+     /* const [errors, setErrors] = useState({
       email: false,
       name: false,
       lastname: false,
       password: false      
-    }) */
+    })  */
     const [data, setData] = useState({
         email:'',
         name:'',
@@ -41,6 +41,7 @@ const Register = () => {
             ...data,
             [e.target.name]: e.target.value
         })
+        
     }
 
     //onSubmit
@@ -49,11 +50,11 @@ const Register = () => {
         //Validation
         
         if(password.length < 8){
-
+          
         }
 
 
-        if(email.trim() === '' ||name.trim() === '' ||lastname.trim() === '' || password.length < 8) return;
+        if(email.trim() === '' || name.trim() === '' || lastname.trim() === '' || password.length < 3) return;
         else if(terms) {
             const tryRegister = {
                 email: email,
@@ -86,6 +87,31 @@ const Register = () => {
     const responseFacebook = (response) => {
         console.log(response)
     } */
+    var showError = null;
+    var secError = null;
+
+    if(typeof error === 'object' && error !== null){
+      if(error.email &&  error.email !== null && error.password && error.password !== null){
+        if(error.email &&  error.email !== null){
+          showError = error.email
+        }
+        if(error.password && error.password !== null){
+          secError = error.password
+        }
+
+      } else {
+        if(error.email &&  error.email !== null){
+          showError = error.email
+        }
+        if(error.password && error.password !== null){
+          showError = error.password
+        }
+      }
+
+      
+    }else {
+      showError = error;
+    }
 
   return (
     <div className="superposition">
@@ -93,38 +119,11 @@ const Register = () => {
         <div className="contenedorX">        
           <button id="X" onClick={openRegister}>X</button>
         </div>
-        { error ?<p className="alert alert-danger">Todos los campos son obligatorios</p> : null}
+        {  showError ?<p className="alert alert-danger">{showError}</p> : null }
+        {  secError ?<p className="alert alert-danger">{secError}</p> : null }
+        
         <h1 id="register">REGISTRARSE</h1>
-        <div className="containerButtons">
-          {/* <FacebookLogin
-            appId="548046433216347"
-            // autoLoad 
-            callback={responseFacebook} 
-            render={(renderProps) => (
-              <button id="botonFacebook" onClick={renderProps.onClick}>
-                f
-              </button>
-            )}
-          /> */}
-          <GoogleLogin
-            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
-            render={(renderProps) => (
-                
-              <button
-                id="botonGoogle"
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-              >
-                G
-              </button>
-              
-            )}
-            buttonText=""
-            onSuccess={onSignIn}
-            // onFailure={responseGoogle} 
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
+        
 
         <form
             onSubmit={submitRegister}
@@ -188,6 +187,43 @@ const Register = () => {
           <div className="submit">
             <input type="submit" value="REGISTRATE" className="buttonInitiate" />
           </div>
+          <div className="containerButtons">
+          {/* <FacebookLogin
+            appId="548046433216347"
+            // autoLoad 
+            callback={responseFacebook} 
+            render={(renderProps) => (
+              <button id="botonFacebook" onClick={renderProps.onClick}>
+                f
+              </button>
+            )}
+          /> 
+           <GoogleLogin
+            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
+            render={(renderProps) => (
+                
+              <button
+                id="botonGoogle"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+              >
+                G
+              </button>
+              
+            )}
+            buttonText=""
+            onSuccess={onSignIn}
+            // onFailure={responseGoogle} 
+            cookiePolicy={"single_host_origin"}
+          /> */}
+          <GoogleLogin
+    clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
+    buttonText="Registrarse con Google"
+    onSuccess={onSignIn}
+    //onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />
+        </div>
         </form>
       </div>
     </div>
