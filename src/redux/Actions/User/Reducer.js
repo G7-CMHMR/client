@@ -8,8 +8,11 @@ import {
     ATTEMPT_REGISTER,
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
-    ATTEMPT_LOGOUT
+    ATTEMPT_LOGOUT,
 
+    ATTEMPT_UPDATE_SUCCESS,
+    ATTEMPT_UPDATE_FAILED,
+    
   } from './ActionsName'
 
   const initialState = {
@@ -18,7 +21,8 @@ import {
       loading: false,
       attempt: null,
       error: null,
-      username: null
+      username: null,
+
   }
 
 export default function userReducer(state = initialState, action){
@@ -88,6 +92,23 @@ export default function userReducer(state = initialState, action){
                 attempt: null,
                 error: null,
                 username: null
+            }
+        }
+
+
+        case ATTEMPT_UPDATE_FAILED: {
+            return {
+                ...state,
+
+                error: action.payload
+            }
+        }
+
+        case ATTEMPT_UPDATE_SUCCESS: {
+            return {
+                ...state,
+                username: action.payload
+
             }
         }
 

@@ -71,9 +71,9 @@ function NavBar() {
              }
             {username ?
             <NavDropdown title={username} id="basic-nav-dropdown">
-         <NavDropdown.Item href="profile">MI CUENTA </NavDropdown.Item>
-         <NavDropdown.Item href="#fav">MIS FAVORITOS </NavDropdown.Item>
-         <NavDropdown.Item href="historyshop">HISTORIAL DE COMPRAS </NavDropdown.Item>
+         <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
+         <NavDropdown.Item href="Favoritos">MIS FAVORITOS </NavDropdown.Item>
+         <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :

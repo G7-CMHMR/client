@@ -1,5 +1,5 @@
 import Separate from '../components/Utils/Separate/Separate'
-import './MyFavorites.css'
+import './Profile_password.css'
 
 
 
@@ -8,20 +8,19 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 
 import {getProductDetail} from '../redux/Actions/Products/Actions'
+import FormProfile_password from '../components/Profile/FormProfile_password';
 
-import ProductsCards from '../components/MyFavorites/ProductsCards/ProductsCards'
-
-function MyFavorites() {
+function Profile_password() {
 
     const { idProducto } = useParams()
 
     const dispatch = useDispatch();
-    const productsReducer = useSelector(state => state.productsReducer)
+    //const productsReducer = useSelector(state => state.productsReducer)
 
   
-    useEffect(() => {
-      dispatch(getProductDetail(idProducto))
-    }, [dispatch, idProducto])
+    // useEffect(() => {
+    //   //dispatch(getProductDetail(idProducto))
+    // }, [dispatch, idProducto])
 
 
     return (
@@ -29,11 +28,8 @@ function MyFavorites() {
         <div className='DetailContainer'>
             <Separate></Separate>
             <div id='ContentDetail'>
-                <h1>Mis favoritos</h1>
-                <br></br>
-                <br></br>
-                <ProductsCards></ProductsCards>
-                
+            <FormProfile_password></FormProfile_password>
+               
             </div>
 
             <Separate></Separate>
@@ -41,4 +37,4 @@ function MyFavorites() {
     )
 }
 
-export default MyFavorites
+export default Profile_password

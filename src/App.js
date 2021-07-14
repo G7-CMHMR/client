@@ -12,6 +12,7 @@ import Categories from './views/Categories'
 import Product from './views/Product';
 
 import Profile from './views/Profile';
+import Profile_password from './views/Profile_password'
 import MyShopping from './views/MyShopping'
 import MyFavorites from './views/MyFavorites'
 import MyCart from './views/MyCart'
@@ -48,6 +49,7 @@ function App() {
       <Route path='/Producto/:idProducto' component={Product}/>
 
       <Route exact path='/Perfil' component={Profile}/>
+      <Route exact path='/Perfil/CambiarContraseña' component={Profile_password}/>
       <Route exact path='/Compras' component={MyShopping}/>
       <Route exact path='/Favoritos' component={MyFavorites}/>
       <Route exact path='/Carrito' component={MyCart}/>
