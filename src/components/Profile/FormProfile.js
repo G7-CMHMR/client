@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react'
 import { useEffect, useState } from 'react';
 import { validate } from '@babel/types';
-
 import { changeDataOfUser } from '../../redux/Actions/User/Actions'
 
 import { Link } from 'react-router-dom'
@@ -52,7 +51,6 @@ function FormProfile() {
         })
     }
 
-
     function validate() {
         let error = {}
         if (input.name.length <= 2) { error.name = 'DEBE contener mas de 2 caracteres' }
@@ -61,17 +59,14 @@ function FormProfile() {
         return error;
     }
 
-    
-
-
 
     function SubmitForm(e) {
         e.preventDefault()
 
+
         if (errors.name == '' & errors.lastName == '' & errors.email == '' && errors.mobile == '') {
             changeDataOfUser(input)
         }
-
 
     }
 
@@ -101,10 +96,12 @@ function FormProfile() {
                         onChange={onHandleChange}
                     />
                 </div>
+
                 <div id='ProfileErrorsMain'>
                     {errors.name ? <span id='PerfilError1'>{errors.name}</span> : <span id='PerfilError1'>{errors.name}</span>}
                     <span id='PerfilError1-2'></span>
                     {errors.lastName ? <span id='PerfilError2'>{errors.lastName}</span> : <span id='PerfilError2'>{errors.lastName}</span>}
+
                 </div>
                 <br></br>
                 <br></br>
