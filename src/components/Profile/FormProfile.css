@@ -1,0 +1,47 @@
+#ProfileForm_NameAndSub{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#ProfileForm_NameAndSub>*{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#FormProfileContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 7%;
+}
+
+#Email_Form{
+    margin-right: 230px;
+}
+
+#PerfilError1{
+    color:red;
+    width: 42%;
+}
+
+#PerfilError2{
+    color:red;
+    width: 42%;
+}
+
+#PerfilError1-2{
+    width: 16%;
+}
+
+
+#ProfileErrors{
+    width: 430px;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 38.5%;
+}
+
+#ProfileErrors>*{
+
+}

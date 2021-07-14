@@ -11,6 +11,11 @@ import Home from './views/Home'
 import Categories from './views/Categories'
 import Product from './views/Product';
 
+import Profile from './views/Profile';
+import MyShopping from './views/MyShopping'
+import MyFavorites from './views/MyFavorites'
+import MyCart from './views/MyCart'
+
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
 import { attemptVerifyLogin } from './redux/Actions/User/Actions';
@@ -41,6 +46,11 @@ function App() {
       <Route exact path='/Categorias' component={Categories}/>
       <Route path='/Categorias/:categoryName' component={Categories}/>
       <Route path='/Producto/:idProducto' component={Product}/>
+
+      <Route exact path='/Perfil' component={Profile}/>
+      <Route exact path='/Compras' component={MyShopping}/>
+      <Route exact path='/Favoritos' component={MyFavorites}/>
+      <Route exact path='/Carrito' component={MyCart}/>
 
       <Footer></Footer>
       <ToastContainer position="top-center" /> 
