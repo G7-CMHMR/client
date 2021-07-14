@@ -33,17 +33,23 @@
     width: 42%;
 }
 
+#PerfilErrorEmail{
+    color:red;
+    position: absolute;
+    top: 29rem;
+}
 #PerfilError1-2{
     width: 16%;
 }
 
 
-#ProfileErrors{
+#ProfileErrorsMain{
     width: 430px;
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 38.5%;
+    top: 25rem;
+
 }
 
 #ProfileErrors>*{
