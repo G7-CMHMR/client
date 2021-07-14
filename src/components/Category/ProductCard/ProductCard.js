@@ -33,8 +33,8 @@ function ProductCard({price,discount,images,name,seller,status,valuation,deliver
                 	<div class="product-details">
 	                    <h1>{name}</h1>
                 		<p id="seller">Vendido por {seller}</p>
-                        <div id="price"><h3>${addCommas(Math.floor(price*171 - (price*171/100)*discount))}</h3>
-                        {discount>0? <span> ${addCommas(Math.floor(price*171))}</span> : <p></p>}
+                        <div id="price"><h3>${addCommas(Math.floor(price - (price/100)*discount))}</h3>
+                        {discount>0? <span> ${addCommas(Math.floor(price))}</span> : <p></p>}
                         </div>
 	                	<p class="information">{status}</p>
                       <Rating name="half-rating-read" defaultValue={valuation} precision={0.5} readOnly />

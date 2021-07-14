@@ -5,7 +5,6 @@ import { Carousel } from 'react-bootstrap'
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
-import { Carousel } from 'react-bootstrap'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
 
 function Images() {
@@ -15,13 +14,25 @@ function Images() {
     const productsReducer = useSelector(state => state.productsReducer.productDetail)
     useEffect(() => {
         dispatch(getProductDetail(idProducto))
-    }, [dispatch])
-
+    }, [dispatch, idProducto])
+    let productimages=productsReducer.images
+    
+   
 
     return (
         <div id='ContainerImages'>
             <Carousel>
-  <Carousel.Item>
+              {productimages? productimages.map((x)=>{
+                  return <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src={x}
+      alt="First slide" height="500px"
+    />
+  </Carousel.Item>
+                }) : "Loading..."
+              }
+  {/* <Carousel.Item>
     <img
       className="d-block w-100"
       src={productsReducer.images? productsReducer.images[0] : ''}
@@ -48,7 +59,7 @@ function Images() {
       src={productsReducer.images? productsReducer.images[3] : ''}
       alt="Second slide" height="500px"
     />
-  </Carousel.Item>
+  </Carousel.Item> */}
 </Carousel>
             
         </div>

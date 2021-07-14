@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 import './ProductInfo.css'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
+import Rating from '@material-ui/lab/Rating';
+import {FaHeart} from 'react-icons/fa'
 
 
 
@@ -36,13 +38,15 @@ function ProductInfo() {
     return (
         <div>
             <br></br>
-            <h4>{productsReducer.status} | 0 vendidos</h4>
+            <h5 style={{color:"gray"}}>{productsReducer.status} | 0 vendidos <button id="AddFav" ><FaHeart/></button></h5>
             <br></br>
             <h2>{productsReducer.name}</h2>
+            {productsReducer.valuation && <Rating name="half-rating-read" defaultValue={productsReducer.valuation} precision={0.5} readOnly />}
+            
             <br></br>
             <div>
-                {productsReducer.discount>0? <span id= "oldprice"> ${addCommas(Math.floor(productsReducer.price*171))}</span> : <p></p>}
-                <h1>${addCommas(Math.floor(productsReducer.price*171 - (productsReducer.price*171/100)*productsReducer.discount))}</h1>
+                {productsReducer.discount>0? <span id= "oldprice"> ${addCommas(Math.floor(productsReducer.price))}</span> : <p></p>}
+                <h1>${addCommas(Math.floor(productsReducer.price - (productsReducer.price/100)*productsReducer.discount))}</h1>
                 
             </div>
 
