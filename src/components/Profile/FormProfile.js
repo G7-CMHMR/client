@@ -7,24 +7,21 @@ import { useSelector, useDispatch } from 'react'
 import { useEffect, useState } from 'react';
 import { validate } from '@babel/types';
 
-import {changeDataOfUser} from '../../redux/Actions/User/Actions'
+import { changeDataOfUser } from '../../redux/Actions/User/Actions'
 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function FormProfile() {
 
     //const userReducer = useSelector (state => state.userReducer.user)
     //const dispatch = useDispatch()
 
-    useEffect(() => {
-
-    }, [])
 
 
     const [input, setInput] = useState({
 
         name: 'Matias',
-        lastname: 'Bloisi',
+        lastName: 'Bloisi',
         email: 'bloisimatias@hotmail.com    ',
         mobile: '1138986430',
         password: '',
@@ -34,46 +31,47 @@ function FormProfile() {
     const [errors, setErrors] = useState({
         //
         name: '',
-        lasname: '',
+        lastName: '',
         email: '',
         mobile: '',
         //password: '',
         //
     })
 
-    function onHandleChange(e) {
 
+    useEffect(() => {
+        setErrors(validate())
+    }, [input.name, input.lastName, input.email, input.mobile])
+
+
+
+    function onHandleChange(e) {
         setInput({
             ...input,
             [e.target.name]: e.target.value
         })
-
-        validate()
-
     }
+
 
     function validate() {
-        if (input.name.length <= 2) {
-            setErrors({
-                ...errors,
-                name: 'DEBE contener mas de 2 caracteres'
-            })
-        } else setErrors({ ...errors, name: '' })
-
-        if (input.lastname.length <= 2) {
-            setErrors({
-                ...errors,
-                lastname: 'DEBE contener mas de 2 caracteres'
-            })
-        } else setErrors({ ...errors, lastname: '' })
+        let error = {}
+        if (input.name.length <= 2) { error.name = 'DEBE contener mas de 2 caracteres' }
+        if (input.lastName.length <= 2) { error.lastName = 'DEBE contener mas de 2 caracteres' }
+        if (!/\S+@\S+\.\S+/.test(input.email)){ error.email = 'Email inválido' }
+        return error;
     }
+
+    
+
+
 
     function SubmitForm(e) {
         e.preventDefault()
 
-        if(errors.name == '' & errors.lastname == '' & errors.email == '' && errors.mobile == ''){
+        if (errors.name == '' & errors.lastName == '' & errors.email == '' && errors.mobile == '') {
             changeDataOfUser(input)
         }
+
 
     }
 
@@ -98,15 +96,15 @@ function FormProfile() {
                         id="outlined"
                         label="Apellido"
                         helperText=""
-                        name='lastname'
+                        name='lastName'
 
                         onChange={onHandleChange}
                     />
                 </div>
-                <div id='ProfileErrors'>
-                    {errors.name ? <span id='PerfilError1'>{errors.name}</span> : <span id='PerfilError1'></span>}
+                <div id='ProfileErrorsMain'>
+                    {errors.name ? <span id='PerfilError1'>{errors.name}</span> : <span id='PerfilError1'>{errors.name}</span>}
                     <span id='PerfilError1-2'></span>
-                    {errors.lastname ? <span id='PerfilError2'>{errors.lastname}</span> : <span id='PerfilError2'></span>}
+                    {errors.lastName ? <span id='PerfilError2'>{errors.lastName}</span> : <span id='PerfilError2'>{errors.lastName}</span>}
                 </div>
                 <br></br>
                 <br></br>
@@ -119,9 +117,9 @@ function FormProfile() {
                         name='email'
                         onChange={onHandleChange}
                     />
+                    {errors.email ? <span id='PerfilErrorEmail'>{errors.email}</span> : <span id='PerfilError1'>{errors.email}</span>}
                 </div>
                 <div id='ProfileErrors'>
-                    {errors.email ? <p className='PerfilError'>{errors.email}</p> : null}
                 </div>
                 <br></br>
                 <br></br>
