@@ -20,22 +20,22 @@ function FormProfile_password() {
     const [input, setInput] = useState({
 
         password: '',
-        newpassword1: '',
-        newpassword2: '',
+        newpassword: '',
+        newpasswordconfirm: '',
 
     })
 
     const [errors, setErrors] = useState({
         //
         password: '',
-        newpassword1: '',
-        newpassword2: '',
+        newpassword: '',
+        newpasswordconfirm: '',
         //
     })
 
     useEffect(() => {
         validate()
-    }, [input.newpassword1, input.newpassword2])
+    }, [input.newpassword, input.newpasswordconfirm])
 
 
     function onHandleChange(e) {
@@ -48,19 +48,19 @@ function FormProfile_password() {
     }
 
     function validate() {
-        if (input.newpassword1.length > 8 || input.newpassword1 < 20){
-            if (input.newpassword1 != input.newpassword2) {
-                setErrors({...errors, newpassword1: 'Las nuevas contraseñas no coinciden'})
-            }else setErrors({ ...errors, newpassword1: '' })
+        if (input.newpassword.length > 8 || input.newpassword < 20){
+            if (input.newpassword != input.newpasswordconfirm) {
+                setErrors({...errors, newpassword: 'Las nuevas contraseñas no coinciden'})
+            }else setErrors({ ...errors, newpassword: '' })
 
-        }else{setErrors({...errors, newpassword1: 'La contraseña debe tener entre 8 y 20 caracteres'})}
+        }else{setErrors({...errors, newpassword: 'La contraseña debe tener entre 8 y 20 caracteres'})}
 
     }
 
     function SubmitForm(e) {
         e.preventDefault()
 
-        if(errors.password == '' & errors.newpassword1 == '' & errors.newpassword2 == ''){
+        if(errors.password == '' & errors.newpassword == '' & errors.newpasswordconfirm == ''){
             changePasswordOfUser(input)
         }
 
@@ -90,7 +90,7 @@ function FormProfile_password() {
                         label="Nueva contraseña"
                         type="password"
                         helperText=""
-                        name='newpassword1'
+                        name='newpassword'
                         onChange={onHandleChange}
                     />
                     <TextField
@@ -99,11 +99,11 @@ function FormProfile_password() {
                         label="Nueva contraseña"
                         type="password"
                         helperText=""
-                        name='newpassword2'
+                        name='newpasswordconfirm'
                         onChange={onHandleChange}
                     />
                     <div id='PasswordError'>
-                        {errors.newpassword1? <p className='PerfilError'>{errors.newpassword1}</p> : null}
+                        {errors.newpassword? <p className='PerfilError'>{errors.newpassword}</p> : null}
                     </div>
                     
 
