@@ -7,6 +7,10 @@ import { useSelector, useDispatch } from 'react'
 import { useEffect, useState } from 'react';
 import { validate } from '@babel/types';
 
+import {changeDataOfUser} from '../../redux/Actions/User/Actions'
+
+import {Link} from 'react-router-dom'
+
 function FormProfile() {
 
     //const userReducer = useSelector (state => state.userReducer.user)
@@ -23,7 +27,6 @@ function FormProfile() {
         lastname: 'Bloisi',
         email: 'bloisimatias@hotmail.com    ',
         mobile: '1138986430',
-        dni: '44211474',
         password: '',
 
     })
@@ -34,8 +37,7 @@ function FormProfile() {
         lasname: '',
         email: '',
         mobile: '',
-        dni: '',
-        password: '',
+        //password: '',
         //
     })
 
@@ -46,36 +48,33 @@ function FormProfile() {
             [e.target.name]: e.target.value
         })
 
-        console.log(input)
         validate()
 
     }
 
-    function validate () {
-        if(input.name.length <= 2){
+    function validate() {
+        if (input.name.length <= 2) {
             setErrors({
                 ...errors,
                 name: 'DEBE contener mas de 2 caracteres'
             })
-        }else setErrors({...errors, name: ''})
+        } else setErrors({ ...errors, name: '' })
 
-        if(input.lastname.length <= 2){
+        if (input.lastname.length <= 2) {
             setErrors({
                 ...errors,
                 lastname: 'DEBE contener mas de 2 caracteres'
             })
-        }else setErrors({...errors, lastname: ''})
+        } else setErrors({ ...errors, lastname: '' })
     }
 
     function SubmitForm(e) {
         e.preventDefault()
-        
-        
-        
-        console.log(errors)
-    
-        
-    
+
+        if(errors.name == '' & errors.lastname == '' & errors.email == '' && errors.mobile == ''){
+            changeDataOfUser(input)
+        }
+
     }
 
 
@@ -105,9 +104,9 @@ function FormProfile() {
                     />
                 </div>
                 <div id='ProfileErrors'>
-                {errors.name? <span id='PerfilError1'>{errors.name}</span> : <span id='PerfilError1'></span>}
-                <span id='PerfilError1-2'></span>
-                {errors.lastname? <span id='PerfilError2'>{errors.lastname}</span> : <span id='PerfilError2'></span>}
+                    {errors.name ? <span id='PerfilError1'>{errors.name}</span> : <span id='PerfilError1'></span>}
+                    <span id='PerfilError1-2'></span>
+                    {errors.lastname ? <span id='PerfilError2'>{errors.lastname}</span> : <span id='PerfilError2'></span>}
                 </div>
                 <br></br>
                 <br></br>
@@ -122,11 +121,11 @@ function FormProfile() {
                     />
                 </div>
                 <div id='ProfileErrors'>
-                {errors.email? <p className='PerfilError'>{errors.email}</p> : null}
+                    {errors.email ? <p className='PerfilError'>{errors.email}</p> : null}
                 </div>
                 <br></br>
                 <br></br>
-                <div id='ProfileForm_NameAndSub'>
+                <div id='MobileForm'>
                     <TextField
                         id="outlined-helperText"
                         label="Telefono"
@@ -134,25 +133,30 @@ function FormProfile() {
                         name='mobile'
                         onChange={onHandleChange}
                     />
-                    <TextField
-                        id="outlined-helperText"
-                        label="DNI"
-                        helperText=""
-                        name='dni'
-                        onChange={onHandleChange}
-                    />
                 </div>
                 <br></br>
                 <br></br>
-                <TextField
-                    required
-                    id="outlined-password-input"
-                    label="Contraseña"
-                    type="password"
-                    helperText=""
-                    name='password'
-                    onChange={onHandleChange}
-                />
+                <div>
+                    <TextField
+                        required
+                        id="outlined-password-input"
+                        label="Contraseña"
+                        type="password"
+                        helperText=""
+                        name='password'
+                        onChange={onHandleChange}
+                    />
+                    <Link to='/Perfil/CambiarContraseña'>
+                        <Button
+                            variant="contained"
+                            size="small"
+                            id='ButtonPassword'
+                        >
+                            Editar
+                        </Button>
+                    </Link>
+                </div>
+                <br></br>
                 <br></br>
                 <Button
                     variant="contained"
@@ -164,7 +168,7 @@ function FormProfile() {
                     Guardar Cambios
                 </Button>
             </form>
-        </div>
+        </div >
     )
 }
 

@@ -1,15 +1,18 @@
-#ProfileForm_NameAndSub{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-#ProfileForm_NameAndSub>*{
-    margin-right: 20px;
-    margin-left: 20px;
+#FormProfilePasswordContainer{
+    background-color: white;
 }
 
-#MobileForm{
-    margin-right: 14.5rem;
+#ProfileFormPassword{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+    
+}
+#ProfileFormPassword>*{
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 3rem;
 }
 
 #FormProfileContainer{
@@ -17,16 +20,14 @@
     flex-direction: column;
     align-items: center;
     margin-top: 7%;
+    
 }
 
 #Email_Form{
-    margin-right: 30rem;
+    margin-right: 230px;
 }
 
-#PerfilError1{
-    color:red;
-    width: 42%;
-}
+
 
 #PerfilError2{
     color:red;
@@ -50,12 +51,17 @@
 
 }
 
+
+
+
 #ButtonPassword{
     margin-top: 10px;
 }
 
-#ButtonPasswordChange{
+#PasswordError{
+    color:red;
+    width: 15rem;
     position: absolute;
-    top: 42rem;
-
+    top: 38rem;
+    text-align: center;
 }

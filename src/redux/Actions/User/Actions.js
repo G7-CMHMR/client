@@ -140,6 +140,30 @@ export function attemptLogoutAction() {
     }
 }
 
+export function changeDataOfUser(newData){
+    console.log(newData)
+    return async (dispatch) => {
+        try {
+            await clientAxios.put(`/auth/update`, newData)
+            
+        } catch (error) {
+            console.log('ERROR AL CAMBIAR LOS DATOS: ',error.response.data)
+        }
+    }
+}
+
+export function changePasswordOfUser(newData){
+    console.log(newData)
+    return async (dispatch) => {
+        try {
+            await clientAxios.put(`/auth/update`, newData)
+            
+        } catch (error) {
+            console.log('ERROR AL CAMBIAR LOS DATOS: ',error.response.data)
+        }
+    }
+}
+
 
 const attemptLogin = () => ({
     type:ATTEMPT_LOGIN,

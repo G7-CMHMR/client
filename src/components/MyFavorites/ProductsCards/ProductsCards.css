@@ -1,0 +1,8 @@
+#CategoryProductCards{
+    background-color: white;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
