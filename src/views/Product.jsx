@@ -20,13 +20,15 @@ function Product() {
     const dispatch = useDispatch();
     const productDetail= useSelector(state => state.productsReducer.productDetail)
     const products = useSelector(state => state.productsReducer.products)
-    
+    const category = productDetail.categories
   
     useEffect(() => {
-        dispatch(getProductsOfCategory(productDetail.categories))
+        
       dispatch(getProductDetail(idProducto))
-    }, [dispatch, idProducto])
+      dispatch(getProductsOfCategory(category))
+    }, [dispatch,idProducto ])
 
+    let similarsproducts = products.filter(x=>x.id!==idProducto)
 
     return (
     
@@ -47,7 +49,7 @@ function Product() {
                             <h2>Productos similares</h2>
                             <hr></hr>
                             <div id="similarCard">
-                                {products.map((x)=>
+                                {similarsproducts && similarsproducts.slice(0, 3).map((x)=>
                             <Similars name={x.name} images={x.images} 
                             valuation={x.valuation} delivery={x.delivery} price={x.price}
                             discount={x.discount} seller={x.seller}
@@ -67,12 +69,12 @@ function Product() {
                         <Description/>
                     </div>
                     <div id='SellerInfo'>
-                        <h1>Informacion Del Vendedor</h1>
+                        <SellerInfo/>
                     </div>
                 </div>
 
                 <div id='Questions'>
-                    <h1>Preguntas</h1>
+                    <QandA/>
                 </div>
 
             </div>

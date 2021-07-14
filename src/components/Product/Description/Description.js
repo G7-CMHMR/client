@@ -16,10 +16,10 @@ function Description() {
     }, [dispatch, idProducto])
 
     return(
-        <div id="producDescription">
-           <h2>Descripción del producto</h2> 
+        <div id="productDescription">
+           <h2 style={{padding:"1%"}}>Descripción del producto</h2> 
            <hr></hr>
-            <p>{productsReducer.description}</p>
+            <h4>{productsReducer.description}</h4>
         </div>
     )
 }

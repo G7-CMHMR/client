@@ -32,12 +32,12 @@ function Similars({price,discount,images,name,seller,status,valuation,delivery,i
                 {images && <img src={images} width="213px" height="213px" alt="" />}
             </div>
             <div>
-                {discount && discount > 0 && show ? <h4 style={{color:"gray", textDecoration:"line-through"}} >${addCommas(Math.floor(price*171))}</h4> : show && <br/>}
+                {discount && discount > 0 && show ? <h4 style={{color:"gray", textDecoration:"line-through"}} >${addCommas(Math.floor(price))}</h4> : show && <br/>}
                 <div id="price">
-                    {price && <h2>${addCommas(Math.floor(price*171 - (price*171/100)*discount))}</h2>}
+                    {price && <h2>${addCommas(Math.floor(price - (price/100)*discount))}</h2>}
                     { discount > 0 && <h4 id="offoff">{discount}% OFF</h4>}
                 </div>
-                {delivery ? <span >envío gratis</span> : (!show && <br></br>)}
+                {delivery ? <span style={{color:"green"}} >Envio gratis</span> : (!show && <br></br>)}
                 {show && <td >{name}</td>}
                 
             </div></Link>

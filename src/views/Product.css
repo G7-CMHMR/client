@@ -25,7 +25,9 @@
    #ProductInfo{
     width: 35%;
     height: auto;
-    background-color: #efefef;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-left: 1%;
 
    }
    
@@ -40,7 +42,7 @@
    }
    
    #Similars{
-    height: 61%;
+    height: 70%;
     background-color: #f9f9f9;
     margin-top: 1%;
    }
@@ -54,22 +56,30 @@
    }
    
    #Description{
-    width: 75%;
+    width: 69%;
     background-color: #f9f9f9;
     border-radius: 14px;
     margin-right: 8px;
-    margin-top: 19%;
+    margin-top: 26%;
+    padding:2%
    }
    
    #SellerInfo{
-       width: 35%;
-       background-color: seagreen;
+    width: 31%;
+    background-color: #f9f9f9;
+    border-radius: 22px;
+    margin-top: 2%;
    }
    
    #Questions{
-       height: 800px;
-       background-color:steelblue;
+    height: auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-top: 1%;
+    padding-right: 5%;
+    padding-left: 5%;
    }
    #similarCard{
     display: flex;
+    justify-content: center;
    }
