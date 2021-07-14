@@ -11,6 +11,7 @@ function CategoryFilters(props) {
     const { categoryName } = useParams()
 
     const productsReducer = useSelector (state => state.productsReducer)
+    const userReducer = useSelector (state => state.userReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,7 +36,7 @@ function CategoryFilters(props) {
     return (
         <div id="CategoryFilters">
             <div id='CategoryAndResults'>
-                {console.log(productsReducer)}
+                {console.log(userReducer)}
                 <br></br>
                 <h2>{categoryName}</h2>
                 <h5 id='Resultados'>{productsReducer.products.length} resultados</h5>
