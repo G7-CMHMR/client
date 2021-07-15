@@ -60,7 +60,7 @@ function NavBar() {
          <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
          <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
              {productsReducer.categories.map(element => (
-                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
+                <NavDropdown.Item href={`/Categorias/${element.title}`}>{element.title}</NavDropdown.Item>
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 

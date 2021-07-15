@@ -12,6 +12,7 @@ import {
 
     ATTEMPT_UPDATE_SUCCESS,
     ATTEMPT_UPDATE_FAILED,
+    USER_DATA,
     
   } from './ActionsName'
 
@@ -22,6 +23,7 @@ import {
       attempt: null,
       error: null,
       username: null,
+      userData: [],
 
   }
 
@@ -109,6 +111,13 @@ export default function userReducer(state = initialState, action){
                 ...state,
                 username: action.payload
 
+            }
+        }
+
+        case USER_DATA: {
+            return {
+                ...state,
+                userData: action.payload
             }
         }
 

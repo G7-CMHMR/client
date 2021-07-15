@@ -2,10 +2,24 @@
 import './ProductCard.css'
 import Rating from '@material-ui/lab/Rating';
 import { FaHeart } from 'react-icons/fa'
-import { IoCartSharp } from 'react-icons/io5'
+import { IoBody, IoCartSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom';
+import { blue, blueGrey } from '@material-ui/core/colors';
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
+    
+    const userReducer = useSelector (state => state.userReducer.userData)
+    var userId = userReducer.id
+
+
+    function OutOfFavorites(e, productId){
+        console.log('CHANGE')
+        e.target.style.color = 'grey'
+        let fav = e
+        axios.post('http://localhost:3001/favourite/remove', {userId, productId})
+    }
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -44,7 +58,7 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
 
                     </div>
                     <div id="icons">
-                        <button id="btnheart"><FaHeart /></button>
+                        <button id="btnheart" name={id} onClick={(e) => OutOfFavorites(e, id)}><FaHeart /></button>
                         <button id="btncart"><IoCartSharp /></button>
                     </div>
                 </div>

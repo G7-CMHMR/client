@@ -1,0 +1,15 @@
+#MenuContainer{
+    background-color: white;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+#PanelContentDetail>*{
+   width: 35px;
+}
+
+#TitlePanel{
+    
+}

@@ -16,6 +16,7 @@ import Profile_password from './views/Profile_password'
 import MyShopping from './views/MyShopping'
 import MyFavorites from './views/MyFavorites'
 import MyCart from './views/MyCart'
+import Panel from './views/Panel';
 
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
@@ -23,6 +24,7 @@ import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+
 
 function App() {
 
@@ -53,6 +55,7 @@ function App() {
       <Route exact path='/Compras' component={MyShopping}/>
       <Route exact path='/Favoritos' component={MyFavorites}/>
       <Route exact path='/Carrito' component={MyCart}/>
+      <Route exact path='/Panel' component={Panel}/>
 
       <Footer></Footer>
       <ToastContainer position="top-center" /> 

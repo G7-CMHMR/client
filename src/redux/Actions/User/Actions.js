@@ -9,6 +9,7 @@ import {
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
+    USER_DATA,
 
   } from './ActionsName';
 
@@ -117,6 +118,7 @@ export function attemptVerifyLogin () {
                     { headers: {'x-token': token }}
                 )
                 dispatch( attemptLoginSuccess( data.name ))
+                dispatch( attemptUserData( data ))
                 
                 setToLocalStorage(data.token, data.name);
             }
@@ -181,4 +183,9 @@ const attemptLoginFailed = (newstate) => ({
 
 const attemptLogout = () => ({
     type:ATTEMPT_LOGOUT
+})
+
+const attemptUserData = (data) => ({
+    type: USER_DATA,
+    payload: data
 })
