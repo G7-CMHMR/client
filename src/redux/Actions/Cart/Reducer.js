@@ -4,7 +4,7 @@ const initialState = {
     cart: []
 }
 //Combine Reducers
-function productsReducer (state = initialState, action) {
+function cartReducer (state = initialState, action) {
     switch (action.type){
         case GET_CART: {
             return {
@@ -49,4 +49,4 @@ function productsReducer (state = initialState, action) {
     }
 }
 
-export default productsReducer
+export default cartReducer
