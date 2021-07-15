@@ -17,8 +17,10 @@ import MyShopping from './views/MyShopping'
 import MyFavorites from './views/MyFavorites'
 import MyCart from './views/MyCart'
 
+
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
+import BecomeSeller from './views/_Modals/BecomeSeller/BecomeSeller';
 import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
 import { ToastContainer } from 'react-toastify';
@@ -36,6 +38,7 @@ function App() {
 
   const stateLogin = useSelector((state) => state.userReducer.loginwindow); 
   const stateRegister = useSelector((state) => state.userReducer.registerwindow);
+  const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
   
   return (
     <div className="App">
@@ -43,7 +46,10 @@ function App() {
       <NavBar></NavBar>
       {stateLogin? <Login /> :null }
       {stateRegister? <Register /> :null }
+
       <Route exact path='/confirm-account/:emailToken' component={Home}/>
+      {stateBeSeller? <BecomeSeller />:null}
+
       <Route exact path='/' component={Home}/>
       <Route exact path='/Categorias' component={Categories}/>
       <Route path='/Categorias/:categoryName' component={Categories}/>

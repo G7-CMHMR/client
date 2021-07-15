@@ -1,0 +1,42 @@
+                                /* BECOME SELLER */
+#becomesellerbox {
+    width: 27rem;
+    height: 36rem;  
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;    
+    background: white;
+    border-radius: 3px;
+}
+#X{
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    color: red;
+    border-radius: 50%;
+    border-color: transparent;
+}
+#becomeseller {
+    background:#8fb8ff;
+    font-size: 1.3rem;
+    font-weight:lighter;
+    margin: 0;
+    padding: 1rem;
+    display: block;    
+    width: 100%;
+}
+.subtitleName {
+    text-align: start;    
+    padding: 0;
+    margin: 0;
+    padding-left: 2.6rem;
+    
+}
+/* REMOVER FLECHAS DE INPUT */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
