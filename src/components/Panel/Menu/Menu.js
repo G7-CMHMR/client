@@ -1,15 +1,17 @@
 //Card dentro de My producst en PAnel
 import './Menu.css'
+import { Link } from 'react-router-dom'
 
 function Menu() {
     return(
-        <div id='MenuContainer'>
-            <h1 >Panel</h1>
-            <h2>Publicaciones</h2>
-            <h2>Productos</h2>
-            <h2>Crear Producto</h2>
-            <h2>Ventas</h2>
-            <h2>Preguntas</h2>
+        <div id='PanelContainer'>
+            <Link to='/Panel'>Panel</Link>
+            <Link to='/Panel/Publicaciones'>Publicaciones</Link>
+            <Link to='/Panel/Productos'>Productos</Link>
+            <Link to='/Panel/CrearProducto'>CrearProducto</Link>
+            <Link to='/Panel/Ventas'>Ventas</Link>
+            <Link to='/Panel/Preguntas'>Preguntas</Link>
+
         </div>
     )
 }
