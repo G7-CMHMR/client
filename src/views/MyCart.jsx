@@ -9,6 +9,7 @@ import { Link } from '@material-ui/core';
 import ProductCard from '../components/Category/ProductCard/ProductCard';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
 import { getCart } from '../redux/Actions/Cart/Actions';
+import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
 
 
 function MyCart() {
@@ -17,11 +18,20 @@ function MyCart() {
     const cart = useSelector (state => state.cartReducer.cart)
     const dispatch = useDispatch()
     const userReducer = useSelector(state => state.userReducer.userData)
+    const stateRegister = useSelector((state) => state.userReducer.registerwindow);
+    const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     var userId = userReducer.id
     useEffect(() => {
         dispatch(getCart(userId))
 	}, [dispatch, userId])
 
+    const openLogin = () => {
+        dispatch(changeStateLoginAction(!stateLogin))
+
+    }
+    const openRegister = () => {
+        dispatch(changeStateRegisterAction(!stateRegister))
+    }
     
 
 	let addCommas = function(nStr)
@@ -54,6 +64,14 @@ function MyCart() {
                 status={x.status} id={x.id} />
 			)
 		}): <h5>No hay productos en tu carrito</h5>}
+        {
+            userId===undefined && 
+            <div>
+                <h5>Para usar el carrito es necesario estar registrado</h5>
+                <h5>Podes <button onClick={openRegister}>Registrarte</button> 
+                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
+            </div>
+        }
 			
 		</div>
 			<div id="totalCart">
