@@ -8,11 +8,24 @@ import { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 
 import { getAllProducts, getProductsOffer } from '../redux/Actions/Products/Actions'
+import { useParams } from 'react-router-dom'
+import clientAxios from '../config/axios'
+import { toast } from 'react-toastify'
 
 function Home(props) {
 
+  const { emailToken } = useParams();
+
   const productsReducer = useSelector(state => state.productsReducer)
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (emailToken) {
+      clientAxios.get(`/auth/confirm-account/${emailToken}`);
+      props.history.replace('/');
+      toast.success('La cuenta fue confirmada con éxito');
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(getAllProducts())

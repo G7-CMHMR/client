@@ -10,6 +10,7 @@ import {
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
     USER_DATA,
+    BECOME_SELLER
 
   } from './ActionsName';
 
@@ -188,4 +189,15 @@ const attemptLogout = () => ({
 const attemptUserData = (data) => ({
     type: USER_DATA,
     payload: data
+})
+
+export function becomeSellerAction(opposite){
+    return (dispatch) => {
+        dispatch(becomeSeller(opposite))
+    }
+}
+const becomeSeller = (opposite) => ({
+    type:BECOME_SELLER,
+    payload: opposite
+
 })

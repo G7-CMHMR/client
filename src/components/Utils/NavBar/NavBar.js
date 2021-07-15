@@ -8,16 +8,17 @@ import { FaHeart } from 'react-icons/fa'
 import { IoCartSharp } from 'react-icons/io5'
 
 
-import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
+import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction  }from '../../../redux/Actions/User/Actions';
 import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
+    
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
-
+    const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
 
     const productsReducer = useSelector(state => state.productsReducer)
 
@@ -34,7 +35,9 @@ function NavBar() {
     //  const cambiar = () => {
     //      dispatch(changeStateLogin(!loggedin))
     //  }
-
+    const openBeSeller = () => {
+        dispatch(becomeSellerAction(!stateBeSeller))
+    }
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -72,8 +75,9 @@ function NavBar() {
             {username ?
             <NavDropdown title={username} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
-         <NavDropdown.Item href="Favoritos">MIS FAVORITOS </NavDropdown.Item>
+         <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
+         <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :
@@ -86,8 +90,8 @@ function NavBar() {
              <button onClick={cambiar}>ENTRAR</button>    
              } */}          
         </Nav>
-        <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
-        <Nav.Link href="#fav"><FaHeart/></Nav.Link>
+        <Nav.Link href={`/Carrito/`}><IoCartSharp/></Nav.Link>
+        <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
     
   </Navbar.Collapse>
 </Navbar>
