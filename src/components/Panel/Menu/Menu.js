@@ -1,5 +1,6 @@
 //Card dentro de My producst en PAnel
 import './Menu.css'
+
 import { Link } from 'react-router-dom'
 
 function Menu() {
@@ -11,7 +12,6 @@ function Menu() {
             <Link to='/Panel/CrearProducto'>CrearProducto</Link>
             <Link to='/Panel/Ventas'>Ventas</Link>
             <Link to='/Panel/Preguntas'>Preguntas</Link>
-
         </div>
     )
 }

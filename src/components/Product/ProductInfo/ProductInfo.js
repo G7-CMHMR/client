@@ -38,7 +38,7 @@ function ProductInfo() {
     return (
         <div>
             <br></br>
-            <h5 style={{color:"gray"}}>{productsReducer.status} | 0 vendidos <button id="AddFav" ><FaHeart/></button></h5>
+            <h5 style={{color:"gray"}}>{productsReducer.status} | {productsReducer.sold} vendidos <button id="AddFav" ><FaHeart/></button></h5>
             <br></br>
             <h2>{productsReducer.name}</h2>
             {productsReducer.valuation && <Rating name="half-rating-read" defaultValue={productsReducer.valuation} precision={0.5} readOnly />}
@@ -51,7 +51,7 @@ function ProductInfo() {
             </div>
 
             <div id="delidis">
-                { productsReducer.delivery? <div id="delivery">Envio gratis</div> :  <p> PRecio del envio: $400</p> }
+                { productsReducer.delivery? <div id="delivery">Envio gratis</div> :  <p> Precio del envio: $400</p> }
                        { productsReducer.discount>0? <div id="discount">{productsReducer.discount}% OFF</div> : <p></p> }
                        
                 {/* <h2>Envio a la dirección:</h2> */}
@@ -70,6 +70,9 @@ function ProductInfo() {
             <div id="seguridad">
                 <h3>Compra protegida:</h3>
                 <h4>Recibí el producto que esperabas o te devolvemos tu dinero</h4>
+                <hr></hr>
+                {productsReducer.warranty>0? <h4>Este producto tiene {productsReducer.warranty} dias de garantia</h4> :
+                <h4>Este producto no tiene garantia</h4>}
             </div>
         </div>
     )

@@ -9,16 +9,18 @@ import {
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
-
     ATTEMPT_UPDATE_SUCCESS,
     ATTEMPT_UPDATE_FAILED,
     USER_DATA,
-    
+    BECOME_SELLER
+
+
   } from './ActionsName'
 
   const initialState = {
       loginwindow: false,
       registerwindow: false,
+      becomeseller: false,
       loading: false,
       attempt: null,
       error: null,
@@ -111,6 +113,19 @@ export default function userReducer(state = initialState, action){
                 ...state,
                 username: action.payload
 
+            }
+        }
+        case BECOME_SELLER: {
+            return {
+                ...state,
+                becomeseller: action.payload
+            }
+        }
+
+        case USER_DATA: {
+            return {
+                ...state,
+                userData: action.payload
             }
         }
 

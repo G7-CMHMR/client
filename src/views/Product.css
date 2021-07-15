@@ -1,7 +1,8 @@
 .DetailContainer{
     display: flex;
     flex-direction: row;
-    background-color:#efefef
+    background-color:#efefef;
+    heigth:auto
    }
    
    
