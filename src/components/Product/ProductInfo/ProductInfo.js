@@ -6,6 +6,7 @@ import './ProductInfo.css'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
 import Rating from '@material-ui/lab/Rating';
 import {FaHeart} from 'react-icons/fa'
+import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 
 
 
@@ -16,11 +17,17 @@ function ProductInfo() {
 
     const dispatch = useDispatch();
     const productsReducer = useSelector(state => state.productsReducer.productDetail)
-
-
+    const userReducer = useSelector(state => state.userReducer.userData)
+    var USERID = userReducer.id
+    console.log(USERID, productsReducer.id)
     useEffect(() => {
         dispatch(getProductDetail(idProducto))
     }, [dispatch, idProducto])
+
+    function addToCart(){
+    
+        dispatch(addProductToCart({userId:USERID,productId:idProducto}))
+    }
 
     let addCommas = function(nStr)
     {
@@ -65,7 +72,7 @@ function ProductInfo() {
             </div>
             <div id="btnbuy">
                 <button id="btn1" >Comprar Ahora</button>
-                <button id="btn2">Agregar al carrito</button>
+                <button id="btn2" onClick={(e) => addToCart(e)}>Agregar al carrito</button>
             </div>
             <div id="seguridad">
                 <h3>Compra protegida:</h3>

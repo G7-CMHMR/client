@@ -27,7 +27,6 @@ function MyCart() {
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
-
     }
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
