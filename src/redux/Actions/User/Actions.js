@@ -9,6 +9,7 @@ import {
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
+    USER_DATA,
     BECOME_SELLER
 
   } from './ActionsName';
@@ -118,6 +119,7 @@ export function attemptVerifyLogin () {
                     { headers: {'x-token': token }}
                 )
                 dispatch( attemptLoginSuccess( data.name ))
+                dispatch( attemptUserData( data ))
                 
                 setToLocalStorage(data.token, data.name);
             }
@@ -183,7 +185,12 @@ const attemptLoginFailed = (newstate) => ({
 const attemptLogout = () => ({
     type:ATTEMPT_LOGOUT
 })
-// Becoming a Seller
+
+const attemptUserData = (data) => ({
+    type: USER_DATA,
+    payload: data
+})
+
 export function becomeSellerAction(opposite){
     return (dispatch) => {
         dispatch(becomeSeller(opposite))
@@ -192,4 +199,5 @@ export function becomeSellerAction(opposite){
 const becomeSeller = (opposite) => ({
     type:BECOME_SELLER,
     payload: opposite
+
 })

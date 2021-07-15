@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT, GET_FAVOURITES } from './ActionsName'
 
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     productsOffer: [],
     productDetail: [],
     categories: [],
+    favourites: [],
 }
 
 function productsReducer(state = initialState, action) {
@@ -44,6 +45,12 @@ function productsReducer(state = initialState, action) {
             }
         }     
 
+        case GET_FAVOURITES: {
+            return{
+                ...state,
+                favourites: action.payload
+            }
+        }
         default: return state;
     }
 

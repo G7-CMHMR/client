@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useSelector, useDispatch } from 'react'
 import { useEffect, useState } from 'react';
-import { validate } from '@babel/types';
+
 import { changeDataOfUser } from '../../redux/Actions/User/Actions'
 
 import { Link } from 'react-router-dom'

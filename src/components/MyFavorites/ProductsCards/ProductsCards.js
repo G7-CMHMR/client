@@ -3,21 +3,32 @@ import ProductCard from '../ProductCard/ProductCard'
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getAllProducts, getProductsOfCategory } from '../../../redux/Actions/Products/Actions';
+import { getProductsOfCategory, getAllFavourites } from '../../../redux/Actions/Products/Actions'
 import { useParams } from "react-router";
+import axios from 'axios' 
+
+
+
 
 function ProductsCards() {
 
-    const productsReducer = useSelector (state => state.productsReducer)
+    const favouritesReducer = useSelector(state => state.favouritesReducer)
+    const productsReducer = useSelector(state => state.productsReducer)
     const dispatch = useDispatch()
-    const { categoryName } = useParams()
+
+    const userReducer = useSelector(state => state.userReducer.userData)
+    var userId = userReducer.id
+
     useEffect(() => {
-        dispatch(getAllProducts())
-	}, [dispatch, categoryName])
+        getAllFavourites(userId)
+    }, [dispatch, userId])
 
     return (
-    
+
         <div id='CategoryProductCards'>
+            {console.log(favouritesReducer)}
+            {console.log(userId)}
+            {console.log(userReducer)}
             {productsReducer.products ? productsReducer.products.map((x) => {
                 return (
                     <ProductCard name={x.name} images={x.images}

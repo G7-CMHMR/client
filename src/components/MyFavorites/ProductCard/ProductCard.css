@@ -118,15 +118,26 @@
     padding: 3px;
     width: 100%;
     }
+
+
     #btnheart{
         border: none;
         background: white;
         color: red;
+        margin-left: 3.5rem;
+        
     }
+    
 
     #btncart{
         border: none;
         background: white;
         color: rgb(27, 44, 117);
+        margin-left: 3.5rem;
     }
 
+
+
+
+
+    

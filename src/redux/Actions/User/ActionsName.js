@@ -2,6 +2,8 @@
 export const CHANGE_LOGIN = "CHANGE_LOGIN";
 export const CHANGE_REGISTER = "CHANGE_REGISTER";
 
+export const USER_DATA = "USER_DATA";
+
 // Trying to connect to api to LOG IN
 export const ATTEMPT_LOGIN = "ATTEMPT_LOGIN";
 export const ATTEMPT_LOGIN_SUCCESS = "ATTEMPT_LOGIN_SUCCESS";
