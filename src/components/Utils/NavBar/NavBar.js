@@ -13,6 +13,7 @@ import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
+    
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     const username = useSelector((state) => state.userReducer.username);

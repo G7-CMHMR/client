@@ -21,8 +21,7 @@ function MyCart() {
         dispatch(getProductsOfCategory(categoryName))
 	}, [dispatch, categoryName])
 
-    const [total, setTotal] = useState(0);
-	const [subTotal, setSubTotal] = useState(0);
+    
 
 	let addCommas = function(nStr)
     {
