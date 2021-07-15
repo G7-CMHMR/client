@@ -13,6 +13,7 @@ import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
 function NavBar() {
+    
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     const username = useSelector((state) => state.userReducer.username);
@@ -74,7 +75,7 @@ function NavBar() {
             {username ?
             <NavDropdown title={username} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
-         <NavDropdown.Item href="Favoritos">MIS FAVORITOS </NavDropdown.Item>
+         <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
          <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
@@ -89,8 +90,8 @@ function NavBar() {
              <button onClick={cambiar}>ENTRAR</button>    
              } */}          
         </Nav>
-        <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
-        <Nav.Link href="#fav"><FaHeart/></Nav.Link>
+        <Nav.Link href={`/Carrito/`}><IoCartSharp/></Nav.Link>
+        <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
     
   </Navbar.Collapse>
 </Navbar>

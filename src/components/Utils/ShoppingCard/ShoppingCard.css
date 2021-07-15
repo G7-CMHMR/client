@@ -1,0 +1,22 @@
+#ship2{
+    color: white;
+    background-color: green;
+    padding: 2px;
+    width: 100%;
+}
+#link2{
+           /* padding: 2%; */
+    padding-left: 3%;
+    padding-right: 19%;
+    /* width: 66%; */
+    text-align: initial;
+}
+#ProductCard2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e5e5e5;
+    /* margin-bottom: 1%; */
+    margin: 1%;
+
+}
