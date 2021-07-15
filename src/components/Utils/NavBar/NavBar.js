@@ -8,7 +8,7 @@ import { FaHeart } from 'react-icons/fa'
 import { IoCartSharp } from 'react-icons/io5'
 
 
-import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction }from '../../../redux/Actions/User/Actions';
+import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction  }from '../../../redux/Actions/User/Actions';
 import {getCategories} from '../../../redux/Actions/Products/Actions'
 
 
@@ -17,7 +17,7 @@ function NavBar() {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
-
+    const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
 
     const productsReducer = useSelector(state => state.productsReducer)
 
@@ -34,7 +34,9 @@ function NavBar() {
     //  const cambiar = () => {
     //      dispatch(changeStateLogin(!loggedin))
     //  }
-
+    const openBeSeller = () => {
+        dispatch(becomeSellerAction(!stateBeSeller))
+    }
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -60,7 +62,7 @@ function NavBar() {
          <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
          <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
              {productsReducer.categories.map(element => (
-                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
+                <NavDropdown.Item href={`/Categorias/${element.title}`}>{element.title}</NavDropdown.Item>
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 
@@ -74,6 +76,7 @@ function NavBar() {
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
          <NavDropdown.Item href="Favoritos">MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
+         <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :
