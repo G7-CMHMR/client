@@ -60,7 +60,7 @@ function NavBar() {
          <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
          <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
              {productsReducer.categories.map(element => (
-                <NavDropdown.Item href={`/Categorias/${element}`}>{element}</NavDropdown.Item>
+                <NavDropdown.Item href={`/Categorias/${element.title}`}>{element.title}</NavDropdown.Item>
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 
@@ -72,7 +72,7 @@ function NavBar() {
             {username ?
             <NavDropdown title={username} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
-         <NavDropdown.Item href="Favoritos">MIS FAVORITOS </NavDropdown.Item>
+         <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
@@ -86,8 +86,8 @@ function NavBar() {
              <button onClick={cambiar}>ENTRAR</button>    
              } */}          
         </Nav>
-        <Nav.Link href="#cart"><IoCartSharp/></Nav.Link>
-        <Nav.Link href="#fav"><FaHeart/></Nav.Link>
+        <Nav.Link href={`/Carrito/`}><IoCartSharp/></Nav.Link>
+        <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
     
   </Navbar.Collapse>
 </Navbar>

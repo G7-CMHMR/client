@@ -2,5 +2,9 @@
     display: flex;
     flex-direction: row;
     background-color: white;
+    height: auto;
    }
    
+.CartCard{
+    width: 60%;
+}
