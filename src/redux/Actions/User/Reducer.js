@@ -14,6 +14,7 @@ import {
     USER_DATA,
     BECOME_SELLER
 
+
   } from './ActionsName'
 
   const initialState = {
@@ -118,6 +119,13 @@ export default function userReducer(state = initialState, action){
             return {
                 ...state,
                 becomeseller: action.payload
+            }
+        }
+
+        case USER_DATA: {
+            return {
+                ...state,
+                userData: action.payload
             }
         }
 

@@ -18,7 +18,6 @@ import MyFavorites from './views/MyFavorites'
 import MyCart from './views/MyCart'
 import Panel from './views/Panel';
 
-
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
 import BecomeSeller from './views/_Modals/BecomeSeller/BecomeSeller';
@@ -62,7 +61,7 @@ function App() {
       <Route exact path='/Compras' component={MyShopping}/>
       <Route exact path='/Favoritos' component={MyFavorites}/>
       <Route exact path='/Carrito' component={MyCart}/>
-      <Route exact path='/Panel' component={Panel}/>
+      <Route path='/Panel' component={Panel}/>
 
       <Footer></Footer>
       <ToastContainer position="top-center" /> 

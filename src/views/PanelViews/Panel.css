@@ -1,0 +1,10 @@
+.PanelContainer{
+    display: flex;
+    flex-direction: row;
+    height: 747px;
+   }
+   
+#PanelContentDetail{
+    background-color:cadetblue;
+    width: 80%;
+}
