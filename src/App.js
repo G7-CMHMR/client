@@ -46,7 +46,10 @@ function App() {
       <NavBar></NavBar>
       {stateLogin? <Login /> :null }
       {stateRegister? <Register /> :null }
+
+      <Route exact path='/confirm-account/:emailToken' component={Home}/>
       {stateBeSeller? <BecomeSeller />:null}
+
       <Route exact path='/' component={Home}/>
       <Route exact path='/Categorias' component={Categories}/>
       <Route path='/Categorias/:categoryName' component={Categories}/>
