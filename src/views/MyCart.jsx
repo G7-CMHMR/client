@@ -11,7 +11,8 @@ import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
 //import ShoppingCartCard from '../components/Utils/ShoppingCartCard';
 
 function MyCart() {
-
+	let totalCart = 0
+	let envio = 0
     const productsReducer = useSelector (state => state.productsReducer)
     const dispatch = useDispatch()
     const { categoryName } = useParams()
@@ -23,6 +24,18 @@ function MyCart() {
     const [total, setTotal] = useState(0);
 	const [subTotal, setSubTotal] = useState(0);
 
+	let addCommas = function(nStr)
+    {
+        nStr += '';
+        let x = nStr.split('.');
+        let x1 = x[0];
+        let x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
 
     return (
     
@@ -43,7 +56,21 @@ function MyCart() {
 		}): <h5>No hay productos en tu carrito</h5>}
 			
 		</div>
-	
+			<div id="totalCart">
+				{
+					productsReducer.products.forEach((x)=>{
+						totalCart+=(x.price - (x.price/100)*x.discount)
+					})
+				}{
+					productsReducer.products.forEach((x)=>{
+						if (x.delivery!==true){
+						envio +=400
+						}
+					})
+				}
+				<h4> Envio : ${addCommas(Math.floor(envio))}</h4>
+				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2>
+			</div>
             </div>
 
             <Separate></Separate>
