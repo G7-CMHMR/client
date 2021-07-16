@@ -1,7 +1,7 @@
 import React, { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-
+import Badge from '@material-ui/core/Badge';
 import './NavBar.css'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { FaHeart } from 'react-icons/fa'
@@ -19,7 +19,7 @@ function NavBar() {
     const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
-
+    const cart = useSelector (state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
 
 
@@ -90,7 +90,11 @@ function NavBar() {
              <button onClick={cambiar}>ENTRAR</button>    
              } */}          
         </Nav>
-        <Nav.Link href={`/Carrito/`}><IoCartSharp/></Nav.Link>
+        <Nav.Link href={`/Carrito/`}>
+        <Badge badgeContent={cart.length} color="error">
+            <IoCartSharp/>
+            </Badge>
+            </Nav.Link>
         <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
     
   </Navbar.Collapse>
