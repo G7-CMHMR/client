@@ -5,19 +5,20 @@ import './ShoppingCard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Badge} from 'react-bootstrap'
 import { useState } from 'react';
+import { removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function ShoppingCard({price,discount,images,name,seller,status,valuation,delivery,id}) {
     // var porcentaje= (price / precioviejo)*100;
     // var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
-    const [cant, setCant] = useState(1);
+    const dispatch = useDispatch()
+    const userReducer = useSelector (state => state.userReducer.userData)
+    var USERID = userReducer.id
 
-    function disCant(){
-        setCant(cant-1)
-    }
-    function addCant(){
-        setCant(cant+1)
-    }
+    function deleteItem(e,idproduct){
+        dispatch(removeProductFromCart({userId:USERID,productId:idproduct}))
+    }   
     let addCommas = function(nStr)
     {
         nStr += '';
@@ -35,7 +36,7 @@ function ShoppingCard({price,discount,images,name,seller,status,valuation,delive
         <div id="ProductCard2">
           	
 	            <div class="product-image2">
-                	<img width="100px" height="100px" src={images[0]} alt="Omar Dsoky"/>
+                	<img width="100px" height="100px" src={images?images[0]:''} alt="Omar Dsoky"/>
                 </div>
                 <Link id="link2" to={`/Producto/${id}`}>
                 	<div class="product-details2">
@@ -47,11 +48,9 @@ function ShoppingCard({price,discount,images,name,seller,status,valuation,delive
                 </div> 
 		            </div>
                 </Link>
-                <div id="cant">
-                    <button onclick={()=>disCant}>-</button>
-                        {cant}
-                    <button onclick={()=>addCant}>+</button>
-                </div>
+               <div>
+                   <button onClick={(e)=>deleteItem(e,id)}>Eliminar</button>
+               </div>
                 <div id="price2"><h4>${addCommas(Math.floor(price - (price/100)*discount))}</h4>
                         </div> 
                 

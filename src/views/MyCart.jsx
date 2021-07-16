@@ -19,11 +19,11 @@ function MyCart() {
     const dispatch = useDispatch()
     const userReducer = useSelector(state => state.userReducer.userData)
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
-    const stateLogin = useSelector((state) => state.userReducer.loginwindow);
+    const stateLogin = useSelector((state) => state.userReducer.loginwindow);   
     var userId = userReducer.id
     useEffect(() => {
         dispatch(getCart(userId))
-	}, [dispatch, userId])
+	}, [dispatch])
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -55,14 +55,14 @@ function MyCart() {
                 <br></br>
 
 			<div className="secondContainer">
-				{cart.length>0 ? cart.map((x)=>{
-			return(
-				<ShoppingCard className="CartCard" name={x.name} images={x.images} 
+				{cart && cart.length>0 && cart.map((x)=>{
+				return (
+                <ShoppingCard className="CartCard" name={x.name} images={x.images} 
                 valuation={x.valuation} delivery={x.delivery} price={x.price}
                 discount={x.discount} seller={x.seller}
                 status={x.status} id={x.id} />
-			)
-		}): <h5>No hay productos en tu carrito</h5>}
+                )			
+		})}
         {
             userId===undefined && 
             <div>
@@ -88,6 +88,9 @@ function MyCart() {
                 {
                     cart.length>0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
+                }
+                {
+                    userId!==undefined && <button> Comprar carrito </button>
                 }
 				
 			</div>

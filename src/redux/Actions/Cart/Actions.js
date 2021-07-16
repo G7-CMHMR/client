@@ -22,7 +22,6 @@ export function addProductToCart(productId_userId) {
 }
 export function removeProductFromCart(productId_userId) {
     return (dispatch) => {
-
         axios.post('http://localhost:3001/cart/remove', productId_userId)
             .then(response => {
                 dispatch({ type: REMOVE_PRODUCT_CART, payload: response.data })
