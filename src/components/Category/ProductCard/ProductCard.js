@@ -67,8 +67,10 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                     {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
                 </div>
                 <div id="icons">
-                    <FaHeart id='btnheart' onClick={(e) => AddToFavorites(e, id)}></FaHeart>
-                    <button onClick={(e) => addToCart(e)}><IoCartSharp id='btncart' ></IoCartSharp></button>
+                    <button className="buttons2" onClick={(e) => AddToFavorites(e, id)}>
+                        <FaHeart id='btnheart' ></FaHeart></button>
+                    <button className="buttons2" onClick={(e) => addToCart(e)}>
+                        <IoCartSharp id='btncart' ></IoCartSharp></button>
                 </div>
             </div>
         </div>
