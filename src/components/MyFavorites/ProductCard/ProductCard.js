@@ -1,5 +1,5 @@
 //card dentro de Categorias, REsultados, favoritos
-import './ProductCard.css'
+import './ProductCardFav.css'
 import Rating from '@material-ui/lab/Rating';
 import { FaHeart } from 'react-icons/fa'
 import { IoBody, IoCartSharp } from 'react-icons/io5'
@@ -9,34 +9,32 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { useState } from 'react';
+import { getFavourites } from '../../../redux/Actions/Favourites/Actions'
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
-    
-    const userReducer = useSelector (state => state.userReducer.userData)
-    const favourites = useSelector (state => state.favouritesReducer.favourites)
+
+    const userReducer = useSelector(state => state.userReducer.userData)
+    const favourites = useSelector(state => state.favouritesReducer.favourites)
     const [active, setActive] = useState(FavOrNot(id))
     var userId = userReducer.id
     const dispatch = useDispatch()
     console.log(favourites)
     console.log(active)
-    function AddToFavorites(e, productId) {
-        let fav = e.target.style
-        if (fav.color == 'grey') {
-            fav.color = 'red';
-            axios.post('http://localhost:3001/favourite/add', {userId, productId})
-        } 
-        else{
-            fav.color = 'grey';
-            axios.post('http://localhost:3001/favourite/remove', {userId, productId})
-        }
+
+    function RemoveFavorites(e, productId) {
+        axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+            .then(response => {
+                dispatch(getFavourites(userId))
+            })
     }
-    function addToCart(){
-        dispatch(addProductToCart({userId:userId,productId:id}))
+
+    function addToCart() {
+        dispatch(addProductToCart({ userId: userId, productId: id }))
     }
-    
-    function FavOrNot (productid){
-        let si=favourites.map((x)=> x.id===productid)
-        if(si.length>0){return true} else {return false}
+
+    function FavOrNot(productid) {
+        let si = favourites.map((x) => x.id === productid)
+        if (si.length > 0) { return true } else { return false }
     }
 
     let addCommas = function (nStr) {
@@ -53,15 +51,12 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
 
     return (
         <div>
-            <br></br>
-            <div id="ProductCard">
-                <div id="container">
-                    <div class="product-image">
-                        <img src={images[0]} alt="Omar Dsoky" />
-                    </div>
+            <div id="ProductCardFav">
+                <div id='ContainerFav'>
+                    <img id="imageFav" src={images[0]} alt="Omar Dsoky" />
                     <Link id="link" to={`/Producto/${id}`}>
                         <div class="product-details">
-                            <h1>{name}</h1>
+                            <h4>{name}</h4>
                             <p id="seller">Vendido por {seller}</p>
                             <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
                                 {discount > 0 ? <span> ${addCommas(Math.floor(price))}</span> : <p></p>}
@@ -75,15 +70,14 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                         {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
                     </div>
                     <div id="icons">
-                        { active===false? <button style={{color:"grey"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
-                        <button style={{color:"red"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
+                        {active === false ? <button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button> :
+                            <button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button>
                         }
-                         <button className="buttons2" onClick={(e) => addToCart(e)}>
-                        <IoCartSharp id='btncart' ></IoCartSharp></button>
+                        <button className="buttons2" onClick={(e) => addToCart(e)}>
+                            <IoCartSharp id='btncart' ></IoCartSharp></button>
                     </div>
                 </div>
             </div>
-            <br></br>
         </div>
     )
 }

@@ -12,36 +12,43 @@ import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
-    
-    const favourites = useSelector (state => state.favouritesReducer.favourites)
-    const [active, setActive] = useState(FavOrNot(id))
+
+    const favourites = useSelector(state => state.favouritesReducer.favourites)
     const userReducer = useSelector(state => state.userReducer.userData)
     const dispatch = useDispatch();
     var userId = userReducer.id
+
     useEffect(() => {
         dispatch(getFavourites(userId))
     }, [dispatch, userId])
 
-    function addToCart(){
-        dispatch(addProductToCart({userId:userId,productId:id}))
+    function addToCart() {
+        dispatch(addProductToCart({ userId: userId, productId: id }))
     }
-    
+
+    var CheckFavorite = favourites.find((e) => e.id == id)
     function AddToFavorites(e, productId) {
         let fav = e.target.style
-        if (fav.color ==="grey") {
-            fav.color = 'red';
-            axios.post('http://localhost:3001/favourite/add', {userId, productId})
-        } 
-        else{
-            fav.color = 'grey';
-            axios.post('http://localhost:3001/favourite/remove', {userId, productId})
+        if (fav.color) {
+            if (fav.color == "grey") {
+                fav.color = 'red';
+                axios.post('http://localhost:3001/favourite/add', { userId, productId })
+            }
+            else {
+                fav.color = 'grey';
+                axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+            }
+        }else{
+            if(CheckFavorite){
+                fav.color = 'grey';
+                axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+            }else {
+                fav.color = 'red';
+                axios.post('http://localhost:3001/favourite/add', { userId, productId })
+            }
         }
     }
 
-    function FavOrNot (productid){
-        let si=favourites.map((x)=> x.id===productid)
-        if(si.length>0){return true} else {return false}
-    }
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -54,6 +61,8 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
         }
         return x1 + x2;
     }
+
+   
 
     return (
         <div>
@@ -79,11 +88,11 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                         {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
                     </div>
                     <div id="icons">
-                        { active===true? <button style={{color:"red"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
-                        <button style={{color:"grey"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
+                        {CheckFavorite ? <button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
+                            <button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
                         }
-                         <button className="buttons2" onClick={(e) => addToCart(e)}>
-                        <IoCartSharp id='btncart' ></IoCartSharp></button>
+                        <button className="buttons2" onClick={(e) => addToCart(e)}>
+                            <IoCartSharp id='btncart' ></IoCartSharp></button>
                     </div>
                 </div>
             </div>

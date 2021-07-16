@@ -36,7 +36,6 @@ function CategoryFilters(props) {
     return (
         <div id="CategoryFilters">
             <div id='CategoryAndResults'>
-                {console.log(userReducer)}
                 <br></br>
                 <h2>{categoryName}</h2>
                 <h5 id='Resultados'>{productsReducer.products.length} resultados</h5>
