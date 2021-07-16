@@ -1,0 +1,6 @@
+.PanelContainer{
+    display: flex;
+    flex-direction: row;
+    height: 747px;
+   }
+   

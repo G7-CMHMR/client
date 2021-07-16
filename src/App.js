@@ -16,7 +16,13 @@ import Profile_password from './views/Profile_password'
 import MyShopping from './views/MyShopping'
 import MyFavorites from './views/MyFavorites'
 import MyCart from './views/MyCart'
+
 import Panel from './views/Panel';
+import Products from './views/PanelViews/Products';
+import Publications from './views/PanelViews/Publications';
+import CreateProduct from './views/PanelViews/CreateProduct';
+import Sales from './views/PanelViews/Sales';
+import Questions from './views/PanelViews/Questions';
 
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
@@ -25,6 +31,7 @@ import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+
 
 
 function App() {
@@ -61,7 +68,13 @@ function App() {
       <Route exact path='/Compras' component={MyShopping}/>
       <Route exact path='/Favoritos' component={MyFavorites}/>
       <Route exact path='/Carrito' component={MyCart}/>
-      <Route path='/Panel' component={Panel}/>
+
+      <Route exact path='/Panel' component={Panel}/>
+      <Route exact path='/Panel/Publicaciones' component={Publications} />
+      <Route exact path='/Panel/Productos' component={Products} />
+      <Route exact path='/Panel/CrearProducto' component={CreateProduct} />
+      <Route exact path='/Panel/Ventas' component={Sales} />
+      <Route exact path='/Panel/Preguntas' component={Questions} />
 
       <Footer></Footer>
       <ToastContainer position="top-center" /> 

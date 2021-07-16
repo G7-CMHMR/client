@@ -1,0 +1,18 @@
+.VerticalTabContainer{
+   
+    height: auto;
+}
+
+.Test1{
+    background-color: #E5E5E5;
+    width: 20%;
+}
+
+.MuiTabs-flexContainerVertical{
+    margin-top: 5rem;
+    height: 100%;
+    display: flex;
+
+}
+
+
