@@ -9,14 +9,18 @@ import { blue } from '@material-ui/core/colors';
 import { AddFavourites, RemoveFavourites, Chimichurri } from '../../../redux/Actions/Favourites/Actions'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
+import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
     // var porcentaje= (price / precioviejo)*100;
     // var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
-    
+    const dispatch = useDispatch()
     const userReducer = useSelector (state => state.userReducer.userData)
     var userId = userReducer.id
 
+    function addToCart(){
+        dispatch(addProductToCart({userId:userId,productId:id}))
+    }
 
     function AddToFavorites(e, productId) {
         let fav = e.target.style
@@ -64,7 +68,7 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                 </div>
                 <div id="icons">
                     <FaHeart id='btnheart' onClick={(e) => AddToFavorites(e, id)}></FaHeart>
-                    <IoCartSharp id='btncart' ></IoCartSharp>
+                    <button onClick={(e) => addToCart(e)}><IoCartSharp id='btncart' ></IoCartSharp></button>
                 </div>
             </div>
         </div>
