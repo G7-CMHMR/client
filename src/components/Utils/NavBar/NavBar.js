@@ -68,7 +68,7 @@ function NavBar() {
             }
         </NavDropdown> 
             {username ? 
-            <Nav.Link href="#panel">PANEL</Nav.Link>
+            <Nav.Link href="/Panel">PANEL</Nav.Link>
              : 
             <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
              }

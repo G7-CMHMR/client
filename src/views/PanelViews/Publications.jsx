@@ -1,16 +1,15 @@
-import Separate from '../components/Utils/Separate/Separate'
-import './Panel.css'
+import Separate from '../../components/Utils/Separate/Separate';
+import './Publications.css'
 
-import Menu from '../components/Panel/Menu/Menu';
+
 
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
-import VerticalTabs from '../components/Panel/VerticalTabs/VerticalTabs';
 
+import Menu from '../../components/Panel/Menu/Menu';
 
-
-function Panel() {
+function Publications() {
 
     //const dispatch = useDispatch();
     //const productsReducer = useSelector(state => state.productsReducer)
@@ -27,7 +26,11 @@ function Panel() {
             <Separate></Separate>
 
             <div id='PanelContentDetail'>
-                <VerticalTabs></VerticalTabs>
+                <Menu></Menu>
+                <div>
+                    <h1>Publicaciones</h1>
+                </div>
+
             </div>
 
             <Separate></Separate>
@@ -35,4 +38,4 @@ function Panel() {
     )
 }
 
-export default Panel
+export default Publications
