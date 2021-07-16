@@ -10,6 +10,7 @@ import { IoCartSharp } from 'react-icons/io5'
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction  }from '../../../redux/Actions/User/Actions';
 import {getCategories} from '../../../redux/Actions/Products/Actions'
+import { getCart } from '../../../redux/Actions/Cart/Actions';
 
 
 function NavBar() {
@@ -17,15 +18,18 @@ function NavBar() {
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     const username = useSelector((state) => state.userReducer.username);
+    const userReducer = useSelector(state => state.userReducer.userData)
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
     const cart = useSelector (state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
+    var userID= userReducer.id
 
 
     useEffect(() => {
+        dispatch(getCart(userID))
         dispatch(getCategories())
-    }, [dispatch])
+    }, [dispatch, userID])
 
 
     // useEffect(() => {

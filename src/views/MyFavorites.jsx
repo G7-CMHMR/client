@@ -10,19 +10,20 @@ import { useParams } from "react-router";
 import {getProductDetail} from '../redux/Actions/Products/Actions'
 
 import ProductsCards from '../components/MyFavorites/ProductsCards/ProductsCards'
+import { getFavourites } from '../redux/Actions/Favourites/Actions';
+import ProductCard from '../components/MyFavorites/ProductCard/ProductCard';
 
 function MyFavorites() {
 
-    const { idProducto } = useParams()
-
+    
+    const userReducer = useSelector(state => state.userReducer.userData)
     const dispatch = useDispatch();
-    const productsReducer = useSelector(state => state.productsReducer)
-
-  
+    var userID = userReducer.id
+    const favourites = useSelector(state => state.favouritesReducer.favourites)
     useEffect(() => {
-      dispatch(getProductDetail(idProducto))
-    }, [dispatch, idProducto])
-
+      dispatch(getFavourites(userID))
+    }, [dispatch, userID])
+    console.log(favourites)
 
     return (
     
@@ -32,8 +33,15 @@ function MyFavorites() {
                 <h1>Mis favoritos</h1>
                 <br></br>
                 <br></br>
-                <ProductsCards></ProductsCards>
-                
+                {
+                    favourites.length>0 ? favourites.map((x) => {
+                        return <ProductCard 
+                        price={x.price} discount={x.discount} images={x.images}
+                         name={x.name} seller={x.seller} status={x.status} valuation={x.valuation}
+                          delivery={x.delivery} id={x.id} 
+                        /> 
+                    }): <p>Aun no agregaste favoritos</p>
+                }
             </div>
 
             <Separate></Separate>

@@ -19,7 +19,6 @@ function ProductInfo() {
     const productsReducer = useSelector(state => state.productsReducer.productDetail)
     const userReducer = useSelector(state => state.userReducer.userData)
     var USERID = userReducer.id
-    console.log(USERID, productsReducer.id)
     useEffect(() => {
         dispatch(getProductDetail(idProducto))
     }, [dispatch, idProducto])

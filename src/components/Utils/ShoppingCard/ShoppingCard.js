@@ -35,7 +35,7 @@ function ShoppingCard({price,discount,images,name,seller,status,valuation,delive
         <div id="ProductCard2">
           	
 	            <div class="product-image2">
-                	<img width="100px" src={images[0]} alt="Omar Dsoky"/>
+                	<img width="100px" height="100px" src={images[0]} alt="Omar Dsoky"/>
                 </div>
                 <Link id="link2" to={`/Producto/${id}`}>
                 	<div class="product-details2">
