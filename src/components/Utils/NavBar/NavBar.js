@@ -1,6 +1,6 @@
-import React, { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import './NavBar.css'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
@@ -19,8 +19,7 @@ function NavBar() {
     const username = useSelector((state) => state.userReducer.username);
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
-
-    const productsReducer = useSelector(state => state.productsReducer)
+    const productsReducer = useSelector(state => state.productsReducer);
 
 
     useEffect(() => {
