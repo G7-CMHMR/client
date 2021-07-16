@@ -23,7 +23,6 @@ function MyFavorites() {
     useEffect(() => {
       dispatch(getFavourites(userID))
     }, [dispatch, userID])
-    console.log(favourites)
 
     return (
     
