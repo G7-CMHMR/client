@@ -1,32 +1,46 @@
-//card dentro de Categorias, REsultados, favoritos
 import './ProductCard.css'
 import Rating from '@material-ui/lab/Rating';
 import { FaHeart } from 'react-icons/fa'
-import { IoCartSharp, IoShare } from 'react-icons/io5'
+import { IoBody, IoCartSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom';
-import { blue } from '@material-ui/core/colors';
-
-import { AddFavourites, RemoveFavourites, Chimichurri } from '../../../redux/Actions/Favourites/Actions'
+import { blue, blueGrey } from '@material-ui/core/colors';
 import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios';
+import axios from 'axios'
+import { useEffect, useState } from 'react';
+import { getAllFavourites } from '../../../redux/Actions/Products/Actions';
+import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
+import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
-    // var porcentaje= (price / precioviejo)*100;
-    // var intPorcentaje = 100-(Math.round( porcentaje ))+"%";
     
-    const userReducer = useSelector (state => state.userReducer.userData)
+    const favourites = useSelector (state => state.favouritesReducer.favourites)
+    const [active, setActive] = useState(FavOrNot(id))
+    const userReducer = useSelector(state => state.userReducer.userData)
+    const dispatch = useDispatch();
     var userId = userReducer.id
+    useEffect(() => {
+        dispatch(getFavourites(userId))
+    }, [dispatch, userId])
 
-
+    function addToCart(){
+        dispatch(addProductToCart({userId:userId,productId:id}))
+    }
+    
     function AddToFavorites(e, productId) {
         let fav = e.target.style
-        if (fav.color == 'grey') {
+        if (fav.color ==="grey") {
             fav.color = 'red';
             axios.post('http://localhost:3001/favourite/add', {userId, productId})
-        } else {
+        } 
+        else{
             fav.color = 'grey';
             axios.post('http://localhost:3001/favourite/remove', {userId, productId})
         }
+    }
+
+    function FavOrNot (productid){
+        let si=favourites.map((x)=> x.id===productid)
+        if(si.length>0){return true} else {return false}
     }
 
     let addCommas = function (nStr) {
@@ -42,34 +56,42 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     }
 
     return (
-        <div id="ProductCard">
-            <div id="container">
-                <div class="product-image">
-                    <img src={images[0]} alt="Omar Dsoky" />
-                </div>
-                <Link id="link" to={`/Producto/${id}`}>
-                    <div class="product-details">
-                        <h1>{name}</h1>
-                        <p id="seller">Vendido por {seller}</p>
-                        <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
-                            {discount > 0 ? <span> ${addCommas(Math.floor(price))}</span> : <p></p>}
-                        </div>
-                        <p class="information">{status}</p>
-                        <Rating name="half-rating-read" defaultValue={valuation} precision={0.5} readOnly />
+        <div>
+            <br></br>
+            <div id="ProductCard">
+                <div id="container">
+                    <div class="product-image">
+                        <img src={images[0]} alt="Omar Dsoky" />
                     </div>
-                </Link>
-                <div id="offandship">
-                    {delivery ? <div id="ship">Envio gratis</div> : <p></p>}
-                    {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
-                </div>
-                <div id="icons">
-                    <FaHeart id='btnheart' onClick={(e) => AddToFavorites(e, id)}></FaHeart>
-                    <IoCartSharp id='btncart' ></IoCartSharp>
+                    <Link id="link" to={`/Producto/${id}`}>
+                        <div class="product-details">
+                            <h1>{name}</h1>
+                            <p id="seller">Vendido por {seller}</p>
+                            <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
+                                {discount > 0 ? <span> ${addCommas(Math.floor(price))}</span> : <p></p>}
+                            </div>
+                            <p class="information">{status}</p>
+                            <Rating name="half-rating-read" defaultValue={valuation} precision={0.5} readOnly />
+                        </div>
+                    </Link>
+                    <div id="offandship">
+                        {delivery ? <div id="ship">Envio gratis</div> : <p></p>}
+                        {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
+                    </div>
+                    <div id="icons">
+                        { active===true? <button style={{color:"red"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
+                        <button style={{color:"grey"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
+                        }
+                         <button className="buttons2" onClick={(e) => addToCart(e)}>
+                        <IoCartSharp id='btncart' ></IoCartSharp></button>
+                    </div>
                 </div>
             </div>
+            <br></br>
         </div>
     )
 }
+
 
 
 export default ProductCard

@@ -71,22 +71,7 @@
         width: 100%;height: 100%;
     }
     
-    .info {
-        background: rgba(27, 26, 26, 0.9);
-        transition: all 0.3s ease-out;
-        transform: translateX(-100%);
-        position: absolute;
-        line-height: 1.0;
-        text-align: left;
-        font-size: 120%;
-        cursor: no-drop;
-        color: #FFF;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-    }
-    
+        
     .product-image:hover img {transition: all 0.3s ease-out;}
     .product-image:hover img {transform: scale(1.2, 1.2);}
     
@@ -123,10 +108,18 @@
     #btnheart{
         border: none;
         background: white;
+        color: gray;
+        margin-left: 3.5rem;
+        
+    }
+    #btnheartred{
+        border: none;
+        background: white;
         color: red;
         margin-left: 3.5rem;
         
     }
+
     
 
     #btncart{

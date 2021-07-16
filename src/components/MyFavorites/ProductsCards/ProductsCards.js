@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getProductsOfCategory, getAllFavourites } from '../../../redux/Actions/Products/Actions'
 import { useParams } from "react-router";
 import axios from 'axios' 
+import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
 
 
 
@@ -20,7 +21,7 @@ function ProductsCards() {
     var userId = userReducer.id
 
     useEffect(() => {
-        getAllFavourites(userId)
+        getFavourites(userId)
     }, [dispatch, userId])
 
     return (

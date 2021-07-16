@@ -5,8 +5,7 @@ const initialState = {
     favourites: [],
 }
 
-function favouritesReducer(state = initialState, action) {
-
+function favouritesReducer (state = initialState, action) {
     switch (action.type) {
         case GET_FAVOURITES: {
             return {

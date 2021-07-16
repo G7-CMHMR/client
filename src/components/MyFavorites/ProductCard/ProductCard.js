@@ -7,18 +7,36 @@ import { Link } from 'react-router-dom';
 import { blue, blueGrey } from '@material-ui/core/colors';
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
+import { useState } from 'react';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
     
     const userReducer = useSelector (state => state.userReducer.userData)
+    const favourites = useSelector (state => state.favouritesReducer.favourites)
+    const [active, setActive] = useState(FavOrNot(id))
     var userId = userReducer.id
-
-
-    function OutOfFavorites(e, productId){
-        console.log('CHANGE')
-        e.target.style.color = 'grey'
-        let fav = e
-        axios.post('http://localhost:3001/favourite/remove', {userId, productId})
+    const dispatch = useDispatch()
+    console.log(favourites)
+    console.log(active)
+    function AddToFavorites(e, productId) {
+        let fav = e.target.style
+        if (fav.color == 'grey') {
+            fav.color = 'red';
+            axios.post('http://localhost:3001/favourite/add', {userId, productId})
+        } 
+        else{
+            fav.color = 'grey';
+            axios.post('http://localhost:3001/favourite/remove', {userId, productId})
+        }
+    }
+    function addToCart(){
+        dispatch(addProductToCart({userId:userId,productId:id}))
+    }
+    
+    function FavOrNot (productid){
+        let si=favourites.map((x)=> x.id===productid)
+        if(si.length>0){return true} else {return false}
     }
 
     let addCommas = function (nStr) {
@@ -55,11 +73,13 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                     <div id="offandship">
                         {delivery ? <div id="ship">Envio gratis</div> : <p></p>}
                         {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
-
                     </div>
                     <div id="icons">
-                        <button id="btnheart" name={id} onClick={(e) => OutOfFavorites(e, id)}><FaHeart /></button>
-                        <button id="btncart"><IoCartSharp /></button>
+                        { active===false? <button style={{color:"grey"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
+                        <button style={{color:"red"}} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
+                        }
+                         <button className="buttons2" onClick={(e) => addToCart(e)}>
+                        <IoCartSharp id='btncart' ></IoCartSharp></button>
                     </div>
                 </div>
             </div>
