@@ -21,14 +21,8 @@ function Products() {
 
     return (
     
-        <div className='PanelContainer'>
-            <Separate></Separate>
-
-            <div id='PanelContentDetail'>
-                
-            </div>
-
-            <Separate></Separate>
+        <div className='ProductPanelContainer'>
+            <h1>Products</h1>
         </div>
     )
 }

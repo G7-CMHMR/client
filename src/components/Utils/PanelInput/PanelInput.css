@@ -1,0 +1,9 @@
+#TextFieldPanelInput{
+    width: 30rem;
+
+}
+
+#TextFieldPanelInputContainer{
+    background-color: blue;
+    display: flex;
+}

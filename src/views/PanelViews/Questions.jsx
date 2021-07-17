@@ -20,7 +20,7 @@ function Questions() {
 
     return (
     
-        <div className='PanelContainer'>
+        <div className='PanelContainerQuestion'>
             <Separate></Separate>
 
             <div id='PanelContentDetail'>

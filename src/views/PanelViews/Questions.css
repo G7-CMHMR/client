@@ -1,6 +1,7 @@
-.PanelContainer{
+.PanelContainerQuestion{
     display: flex;
     flex-direction: row;
-    height: 747px;
+    min-height: 747;
+    height: auto;
    }
    

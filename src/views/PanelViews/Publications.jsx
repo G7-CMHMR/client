@@ -23,17 +23,7 @@ function Publications() {
     return (
 
         <div className='PanelContainer'>
-            <Separate></Separate>
-
-            <div id='PanelContentDetail'>
-                <Menu></Menu>
-                <div>
-                    <h1>Publicaciones</h1>
-                </div>
-
-            </div>
-
-            <Separate></Separate>
+            <h1>Publications</h1>
         </div>
     )
 }

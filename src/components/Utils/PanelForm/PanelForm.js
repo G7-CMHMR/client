@@ -1,5 +1,4 @@
-import Separate from '../../components/Utils/Separate/Separate';
-import './CreateProduct.css'
+import './PanelForm.css'
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -10,11 +9,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import PanelForm from '../../components/Utils/PanelForm/PanelForm';
-import PanelBrand from '../../components/Utils/PanelBrand/PanelBrand';
-import PanelGral from '../../components/Utils/PanelGral/PanelGral';
-import PanelInput from '../../components/Utils/PanelInput/PanelInput';
-import PanelCategory from '../../components/Utils/PanelCategory/PanelCategory';
+import PanelBrand from '../PanelBrand/PanelBrand';
+import PanelGral from '../PanelGral/PanelGral';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -57,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FullWidthTabs() {
+export default function PanelForm() {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -71,7 +67,7 @@ export default function FullWidthTabs() {
     };
 
     return (
-        <div className='CreateProductForms'>
+        <div className='PanelFormContainer'>
             <AppBar position="static" color="default">
                 <Tabs
                     value={value}
@@ -81,8 +77,8 @@ export default function FullWidthTabs() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <Tab label="PC" {...a11yProps(0)} />
-                    <Tab label="Componente" {...a11yProps(1)} />
+                    <Tab label="PC de Escritorio" {...a11yProps(0)} />
+                    <Tab label="Portatil" {...a11yProps(1)} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -91,14 +87,10 @@ export default function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <PanelInput></PanelInput>
-                    <PanelForm></PanelForm>
+                    <PanelGral></PanelGral>
                     
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <PanelInput></PanelInput>
-                    <PanelCategory></PanelCategory>
-                    
                     <PanelBrand></PanelBrand>
                     <PanelGral></PanelGral>
                     
@@ -107,7 +99,3 @@ export default function FullWidthTabs() {
         </div>
     );
 }
-
-
-
-

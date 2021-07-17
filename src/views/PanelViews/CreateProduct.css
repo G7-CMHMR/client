@@ -1,6 +1,9 @@
-.PanelContainer{
-    display: flex;
-    flex-direction: row;
-    height: 747px;
-   }
+
+
+.CreateProductForms{
+    width: 100vh;
+    min-height: 747;
+    background-color: teal;
+    height: auto;
    
+}

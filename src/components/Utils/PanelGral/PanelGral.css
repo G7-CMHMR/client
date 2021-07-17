@@ -1,0 +1,66 @@
+#PanelGralForm{
+    display: flex;
+    width: 26rem;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#PanelGralContainer-ConditionStock-Warranty{
+    display: flex;
+
+}
+
+#PanelGralConditionAndStock{
+    display: flex;
+}
+
+#PanelGralStock{
+    width: 6rem;
+}
+
+#FreeShiping{
+    margin-top: 1rem;
+    display: flex;
+}
+
+h4{
+    color: black;
+}
+
+#Warranty{
+    
+    display: flex;
+}
+#WarrantyTextField{
+    width: 8.5rem;
+}
+
+#PanelGralPrice{
+    width: 8.5rem;
+}
+
+#PanelGralDescription{
+    width: 30rem;
+}
+#PanelGralOthers{
+    margin-top: 2rem;
+    height: 12rem;
+    margin-left: 1rem;
+}
+#PanelGralOthers>*{
+    width: 20rem;
+    display: flex;
+}
+
+#PanelGral-Description-Data{
+    display: flex;
+    flex-direction: row;
+}
+
+#PanelGralSearchImages{
+ margin-bottom: 1rem;
+}
+#PanelGralFiles{
+    width: 25rem;
+}
+
