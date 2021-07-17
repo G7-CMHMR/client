@@ -1,4 +1,9 @@
 .d-flex{
     width: 350px;
 }
-
+.result {
+    width: 100%;
+    height: 2rem;
+    background-color: white;
+    z-index: 5000 !important;
+}
