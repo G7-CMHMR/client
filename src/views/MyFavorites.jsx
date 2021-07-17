@@ -22,7 +22,7 @@ function MyFavorites() {
     const favourites = useSelector(state => state.favouritesReducer.favourites)
     useEffect(() => {
       dispatch(getFavourites(userID))
-    }, [dispatch, userID])
+    }, [ dispatch, userID])
 
     return (
     
