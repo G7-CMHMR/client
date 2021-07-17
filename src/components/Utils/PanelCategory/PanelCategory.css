@@ -1,0 +1,9 @@
+#PanelCategoryForm{
+  min-width: 31.8rem;
+  background-color: tomato;
+}
+
+#PanelCategoryFormContainer{
+  background-color: turquoise;
+  display: flex;
+}

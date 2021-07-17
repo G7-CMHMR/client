@@ -21,7 +21,7 @@ function Sales() {
 
     return (
     
-        <div className='PanelContainer'>
+        <div className='SalesPanelContainer'>
             <Separate></Separate>
 
             <div id='PanelContentDetail'>

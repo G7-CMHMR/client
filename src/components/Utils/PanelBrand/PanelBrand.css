@@ -1,0 +1,8 @@
+#PanelBrandForm{
+    background-color: white;
+    display: flex;
+}
+
+.TextFieldPanelBrand{
+    background-color: wheat;
+}

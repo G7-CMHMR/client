@@ -23,7 +23,7 @@ function Panel() {
 
     return (
 
-        <div className='PanelContainer'>
+        <div className='PanelContainerPanel'>
             <Separate></Separate>
 
             <div id='PanelContentDetail'>

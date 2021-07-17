@@ -9,6 +9,11 @@ import Box from '@material-ui/core/Box';
 import { bottom } from '@popperjs/core';
 import { Media } from 'react-bootstrap';
 
+import Publications from '../../../views/PanelViews/Publications'
+import Products from '../../../views/PanelViews/Products'
+
+import FullWidthTabs from '../../../views/PanelViews/CreateProduct';
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -85,13 +90,13 @@ export default function VerticalTabs() {
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Publications></Publications>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+        <Products></Products>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Item Four
+        <FullWidthTabs></FullWidthTabs>
       </TabPanel>
       <TabPanel value={value} index={4}>
         Item Five
