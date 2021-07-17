@@ -61,6 +61,7 @@ function App() {
       <Route exact path='/' component={Home}/>
       <Route exact path='/Categorias' component={Categories}/>
       <Route path='/Categorias/:categoryName' component={Categories}/>
+      <Route path='/Buscar/:nombreProducto' component={Categories}/>
       <Route path='/Producto/:idProducto' component={Product}/>
 
       <Route exact path='/Perfil' component={Profile}/>

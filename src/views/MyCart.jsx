@@ -59,6 +59,7 @@ function MyCart() {
                 status={x.product.status} id={x.product.id} />
                 )			
 		}):dispatch(getCart(userId))}
+
         {
             userId===undefined && 
             <div>
@@ -73,6 +74,7 @@ function MyCart() {
 				{
 					cart.length>0 && cart[0].amount && cart[0].product?cart.forEach((x)=>{
 						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)*x.amount
+
 					})
 				:console.log('NO ES UN ARRAY')}{
 					Array.isArray(cart)? cart.forEach((x)=>{
