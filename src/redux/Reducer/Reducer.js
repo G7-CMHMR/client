@@ -11,7 +11,7 @@ import cartReducer from '../Actions/Cart/Reducer'
 export default combineReducers({
   productsReducer,
   userReducer,
-  SearchReducer
+  SearchReducer,
   favouritesReducer,
   cartReducer,
 })
