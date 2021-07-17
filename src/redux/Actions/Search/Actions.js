@@ -21,6 +21,21 @@ export function onChangeSearchAction(search) {
         /* dispatch(searchOnServer) */
     }
 }
+
+
+
+export function CleanProducts() {
+    return (dispatch) => {
+        dispatch({ type: SEARCH_ATTEMPT, payload: [] })
+    }
+}
+
+export function putOnSearchBar(productName) {
+    return (dispatch) => {
+        dispatch({ type: SEARCH_CHANGE, payload: productName })
+    }
+}
+
 const onChangeSearch = (search) => ({
     type: SEARCH_CHANGE,
     payload: search

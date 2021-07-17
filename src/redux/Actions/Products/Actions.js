@@ -103,6 +103,17 @@ export function getProductsFilter(categoryName='', type='', shipping='', conditi
     }
 }
 
+export function getProducts(search) {
+    return (dispatch) => {
+        axios.get(`http://localhost:3001/Search/${search}`)
+            .then(response => {
+                dispatch({ type: GET_PRODUCTS, payload: response.data })
+            })
+    }
+}
+
+
+
 
 
 
