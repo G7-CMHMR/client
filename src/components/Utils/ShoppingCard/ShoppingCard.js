@@ -34,9 +34,9 @@ function ShoppingCard({price,discount,images,name,seller,status,valuation,delive
 
     return(
         <div id="ProductCard2">
-          	
+            {console.log(discount)}
 	            <div class="product-image2">
-                	<img width="100px" height="100px" src={images?images[0]:''} alt="Omar Dsoky"/>
+                	<img width="100px" height="100px" src={images[0].image} alt="Omar Dsoky"/>
                 </div>
                 <Link id="link2" to={`/Producto/${id}`}>
                 	<div class="product-details2">
