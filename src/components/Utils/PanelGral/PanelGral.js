@@ -10,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import {Button} from 'react-bootstrap'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -71,7 +72,7 @@ export default function PanelGral() {
                                 <option value={20}>Usado</option>
                                 <option value={30}>Reacondicionado</option>
                             </Select>
-                            <TextField id='PanelGralStock' label="Stock" type='number' variant="outlined" />
+                            <div id="StockPanelGral"><TextField id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
                         </div>
                         <div id='Warranty'>
                             <TextField id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
@@ -125,7 +126,7 @@ export default function PanelGral() {
                             <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
                         </div>
                     </div>
-                </div>
+                </div><Button id='CreateProduct' variant="info">CREAR PRODUCTO</Button>{' '}
             </FormControl>
         </div>
     )

@@ -4,6 +4,6 @@
 }
 
 #TextFieldPanelInputContainer{
-    background-color: blue;
     display: flex;
+    margin-bottom: 4%;
 }

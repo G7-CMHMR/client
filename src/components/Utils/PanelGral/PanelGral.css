@@ -7,15 +7,20 @@
 
 #PanelGralContainer-ConditionStock-Warranty{
     display: flex;
-
+    width: 123%;
 }
 
 #PanelGralConditionAndStock{
     display: flex;
+    margin-right: 4%;
 }
 
 #PanelGralStock{
     width: 6rem;
+}
+
+#StockPanelGral{
+    margin-left: 8%;
 }
 
 #FreeShiping{
@@ -33,10 +38,12 @@ h4{
 }
 #WarrantyTextField{
     width: 8.5rem;
+    margin-right: 4%;
 }
 
 #PanelGralPrice{
     width: 8.5rem;
+    margin-right: 4%;
 }
 
 #PanelGralDescription{
@@ -63,4 +70,6 @@ h4{
 #PanelGralFiles{
     width: 25rem;
 }
-
+#CreateProduct{
+    margin-top: 4%;
+}
