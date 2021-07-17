@@ -1,4 +1,4 @@
-import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, INCREMENT_PRODUCT_UNIT } from './ActionsName'
+import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT } from './ActionsName'
 
 const initialState = {
     cart: []
@@ -35,14 +35,7 @@ function cartReducer (state = initialState, action) {
                 
             }
         }
-        case INCREMENT_PRODUCT_UNIT: {
-            return {
-                ...state,
-                cart: action.payload
-                
-            }
-        }
-
+      
         
         default: return state;
 
