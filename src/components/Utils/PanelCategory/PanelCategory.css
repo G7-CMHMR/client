@@ -1,9 +1,9 @@
 #PanelCategoryForm{
   min-width: 31.8rem;
-  background-color: tomato;
+  margin-bottom:4%
 }
 
 #PanelCategoryFormContainer{
-  background-color: turquoise;
   display: flex;
+
 }
