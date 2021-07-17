@@ -1,14 +1,9 @@
 import Separate from '../components/Utils/Separate/Separate'
 import './MyCart.css'
 import React, { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useParams } from "react-router";
-
-import {getAllProducts, getProductDetail, getProductsOfCategory} from '../redux/Actions/Products/Actions'
-import { Link } from '@material-ui/core';
-import ProductCard from '../components/Category/ProductCard/ProductCard';
+import { useEffect,  } from 'react';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
-import { getCart } from '../redux/Actions/Cart/Actions';
+import { addProductToCart, getCart } from '../redux/Actions/Cart/Actions';
 import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
 
 
@@ -46,7 +41,7 @@ function MyCart() {
         }
         return x1 + x2;
     }
-
+    
     return (
     
         <div className='DetailContainer'>
@@ -56,14 +51,14 @@ function MyCart() {
                 <br></br>
             {console.log(cart)}
 			<div className="secondContainer">
-				{Array.isArray(cart)? cart.map((x)=>{
+				{cart.length>0 && cart[0].amount && cart[0].product? cart.map((x)=>{
 				return ( 
-                <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images} 
-                valuation={x.product.valuation} delivery={x.product.delivery} price={x.product.price}
-                discount={x.product.promotion.value} seller={x.product.seller}
+                <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images?x.product.images:''} 
+                amount={x.amount} delivery={x.product.delivery} price={x.product.price}
+                discount={x.product.promotion.value} 
                 status={x.product.status} id={x.product.id} />
                 )			
-		}):console.log('NO ES UN ARRAY EL CARRITO')}
+		}):dispatch(getCart(userId))}
         {
             userId===undefined && 
             <div>
@@ -76,8 +71,8 @@ function MyCart() {
 		</div>
 			<div id="totalCart">
 				{
-					Array.isArray(cart)?cart.forEach((x)=>{
-						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)
+					cart.length>0 && cart[0].amount && cart[0].product?cart.forEach((x)=>{
+						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)*x.amount
 					})
 				:console.log('NO ES UN ARRAY')}{
 					Array.isArray(cart)? cart.forEach((x)=>{
@@ -91,7 +86,7 @@ function MyCart() {
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
                 }
                 {
-                    userId!==undefined && <button> Comprar carrito </button>
+                    userId!==undefined && cart.length>0 && <button> Comprar carrito </button>
                 }
 				
 			</div>
