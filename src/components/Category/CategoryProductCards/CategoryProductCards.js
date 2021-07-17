@@ -17,7 +17,6 @@ function CategoryProductCards() {
     const { categoryName } = useParams()
     useEffect(() => {
         dispatch(getFavourites(userID))
-        dispatch(getAllProducts())
         dispatch(getProductsOfCategory(categoryName))
 	}, [dispatch, categoryName, userID])
     
