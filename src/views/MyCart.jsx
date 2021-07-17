@@ -21,9 +21,10 @@ function MyCart() {
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);   
     var userId = userReducer.id
+
     useEffect(() => {
         dispatch(getCart(userId))
-	}, [dispatch])
+	}, [dispatch, userId])
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -53,16 +54,16 @@ function MyCart() {
             <div id='ContentDetail'>
                 <h1>Carrito de compras🛒</h1>
                 <br></br>
-
+            {console.log(cart)}
 			<div className="secondContainer">
-				{cart && cart.length>0 && cart.map((x)=>{
-				return (
-                <ShoppingCard className="CartCard" name={x.name} images={x.images} 
-                valuation={x.valuation} delivery={x.delivery} price={x.price}
-                discount={x.discount} seller={x.seller}
-                status={x.status} id={x.id} />
+				{Array.isArray(cart)? cart.map((x)=>{
+				return ( 
+                <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images} 
+                valuation={x.product.valuation} delivery={x.product.delivery} price={x.product.price}
+                discount={x.product.promotion.value} seller={x.product.seller}
+                status={x.product.status} id={x.product.id} />
                 )			
-		})}
+		}):console.log('NO ES UN ARRAY EL CARRITO')}
         {
             userId===undefined && 
             <div>
@@ -75,16 +76,16 @@ function MyCart() {
 		</div>
 			<div id="totalCart">
 				{
-					cart && cart.forEach((x)=>{
-						totalCart+=(x.price - (x.price/100)*x.discount)
+					Array.isArray(cart)?cart.forEach((x)=>{
+						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)
 					})
-				}{
-					cart && cart.forEach((x)=>{
+				:console.log('NO ES UN ARRAY')}{
+					Array.isArray(cart)? cart.forEach((x)=>{
 						if (x.delivery!==true){
 						envio +=400
 						}
 					})
-				}
+				:console.log('NO ES UN ARRAY')}
                 {
                     cart.length>0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
