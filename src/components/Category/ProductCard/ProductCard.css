@@ -121,12 +121,15 @@
     #btnheart{
         border: none;
         background: white;
-        color: red;
     }
 
     #btncart{
         border: none;
         background: white;
         color: rgb(27, 44, 117);
+    }
+    .buttons2{
+        border: none;
+        background: inherit;
     }
 

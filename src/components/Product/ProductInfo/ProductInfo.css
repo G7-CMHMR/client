@@ -58,3 +58,9 @@ h4{
     border: none;
     font-size: x-large;
 }
+
+#btnheart{
+    font-size: 25px;
+    border: none;
+    background: transparent;
+}

@@ -14,7 +14,7 @@ export function getCart(userID) {
 export function addProductToCart(productId_userId) {
     return (dispatch) => {
 
-        axios.get('http://localhost:3001/cart/add', productId_userId)
+        axios.post('http://localhost:3001/cart/add', productId_userId)
             .then(response => {
                 dispatch({ type: ADD_PRODUCT_CART, payload: response.data })
             })
@@ -22,8 +22,7 @@ export function addProductToCart(productId_userId) {
 }
 export function removeProductFromCart(productId_userId) {
     return (dispatch) => {
-
-        axios.get('http://localhost:3001/cart/remove', productId_userId)
+        axios.post('http://localhost:3001/cart/remove', productId_userId)
             .then(response => {
                 dispatch({ type: REMOVE_PRODUCT_CART, payload: response.data })
             })
