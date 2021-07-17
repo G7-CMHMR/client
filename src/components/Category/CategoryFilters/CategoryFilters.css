@@ -19,36 +19,79 @@
 
 #CategoryType{
     width: 239px;
-    height: 200px;
+    height: auto;
     margin-top: 70px;
     
 }
 
 #CategoryShipping{
     width: 239px;
-    height: 200px;
-    
+    height: auto;
+    text-align: left;  
 }
 
 #CategoryCondition{
     width: 239px;
-    height: 200px;
+    height: auto;
   
 }
 
 #CategoryPrice{
     width: 239px;
-    height: 200px;;
+    height: 130px;
     
 }
 
 #CategoryBrand{
     width: 239px;
-    height: 200px;
+    height: auto;
 
 }
 
 #btnheart{
     border: none;
     background: white;
+}
+
+.optionFilter{
+    border: none;
+    background-color: transparent;
+}
+
+li{
+    list-style: none;
+}
+
+#ListOfTypes{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 17.5px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: auto;
+}
+
+#outlined-basic{
+    width: 70px;
+    height: 1px;
+    margin-bottom: 5px;
+    
+}
+
+#ButtonPrice{
+    max-width: 500rem;
+    min-width: 0px;
+    margin-top: 3px;
+}
+
+
+#formPrice{
+    display: flex;
+    flex-direction: row;
+}
+
+#btnheart{
+    border: none;
+    background: white;
+
 }

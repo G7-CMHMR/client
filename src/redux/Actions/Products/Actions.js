@@ -93,16 +93,15 @@ export function getProductsOfCategory(categoryName) {
     }
 
 
-export function getProductsFilter(categoryName, type, shipping, condition, brand, MinPrice, MaxPrice) {
+export function getProductsFilter(categoryName='', type='', shipping='', condition='', brand='', MinPrice='', MaxPrice='') {
     console.log('Categoria: ' + categoryName,'Tipo: '+ type,'Envio: ' + shipping,'Condicion: ' + condition, 'Marca: ' +brand,'PrecioMinimo: ' + MinPrice,'PrecioMaximo: ' + MaxPrice)
     return (dispatch) => {
-        axios.get(`http://localhost:3001/products/category?category_name=${categoryName}&type=${type}&shipping=${shipping}&condition=${condition}&brand=${brand}&MinPrice=${MinPrice}&MaxPrice=${MaxPrice}`)
+        axios.get(`http://localhost:3001/filterMetods?category=${categoryName}&shipping=${shipping}&condition=${condition}&min_price=${MinPrice}&max_price=${MaxPrice}&type=${type}&brand=${brand}`)
             .then(response => {
                 dispatch({ type: GET_PRODUCTS, payload: response.data })
             })
     }
 }
-
 
 
 
