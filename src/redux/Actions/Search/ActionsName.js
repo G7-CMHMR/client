@@ -1,0 +1,2 @@
+export const SEARCH_CHANGE = "SEARCH_CHANGE";
+export const SEARCH_ATTEMPT = "SEARCH_ATTEMPT";

@@ -84,7 +84,14 @@ li{
     margin-top: 3px;
 }
 
+
 #formPrice{
     display: flex;
     flex-direction: row;
+}
+
+#btnheart{
+    border: none;
+    background: white;
+
 }
