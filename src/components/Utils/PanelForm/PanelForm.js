@@ -53,18 +53,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PanelForm() {
-    const classes = useStyles();
+export default function PanelForm({input, setInput}) {
+
+
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (e, newValue) => {
         setValue(newValue);
+        console.log(e.target.name)
+        console.log(e.target.name)
+        console.log(e.target.name)
+        console.log(e.target.name)
+        setInput({
+            ...input,
+           'type' : e.target.textContent,
+        })
     };
 
     const handleChangeIndex = (index) => {
         setValue(index);
     };
+
+   
 
     return (
         <div className='PanelFormContainer'>
@@ -72,6 +83,7 @@ export default function PanelForm() {
                 <Tabs
                     value={value}
                     onChange={handleChange}
+                    name='type'
                     indicatorColor="primary"
                     textColor="primary"
                     variant="fullWidth"
@@ -86,13 +98,13 @@ export default function PanelForm() {
                 index={value}
                 onChangeIndex={handleChangeIndex}
             >
-                <TabPanel value={value} index={0} dir={theme.direction}>
-                    <PanelGral></PanelGral>
+                <TabPanel name='type' value={value} index={0} dir={theme.direction}>
+                    <PanelGral input={input} setInput={setInput}></PanelGral>
                     
                 </TabPanel>
-                <TabPanel value={value} index={1} dir={theme.direction}>
-                    <PanelBrand></PanelBrand>
-                    <PanelGral></PanelGral>
+                <TabPanel name='type' value={value} index={1} dir={theme.direction}>
+                    <PanelBrand input={input} setInput={setInput}></PanelBrand>
+                    <PanelGral input={input} setInput={setInput}></PanelGral>
                     
                 </TabPanel>
             </SwipeableViews>

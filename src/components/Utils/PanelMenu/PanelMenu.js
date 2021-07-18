@@ -1,5 +1,5 @@
 import React from 'react';
-import './VerticalTabs.css';
+import './PanelMenu.css';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -12,7 +12,7 @@ import { Media } from 'react-bootstrap';
 import Publications from '../../../views/PanelViews/Publications'
 import Products from '../../../views/PanelViews/Products'
 
-import FullWidthTabs from '../../../views/PanelViews/CreateProduct';
+import CrearProducto from '../../../views/PanelViews/CreateProduct';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VerticalTabs() {
+export default function PanelMenu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -68,7 +68,7 @@ export default function VerticalTabs() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id='TestPadding'>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -96,7 +96,7 @@ export default function VerticalTabs() {
         <Products></Products>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <FullWidthTabs></FullWidthTabs>
+        <CrearProducto></CrearProducto>
       </TabPanel>
       <TabPanel value={value} index={4}>
         Item Five
