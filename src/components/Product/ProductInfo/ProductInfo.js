@@ -1,5 +1,6 @@
 //Info del producto en publicacion 
-import React, { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 import './ProductInfo.css'
@@ -10,6 +11,9 @@ import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { useState } from 'react';
 import axios from 'axios';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -27,9 +31,31 @@ function ProductInfo() {
         dispatch(getProductDetail(idProducto))
     }, [dispatch, idProducto, userId])
     console.log("ELIDDD" + idProducto, "ELUSEER" + userId)
+    const [open, setOpen] = React.useState(false);
+    
+    
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+      }
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          width: '100%',
+          '& > * + *': {
+            marginTop: theme.spacing(2),
+          },
+        },
+      }));
+    const classes = useStyles();
     function addToCart() {
         dispatch(addProductToCart({ userId: userId, productId: idProducto }))
+        setOpen(true);
     }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        } 
+        setOpen(false);
+      };
 
     var CheckFavorite = favourites.find((e) => e.id == idProducto)
     function AddToFavorites(e, productId) {
@@ -113,6 +139,11 @@ function ProductInfo() {
                 {productsReducer.warranty > 0 ? <h4>Este producto tiene {productsReducer.warranty} dias de garantia</h4> :
                     <h4>Este producto no tiene garantia</h4>}
             </div>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                            Producto agregado al carrito
+                            </Alert>
+                        </Snackbar>
         </div>
     )
 }
