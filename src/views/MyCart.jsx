@@ -5,9 +5,11 @@ import { useEffect, } from 'react';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
 import { addProductToCart, getCart } from '../redux/Actions/Cart/Actions';
 import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
+import {Button} from 'react-bootstrap'
 import { checkout } from '../redux/Actions/Cart/Actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+
 
 function MyCart() {
     let totalCart = 0
@@ -60,49 +62,49 @@ function MyCart() {
             <div id='ContentDetail'>
                 <h1>Carrito de compras🛒</h1>
                 <br></br>
-                {console.log(cart)}
-                <div className="secondContainer">
-                    {cart.length > 0 && cart[0].amount && cart[0].product ? cart.map((x) => {
-                        return (
-                            <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
-                                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
-                                discount={x.product.promotion.value}
-                                status={x.product.status} id={x.product.id} />
-                        )
-                    }) : dispatch(getCart(userId))}
+            {console.log(cart)}
+			<div className="secondContainer">
+				{cart.length>0 && cart[0].amount && cart[0].product? cart.map((x)=>{
+				return ( 
+                <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images?x.product.images:''} 
+                amount={x.amount} delivery={x.product.delivery} price={x.product.price}
+                discount={x.product.promotion.value} 
+                status={x.product.status} id={x.product.id} />
+                )			
+		}):dispatch(getCart(userId))}
 
-                    {
-                        userId === undefined &&
-                        <div>
-                            <h5>Para usar el carrito es necesario estar registrado</h5>
-                            <h5>Podes <button onClick={openRegister}>Registrarte</button>
-                                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
-                        </div>
-                    }
+        {
+            userId===undefined && 
+            <div>
+                <h5>Para usar el carrito es necesario estar registrado</h5>
+                <h5>Podes <button onClick={openRegister}>Registrarte</button> 
+                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
+            </div>
+        }
+			
+		</div>
+			<div id="totalCart">
+				{
+					cart.length>0 && cart[0].amount && cart[0].product?cart.forEach((x)=>{
+						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)*x.amount
 
-                </div>
-                <div id="totalCart">
-                    {
-                        cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
-                            totalCart += (x.product.price - (x.product.price / 100) * x.product.promotion.value) * x.amount
-
-                        })
-                            : console.log('NO ES UN ARRAY')}{
-                                cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
-                            if (x.product.promotion.delivery !== true) {
-                                envio += 400
-                            }
-                        })
-                            : console.log('NO ES UN ARRAY')}
-                    {
-                        cart.length > 0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
-                            <h2> TOTAL : ${addCommas(Math.floor(totalCart + envio))}</h2></div>
-                    }
-                    {
-                        userId !== undefined && cart.length > 0 && <button onClick={mercadoPago}> Comprar carrito </button>
-                    }
-
-                </div>
+					})
+				:console.log('NO ES UN ARRAY')}{
+					Array.isArray(cart)? cart.forEach((x)=>{
+						if (x.delivery!==true){
+						envio +=400
+						}
+					})
+				:console.log('NO ES UN ARRAY')}
+                {
+                    cart.length>0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
+				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
+                }
+                {
+                    userId!==undefined && cart.length>0 && <Button variant="warning">Comprar carrito</Button>
+                }
+				
+			</div>
 
             </div>
 

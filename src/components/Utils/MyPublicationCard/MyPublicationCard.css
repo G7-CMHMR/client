@@ -1,0 +1,74 @@
+#MyProductCard{
+    background-color: white;
+    width: 95%;
+    margin-top: 14px;
+    border-radius: 14px;
+    margin-right: 34px;
+}
+    #MyProductCardContainer{
+        display: flex;
+        box-shadow: -4px 3px 10px 0px rgb(128 128 128 / 31%);
+        background: rgb(255 255 255 / 90%);
+        border-radius: 5px;
+        width: 100%;
+        height: auto;
+         justify-content: space-evenly;
+        
+    }
+    
+    .MyProduct-details {
+        font-size: 14px;
+        position: relative;
+        text-align: left;
+        padding: 20px;
+        height: 100%;
+        float: left;
+        width: auto;
+        }
+        
+        
+        
+        #MyProductName{
+        font-size: 1rem;
+        }
+        #SalesAndStock{
+            color: grey;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        #container .product-details > p {
+            text-align: left;
+            font-size: 15px;
+            color: #7d7d7d;
+        }
+       
+        #seller{
+            margin-bottom:0px
+        }
+        #price{
+            display:flex
+        }
+        #price span{
+            text-decoration: line-through;
+            color: gray;
+            margin: 3%;
+        }
+        #link{
+            width: 39%;
+        }
+
+        #MyProductImage{
+            height:150px;
+            width: 150px;
+        }
+        
+        #MyProductButtons{
+            display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+        }
+        
+    

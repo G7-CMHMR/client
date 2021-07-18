@@ -10,6 +10,11 @@ import { useEffect, useState } from 'react';
 import { getAllFavourites } from '../../../redux/Actions/Products/Actions';
 import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
 
@@ -17,14 +22,33 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     const userReducer = useSelector(state => state.userReducer.userData)
     const dispatch = useDispatch();
     var userId = userReducer.id
-
+    const [open, setOpen] = React.useState(false);
     useEffect(() => {
         dispatch(getFavourites(userId))
     }, [dispatch, userId])
-
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+      }
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          width: '100%',
+          '& > * + *': {
+            marginTop: theme.spacing(2),
+          },
+        },
+      }));
+    const classes = useStyles();
     function addToCart() {
         dispatch(addProductToCart({ userId: userId, productId: id }))
+        setOpen(true);
     }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        } 
+        setOpen(false);
+      };
+
 
     var CheckFavorite = favourites.find((e) => e.id == id)
     function AddToFavorites(e, productId) {
@@ -94,6 +118,11 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                         <button className="buttons2" onClick={(e) => addToCart(e)}>
                             <IoCartSharp id='btncart' ></IoCartSharp></button>
                     </div>
+                    <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                            Producto agregado al carrito
+                            </Alert>
+                        </Snackbar>
                 </div>
             </div>
             <br></br>

@@ -8,3 +8,8 @@
 .CartCard{
     width: 60%;
 }
+.secondConainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

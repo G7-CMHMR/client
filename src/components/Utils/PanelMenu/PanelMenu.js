@@ -8,11 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { bottom } from '@popperjs/core';
 import { Media } from 'react-bootstrap';
-
+import { useSelector } from 'react-redux'
 import Publications from '../../../views/PanelViews/Publications'
 import Products from '../../../views/PanelViews/Products'
 
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
+import Sales from '../../../views/PanelViews/Sales';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PanelMenu() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const user = useSelector(state => state.userReducer.userData)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -87,7 +89,18 @@ export default function PanelMenu() {
 
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <h2>{user.name}, te presentamos tu panel 💻</h2>
+        <hr></hr>
+        <h4>Vas a poder controlar todo lo relacionado con tus ventas y productos</h4><br></br>
+        <div>
+         
+            <h5>PUBLICACIONES: blablabla</h5>
+            <h5>PRODUCTOS: Moficicar blablalba</h5>
+            <h5>CREAR PRODUCTO: Crear componente o Pc para publicarla</h5 >
+            <h5>VENTAS: Ver en detalle tus ventas realizadas </h5>
+            <h5>PREGUNTAS: </h5>
+          
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Publications></Publications>
@@ -99,7 +112,7 @@ export default function PanelMenu() {
         <CrearProducto></CrearProducto>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <Sales></Sales>
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Six
