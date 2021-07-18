@@ -113,15 +113,15 @@ export default function PanelGral ({input, setInput}) {
                         {console.log(input.price)}
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Comision:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`-$${input.price*0.05}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`${input.price?'-$'+input.price*0.05:'$0'}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Envio:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery?'-$400':'0'}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery?'-$400':'$0'}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Ganancia:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`-$${(input.price - input.price*0.05) - (input.delivery?400:0)}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`$${(input.price - input.price*0.05) - (input.delivery?400:0)}`} variant="outlined" />
                         </div>
                     </div>
                 </div><Button id='CreateProduct' variant="info">CREAR PRODUCTO</Button>{' '}
