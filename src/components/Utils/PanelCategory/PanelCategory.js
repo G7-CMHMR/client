@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './PanelCategory.css'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -6,6 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { getCategories } from '../../../redux/Actions/Products/Actions'
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,18 +21,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NativeSelects() {
+export default function PanelCategory({ input, setInput }) {
+    console.log(input)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCategories())
+    }, [dispatch])
+
+    const productsReducer = useSelector(state => state.productsReducer)
+
+
     const classes = useStyles();
-    const [state, setState] = React.useState({
-        Categoria: '',
-        name: 'hai',
-    });
 
     const handleChange = (event) => {
         const name = event.target.name;
-        setState({
-            ...state,
-            [name]: event.target.value,
+        
+        setInput({
+            ...input,
+            [name]: [event.target.value],
         });
     };
 
@@ -40,18 +51,19 @@ export default function NativeSelects() {
                 <InputLabel htmlFor="outlined-age-native-simple">Categoria</InputLabel>
                 <Select
                     native
-                    value={state.age}
+                    value={input.categories}
                     onChange={handleChange}
                     label="Categoria"
+                    name='categories'
                     inputProps={{
-                        name: 'Categoria',
+                        name: 'categories',
                         id: 'outlined-age-native-simple',
                     }}
                 >
-                    <option aria-label="None" disabled value="" />
-                    <option value={10}>CATEGORIA 1</option>
-                    <option value={20}>CATEGORIA 2</option>
-                    <option value={30}>CATEGORIA 3</option>
+                    <option aria-label="None"  value="" />
+                    {productsReducer? productsReducer.categories.map((element) => {
+                        return(<option value={element.title}>{element.title}</option>)
+                    }):''}
                 </Select>
             </FormControl>
         </div>

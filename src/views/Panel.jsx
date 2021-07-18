@@ -6,7 +6,7 @@ import Menu from '../components/Panel/Menu/Menu';
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
-import VerticalTabs from '../components/Panel/VerticalTabs/VerticalTabs';
+import PanelMenu from '../components/Utils/PanelMenu/PanelMenu';
 
 
 
@@ -27,7 +27,7 @@ function Panel() {
             <Separate></Separate>
 
             <div id='PanelContentDetail'>
-                <VerticalTabs></VerticalTabs>
+                <PanelMenu></PanelMenu>
             </div>
 
             <Separate></Separate>

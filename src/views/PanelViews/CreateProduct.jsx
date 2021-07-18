@@ -15,6 +15,7 @@ import PanelBrand from '../../components/Utils/PanelBrand/PanelBrand';
 import PanelGral from '../../components/Utils/PanelGral/PanelGral';
 import PanelInput from '../../components/Utils/PanelInput/PanelInput';
 import PanelCategory from '../../components/Utils/PanelCategory/PanelCategory';
+import { isElementOfType } from 'react-dom/test-utils';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -58,12 +59,40 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FullWidthTabs() {
-    const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
+    const userReducer = (state => state.userReducer.userData)
+
+    const [input, setInput] = React.useState({
+        name: '',
+        status: '',
+        price: '',
+        valuation: '',
+        type: 'PC de Escritorio',
+        stock: '',
+        brand: '',
+        description: '',
+        seller: userReducer.id,
+        images: [],
+        categories: ['PC'],
+        discount: '',
+        delivery: '',
+        warranty: '',
+        sold: '',
+    })
+
+
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        if(newValue === 0){
+            setInput({
+                ...input,
+                'type' : 'PC de Escritorio',
+                'categories' : ['PC'],
+            })
+        }
     };
 
     const handleChangeIndex = (index) => {
@@ -72,6 +101,7 @@ export default function FullWidthTabs() {
 
     return (
         <div className='CreateProductForms'>
+            
             <AppBar position="static" color="default">
                 <Tabs
                     value={value}
@@ -91,16 +121,16 @@ export default function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <PanelInput></PanelInput>
-                    <PanelForm></PanelForm>
+                    <PanelInput input={input} setInput={setInput}></PanelInput>
+                    <PanelForm input={input} setInput={setInput}></PanelForm>
                     
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <PanelInput></PanelInput>
-                    <PanelCategory></PanelCategory>
-                    
-                    <PanelBrand></PanelBrand>
-                    <PanelGral></PanelGral>
+                    <PanelInput input={input} setInput={setInput}></PanelInput>
+                    <PanelCategory input={input} setInput={setInput}></PanelCategory>
+                    {console.log(input)}
+                    <PanelBrand input={input} setInput={setInput}></PanelBrand>
+                    <PanelGral input={input} setInput={setInput}></PanelGral>
                     
                 </TabPanel>
             </SwipeableViews>

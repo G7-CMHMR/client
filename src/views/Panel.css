@@ -1,6 +1,6 @@
 .PanelContainerPanel{
     min-height: 747px;
-    height: auto;
+    max-height: 747px;
     width: 100%;
     display: flex;
 }
@@ -8,4 +8,7 @@
 
 #PanelContentDetail{
     width: 80%;
+    display: flex;
+    height: 747px;
 }
+

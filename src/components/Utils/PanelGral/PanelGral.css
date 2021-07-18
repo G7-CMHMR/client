@@ -33,17 +33,20 @@ h4{
 }
 
 #Warranty{
-    
     display: flex;
+    margin-right: 2rem;
+}
+#Warranty>*{
+    margin-right: 2rem;
 }
 #WarrantyTextField{
     width: 8.5rem;
-    margin-right: 4%;
+    margin-right: 2rem;
 }
 
 #PanelGralPrice{
     width: 8.5rem;
-    margin-right: 4%;
+    margin-right: 2rem;
 }
 
 #PanelGralDescription{
@@ -73,3 +76,4 @@ h4{
 #CreateProduct{
     margin-top: 4%;
 }
+

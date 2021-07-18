@@ -2,6 +2,10 @@
 
 .CreateProductForms{
     width: 100vh;
-    min-height: 747;
+    min-height: 747px;
     height: auto;
+}
+
+.MuiBox-root-10{
+    padding:0px;
 }

@@ -2,13 +2,20 @@ import React from 'react'
 import './PanelBrand.css'
 import { TextField } from '@material-ui/core'
 
-export default function PanelBrand() {
+export default function PanelBrand({input, setInput}) {
+
+    function handleChange(e){
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        })
+    }
+
     return (
         <div id='PanelBrandForm'>
             <form noValidate autoComplete="off">
-                <TextField className='TextFieldPanelBrand' label="Marca" variant="outlined" />
-                <TextField className='TextFieldPanelBrand' label="Tipo" variant="outlined" />
-                <TextField className='TextFieldPanelBrand' label="Linea" variant="outlined" />
+                <TextField name='brand' value={input.brand} onChange={handleChange} className='TextFieldPanelBrand' label="Marca" variant="outlined" />
+                <TextField name='type' value={input.type}  onChange={handleChange} className='TextFieldPanelBrand' label="Tipo" variant="outlined" />
             </form>
         </div>
     )

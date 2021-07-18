@@ -1,7 +1,8 @@
 #PanelBrandForm{
     background-color: white;
     display: flex;
-    margin-bottom: 4%;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
 }
 
 .TextFieldPanelBrand{
