@@ -23,24 +23,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function PanelGral ({input, setInput}) {
-    console.log(input)
+export default function PanelGral() {
+    const classes = useStyles();
 
-    function handleChange (event){
-        if (event.target.name == 'delivery') {
-            setInput({
-                ...input,
+    const [state, setState] = React.useState({
+        Condition: '',
+        CheckShipping: true,
+        name: 'hai',
+        amount: '',
+    });
+
+    const handleChange = (event) => {
+        if (event.target.name == 'CheckShipping') {
+            setState({
+                ...state,
                 [event.target.name]: event.target.checked
             });
+            console.log(event.target.checked)
 
         } else {
-            setInput({
-                ...input,
+            setState({
+                ...state,
                 [event.target.name]: event.target.value,
             });
         }
     }
-
 
 
     return (
@@ -52,30 +59,29 @@ export default function PanelGral ({input, setInput}) {
                             <InputLabel htmlFor="outlined-age-native-simple">Condicion</InputLabel>
                             <Select
                                 native
-                                value={input.status}
+                                value={state.age}
                                 onChange={handleChange}
                                 label="Condition"
-                                name='status'
                                 inputProps={{
-                                    name: 'status',
+                                    name: 'Condition',
                                     id: 'outlined-age-native-simple',
                                 }}
                             >
                                 <option aria-label="None" disabled value="" />
-                                <option value={'Nuevo'}>Nuevo</option>
-                                <option value={'Usado'}>Usado</option>
-                                <option value={'Reacondicionado'}>Reacondicionado</option>
+                                <option value={10}>Nuevo</option>
+                                <option value={20}>Usado</option>
+                                <option value={30}>Reacondicionado</option>
                             </Select>
-                            <div id="StockPanelGral"><TextField name='stock' onChange={handleChange} value={input.stock} id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
+                            <div id="StockPanelGral"><TextField id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
                         </div>
                         <div id='Warranty'>
-                            <TextField name='warranty' value={input.warranty} onChange={handleChange} id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
+                            <TextField id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
                             <FormControl variant="outlined">
                                 <InputLabel variant='outlined' htmlFor="outlined-adornment-amount">Precio</InputLabel>
                                 <OutlinedInput
                                     id='PanelGralPrice'
-                                    value={input.price}
-                                    name='price'
+                                    value={state.amount}
+                                    name='amount'
                                     onChange={handleChange}
                                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 />
@@ -86,16 +92,16 @@ export default function PanelGral ({input, setInput}) {
                 <div id='FreeShiping'>
                     <h4>Envio Gratis:</h4>
                     <Switch
-                        checked={input.delivery}
+                        checked={state.CheckShipping}
                         onChange={handleChange}
                         color="primary"
-                        name="delivery"
+                        name="CheckShipping"
                         inputProps={{ 'aria-label': 'primary checkbox' }}
                     />
                 </div>
 
                 <div id='PanelGralSearchImages'>
-                    <input name='images' value={input.images} onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
+                    <TextField id="PanelGralFiles" type='file' multiple='multiple' label="" variant="outlined" />
                 </div>
                 <div id='PanelGral-Description-Data'>
                     <TextField
@@ -104,24 +110,20 @@ export default function PanelGral ({input, setInput}) {
                         multiline
                         rows={10}
                         variant="outlined"
-                        name='description'
-                        value={input.description}
-                        onChange={handleChange}
                     />
 
                     <div id='PanelGralOthers'>
-                        {console.log(input.price)}
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Comision:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`${input.price?'-$'+input.price*0.05:'$0'}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Envio:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery?'-$400':'$0'}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Ganancia:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`$${(input.price - input.price*0.05) - (input.delivery?400:0)}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
                         </div>
                     </div>
                 </div><Button id='CreateProduct' variant="info">CREAR PRODUCTO</Button>{' '}
