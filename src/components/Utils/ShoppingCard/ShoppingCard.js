@@ -42,6 +42,9 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
      
     }
 
+
+
+
     return(
         <div id="ProductCard2">
 	            <div class="product-image2">
@@ -70,7 +73,7 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
                </div>
                 <div id="price2"><h4>${addCommas(Math.floor(price - (price/100)*discount)*amount)}</h4>
                         </div> 
-                
+               
     </div>    
         )
     }
