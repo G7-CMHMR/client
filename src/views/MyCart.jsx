@@ -101,7 +101,7 @@ function MyCart() {
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
                 }
                 {
-                    userId!==undefined && cart.length>0 && <Button variant="warning">Comprar carrito</Button>
+                    userId!==undefined && cart.length>0 && <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>
                 }
 				
 			</div>
