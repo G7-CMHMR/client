@@ -13,6 +13,7 @@ import Publications from '../../../views/PanelViews/Publications'
 import Products from '../../../views/PanelViews/Products'
 
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
+import Sales from '../../../views/PanelViews/Sales';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -99,7 +100,7 @@ export default function PanelMenu() {
         <CrearProducto></CrearProducto>
       </TabPanel>
       <TabPanel value={value} index={4}>
-        Item Five
+        <Sales></Sales>
       </TabPanel>
       <TabPanel value={value} index={5}>
         Item Six

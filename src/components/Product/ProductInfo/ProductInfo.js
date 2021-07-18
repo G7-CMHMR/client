@@ -4,6 +4,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 import './ProductInfo.css'
+import {Button} from 'react-bootstrap'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
 import Rating from '@material-ui/lab/Rating';
 import { FaHeart } from 'react-icons/fa'
@@ -129,8 +130,9 @@ function ProductInfo() {
                 <h4>Tenes 10 dias desde que lo recibis</h4>
             </div>
             <div id="btnbuy">
-                <button id="btn1" >Comprar Ahora</button>
-                <button id="btn2" onClick={(e) => addToCart(e)}>Agregar al carrito</button>
+                <Button id="Bootstrapbutton" size='lg' variant="info">Comprar Ahora</Button>
+                 <Button size='lg' onClick={(e) => addToCart(e)} variant="success">Agregar al carrito</Button>
+
             </div>
             <div id="seguridad">
                 <h3>Compra protegida:</h3>
