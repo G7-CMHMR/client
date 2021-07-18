@@ -1,7 +1,9 @@
 //card que se renderiza en Shoppin History (historial del compras)
 
-function BuyCard() {
-    
+function BuyCard(params) {
+    return <div>
+        {params}
+    </div>
 }
 
 
