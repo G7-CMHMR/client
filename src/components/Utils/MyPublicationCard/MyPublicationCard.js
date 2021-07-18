@@ -1,8 +1,12 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './MyPublicationCard.css'
 import {Button} from 'react-bootstrap'
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 export default function MyPoductCard({ stock, sold, price, discount, images, name, id }) {
     
@@ -21,6 +25,30 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
         }
         return x1 + x2;
     }
+
+    const useStyles = makeStyles((theme) => ({
+        modal: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+        paper: {
+          backgroundColor: theme.palette.background.paper,
+          border: '2px solid #000',
+          boxShadow: theme.shadows[5],
+          padding: theme.spacing(2, 4, 3),
+        },
+      }));
+        const classes = useStyles();
+        const [open, setOpen] = React.useState(false);
+
+        const handleOpen = () => {
+            setOpen(true);
+        };
+
+        const handleClose = () => {
+            setOpen(false);
+        };
 
     return (
         <div>
@@ -41,13 +69,33 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                             <p>Vendidos: {sold}</p>
                         </div>
                         <div id="MyProductButtons">
-                        <Button variant="danger">Eliminar</Button>{' '}
+                        <Button onClick={handleOpen} variant="danger">Eliminar</Button>{' '}
                         <Button variant="warning">Pausar</Button>{' '}
                         </div>
                     
                    
                 </div>
             </div>
+            <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div id="MoldalContainer" className={classes.paper}>
+            <h2 id="transition-modal-title">¿Estas seguro de eliminar la publicacion?</h2>
+            <Button variant="danger">Eliminar</Button>{' '}
+           <Button variant="success">Volver</Button>{' '}
+          </div>
+        </Fade>
+      </Modal>
         </div>
     )
 }
