@@ -1,5 +1,5 @@
 import axios from 'axios' 
-import { GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT } from './ActionsName'
+import { GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, CHECKOUT } from './ActionsName'
 
 export function getCart(userID) {
     return (dispatch) => {
@@ -37,6 +37,19 @@ export function decrementProductUnit(productId_userId) {
             })
     }
 }
+
+export function checkout(productsCart) {
+    console.log(productsCart)
+    return (dispatch) => {
+        axios.post('http://localhost:3001/checkout', productsCart)
+            .then(response => {
+                dispatch({ type: CHECKOUT, payload: response.data })
+                window.location.href = (response.data.body.sandbox_init_point)
+            })
+    }
+}
+
+
 
 
 

@@ -1,7 +1,8 @@
-import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT } from './ActionsName'
+import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, CHECKOUT } from './ActionsName'
 
 const initialState = {
-    cart: []
+    cart: [],
+    checkout: [],
 }
 //Combine Reducers
 function cartReducer (state = initialState, action) {
@@ -33,6 +34,13 @@ function cartReducer (state = initialState, action) {
                 ...state,
                 cart: action.payload
                 
+            }
+        }
+
+        case CHECKOUT : {
+            return {
+                ...state,
+                checkout: action.payload
             }
         }
       
