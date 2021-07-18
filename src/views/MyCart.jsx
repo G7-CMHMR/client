@@ -5,6 +5,7 @@ import { useEffect,  } from 'react';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
 import { addProductToCart, getCart } from '../redux/Actions/Cart/Actions';
 import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
+import {Button} from 'react-bootstrap'
 
 
 function MyCart() {
@@ -88,7 +89,7 @@ function MyCart() {
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
                 }
                 {
-                    userId!==undefined && cart.length>0 && <button> Comprar carrito </button>
+                    userId!==undefined && cart.length>0 && <Button variant="warning">Comprar carrito</Button>
                 }
 				
 			</div>

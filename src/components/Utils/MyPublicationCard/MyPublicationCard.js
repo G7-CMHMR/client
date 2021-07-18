@@ -46,7 +46,8 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
             setOpen(true);
         };
 
-        const handleClose = () => {
+        const handleClose = (e) => {
+          console.log(open)
             setOpen(false);
         };
 
@@ -92,7 +93,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
           <div id="MoldalContainer" className={classes.paper}>
             <h2 id="transition-modal-title">¿Estas seguro de eliminar la publicacion?</h2>
             <Button variant="danger">Eliminar</Button>{' '}
-           <Button variant="success">Volver</Button>{' '}
+           <Button variant="success" onclick={(e)=>handleClose(e)} >Volver</Button>{' '}
           </div>
         </Fade>
       </Modal>

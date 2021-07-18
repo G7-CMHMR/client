@@ -4,6 +4,10 @@
     padding: 2px;
     width: 100%;
 }
+#units{
+    display: flex;
+    align-items: center;
+}
 #link2{
            /* padding: 2%; */
     padding-left: 3%;
@@ -13,10 +17,29 @@
 }
 #ProductCard2{
     display: flex;
-    justify-content: space-between;
+    box-shadow: -4px 3px 10px 0px rgb(128 128 128 / 31%);
+    background: rgb(255 255 255 / 90%);
+    border-radius: 5px;
+    width: 90%;
+    height: auto;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
     align-items: center;
-    background: #e5e5e5;
-    /* margin-bottom: 1%; */
-    margin: 1%;
-
+}
+#ShoppingCardName{
+    width: 33%;
+}
+.product-detail2{
+    font-size: 14px;
+        position: relative;
+        text-align: left;
+        padding: 20px;
+        height: 100%;
+        float: left;
+        text-decoration: none;
+        color: initial;
+}
+ h6{
+    text-decoration: none;
+    color: initial;
 }

@@ -6,6 +6,7 @@ import {Badge} from 'react-bootstrap'
 import { addProductToCart, decrementProductUnit, getCart, removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import {Button} from 'react-bootstrap'
 
 
 function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
@@ -47,26 +48,26 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
 	            <div class="product-image2">
                 	<img width="100px" height="100px" src={images[0].image} alt="Omar Dsoky"/>
                 </div>
-                <Link id="link2" to={`/Producto/${id}`}>
-                	<div class="product-details2">
-	                    <h6>{name}</h6>
-                       
-                <div id="offandship2">
-                        { delivery? <Badge bg="success">Envio gratis</Badge>  :  <Badge bg="success">Envio $400</Badge> }
-                       
-                </div> 
-		            </div>
-                </Link>
+                <div id="ShoppingCardName">
+                    <Link id="link2" to={`/Producto/${id}`}>
+                        <div class="product-details2">
+                             <h6>{name}</h6>
+                            
+                        <div id="offandship2">
+                                { delivery? <Badge bg="success">Envio gratis</Badge>  :  <Badge bg="success">Envio $400</Badge> } 
+                        </div> 
+                            </div>
+                        </Link>
+                </div>
+             
                 <div id="units">
-                { amount <2 ? <button disable={true} >-</button>:
-                     <button onClick={(e)=>decrementItem(e,id)}>-</button>
-                }
-                
-                                {amount}
-                <button onClick={(e)=>incrementItem(e,id)}>+</button>        
+                <Button  onClick={(e)=>decrementItem(e,id)} variant="info">-</Button>
+                                <h3>{amount}</h3>
+                <Button onClick={(e)=>incrementItem(e,id)} variant="info">+</Button>        
                 </div>
                <div>
-                   <button onClick={(e)=>deleteItem(e,id)}>Eliminar</button>
+
+                   <Button variant="danger" onClick={(e)=>deleteItem(e,id)}>Eliminar</Button>
                </div>
                 <div id="price2"><h4>${addCommas(Math.floor(price - (price/100)*discount)*amount)}</h4>
                         </div> 
