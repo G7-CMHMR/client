@@ -98,7 +98,10 @@ function NavBar() {
              } */}          
         </Nav>
         <Nav.Link href={`/Carrito/`}>
-        <Badge badgeContent={cart.length} color="error">
+        <Badge badgeContent={
+            cart.length && cart[0].amount && cart[0].product ? cart.length :
+            dispatch(getCart(userID))
+            } color="error">
             <IoCartSharp/>
             </Badge>
             </Nav.Link>
