@@ -3,6 +3,9 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './MyProductCard.css'
 import {Button} from 'react-bootstrap'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default function MyPoductCard({ stock, sold, price, discount, images, name, id }) {
     
@@ -22,6 +25,33 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
         return x1 + x2;
     }
 
+    function Alert(props) {
+        return <MuiAlert elevation={6} variant="filled" {...props} />;
+      }
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+        },
+    }));
+
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClick = () => {
+      setOpen(true);
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+      };
+  
     return (
         <div>
             <div id="MyProductCard">
@@ -41,13 +71,17 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                             <p>Vendidos: {sold}</p>
                         </div>
                         <div id="MyProductButtons">
-                        <Button variant="success">Activar</Button>{' '}
+                        <Button variant="success" onClick={handleClick}>Activar</Button>{' '}
                         <Button variant="info">Modificar</Button>{' '}
+                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                        <Alert severity="success">Producto activado! </Alert>
+                        </Snackbar>
                         </div>
                     
                    
                 </div>
             </div>
+            
         </div>
     )
 }
