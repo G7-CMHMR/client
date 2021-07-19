@@ -9,24 +9,26 @@ import { FaHeart } from 'react-icons/fa'
 import { IoCartSharp } from 'react-icons/io5'
 
 
-import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction  }from '../../../redux/Actions/User/Actions';
-import {getCategories} from '../../../redux/Actions/Products/Actions'
+import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction } from '../../../redux/Actions/User/Actions';
+import { getCategories } from '../../../redux/Actions/Products/Actions'
 import { getCart } from '../../../redux/Actions/Cart/Actions';
+
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 function NavBar() {
-    
+
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
-    
+
     const userData = useSelector(state => state.userReducer.userData)
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
 
-    const cart = useSelector (state => state.cartReducer.cart)
+    const cart = useSelector(state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
 
-    
+
 
 
 
@@ -63,61 +65,63 @@ function NavBar() {
     // BackgroundColor #14213D;
     return (
 
-    <div className="ContainerNavBar">
-       <Navbar id='backgroundColor' expand="lg">
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-         <Navbar.Collapse id="basic-navbar-nav">
-        <Nav id="navcontainer" className="mr-auto">
-         <Nav.Link href="#link">OFERTAS</Nav.Link>
-         <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
-         <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
-             {productsReducer.categories.map(element => (
-                <NavDropdown.Item href=""><Link to={`/Categorias/${element.title}`}>{element.title}</Link></NavDropdown.Item>
-             ))//<Link to={`/categorias/${element}`}>
-            }
-        </NavDropdown> 
-            {userData.isSeller ? 
+        <div className="ContainerNavBar">
+            <Navbar id='backgroundColor' expand="lg">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav id="navcontainer" className="mr-auto">
+                        <Nav.Link href="#link">OFERTAS</Nav.Link>
+                        <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
+                        <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
+                            {productsReducer.categories.map(element => (
+                                <LinkContainer to={`/Categorias/${element.title}`}>
+                                    <NavDropdown.Item>{element.title}</NavDropdown.Item>
+                                </LinkContainer>
+                            ))//<Link to={`/categorias/${element}`}>
+                            }
+                        </NavDropdown>
+                        {userData.isSeller ?
 
-            <Nav.Link href=""><Link to="/Panel">PANEL</Link></Nav.Link>
-             : 
-            null
-             }
+                            <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
+                            :
+                            null
+                        }
 
-             {userData.name ? null:<Nav.Link onClick={openLogin}>LOGIN</Nav.Link> }
+                        {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
 
-            {userData.name ?
-            <NavDropdown title={userData.name} id="basic-nav-dropdown">
-         <NavDropdown.Item ><Link to="/Perfil">MI CUENTA</Link> </NavDropdown.Item>
-         <NavDropdown.Item ><Link to="/Favoritos">MIS FAVORITOS </Link></NavDropdown.Item>
-         <NavDropdown.Item ><Link to="/Compras">HISTORIAL DE COMPRAS </Link></NavDropdown.Item>
-         {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-         <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
-        </NavDropdown>
-        :
-        <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                        {userData.name ?
+                            <NavDropdown title={userData.name} id="basic-nav-dropdown">
+                                <LinkContainer to="/Perfil"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
+                                <LinkContainer to="/Favoritos"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
+                                <LinkContainer to="/Compras"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
+                                {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
+                                <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+                            </NavDropdown>
+                            :
+                            <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
 
-{/* botones para probar si cambia usuario-registrado , no-registrado */}
-            {/* {username ? 
+                        {/* botones para probar si cambia usuario-registrado , no-registrado */}
+                        {/* {username ? 
             <button onClick={logout}>SALIR</button>   
              : 
              <button onClick={cambiar}>ENTRAR</button>    
-             } */}          
-        </Nav>
-        <Nav.Link >
-            <Link to="/Carrito">
-        <Badge badgeContent={
-           cart.length 
-            } color="error">
-            <IoCartSharp/>
-            </Badge>
-            </Link>
-            </Nav.Link>
-        <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
-    
-  </Navbar.Collapse>
-</Navbar>
+             } */}
+                    </Nav>
+                    <LinkContainer to="/Carrito">
+                        <Nav.Link >
+                            <Badge badgeContent={
+                                cart.length
+                            } color="error">
+                                <IoCartSharp />
+                            </Badge>
+                        </Nav.Link>
+                    </LinkContainer>
+                    <LinkContainer to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
 
-        </div>
+                </Navbar.Collapse>
+            </Navbar>
+
+        </div >
     )
 }
 
