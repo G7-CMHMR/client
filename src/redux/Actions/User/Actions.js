@@ -10,8 +10,10 @@ import {
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
     USER_DATA,
-    BECOME_SELLER
-
+    BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER_SUCCESS,
+    ATTEMPT_BECOME_SELLER_FAILED
   } from './ActionsName';
 
 import clientAxios from '../../../config/axios';
@@ -199,4 +201,30 @@ const becomeSeller = (opposite) => ({
     type:BECOME_SELLER,
     payload: opposite
 
+})
+export function attemptBecomeSellerAction (attempt) {
+    return async (dispatch) => {
+        dispatch(attemptBecomeSeller())
+        try {
+            
+            const {data} = await clientAxios.post('/seller/create/', attempt)
+            console.log(data)
+            dispatch(becomeSellerSuccess(data))
+        } catch (error) {
+            console.error(error.response)
+            dispatch(BecomeSellerFailed(error.response.data))
+        }
+    }
+}
+const attemptBecomeSeller = () => ({
+    type: ATTEMPT_BECOME_SELLER,
+    payload: true
+})
+const becomeSellerSuccess = (data) => ({
+    type: ATTEMPT_BECOME_SELLER_SUCCESS,
+    payload: data
+})
+const BecomeSellerFailed = (data) => ({
+    type: ATTEMPT_BECOME_SELLER_FAILED,
+    payload: data
 })
