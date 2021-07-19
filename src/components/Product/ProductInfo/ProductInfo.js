@@ -142,7 +142,7 @@ function ProductInfo() {
                     <h4>Este producto no tiene garantia</h4>}
             </div>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
+                            <Alert style={{backgroundcolor:"red"}} onClose={handleClose} severity="success">
                             Producto agregado al carrito
                             </Alert>
                         </Snackbar>
