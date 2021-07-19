@@ -33,7 +33,8 @@ function NavBar() {
     useEffect(() => {
         dispatch(getCart(userData.id))
         dispatch(getCategories())
-    }, [dispatch, userData])
+        //eslint-disable-next-line
+    }, [])
 
 
     // useEffect(() => {
@@ -71,13 +72,13 @@ function NavBar() {
          <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
          <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
              {productsReducer.categories.map(element => (
-                <NavDropdown.Item href={`/Categorias/${element.title}`}>{element.title}</NavDropdown.Item>
+                <NavDropdown.Item href=""><Link to={`/Categorias/${element.title}`}>{element.title}</Link></NavDropdown.Item>
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 
             {userData.isSeller ? 
 
-            <Nav.Link href="/Panel">PANEL</Nav.Link>
+            <Nav.Link href=""><Link to="/Panel">PANEL</Link></Nav.Link>
              : 
             null
              }
@@ -86,14 +87,14 @@ function NavBar() {
 
             {userData.name ?
             <NavDropdown title={userData.name} id="basic-nav-dropdown">
-         <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
-         <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
-         <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
+         <NavDropdown.Item ><Link to="/Perfil">MI CUENTA</Link> </NavDropdown.Item>
+         <NavDropdown.Item ><Link to="/Favoritos">MIS FAVORITOS </Link></NavDropdown.Item>
+         <NavDropdown.Item ><Link to="/Compras">HISTORIAL DE COMPRAS </Link></NavDropdown.Item>
          {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-         <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+         <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :
-        <Nav.Link href="#signup" onClick={openRegister}>REGISTRATE</Nav.Link>}
+        <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
 
 {/* botones para probar si cambia usuario-registrado , no-registrado */}
             {/* {username ? 
@@ -102,12 +103,14 @@ function NavBar() {
              <button onClick={cambiar}>ENTRAR</button>    
              } */}          
         </Nav>
-        <Nav.Link href={`/Carrito/`}>
+        <Nav.Link >
+            <Link to="/Carrito">
         <Badge badgeContent={
            cart.length 
             } color="error">
             <IoCartSharp/>
             </Badge>
+            </Link>
             </Nav.Link>
         <Nav.Link href={`/Favoritos/`}><FaHeart/></Nav.Link>
     

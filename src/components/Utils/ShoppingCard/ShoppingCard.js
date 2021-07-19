@@ -16,7 +16,7 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
     var USERID = userReducer.id
     useEffect(() => {
         dispatch(getCart(USERID))
-	}, [dispatch, USERID])
+	}, [])
     function deleteItem(e,idproduct){
         dispatch(removeProductFromCart({userId:USERID,productId:idproduct}))
     }   

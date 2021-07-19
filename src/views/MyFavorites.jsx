@@ -22,7 +22,7 @@ function MyFavorites() {
 
     useEffect(() => {
         dispatch(getFavourites(userReducer.id))
-    }, [userReducer.id])
+    }, [])
         
 
     return (

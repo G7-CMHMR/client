@@ -17,9 +17,9 @@ function MyShopping() {
   
     useEffect(() => {
       dispatch(getPurchaseOrderHistory({
-        userId : "2"
+        userId : "2" 
     }))
-    }, [dispatch, params])
+    }, [])
 
 
     return (
