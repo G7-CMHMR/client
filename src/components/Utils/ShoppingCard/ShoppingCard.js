@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import {Button} from 'react-bootstrap'
 
 
-function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
+function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
    const cart = useSelector(state => state.cartReducer.cart)
     const dispatch = useDispatch()
     const userReducer = useSelector (state => state.userReducer.userData)
@@ -62,11 +62,11 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
                             </div>
                         </Link>
                 </div>
-             
+                
                 <div id="units">
-                <Button  onClick={(e)=>decrementItem(e,id)} variant="info">-</Button>
+                {amount>1?<Button   onClick={(e)=>decrementItem(e,id)} variant="info">-</Button>:<Button disabled onClick={(e)=>decrementItem(e,id)} variant="info">-</Button>}
                                 <h3 id='TextAmount'>{amount}</h3>
-                <Button onClick={(e)=>incrementItem(e,id)} variant="info">+</Button>        
+                {stock>amount ? <Button onClick={(e)=>incrementItem(e,id)} variant="info">+</Button>:<Button disabled onClick={(e)=>incrementItem(e,id)} variant="info">+</Button>}           
                 </div>
                <div>
 

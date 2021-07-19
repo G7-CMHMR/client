@@ -92,7 +92,7 @@ function MyCart() {
                             <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
                                 amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
                                 discount={x.product.promotion.value}
-                                status={x.product.status} id={x.product.id} />
+                                status={x.product.status} id={x.product.id} stock={x.product.stock} />
                         )
                     }) : dispatch(getCart(userId))}
 

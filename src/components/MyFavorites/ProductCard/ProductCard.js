@@ -37,7 +37,9 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
         },
       }));
     const classes = useStyles();
+    
     function RemoveFavorites(e, productId) {
+        console.log({userId, productId})
         axios.post('http://localhost:3001/favourite/remove', { userId, productId })
             .then(response => {
                 dispatch(getFavourites(userId))

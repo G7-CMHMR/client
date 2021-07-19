@@ -12,6 +12,8 @@ export function getFavourites(userID){
 }
 
 export function AddFavourites(productID_UserID){
+    console.log('**********************************')
+    console.log(productID_UserID)
     return (dispatch) => {
         axios.post('http://localhost:3001/favourite/add', productID_UserID)
         .then (response => {

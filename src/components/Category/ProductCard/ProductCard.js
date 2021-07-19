@@ -23,9 +23,9 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     const dispatch = useDispatch();
     var userId = userReducer.id
     const [open, setOpen] = React.useState(false);
-    useEffect(() => {
-        dispatch(getFavourites(userId))
-    }, [dispatch, userId])
+
+
+
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
       }
@@ -39,6 +39,7 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
       }));
     const classes = useStyles();
     function addToCart() {
+        console.log(userId, id)
         dispatch(addProductToCart({ userId: userId, productId: id }))
         setOpen(true);
     }
@@ -51,7 +52,10 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
 
 
     var CheckFavorite = favourites.find((e) => e.id == id)
+
     function AddToFavorites(e, productId) {
+        console.log('****************************')
+        console.log({userId, productId})
         let fav = e.target.style
         if (fav.color) {
             if (fav.color == "grey") {
