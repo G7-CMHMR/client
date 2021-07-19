@@ -15,7 +15,7 @@ import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-
+import clientAxios from '../../../config/axios';
 
 
 function ProductInfo() {
@@ -64,19 +64,19 @@ function ProductInfo() {
         if (fav.color) {
             if (fav.color == "grey") {
                 fav.color = 'red';
-                axios.post('http://localhost:3001/favourite/add', { userId, productId })
+                clientAxios.post('/favourite/add', { userId, productId })
             }
             else {
                 fav.color = 'grey';
-                axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+                clientAxios.post('/favourite/remove', { userId, productId })
             }
         }else{
             if(CheckFavorite){
                 fav.color = 'grey';
-                axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+                clientAxios.post('/favourite/remove', { userId, productId })
             }else {
                 fav.color = 'red';
-                axios.post('http://localhost:3001/favourite/add', { userId, productId })
+                clientAxios.post('/favourite/add', { userId, productId })
             }
         }
     }
