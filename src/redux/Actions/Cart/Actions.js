@@ -7,6 +7,7 @@ export function getCart(userID) {
         axios.get(`http://localhost:3001/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
+              
             })
     }
 }
@@ -17,6 +18,7 @@ export function addProductToCart(productId_userId) {
         axios.post('http://localhost:3001/cart/add', productId_userId)
             .then(response => {
                 dispatch({ type: ADD_PRODUCT_CART, payload: response.data })
+               
             })
     }
 }
@@ -25,6 +27,7 @@ export function removeProductFromCart(productId_userId) {
         axios.post('http://localhost:3001/cart/remove', productId_userId)
             .then(response => {
                 dispatch({ type: REMOVE_PRODUCT_CART, payload: response.data })
+                
             })
     }
 }
@@ -34,6 +37,7 @@ export function decrementProductUnit(productId_userId) {
         axios.post('http://localhost:3001/cart/decrement', productId_userId)
             .then(response => {
                 dispatch({ type: DECREMENT_PRODUCT_UNIT, payload: response.data })
+        
             })
     }
 }
@@ -44,7 +48,8 @@ export function checkout(productsCart) {
         axios.post('http://localhost:3001/checkout', productsCart)
             .then(response => {
                 dispatch({ type: CHECKOUT, payload: response.data })
-                window.location.href = (response.data.body.sandbox_init_point)
+
+                //window.location.href = (response.data.body.sandbox_init_point)
             })
     }
 }

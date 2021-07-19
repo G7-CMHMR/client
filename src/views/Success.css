@@ -1,0 +1,12 @@
+.DetailContainerSuccess{
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    min-height: 747px;
+   }
+
+#ContentDetailSuccess{
+background-color: white;
+width: 80%;
+}
+   
