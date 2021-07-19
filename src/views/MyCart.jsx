@@ -5,11 +5,12 @@ import { useEffect, } from 'react';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
 import { addProductToCart, getCart } from '../redux/Actions/Cart/Actions';
 import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { checkout } from '../redux/Actions/Cart/Actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import {TextField} from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { useState } from 'react'
 
 function MyCart() {
     let totalCart = 0
@@ -22,9 +23,6 @@ function MyCart() {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     var userId = userReducer.id
 
-    useEffect(() => {
-        dispatch(getCart(userId))
-    }, [dispatch, userId])
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -33,6 +31,9 @@ function MyCart() {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
 
+    useEffect(() => {
+        dispatch(getCart(userId))
+    }, [dispatch, userId])
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -47,10 +48,31 @@ function MyCart() {
     }
 
 
+    const [input, setInput] = useState({
+        direction: '',
+        number: '',
+        localidad: '',
+        provincia: '',
+    })
+
+ 
+
+
+    function HandleChange(e) {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+
     // MERCADOPAGO TEST 
     //*******************************
-    async function mercadoPago(){
-    dispatch( checkout (cart, userReducer.id) )
+    async function mercadoPago() {
+        console.log(`${input.direction}$${input.number}$${input.localidad}$${input.provincia}`)
+        if (!input.direction == '' || !input.number == '' || !input.localidad == '' || !input.provincia == '') {
+            dispatch(checkout(cart, `${input.direction}$${input.number}$${input.localidad}$${input.provincia}`, userReducer.id))
+        }
+
     }
 
     //MERCADO PAGO TEST END
@@ -62,59 +84,60 @@ function MyCart() {
             <div id='ContentDetail'>
                 <h1>Carrito de compras🛒</h1>
                 <br></br>
-            {console.log(cart)}
-			<div className="secondContainer">
-				{cart.length>0 && cart[0].amount && cart[0].product? cart.map((x)=>{
-				return ( 
-                <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images?x.product.images:''} 
-                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
-                discount={x.product.promotion.value} 
-                status={x.product.status} id={x.product.id} />
-                )			
-		}):dispatch(getCart(userId))}
 
-        {
-            userId===undefined && 
-            <div>
-                <h5>Para usar el carrito es necesario estar registrado</h5>
-                <h5>Podes <button onClick={openRegister}>Registrarte</button> 
-                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
-            </div>
-        }
-			
-		</div>
-			<div id="totalCart">
-				{
-					cart.length>0 && cart[0].amount && cart[0].product?cart.forEach((x)=>{
-						totalCart+=(x.product.price - (x.product.price/100)*x.product.promotion.value)*x.amount
+                {console.log(cart)}
+                <div className="secondContainer">
+                    {cart.length > 0 && cart[0].amount && cart[0].product ? cart.map((x) => {
+                        return (
+                            <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
+                                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
+                                discount={x.product.promotion.value}
+                                status={x.product.status} id={x.product.id} />
+                        )
+                    }) : dispatch(getCart(userId))}
 
-					})
-				:console.log('NO ES UN ARRAY')}{
-					cart.length>0 && cart[0].amount && cart[0].product? cart.forEach((x)=>{
-						if (x.product.promotion.delivery!==true){
-						envio +=400
-						}
-					})
-				:console.log('NO ES UN ARRAY')}
-                {cart.length>0?
-                <div id='ShippingMyCart'>
-                    
-                    <h4 id='ShippingText0'>Datos de Envío:</h4>
-                    <TextField required id="ShippingText1" label="Dirección" variant="outlined" />
-                    <TextField required id="ShippingText2" label="Número"  type='number' variant="outlined" />
-                    <TextField required id="ShippingText3" label="Localidad" variant="outlined" />
-                    <TextField required id="ShippingText4" label="Provincia" variant="outlined" />
+                    {
+                        userId === undefined &&
+                        <div>
+                            <h5>Para usar el carrito es necesario estar registrado</h5>
+                            <h5>Podes <button onClick={openRegister}>Registrarte</button>
+                                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
+                        </div>
+                    }
+
                 </div>
-                :''}
-                {
-                    cart.length>0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
-				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>
-                }
-                {
-                    userId!==undefined && cart.length>0 && <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>
-                }
-				
-			</div>
+                <div id="totalCart">
+                    {
+                        cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                            totalCart += (x.product.price - (x.product.price / 100) * x.product.promotion.value) * x.amount
+
+                        })
+                            : console.log('NO ES UN ARRAY')}{
+                        Array.isArray(cart) ? cart.forEach((x) => {
+                            if (x.product.promotion.delivery !== true) {
+                                envio += 400
+                            }
+                        })
+                            : console.log('NO ES UN ARRAY')}
+                    {cart.length > 0 ?
+                        <div id='ShippingMyCart'>
+
+                            <h4 id='ShippingText0'>Datos de Envío:</h4>
+                            <TextField required value={input.direction} id="ShippingText1" name='direction' onChange={HandleChange} label="Dirección" variant="outlined" />
+                            <TextField required value={input.number} id="ShippingText2" name='number' onChange={HandleChange} label="Número" type='number' variant="outlined" />
+                            <TextField required value={input.localidad} id="ShippingText3" name='localidad' onChange={HandleChange} label="Localidad" variant="outlined" />
+                            <TextField required value={input.provincia} id="ShippingText4" name='provincia' onChange={HandleChange} label="Provincia" variant="outlined" />
+                        </div>
+                        : ''}
+                    {
+                        cart.length > 0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
+                            <h2> TOTAL : ${addCommas(Math.floor(totalCart + envio))}</h2></div>
+                    }
+                    {
+                        userId !== undefined && cart.length > 0 && <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>
+                    }
+
+                </div>
 
             </div>
 
