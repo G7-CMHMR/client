@@ -217,7 +217,7 @@ const Register = () => {
             cookiePolicy={"single_host_origin"}
           /> */}
           <GoogleLogin
-    clientId="1061808976961-odksocf58625j3u4k5ojl0miq81lmr6e.apps.googleusercontent.com"
+    clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
     buttonText="Registrarse con Google"
     onSuccess={onSignIn}
     //onFailure={responseGoogle}
