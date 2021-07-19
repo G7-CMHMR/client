@@ -199,7 +199,7 @@ const Register = () => {
             )}
           /> 
            <GoogleLogin
-            clientId="600113776635-fmca3h5j2861mmvp2l75u6hafbop8dvm.apps.googleusercontent.com"
+            clientId="1026486168246-5tjtf0b9bg2e3862rajlb26mrhsv1893.apps.googleusercontent.com"
             render={(renderProps) => (
                 
               <button

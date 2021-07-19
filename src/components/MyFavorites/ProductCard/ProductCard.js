@@ -14,6 +14,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
+import clientAxios from '../../../config/axios';
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
 
@@ -40,7 +41,7 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     
     function RemoveFavorites(e, productId) {
         console.log({userId, productId})
-        axios.post('http://localhost:3001/favourite/remove', { userId, productId })
+        clientAxios.post('/favourite/remove', { userId, productId })
             .then(response => {
                 dispatch(getFavourites(userId))
             })
