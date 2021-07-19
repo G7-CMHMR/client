@@ -52,8 +52,8 @@ export function attemptRegisterAction (attempt) {
             
             toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
-            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
-            dispatch(attemptRegisterFailed(true))
+            
+            dispatch(attemptRegisterFailed(error.response.data))
         }
     }
 }
@@ -82,15 +82,14 @@ export function attemptLoginAction (attempt) {
         try {
             const { data } = await clientAxios.post('/auth/login', attempt)
             
-            dispatch( attemptLoginSuccess( data.name ))
+            dispatch( attemptLoginSuccess( data))
 
             setToLocalStorage(data.token, data.name);
             
-        } catch (error) {
-
-            console.log('ESTE ES EL ERROR EN EL FRONT CUANDO REGISTER: ',error.response.data)
-            dispatch(attemptLoginFailed(true))
-            alert('Error al conectar con usuario')
+        } catch (error) {            
+            
+            dispatch(attemptLoginFailed(error.response.data.error))
+            
         }
     }
 }
@@ -111,14 +110,14 @@ export function attemptVerifyLogin () {
             const token = localStorage.getItem('token') || '';
             const username = localStorage.getItem('username') || '';
 
-            if (username) dispatch( attemptLoginSuccess( username ))
+            //if (username) dispatch( attemptLoginSuccess( username ))
 
             if (token) {
 
                 const { data } = await clientAxios.get('/auth/renew-token',
                     { headers: {'x-token': token }}
                 )
-                dispatch( attemptLoginSuccess( data.name ))
+                dispatch( attemptLoginSuccess( data ))
                 dispatch( attemptUserData( data ))
                 
                 setToLocalStorage(data.token, data.name);
@@ -173,9 +172,9 @@ const attemptLogin = () => ({
     payload: true
     
 })
-const attemptLoginSuccess = ( username) => ({
+const attemptLoginSuccess = ( userdata) => ({
     type:ATTEMPT_LOGIN_SUCCESS,
-    payload: username
+    payload: userdata
 }) 
 const attemptLoginFailed = (newstate) => ({
     type:ATTEMPT_LOGIN_FAILED,
