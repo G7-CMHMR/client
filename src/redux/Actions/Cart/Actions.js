@@ -42,14 +42,26 @@ export function decrementProductUnit(productId_userId) {
     }
 }
 
-export function checkout(productsCart) {
+export function checkout(productsCart, userId) {
     console.log(productsCart)
     return (dispatch) => {
         axios.post('http://localhost:3001/checkout', productsCart)
             .then(response => {
                 dispatch({ type: CHECKOUT, payload: response.data })
-
                 //window.location.href = (response.data.body.sandbox_init_point)
+                var order = {
+                    id: response.data.body.id,
+                    payment_method: '',
+                    userAdress: '',
+                }
+            })
+        
+        axios.post('http://localhost:3001/purchaseOrder/create')
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
             })
     }
 }
