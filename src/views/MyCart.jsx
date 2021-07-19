@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { TextField } from '@material-ui/core';
 import { useState } from 'react'
+import { toast } from 'react-toastify';
 
 function MyCart() {
     let totalCart = 0
@@ -68,11 +69,11 @@ function MyCart() {
     // MERCADOPAGO TEST 
     //*******************************
     async function mercadoPago() {
-        console.log(`${input.direction}$${input.number}$${input.localidad}$${input.provincia}`)
         if (!input.direction == '' || !input.number == '' || !input.localidad == '' || !input.provincia == '') {
             dispatch(checkout(cart, `${input.direction}$${input.number}$${input.localidad}$${input.provincia}`, userReducer.id))
+        }else{
+            toast.error('Debes completar los datos de envío para continuar con la compra')
         }
-
     }
 
     //MERCADO PAGO TEST END

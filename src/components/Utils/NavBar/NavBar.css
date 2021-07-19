@@ -9,6 +9,8 @@
 #navcontainer>*{
    display: flex;
    flex-direction: row;
+   height: 100%;
+   margin-left: 10rem;
 }
 
 #MenuContainer>*{
@@ -17,4 +19,17 @@
 
 #UserContainer{
     margin-left: 750px;
+}
+
+#CarritoAndFavorito{
+    display: flex;
+}
+
+#UserPanelNavBar{
+    display: flex;
+    margin-left: 47rem;
+}
+
+#UserPanelNavBar>*{
+    margin-left: 1rem;
 }

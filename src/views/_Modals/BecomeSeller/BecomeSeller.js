@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  becomeSellerAction, attemptBecomeSellerAction } from '../../../redux/Actions/User/Actions';
 import '../Modals.css'
+import { toast } from 'react-toastify';
 
 const BecomeSeller = () => {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const BecomeSeller = () => {
         address:null,
         accountBank:null,
         location:null,
-        commission:null
+        commission: 0.1,
     })
     const [error, setError] = React.useState(false);
     const { dni, cuil, phone, address, accountBank, location, //commission 
@@ -32,10 +33,12 @@ const BecomeSeller = () => {
     const onSubmit = e => {
         e.preventDefault()
             setError(false)
-        if( dni < 3 || cuil < 5 || phone.trim() === '' || address.trim() === '' || accountBank > 0 || location.trim() === '') {
-            setError(true)       
+
+        if( dni < 3 || cuil < 5 || phone.trim() === '' || address.trim() === '' || accountBank === '' || location.trim() === '') {
+            setError(true)      
         }
             dispatch(attemptBecomeSellerAction({...input, id: userData.id}))
+            toast.success('¡Ya puedes vender ingresando a tu panel!')
     }
 
     return (
@@ -48,6 +51,7 @@ const BecomeSeller = () => {
             <form
                 onSubmit={onSubmit}
             >
+                <br></br>
                 <div className="containerInputBS">
                     <p
                     className="subtitleName">DNI</p>
@@ -111,17 +115,6 @@ const BecomeSeller = () => {
                         name="location"
                         type="string"
                         placeholder="Ejem: Buenos Aires"
-                        className="inputslogin" 
-                        onChange={onChangeForm}
-                    />
-                </div>
-                <div className="containerInputBS">
-                    <p
-                    className="subtitleName">COMISIÓN</p>
-                    <input 
-                        name="commission"
-                        type="float"
-                        placeholder="xd"
                         className="inputslogin" 
                         onChange={onChangeForm}
                     />

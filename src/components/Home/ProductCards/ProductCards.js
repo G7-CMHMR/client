@@ -30,9 +30,6 @@ import './ProductCards.css'
             }
             </div>
             <div id="cardsbottom">
-                <br></br>
-                <br></br>
-                <br></br>
             </div>
         </div>
     );
