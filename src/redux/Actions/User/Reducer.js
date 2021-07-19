@@ -17,6 +17,7 @@ import {
     ATTEMPT_BECOME_SELLER_FAILED
 
 
+
   } from './ActionsName'
 
   const initialState = {
@@ -100,6 +101,7 @@ export default function userReducer(state = initialState, action){
                 becomeseller: action.payload
             }
         }
+
         case ATTEMPT_BECOME_SELLER_SUCCESS: {
             return{
                 ...state,
@@ -107,6 +109,7 @@ export default function userReducer(state = initialState, action){
                 becomeseller: false
             }
         }
+
         default:
             return state;
     }

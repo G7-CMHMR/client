@@ -76,12 +76,14 @@ function NavBar() {
             }
         </NavDropdown> 
             {userData.isSeller ? 
-        
+
             <Nav.Link href="/Panel">PANEL</Nav.Link>
              : 
             null
              }
+
              {userData.name ? null:<Nav.Link onClick={openLogin}>LOGIN</Nav.Link> }
+
             {userData.name ?
             <NavDropdown title={userData.name} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
