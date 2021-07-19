@@ -9,7 +9,7 @@ import {Button} from 'react-bootstrap'
 import { checkout } from '../redux/Actions/Cart/Actions';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-
+import {TextField} from '@material-ui/core';
 
 function MyCart() {
     let totalCart = 0
@@ -50,7 +50,7 @@ function MyCart() {
     // MERCADOPAGO TEST 
     //*******************************
     async function mercadoPago(){
-    dispatch( checkout (cart) )
+    dispatch( checkout (cart, userReducer.id) )
     }
 
     //MERCADO PAGO TEST END
@@ -96,6 +96,16 @@ function MyCart() {
 						}
 					})
 				:console.log('NO ES UN ARRAY')}
+                {cart.length>0?
+                <div id='ShippingMyCart'>
+                    
+                    <h4 id='ShippingText0'>Datos de Envío:</h4>
+                    <TextField required id="ShippingText1" label="Dirección" variant="outlined" />
+                    <TextField required id="ShippingText2" label="Número"  type='number' variant="outlined" />
+                    <TextField required id="ShippingText3" label="Localidad" variant="outlined" />
+                    <TextField required id="ShippingText4" label="Provincia" variant="outlined" />
+                </div>
+                :''}
                 {
                     cart.length>0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
 				<h2> TOTAL : ${addCommas(Math.floor(totalCart+envio))}</h2></div>

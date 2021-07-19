@@ -65,7 +65,7 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id}) {
              
                 <div id="units">
                 <Button  onClick={(e)=>decrementItem(e,id)} variant="info">-</Button>
-                                <h3>{amount}</h3>
+                                <h3 id='TextAmount'>{amount}</h3>
                 <Button onClick={(e)=>incrementItem(e,id)} variant="info">+</Button>        
                 </div>
                <div>
