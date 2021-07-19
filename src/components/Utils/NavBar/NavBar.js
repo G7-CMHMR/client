@@ -18,21 +18,22 @@ function NavBar() {
     
     const dispatch = useDispatch();
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
-    const username = useSelector((state) => state.userReducer.username);
-    const userReducer = useSelector(state => state.userReducer.userData)
+    
+    const userData = useSelector(state => state.userReducer.userData)
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
 
     const cart = useSelector (state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
-    var userID= userReducer.id
+
+    
 
 
 
     useEffect(() => {
-       // dispatch(getCart(userID))
+        dispatch(getCart(userData.id))
         dispatch(getCategories())
-    }, [dispatch, userID])
+    }, [dispatch, userData])
 
 
     // useEffect(() => {
@@ -74,17 +75,21 @@ function NavBar() {
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 
-            {username ? 
+            {userData.isSeller ? 
+
             <Nav.Link href="/Panel">PANEL</Nav.Link>
              : 
-            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
+            null
              }
-            {username ?
-            <NavDropdown title={username} id="basic-nav-dropdown">
+
+             {userData.name ? null:<Nav.Link onClick={openLogin}>LOGIN</Nav.Link> }
+
+            {userData.name ?
+            <NavDropdown title={userData.name} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
          <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
-         <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>
+         {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :

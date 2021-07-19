@@ -10,9 +10,12 @@ import {
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
     ATTEMPT_UPDATE_SUCCESS,
-    ATTEMPT_UPDATE_FAILED,
-    USER_DATA,
-    BECOME_SELLER
+    ATTEMPT_UPDATE_FAILED,    
+    BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER_SUCCESS,
+    ATTEMPT_BECOME_SELLER_FAILED
+
 
 
   } from './ActionsName'
@@ -23,9 +26,8 @@ import {
       becomeseller: false,
       loading: false,
       attempt: null,
-      error: null,
-      username: null,
-      userData: [],
+      error: null,      
+      userData: {}
 
   }
 
@@ -46,6 +48,7 @@ export default function userReducer(state = initialState, action){
                 error: null
             }
         }
+        case ATTEMPT_BECOME_SELLER:
         case ATTEMPT_REGISTER:
         case ATTEMPT_LOGIN: {
             return {
@@ -57,13 +60,7 @@ export default function userReducer(state = initialState, action){
         }
         case ATTEMPT_REGISTER_SUCCESS:{
             return {
-                ...state,
-                loading: false,
-                attempt: null,
-                username: null,
-                loginwindow: false,
-                registerwindow: false,
-                error: null
+                ...initialState
             }
         }
         case ATTEMPT_LOGIN_SUCCESS: {
@@ -71,48 +68,31 @@ export default function userReducer(state = initialState, action){
                 ...state,
                 loading: false,
                 attempt: null,
-                username: action.payload,
+                userData: action.payload,
                 loginwindow: false,
                 registerwindow: false,
                 error: null
             }
         }
+        case ATTEMPT_BECOME_SELLER_FAILED:
+        case ATTEMPT_UPDATE_FAILED:
         case ATTEMPT_REGISTER_FAILED:
         case ATTEMPT_LOGIN_FAILED: {
             return {
                 ...state,
                 loading: false,
                 error: action.payload
-
             }
         }
-
         case ATTEMPT_LOGOUT: {
             return {
-                ...state,
-                loginwindow: false,
-                registerwindow: false,
-                loading: false,
-                attempt: null,
-                error: null,
-                username: null
+                ...initialState
             }
         }
-
-
-        case ATTEMPT_UPDATE_FAILED: {
-            return {
-                ...state,
-
-                error: action.payload
-            }
-        }
-
         case ATTEMPT_UPDATE_SUCCESS: {
             return {
                 ...state,
-                username: action.payload
-
+                userData: action.payload
             }
         }
         case BECOME_SELLER: {
@@ -122,17 +102,11 @@ export default function userReducer(state = initialState, action){
             }
         }
 
-        case USER_DATA: {
-            return {
+        case ATTEMPT_BECOME_SELLER_SUCCESS: {
+            return{
                 ...state,
-                userData: action.payload
-            }
-        }
-
-        case USER_DATA: {
-            return {
-                ...state,
-                userData: action.payload
+                userData: action.payload,
+                becomeseller: false
             }
         }
 

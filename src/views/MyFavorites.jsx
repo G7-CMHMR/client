@@ -24,7 +24,6 @@ function MyFavorites() {
         dispatch(getFavourites(userReducer.id))
     }, [userReducer.id])
         
-    
 
     return (
     
