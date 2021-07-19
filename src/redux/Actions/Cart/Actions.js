@@ -13,12 +13,16 @@ export function getCart(userID) {
 }
 
 export function addProductToCart(productId_userId) {
+    console.log(productId_userId)
     return (dispatch) => {
 
         axios.post('http://localhost:3001/cart/add', productId_userId)
             .then(response => {
-                dispatch({ type: ADD_PRODUCT_CART, payload: response.data })
-
+                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                    .then(response => {
+                        dispatch({ type: GET_CART, payload: response.data })
+                        
+                    })
             })
     }
 }
@@ -26,8 +30,11 @@ export function removeProductFromCart(productId_userId) {
     return (dispatch) => {
         axios.post('http://localhost:3001/cart/remove', productId_userId)
             .then(response => {
-                dispatch({ type: REMOVE_PRODUCT_CART, payload: response.data })
+                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                    .then(response => {
+                        dispatch({ type: GET_CART, payload: response.data })
 
+                    })
             })
     }
 }
@@ -36,8 +43,11 @@ export function decrementProductUnit(productId_userId) {
     return (dispatch) => {
         axios.post('http://localhost:3001/cart/decrement', productId_userId)
             .then(response => {
-                dispatch({ type: DECREMENT_PRODUCT_UNIT, payload: response.data })
+                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                    .then(response => {
+                        dispatch({ type: GET_CART, payload: response.data })
 
+                    })
             })
     }
 }
@@ -53,7 +63,7 @@ export function checkout(productsCart, direction, userId) {
                     userId: userId,
                     id: response.data.body.id,
                     payment_method: null,
-                    userAdress: direction,
+                    userAddress: direction,
                 }
                 axios.post('http://localhost:3001/purchaseOrder/create', orderUser)
                     .then(response => {

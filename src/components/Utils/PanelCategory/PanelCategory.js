@@ -40,7 +40,7 @@ export default function PanelCategory({ input, setInput }) {
         
         setInput({
             ...input,
-            [name]: [event.target.value],
+            [name]: event.target.value,
         });
     };
 
@@ -51,12 +51,12 @@ export default function PanelCategory({ input, setInput }) {
                 <InputLabel htmlFor="outlined-age-native-simple">Categoria</InputLabel>
                 <Select
                     native
-                    value={input.categories}
+                    value={input.category}
                     onChange={handleChange}
                     label="Categoria"
-                    name='categories'
+                    name='category'
                     inputProps={{
-                        name: 'categories',
+                        name: 'category',
                         id: 'outlined-age-native-simple',
                     }}
                 >

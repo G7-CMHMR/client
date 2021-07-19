@@ -17,12 +17,13 @@ function MyFavorites() {
 
     
     const userReducer = useSelector(state => state.userReducer.userData)
-    const dispatch = useDispatch();
-    //var userID = userReducer.id
     const favourites = useSelector(state => state.favouritesReducer.favourites)
+    const dispatch = useDispatch();
+
     useEffect(() => {
-      dispatch(getFavourites(userReducer.id))
-    }, [ dispatch, userReducer])
+        dispatch(getFavourites(userReducer.id))
+    }, [userReducer.id])
+        
 
     return (
     

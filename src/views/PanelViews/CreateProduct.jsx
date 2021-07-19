@@ -16,6 +16,7 @@ import PanelGral from '../../components/Utils/PanelGral/PanelGral';
 import PanelInput from '../../components/Utils/PanelInput/PanelInput';
 import PanelCategory from '../../components/Utils/PanelCategory/PanelCategory';
 import { isElementOfType } from 'react-dom/test-utils';
+import { useSelector } from 'react-redux';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -62,24 +63,25 @@ export default function FullWidthTabs() {
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 
-    const userReducer = (state => state.userReducer.userData)
+    
+    const userReducer = useSelector(state => state.userReducer.userData)
 
     const [input, setInput] = React.useState({
         name: '',
         status: '',
         price: '',
-        valuation: '',
-        type: 'PC de Escritorio',
         stock: '',
-        brand: '',
         description: '',
-        seller: userReducer.id,
-        images: [],
-        categories: ['PC'],
-        discount: '',
-        delivery: '',
+        visible: false,
+        brand: '',
+        type: 'PC de Escritorio',
         warranty: '',
-        sold: '',
+        delivery: '',
+        title: '',
+        images: '',
+        discount: '',
+        userId: userReducer.id,
+        category: 'PC',
     })
 
 
@@ -90,7 +92,7 @@ export default function FullWidthTabs() {
             setInput({
                 ...input,
                 'type' : 'PC de Escritorio',
-                'categories' : ['PC'],
+                'category' : 'PC',
             })
         }
     };

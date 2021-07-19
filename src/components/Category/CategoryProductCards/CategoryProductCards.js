@@ -19,7 +19,6 @@ function CategoryProductCards() {
     
 
     useEffect(() => {
-        dispatch(getFavourites(userID))
         dispatch(getProducts(nombreProducto))
         dispatch(getProductsOfCategory(categoryName))
 	}, [dispatch, categoryName, nombreProducto, userID]) 

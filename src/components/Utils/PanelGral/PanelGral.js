@@ -1,7 +1,7 @@
 import React from 'react'
 import './PanelGral.css'
 import { TextField, Switch } from '@material-ui/core'
-
+import {useDispatch} from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import {Button} from 'react-bootstrap'
+import { createProductAction } from '../../../redux/Actions/Seller/Actions';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -23,31 +24,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function PanelGral() {
-    const classes = useStyles();
+export default function PanelGral ({input, setInput}) {
+    const dispatch = useDispatch()
 
-    const [state, setState] = React.useState({
-        Condition: '',
-        CheckShipping: true,
-        name: 'hai',
-        amount: '',
-    });
-
-    const handleChange = (event) => {
-        if (event.target.name == 'CheckShipping') {
-            setState({
-                ...state,
+    function handleChange (event){
+        if (event.target.name == 'delivery') {
+            setInput({
+                ...input,
                 [event.target.name]: event.target.checked
             });
-            console.log(event.target.checked)
 
         } else {
-            setState({
-                ...state,
+            setInput({
+                ...input,
                 [event.target.name]: event.target.value,
             });
         }
     }
+
+    function createProduct (e) {
+        console.log(input)
+        e.preventDefault()
+        dispatch(createProductAction(input))
+    }
+
 
 
     return (
@@ -59,29 +59,30 @@ export default function PanelGral() {
                             <InputLabel htmlFor="outlined-age-native-simple">Condicion</InputLabel>
                             <Select
                                 native
-                                value={state.age}
+                                value={input.status}
                                 onChange={handleChange}
                                 label="Condition"
+                                name='status'
                                 inputProps={{
-                                    name: 'Condition',
+                                    name: 'status',
                                     id: 'outlined-age-native-simple',
                                 }}
                             >
                                 <option aria-label="None" disabled value="" />
-                                <option value={10}>Nuevo</option>
-                                <option value={20}>Usado</option>
-                                <option value={30}>Reacondicionado</option>
+                                <option value={'Nuevo'}>Nuevo</option>
+                                <option value={'Usado'}>Usado</option>
+                                <option value={'Reacondicionado'}>Reacondicionado</option>
                             </Select>
-                            <div id="StockPanelGral"><TextField id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
+                            <div id="StockPanelGral"><TextField name='stock' onChange={handleChange} value={input.stock} id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
                         </div>
                         <div id='Warranty'>
-                            <TextField id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
+                            <TextField name='warranty' value={input.warranty} onChange={handleChange} id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
                             <FormControl variant="outlined">
                                 <InputLabel variant='outlined' htmlFor="outlined-adornment-amount">Precio</InputLabel>
                                 <OutlinedInput
                                     id='PanelGralPrice'
-                                    value={state.amount}
-                                    name='amount'
+                                    value={input.price}
+                                    name='price'
                                     onChange={handleChange}
                                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                 />
@@ -92,16 +93,16 @@ export default function PanelGral() {
                 <div id='FreeShiping'>
                     <h4>Envio Gratis:</h4>
                     <Switch
-                        checked={state.CheckShipping}
+                        checked={input.delivery}
                         onChange={handleChange}
                         color="primary"
-                        name="CheckShipping"
+                        name="delivery"
                         inputProps={{ 'aria-label': 'primary checkbox' }}
                     />
                 </div>
 
                 <div id='PanelGralSearchImages'>
-                    <TextField id="PanelGralFiles" type='file' multiple='multiple' label="" variant="outlined" />
+                    <input name='images' value={input.images} onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
                 </div>
                 <div id='PanelGral-Description-Data'>
                     <TextField
@@ -110,23 +111,28 @@ export default function PanelGral() {
                         multiline
                         rows={10}
                         variant="outlined"
+                        name='description'
+                        value={input.description}
+                        onChange={handleChange}
                     />
 
                     <div id='PanelGralOthers'>
+                        {console.log(input.price)}
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Comision:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`-$${input.price*0.05}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Envio:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery?'-$400':'0'}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Ganancia:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" defaultValue="" variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`$${(input.price - input.price*0.05) - (input.delivery?400:0)}`} variant="outlined" />
                         </div>
                     </div>
-                </div><Button id='CreateProduct' variant="info">CREAR PRODUCTO</Button>{' '}
+                </div>
+                <Button id='CreateProduct' onClick={(e) => createProduct(e)} variant="info">CREAR PRODUCTO</Button>
             </FormControl>
         </div>
     )
