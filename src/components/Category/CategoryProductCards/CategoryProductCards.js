@@ -19,9 +19,10 @@ function CategoryProductCards() {
     
 
     useEffect(() => {
-        dispatch(getProducts(nombreProducto))
-        dispatch(getProductsOfCategory(categoryName))
-	}, [dispatch, categoryName, nombreProducto, userID]) 
+        if(nombreProducto)dispatch(getProducts(nombreProducto))
+        if(categoryName)dispatch(getProductsOfCategory(categoryName))
+        
+	}, [/* dispatch, categoryName, nombreProducto, userID */]) 
 
 
 

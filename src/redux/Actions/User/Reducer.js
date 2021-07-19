@@ -27,8 +27,7 @@ import {
       loading: false,
       attempt: null,
       error: null,      
-      userData: {}
-
+      userData: {},
   }
 
 export default function userReducer(state = initialState, action){

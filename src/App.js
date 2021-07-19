@@ -49,7 +49,7 @@ function App() {
   const stateLogin = useSelector((state) => state.userReducer.loginwindow);
   const stateRegister = useSelector((state) => state.userReducer.registerwindow);
   const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
-
+  //const userData = useSelector((state) => state.userReducer.userData)
   const success = useSelector((state) => state.cartReducer.success)
 
   return (
@@ -75,7 +75,7 @@ function App() {
       <Route exact path='/Carrito' component={MyCart} />
 
       <Route path="/Success" component={Success}/>
-      <Route path="/Success" component={Success}/>
+      {/* <Route path="/Success" component={Success}/> */}
 
       <Route exact path='/Panel' component={Panel} />
       <Route exact path='/Panel/Publicaciones' component={Publications} />

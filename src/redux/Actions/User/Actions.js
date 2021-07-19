@@ -9,7 +9,7 @@ import {
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
-    USER_DATA,
+    
     BECOME_SELLER,
     ATTEMPT_BECOME_SELLER,
     ATTEMPT_BECOME_SELLER_SUCCESS,
@@ -50,7 +50,7 @@ export function attemptRegisterAction (attempt) {
             const { data } = await clientAxios.post('/auth/create', attempt)
             console.log(data)
             
-            dispatch(attemptRegisterSuccess(attempt.name))
+            dispatch(attemptRegisterSuccess())
             
             toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
@@ -63,9 +63,9 @@ const attemptRegister = () => ({
     type:ATTEMPT_REGISTER,
     payload:true
 })
-const attemptRegisterSuccess = (attempt) => ({
-    type:ATTEMPT_REGISTER_SUCCESS,
-    payload:attempt
+const attemptRegisterSuccess = () => ({
+    type:ATTEMPT_REGISTER_SUCCESS
+    
 })
 const attemptRegisterFailed = (newstate) => ({
     type:ATTEMPT_REGISTER_FAILED,
@@ -84,7 +84,7 @@ export function attemptLoginAction (attempt) {
         try {
             const { data } = await clientAxios.post('/auth/login', attempt)
             
-            dispatch( attemptLoginSuccess( data))
+            dispatch( attemptLoginSuccess( data ))
 
             setToLocalStorage(data.token, data.name);
             
@@ -96,11 +96,11 @@ export function attemptLoginAction (attempt) {
     }
 }
 
-export function attemptLoginGoogle(name, token) {
+export function attemptLoginGoogle(data) {
     return (dispatch) => {
-        dispatch( attemptLoginSuccess(name));
+        dispatch( attemptLoginSuccess(data));
 
-        setToLocalStorage(token, name);
+        setToLocalStorage(data.token, data.name);
     }
 }
 
@@ -110,7 +110,7 @@ export function attemptVerifyLogin () {
 
         try {
             const token = localStorage.getItem('token') || '';
-            const username = localStorage.getItem('username') || '';
+            //const username = localStorage.getItem('username') || '';
 
             //if (username) dispatch( attemptLoginSuccess( username ))
 
@@ -119,8 +119,9 @@ export function attemptVerifyLogin () {
                 const { data } = await clientAxios.get('/auth/renew-token',
                     { headers: {'x-token': token }}
                 )
+                
                 dispatch( attemptLoginSuccess( data ))
-                dispatch( attemptUserData( data ))
+                /* dispatch( attemptUserData( data )) */
                 
                 setToLocalStorage(data.token, data.name);
             }
@@ -187,11 +188,11 @@ const attemptLogout = () => ({
     type:ATTEMPT_LOGOUT
 })
 
-const attemptUserData = (data) => ({
+/* const attemptUserData = (data) => ({
     type: USER_DATA,
     payload: data
 })
-
+ */
 export function becomeSellerAction(opposite){
     return (dispatch) => {
         dispatch(becomeSeller(opposite))

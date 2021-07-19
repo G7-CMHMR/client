@@ -78,8 +78,8 @@ const Login = () => {
         const googleToken = { id_token }
         
         const { data } = await clientAxios.post('/auth/google', googleToken);
-        
-        dispatch(attemptLoginGoogle(data.name, data.token))
+                
+        dispatch(attemptLoginGoogle(data))
 
     }
  
