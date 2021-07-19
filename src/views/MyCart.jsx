@@ -84,6 +84,7 @@ function MyCart() {
             <div id='ContentDetail'>
                 <h1>Carrito de compras🛒</h1>
                 <br></br>
+
                 {console.log(cart)}
                 <div className="secondContainer">
                     {cart.length > 0 && cart[0].amount && cart[0].product ? cart.map((x) => {
