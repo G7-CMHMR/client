@@ -76,10 +76,10 @@ export default function FullWidthTabs() {
         brand: '',
         type: 'PC de Escritorio',
         warranty: '',
-        delivery: '',
+        delivery: false,
         title: '',
-        images: '',
-        discount: '',
+        images: ['https://economipedia.com/wp-content/uploads/Tipos-de-hardware.png'],
+        discount: 0,
         userId: userReducer.id,
         category: 'PC',
     })
