@@ -94,11 +94,11 @@ export default function PanelMenu() {
         <h4>Vas a poder controlar todo lo relacionado con tus ventas y productos</h4><br></br>
         <div>
          
-            <h5>PUBLICACIONES: blablabla</h5>
-            <h5>PRODUCTOS: Moficicar blablalba</h5>
-            <h5>CREAR PRODUCTO: Crear componente o Pc para publicarla</h5 >
-            <h5>VENTAS: Ver en detalle tus ventas realizadas </h5>
-            <h5>PREGUNTAS: </h5>
+            <h5>PUBLICACIONES</h5>
+            <h5>PRODUCTOS</h5>
+            <h5>CREAR PRODUCTO</h5 >
+            <h5>VENTAS</h5>
+            <h5>PREGUNTAS</h5>
           
         </div>
       </TabPanel>
