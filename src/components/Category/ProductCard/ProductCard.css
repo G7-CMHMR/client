@@ -1,9 +1,9 @@
 #ProductCard{
     background-color: white;
-    width: 722px;
+    width: 50rem;
     margin-top: 14px;
     border-radius: 14px;
-    margin-right: 34px;
+    margin-right: 5rem;
 }
     #container{
         display: flex;
