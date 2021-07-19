@@ -75,18 +75,19 @@ function NavBar() {
              ))//<Link to={`/categorias/${element}`}>
             }
         </NavDropdown> 
-            {userData.name ? 
+            {userData.isSeller ? 
         
             <Nav.Link href="/Panel">PANEL</Nav.Link>
              : 
-            <Nav.Link onClick={openLogin}>LOGIN</Nav.Link> 
+            null
              }
+             {userData.name ? null:<Nav.Link onClick={openLogin}>LOGIN</Nav.Link> }
             {userData.name ?
             <NavDropdown title={userData.name} id="basic-nav-dropdown">
          <NavDropdown.Item href="Perfil">MI CUENTA </NavDropdown.Item>
          <NavDropdown.Item href={`/Favoritos/`}>MIS FAVORITOS </NavDropdown.Item>
          <NavDropdown.Item href="Compras">HISTORIAL DE COMPRAS </NavDropdown.Item>
-         <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>
+         {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
          <NavDropdown.Item  onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
         </NavDropdown>
         :

@@ -11,7 +11,10 @@ import {
     ATTEMPT_LOGOUT,
     ATTEMPT_UPDATE_SUCCESS,
     ATTEMPT_UPDATE_FAILED,    
-    BECOME_SELLER
+    BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER,
+    ATTEMPT_BECOME_SELLER_SUCCESS,
+    ATTEMPT_BECOME_SELLER_FAILED
 
 
   } from './ActionsName'
@@ -44,6 +47,7 @@ export default function userReducer(state = initialState, action){
                 error: null
             }
         }
+        case ATTEMPT_BECOME_SELLER:
         case ATTEMPT_REGISTER:
         case ATTEMPT_LOGIN: {
             return {
@@ -69,6 +73,7 @@ export default function userReducer(state = initialState, action){
                 error: null
             }
         }
+        case ATTEMPT_BECOME_SELLER_FAILED:
         case ATTEMPT_UPDATE_FAILED:
         case ATTEMPT_REGISTER_FAILED:
         case ATTEMPT_LOGIN_FAILED: {
@@ -93,6 +98,13 @@ export default function userReducer(state = initialState, action){
             return {
                 ...state,
                 becomeseller: action.payload
+            }
+        }
+        case ATTEMPT_BECOME_SELLER_SUCCESS: {
+            return{
+                ...state,
+                userData: action.payload,
+                becomeseller: false
             }
         }
         default:
