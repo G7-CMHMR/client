@@ -62,6 +62,7 @@ export function checkout(productsCart, userId) {
             })
             .catch(error => {
                 console.log(error)
+
             })
     }
 }

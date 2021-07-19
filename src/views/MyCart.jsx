@@ -67,7 +67,7 @@ function MyCart() {
 				{cart.length>0 && cart[0].amount && cart[0].product? cart.map((x)=>{
 				return ( 
                 <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images?x.product.images:''} 
-                amount={x.amount} delivery={x.product.delivery} price={x.product.price}
+                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
                 discount={x.product.promotion.value} 
                 status={x.product.status} id={x.product.id} />
                 )			
@@ -91,7 +91,7 @@ function MyCart() {
 					})
 				:console.log('NO ES UN ARRAY')}{
 					Array.isArray(cart)? cart.forEach((x)=>{
-						if (x.delivery!==true){
+						if (x.product.promotion.delivery!==true){
 						envio +=400
 						}
 					})
