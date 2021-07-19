@@ -30,7 +30,7 @@ function NavBar() {
 
 
     useEffect(() => {
-        dispatch(getCart(userID))
+       // dispatch(getCart(userID))
         dispatch(getCategories())
     }, [dispatch, userID])
 
@@ -99,8 +99,7 @@ function NavBar() {
         </Nav>
         <Nav.Link href={`/Carrito/`}>
         <Badge badgeContent={
-            cart.length && cart[0].amount && cart[0].product ? cart.length :
-            dispatch(getCart(userID))
+           cart.length 
             } color="error">
             <IoCartSharp/>
             </Badge>

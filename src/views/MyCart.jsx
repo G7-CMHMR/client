@@ -113,7 +113,7 @@ function MyCart() {
 
                         })
                             : console.log('NO ES UN ARRAY')}{
-                        Array.isArray(cart) ? cart.forEach((x) => {
+                            cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
                             if (x.product.promotion.delivery !== true) {
                                 envio += 400
                             }
