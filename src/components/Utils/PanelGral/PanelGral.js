@@ -102,7 +102,7 @@ export default function PanelGral ({input, setInput}) {
                 </div>
 
                 <div id='PanelGralSearchImages'>
-                    <input name='images' value={input.images} onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
+                    <input name='images'  onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
                 </div>
                 <div id='PanelGral-Description-Data'>
                     <TextField
