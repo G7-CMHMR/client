@@ -8,24 +8,10 @@ import { Link } from 'react-router-dom';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import { ContactSupportOutlined } from '@material-ui/icons';
-
 
 
 
 function CategoryFilters(props) {
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            '& > *': {
-                margin: theme.spacing(0.5),
-            },
-        },
-    }));
-    const classes = useStyles();
-
     const handleDeleteType = () => {
         setVisible({
             ...visible,
@@ -35,7 +21,7 @@ function CategoryFilters(props) {
             ...input,
             'type': '',
         })
-        if(nombreProducto || offer){getProductsOfAPI()}
+        
     }
     const handleDeleteCondition = () => {
         setVisible({
@@ -46,7 +32,7 @@ function CategoryFilters(props) {
             ...input,
             'status': '',
         })
-        if(nombreProducto || offer){getProductsOfAPI()}
+        
     }
     const handleDeleteShipping = () => {
         setVisible({
@@ -57,7 +43,7 @@ function CategoryFilters(props) {
             ...input,
             'delivery': '',
         })
-        if(nombreProducto || offer){getProductsOfAPI()}
+        
     }
     const handleDeleteBrand = () => {
         setVisible({
@@ -68,13 +54,9 @@ function CategoryFilters(props) {
             ...input,
             'brand': '',
         })
-        if(nombreProducto || offer){getProductsOfAPI()}
+        
     }
 
-    function getProductsOfAPI(){
-        if(nombreProducto){dispatch(getProducts(nombreProducto))}
-        if(offer){dispatch(getProductsOffer())}
-    }
     const { categoryName } = useParams()
     const { nombreProducto } = useParams()
     let offer = false;
@@ -84,10 +66,6 @@ function CategoryFilters(props) {
     const userReducer = useSelector(state => state.userReducer)
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getProductsOfCategory(categoryName))
-    // }, [dispatch, categoryName])
-
     const [loading, setLoading] = useState(false)
     const [visible, setVisible] = useState({
         type: false,
@@ -95,6 +73,7 @@ function CategoryFilters(props) {
         status: false,
         brand: false
     })
+
     const [input, setInput] = useState({
         categoryName: categoryName,
         type: '',
@@ -126,37 +105,13 @@ function CategoryFilters(props) {
         })
     }
 
-    let filtros = {
-        type: '',
-        brand: '',
-        delivery: '',
-        status: '',
-    }
-
-
-    function FiltrarProductos() {
-        let productos = productsReducer.products
-        console.log(productos)
-        productos = productos.filter((e) => {
-            for (let key in filtros) {
-                let retorna;
-                input[key] != ''? e[key].toString() == input[key].toString()? console.log(''): retorna=true : console.log('')
-                if (retorna){return false}
-                if(input.MinPrice){if(e.price > input.MinPrice){}else{return false}}
-                if(input.MaxPrice){if(e.price < input.MaxPrice){}else{return false}}
-            }
-            return true
-        })
-        console.log(productos)
-        dispatch(setProductsFilter(productos))
-    }
-
     useEffect(() => {
         if (categoryName) {
             dispatch(getProductsFilter(input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice))
         }
         if (nombreProducto || offer) {
-            FiltrarProductos()
+            if(nombreProducto){dispatch(getProducts(nombreProducto, input))}
+            if(offer){dispatch(getProductsOffer(input))}
         }
     }, [dispatch, input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice])
 

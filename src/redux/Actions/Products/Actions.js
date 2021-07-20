@@ -64,13 +64,12 @@ export function sort(order, array){
     }
 }
 
-export function getProductsOffer() {
+export function getProductsOffer(input) {
     return (dispatch) => {
 
         clientAxios.get(`/products/offer`)
             .then(response => {
-                //GET_PRODUCTS_OFFER
-                dispatch({ type: GET_PRODUCTS, payload: response.data })
+                filtrarProductos(response.data, input, dispatch)
             })
     }
 }
@@ -116,11 +115,11 @@ export function getProductsFilter(categoryName='', type='', shipping='', conditi
     }
 }
 
-export function getProducts(search) {
+export function getProducts(search, input) {
     return (dispatch) => {
         clientAxios.get(`/Search/${search}`)
             .then(response => {
-                dispatch({ type: GET_PRODUCTS, payload: response.data })
+                filtrarProductos(response.data, input, dispatch)
             })
     }
 }
@@ -135,9 +134,27 @@ export function setProductsFilter(productos) {
 
 
 
+function filtrarProductos(productos, input, dispatch){
+    let filtros = {
+        type: '',
+        brand: '',
+        delivery: '',
+        status: '',
+    }
 
-
-
-
+    if(input){
+        productos = productos.filter((e) => {
+            for (let key in filtros) {
+                let retorna;
+                input[key] != ''? e[key].toString() == input[key].toString()? console.log(''): retorna=true : console.log('')
+                if (retorna){return false}
+                if(input.MinPrice){if(e.price > input.MinPrice){}else{return false}}
+                if(input.MaxPrice){if(e.price < input.MaxPrice){}else{return false}}
+            }
+            return true
+        })
+    }
+        dispatch({ type: GET_PRODUCTS, payload: productos })
+}
 
 
