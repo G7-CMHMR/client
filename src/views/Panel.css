@@ -1,14 +1,20 @@
 .PanelContainerPanel{
     min-height: 747px;
-    max-height: 747px;
+    height: auto;
     width: 100%;
     display: flex;
+    
+
 }
 
+.makeStyles-root-1{
+    height: auto;
+}
 
 #PanelContentDetail{
     width: 80%;
+    height: auto;
     display: flex;
-    height: 747px;
+    
 }
 
