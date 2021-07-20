@@ -7,6 +7,7 @@ import { TabContext } from '@material-ui/lab'
 import { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 
+import { confirmAccount } from '../redux/Actions/User/Actions'
 import { getAllProducts, getProductsOffer } from '../redux/Actions/Products/Actions'
 import { useParams } from 'react-router-dom'
 import clientAxios from '../config/axios'
@@ -21,7 +22,8 @@ function Home(props) {
 
   useEffect(() => {
     if (emailToken) {
-      clientAxios.get(`/auth/confirm-account/${emailToken}`);
+      dispatch(confirmAccount(emailToken));
+      // clientAxios.get(`/auth/confirm-account/${emailToken}`);
       props.history.replace('/');
       toast.success('La cuenta fue confirmada con éxito');
     }
