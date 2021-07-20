@@ -4,17 +4,17 @@ import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 import MyPublicationCard from '../../components/Utils/MyPublicationCard/MyPublicationCard'
-import {seller_getAllProductsVisible} from '../../redux/Actions/Seller/Actions'
+import {seller_getAllProducts} from '../../redux/Actions/Seller/Actions'
 
 
 function Publications() {
     const userReducer = useSelector(state => state.userReducer.userData)
-    const sellerReducer = useSelector(state => state.sellerReducer.Products)
+    const sellerReducer = useSelector(state => state.sellerReducer.Products_Visible)
     const dispatch = useDispatch();
     var userId = userReducer.id
 
     useEffect(() => {
-        dispatch(seller_getAllProductsVisible(userId, true))
+        dispatch(seller_getAllProducts(userId, true))
       }, [ dispatch])
 
 

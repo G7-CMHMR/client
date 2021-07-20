@@ -1,9 +1,12 @@
 #MyProductCard{
     background-color: white;
-    width: 95%;
-    margin-top: 14px;
+    width: 55rem;
     border-radius: 14px;
-    margin-right: 34px;
+    align-items: center;
+    display: flex;
+}
+#MyProductCardsContainerGral{
+    height: 10rem;
 }
 
     #MyProductCardContainer{
@@ -14,17 +17,17 @@
         width: 100%;
         height: auto;
          justify-content: space-evenly;
+         margin-bottom: 10rem;
         
     }
     
-    .MyProduct-details {
+    .MyProduct-details0 {
         font-size: 14px;
         position: relative;
         text-align: left;
         padding: 20px;
         height: 100%;
         float: left;
-        width: auto;
         }
         
         
@@ -56,8 +59,8 @@
             color: gray;
             margin: 3%;
         }
-        #link{
-            width: 39%;
+        #link0{
+            width: 15rem;
         }
 
         #MyProductImage{
@@ -68,8 +71,116 @@
         #MyProductButtons{
             display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-end;
+    justify-content: space-evenly;
+            align-content: flex-end;
+            margin-right: 1rem;
         }
         
+        #ModalContainerProducts{
+           display: absolute;
+        }
+        #EstadoH5_0{
+            color: grey;
+            margin-right: 0.5rem;
+        }
+        #EstadoH5{
+            color: red;
+        }
+        #ProductStateDiv{
+            display:flex;
+        }
+
+
+
+
+        #ProductInfoContainerForm{
+            display: flex;
+            flex-direction: row;
+            
+        }
+
+
+        #WarrantyTextField0{
+            background-color: green;
+            width: 8rem;
+        }
+        #StockTextField{
+            width: 4rem;
+        }
+        #DiscountTextField{
+            width: 8rem;
+        }
+
+
+
+#MoldalContainer2{
+    height: 40rem;
+    width: 65rem;
+}
+#Form1_Container{
+    display: flex;
     
+}
+    #Form1_Left{
+        padding: 0.5rem;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    }   
+        #Form1_Name{
+        }
+        #Form1_NameAndX{
+            display: flex;
+            justify-content: space-between;
+
+        }
+        #Form1_ImageAndInputs{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 0.5rem;
+        }
+            #Form1_ImageAndInputs_1{
+                margin-right: 0.5rem;
+                margin-top: 0.5rem;
+
+            }
+                #Form1_Image{
+                    width: 15rem;
+                }
+
+            #Form1_ImageAndInputs_2{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width:  17rem;
+            }
+                #Form1_Category{
+                    width: 14rem;
+                }
+
+
+        #Form1_Description{
+            width: 15rem;
+            height: 10rem;
+            justify-items: left;
+            align-content: flex-start;
+        }
+        #Form1_LoadImage{
+            margin-top: 1rem;
+            margin-left: 4rem;
+        }
+
+
+    #Form1_Right{
+        padding: 0.5rem;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+#Form1_BotonGuardarCambios{
+    margin-top: -0.2rem;
+    margin-left: 41rem;
+}

@@ -3,6 +3,8 @@ import { POST_PRODUCT, GET_PRODUCTS_VISIBLE, GET_PRODUCTS_NOVISIBLE } from './Ac
 
 const initialState = {
     Products:[],
+    Products_Visible: [],
+    Products_NoVisible: [],
 
 }
 
@@ -18,13 +20,13 @@ function sellerReducer(state = initialState, action) {
         case GET_PRODUCTS_VISIBLE: {
             return {
                 ...state,
-                Products: action.payload
+                Products_Visible: action.payload
             }
         }
         case GET_PRODUCTS_NOVISIBLE: {
             return {
                 ...state,
-                Products: action.payload
+                Products_NoVisible: action.payload
             }
         }
         default: return state;
