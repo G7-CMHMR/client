@@ -13,22 +13,16 @@ export function createProductAction(product) {
     }
 }
 
-export function seller_getAllProductsVisible(userId, visible) {
+export function seller_getAllProducts(userId, visible) {
     return (dispatch) => {
 
         clientAxios.get(`/products/seller/${userId}/${visible}`)
             .then(response => {
-                dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
-            })
-    }
-}
-
-export function seller_getAllProductsNoVisible(userId) {
-    return (dispatch) => {
-
-        clientAxios.get('/products/seller/')
-            .then(response => {
-                dispatch({ type: GET_PRODUCTS_NOVISIBLE, payload: response.data })
+                if (visible) {
+                    dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
+                }else{
+                    dispatch({ type: GET_PRODUCTS_NOVISIBLE, payload: response.data })
+                }
             })
     }
 }
