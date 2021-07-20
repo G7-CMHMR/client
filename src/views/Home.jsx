@@ -7,7 +7,7 @@ import { TabContext } from '@material-ui/lab'
 import { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 
-import { getAllProducts, getProductsOffer } from '../redux/Actions/Products/Actions'
+import { getAllProducts, getProductsOfferInHome } from '../redux/Actions/Products/Actions'
 import { useParams } from 'react-router-dom'
 import clientAxios from '../config/axios'
 import { toast } from 'react-toastify'
@@ -29,7 +29,7 @@ function Home(props) {
 
   useEffect(() => {
     dispatch(getAllProducts())
-    dispatch(getProductsOffer())
+    dispatch(getProductsOfferInHome())
   }, [dispatch])
 
 
@@ -41,6 +41,7 @@ function Home(props) {
         <QuizAndBuild></QuizAndBuild>
         <Carousel></Carousel>
         <br></br>
+        <ProductCards products={productsReducer.productsOffer} title={"Según tu interés TODO"}></ProductCards>
         <ProductCards products={productsReducer.productsOffer} title={"Ofertas"}></ProductCards>
         <ProductCards products={productsReducer.products} title={"Destacados"}></ProductCards>
       </div>

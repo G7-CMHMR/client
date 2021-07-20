@@ -69,10 +69,23 @@ export function getProductsOffer() {
 
         clientAxios.get(`/products/offer`)
             .then(response => {
+                //GET_PRODUCTS_OFFER
+                dispatch({ type: GET_PRODUCTS, payload: response.data })
+            })
+    }
+}
+
+export function getProductsOfferInHome() {
+    return (dispatch) => {
+
+        clientAxios.get(`/products/offer`)
+            .then(response => {
+                //GET_PRODUCTS_OFFER
                 dispatch({ type: GET_PRODUCTS_OFFER, payload: response.data })
             })
     }
 }
+
 
 export function getCategories() {
     return (dispatch) => {
@@ -111,6 +124,13 @@ export function getProducts(search) {
             })
     }
 }
+
+export function setProductsFilter(productos) {
+    return (dispatch) => {
+        dispatch({ type: GET_PRODUCTS, payload: productos })
+    }
+}
+
 
 
 
