@@ -1,7 +1,7 @@
 import React from 'react'
 import './PanelGral.css'
 import { TextField, Switch } from '@material-ui/core'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,8 +10,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { createProductAction } from '../../../redux/Actions/Seller/Actions';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -24,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function PanelGral ({input, setInput}) {
+export default function PanelGral({ input, setInput }) {
     const dispatch = useDispatch()
 
-    function handleChange (event){
+    function handleChange(event) {
         if (event.target.name == 'delivery') {
             setInput({
                 ...input,
@@ -42,10 +43,15 @@ export default function PanelGral ({input, setInput}) {
         }
     }
 
-    function createProduct (e) {
+    function createProduct(e) {
         console.log(input)
         e.preventDefault()
-        dispatch(createProductAction(input))
+        if (input.name == '' || input.status == '' || input.price == '' || input.stock == '' || input.description == '' || input.type == '' || input.warranty == '') {
+            toast.error('Por favor completa todos los campos')
+        } else {
+            dispatch(createProductAction(input))
+            toast.success('Producto creado con éxito!')
+        }
     }
 
 
@@ -102,7 +108,7 @@ export default function PanelGral ({input, setInput}) {
                 </div>
 
                 <div id='PanelGralSearchImages'>
-                    <input name='images'  onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
+                    <input name='images' onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
                 </div>
                 <div id='PanelGral-Description-Data'>
                     <TextField
@@ -120,15 +126,15 @@ export default function PanelGral ({input, setInput}) {
                         {console.log(input.price)}
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Comision:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`-$${input.price*0.05}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`-$${input.price * 0.05}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Envio:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery?'-$400':'0'}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`${input.delivery ? '-$400' : '0'}`} variant="outlined" />
                         </div>
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Ganancia:" variant="outlined" />
-                            <TextField disabled id="outlined-disabled" label="" value={`$${(input.price - input.price*0.05) - (input.delivery?400:0)}`} variant="outlined" />
+                            <TextField disabled id="outlined-disabled" label="" value={`$${(input.price - input.price * 0.05) - (input.delivery ? 400 : 0)}`} variant="outlined" />
                         </div>
                     </div>
                 </div>

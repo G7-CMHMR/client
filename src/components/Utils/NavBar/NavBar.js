@@ -80,45 +80,50 @@ function NavBar() {
                             ))//<Link to={`/categorias/${element}`}>
                             }
                         </NavDropdown>
-                        {userData.isSeller ?
 
-                            <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
-                            :
-                            null
-                        }
+                        <div id='UserPanelNavBar'>
+                            {userData.isSeller ?
 
-                        {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
+                                <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
+                                :
+                                null
+                            }
 
-                        {userData.name ?
-                            <NavDropdown title={userData.name} id="basic-nav-dropdown">
-                                <LinkContainer to="/Perfil"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
-                                <LinkContainer to="/Favoritos"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
-                                <LinkContainer to="/Compras"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
-                                {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-                                <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
-                            </NavDropdown>
-                            :
-                            <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                            {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
 
+                            {userData.name ?
+                                <NavDropdown title={userData.name} id="NavDropDownUser">
+                                    <LinkContainer to="/Perfil"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
+                                    <LinkContainer to="/Favoritos"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
+                                    <LinkContainer to="/Compras"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
+                                    {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
+                                    <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+                                </NavDropdown>
+                                :
+                                <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                        </div>
                         {/* botones para probar si cambia usuario-registrado , no-registrado */}
                         {/* {username ? 
             <button onClick={logout}>SALIR</button>   
              : 
              <button onClick={cambiar}>ENTRAR</button>    
              } */}
-                    </Nav>
-                    <LinkContainer to="/Carrito">
-                        <Nav.Link >
-                            <Badge badgeContent={
-                                cart.length
-                            } color="error">
-                                <IoCartSharp />
-                            </Badge>
-                        </Nav.Link>
-                    </LinkContainer>
-                    <LinkContainer to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
 
+                    </Nav>
+                    <div id='CarritoAndFavorito'>
+                        <LinkContainer to="/Carrito">
+                            <Nav.Link >
+                                <Badge badgeContent={
+                                    cart.length
+                                } color="error">
+                                    <IoCartSharp />
+                                </Badge>
+                            </Nav.Link>
+                        </LinkContainer>
+                        <LinkContainer  to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
+                    </div>
                 </Navbar.Collapse>
+
             </Navbar>
 
         </div >

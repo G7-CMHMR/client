@@ -72,7 +72,7 @@ export default function FullWidthTabs() {
         price: '',
         stock: '',
         description: '',
-        visible: true,
+        visible: false,
         brand: '',
         type: 'PC de Escritorio',
         warranty: '',

@@ -7,10 +7,16 @@
 
 #logo{
     text-decoration: none;
-    text-decoration-style: none;
+    text-decoration-style: inherit;
     color: white;
+    margin-left: -30rem;
+
 }
 
 #logo-hover{
     text-decoration: none;
+}
+
+#imageNav{
+    height: 90px;
 }

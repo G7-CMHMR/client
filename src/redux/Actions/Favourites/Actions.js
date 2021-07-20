@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { GET_FAVOURITES, POST_FAVOURITES, REMOVE_FAVOURITES } from './ActionsName'
-
+import clientAxios from '../../../config/axios';
 
 export function getFavourites(userID){
     return (dispatch) => {
-        axios.get(`http://localhost:3001/favourite/${userID}`)
+        clientAxios.get(`/favourite/${userID}`)
             .then(response => {
                 dispatch({ type: GET_FAVOURITES, payload: response.data })
             })
@@ -15,7 +15,7 @@ export function AddFavourites(productID_UserID){
     console.log('**********************************')
     console.log(productID_UserID)
     return (dispatch) => {
-        axios.post('http://localhost:3001/favourite/add', productID_UserID)
+        clientAxios.post('/favourite/add', productID_UserID)
         .then (response => {
             dispatch({type: POST_FAVOURITES, payload: response.data})
         })
@@ -26,7 +26,7 @@ export function AddFavourites(productID_UserID){
 
 export function RemoveFavourites(productID_UserID){
     return (dispatch) => {
-        axios.post(`http://localhost:3001/favourite/remove`, productID_UserID)
+        clientAxios.post(`/favourite/remove`, productID_UserID)
         .then(response => {
             dispatch({type: REMOVE_FAVOURITES, payload: response.data})
         })

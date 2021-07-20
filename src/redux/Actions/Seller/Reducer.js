@@ -1,8 +1,10 @@
-import { POST_PRODUCT } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS_VISIBLE, GET_PRODUCTS_NOVISIBLE } from './ActionsName'
 
 
 const initialState = {
-    sellerProducts =[],
+    Products:[],
+    Products_Visible: [],
+    Products_NoVisible: [],
 
 }
 
@@ -12,11 +14,21 @@ function sellerReducer(state = initialState, action) {
         case POST_PRODUCT: {
             return {
                 ...state,
-                sellerProducts: action.payload
-
+                Products: action.payload
             }
         }
-
+        case GET_PRODUCTS_VISIBLE: {
+            return {
+                ...state,
+                Products_Visible: action.payload
+            }
+        }
+        case GET_PRODUCTS_NOVISIBLE: {
+            return {
+                ...state,
+                Products_NoVisible: action.payload
+            }
+        }
         default: return state;
 
     }

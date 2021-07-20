@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { GET_CART, ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, CHECKOUT } from './ActionsName'
+import clientAxios from '../../../config/axios';
 
 export function getCart(userID) {
     return (dispatch) => {
 
-        axios.get(`http://localhost:3001/cart/${userID}`)
+        clientAxios.get(`/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
 
@@ -16,9 +17,9 @@ export function addProductToCart(productId_userId) {
     console.log(productId_userId)
     return (dispatch) => {
 
-        axios.post('http://localhost:3001/cart/add', productId_userId)
+        clientAxios.post('/cart/add', productId_userId)
             .then(response => {
-                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                clientAxios.get(`/cart/${productId_userId.userId}`)
                     .then(response => {
                         dispatch({ type: GET_CART, payload: response.data })
                         
@@ -28,9 +29,9 @@ export function addProductToCart(productId_userId) {
 }
 export function removeProductFromCart(productId_userId) {
     return (dispatch) => {
-        axios.post('http://localhost:3001/cart/remove', productId_userId)
+        clientAxios.post('/cart/remove', productId_userId)
             .then(response => {
-                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                clientAxios.get(`/cart/${productId_userId.userId}`)
                     .then(response => {
                         dispatch({ type: GET_CART, payload: response.data })
 
@@ -41,9 +42,9 @@ export function removeProductFromCart(productId_userId) {
 
 export function decrementProductUnit(productId_userId) {
     return (dispatch) => {
-        axios.post('http://localhost:3001/cart/decrement', productId_userId)
+        clientAxios.post('/cart/decrement', productId_userId)
             .then(response => {
-                axios.get(`http://localhost:3001/cart/${productId_userId.userId}`)
+                clientAxios.get(`/cart/${productId_userId.userId}`)
                     .then(response => {
                         dispatch({ type: GET_CART, payload: response.data })
 
@@ -55,7 +56,7 @@ export function decrementProductUnit(productId_userId) {
 export function checkout(productsCart, direction, userId) {
     console.log(productsCart)
     return (dispatch) => {
-        axios.post('http://localhost:3001/checkout', productsCart)
+        clientAxios.post('/checkout', productsCart)
             .then(response => {
                 dispatch({ type: CHECKOUT, payload: response.data })
                 window.location.href = (response.data.body.sandbox_init_point)
@@ -65,7 +66,7 @@ export function checkout(productsCart, direction, userId) {
                     payment_method: null,
                     userAddress: direction,
                 }
-                axios.post('http://localhost:3001/purchaseOrder/create', orderUser)
+                clientAxios.post('/purchaseOrder/create', orderUser)
                     .then(response => {
                         console.log(response)
                     })
