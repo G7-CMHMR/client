@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import MyProductCard from '../../components/Utils/MyProductCard/MyPoductCard'
 import { getFavourites } from '../../redux/Actions/Favourites/Actions';
 
+
 function Products() {
     const userReducer = useSelector(state => state.userReducer.userData)
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function Products() {
                         /> 
                     }): <p>Ups no tenes productos!</p>
                 }
+               
         </div>
     )
 }

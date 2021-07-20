@@ -7,7 +7,7 @@ import SearchReducer from '../Actions/Search/Reducer'
 import favouritesReducer from '../Actions/Favourites/Reducer'
 import cartReducer from '../Actions/Cart/Reducer'
 import purchaseOrderReducer from '../Actions/PurchaseOrder/Reducer'
-
+import sellerReducer from '../Actions/Seller/Reducer'
 
 export default combineReducers({
   productsReducer,
@@ -16,4 +16,5 @@ export default combineReducers({
   favouritesReducer,
   cartReducer,
   purchaseOrderReducer,
+  sellerReducer,
 })

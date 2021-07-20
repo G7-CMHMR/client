@@ -6,7 +6,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+
 
 export default function MyPoductCard({ stock, sold, price, discount, images, name, id }) {
     
@@ -51,13 +51,21 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
             setOpen(false);
         };
 
+        function deleteProduct (e) {
+          alert('Eliminado')
+        }
+        function pauseProduct () {
+            
+        }
+    
+
     return (
         <div>
-            <div id="MyProductCard">
-                <div id='MyProductCardContainer'>
+            <div id="MyProductCardOfPublication">
+                <div id='MyProductCardContainerPublication'>
                     <img id="MyProductImage" src={images[0]} alt="Omar Dsoky" />
                     <Link id="link" to={`/Producto/${id}`}>
-                        <div class="MyProduct-details">
+                        <div class="Publication_MyProduct-details">
                             <h4 id="MyProductName">{name}</h4>
                             
                             <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
@@ -65,13 +73,14 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                             </div>
                         </div>
                     </Link>    
-                        <div id="SalesAndStock">
-                            <p>Stock: {stock}</p>
-                            <p>Vendidos: {sold}</p>
+                        <div id="SalesAndStock2">
+                            <h4>Stock: {stock}</h4>
+                            <h4>Vendidos: {sold}</h4>
                         </div>
                         <div id="MyProductButtons">
-                        <Button onClick={handleOpen} variant="danger">Eliminar</Button>{' '}
+                        
                         <Button variant="warning">Pausar</Button>{' '}
+                        <Link to={`/Producto/${id}`}><Button variant="success">Ir a la publicacion</Button></Link>
                         </div>
                     
                    
@@ -89,13 +98,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
           timeout: 500,
         }}
       >
-        <Fade in={open}>
-          <div id="MoldalContainer" className={classes.paper}>
-            <h2 id="transition-modal-title">¿Estas seguro de eliminar la publicacion?</h2>
-            <Button variant="danger">Eliminar</Button>{' '}
-           <Button variant="success" onclick={(e)=>handleClose(e)} >Volver</Button>{' '}
-          </div>
-        </Fade>
+
       </Modal>
         </div>
     )
