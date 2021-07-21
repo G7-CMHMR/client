@@ -238,7 +238,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                     <div id='Form1_Estadisticas'>
                                         <div>
                                             <TextField name='warranty' disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={stock} type='number' variant="outlined" />
+                                            <TextField name='warranty' value={input.stock} id="outlined-required" label={stock} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField name='warranty' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />

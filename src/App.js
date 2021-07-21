@@ -67,6 +67,7 @@ function App() {
       <Route path='/Categorias/:categoryName' component={Categories} />
       <Route path='/Buscar/:nombreProducto' component={Categories} />
       <Route path='/Producto/:idProducto' component={Product} />
+      <Route exact path='/Ofertas' component={Categories} />
 
       <Route exact path='/Perfil' component={Profile} />
       <Route exact path='/Perfil/CambiarContraseña' component={Profile_password} />
