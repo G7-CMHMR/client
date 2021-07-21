@@ -9,14 +9,14 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
+import { updateProduct } from '../../../redux/Actions/Products/Actions'
 
-export default function MyPoductCard({ stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
+export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
     const dispatch = useDispatch();
     const userReducer = useSelector(state => state.userReducer.userData)
     const productsReducer = useSelector(state => state.productsReducer)
     var userId = userReducer.id
 
-    console.log(category)
     const [input, setInput] = React.useState({
         name: name,
         status: status,
@@ -34,6 +34,21 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
         userId: userReducer.id,
         category: category,
     })
+    const [inputChange, setInputChange] = React.useState({
+        name: name,
+        status: status,
+        price: price,
+        stock: stock,
+        description: description,
+        brand: brand,
+        type: type,
+        warranty: warranty.toString(),
+        delivery: delivery,
+        images: images,
+        discount: discount,
+        userId: userReducer.id,
+        category: category,
+    })
 
     function handleChange(event) {
         if (event.target.name == 'delivery') {
@@ -47,7 +62,22 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                 ...input,
                 [event.target.name]: event.target.value,
             });
+            
         }
+    }
+    function handleInputChange(e){
+        if (e.target.name == 'delivery') {
+            setInputChange({
+                ...inputChange,
+                [e.target.name]: e.target.checked
+            });
+
+        }
+        setInputChange({
+            ...inputChange,
+            [e.target.name]: e.target.value,
+        });
+        console.log(inputChange)
     }
 
     let addCommas = function (nStr) {
@@ -101,6 +131,8 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
     }
     function modificateProduct() {
         alert('Producto Modificado')
+        dispatch(updateProduct(id,inputChange))
+        console.log("paso funcion")
         setOpenM(false)
     }
     function activateProduct() {
@@ -180,7 +212,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                         <div id='ProductInfoContainerForm'>
                             <div id='Form1_Container'>
                                 <div id='Form1_Left'>
-                                    <TextField name='warranty' id='Form1_Name' label={name} variant="outlined" />
+                                    <TextField onChange={(e)=>handleInputChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
                                     <div id='Form1_ImageAndInputs'>
                                         <div id='Form1_ImageAndInputs_1'>
                                             <img id='Form1_Image' src={images}></img>
@@ -190,8 +222,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                                 <InputLabel htmlFor="outlined-age-native-simple">Categoria</InputLabel>
                                                 <Select
                                                     native
-                                                    value={category}
-                                                    onChange={handleChange}
+                                                    onChange={(e)=>handleInputChange(e)}
                                                     label="Categoria"
                                                     name='category'
                                                     inputProps={{
@@ -205,13 +236,13 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                                     }) : ''}
                                                 </Select>
                                             </FormControl>
-                                            <TextField name='warranty' id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
-                                            <TextField name='warranty' id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
+                                            <TextField name='type' onChange={(e)=>handleInputChange(e)} id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
+                                            <TextField name='brand' onChange={(e)=>handleInputChange(e)} id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
                                         </div>
                                     </div>
-                                    <TextField name='warranty' id='Form1_Description' label={description} variant="outlined" />
+                                    <TextField name='description' onChange={(e)=>handleInputChange(e)} id='Form1_Description' label={description} variant="outlined" />
 
-                                    <input name='images' onChange={handleChange} id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
+                                    <input onChange={(e)=>handleInputChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
 
                                 </div>
                                 <div id='Form1_Right'>
@@ -219,8 +250,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                         <InputLabel htmlFor="outlined-age-native-simple">Condición:</InputLabel>
                                         <Select
                                             native
-                                            value={input.status}
-                                            onChange={handleChange}
+                                            onChange={(e)=>handleInputChange(e)}
                                             label="Condition"
                                             name='status'
                                             inputProps={{
@@ -237,30 +267,30 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
 
                                     <div id='Form1_Estadisticas'>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
-                                            <TextField name='warranty' value={input.stock} id="outlined-required" label={stock} type='number' variant="outlined" />
+                                            <TextField  disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleInputChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
+                                            <TextField name='delivery' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
                                             <Switch
-                                                checked={input.delivery}
-                                                onChange={handleChange}
+                                                checked={inputChange.delivery}
+                                                onChange={(e)=>handleInputChange(e)}
                                                 color="primary"
                                                 name="delivery"
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                             />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
+                                            <TextField  disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleInputChange(e)} name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Descuento %" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
+                                            <TextField  disabled id="outlined-required" label="Descuento %" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleInputChange(e)} name='discount' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={price} type='number' variant="outlined" />
+                                            <TextField disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleInputChange(e)} name='price' id="outlined-required" label={price} type='number' variant="outlined" />
                                         </div>
 
 

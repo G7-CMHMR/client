@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT, GET_FAVOURITES } from './ActionsName'
+import { UPDATE_PRODUCT, GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT, GET_FAVOURITES } from './ActionsName'
 
 
 const initialState = {
@@ -51,6 +51,12 @@ function productsReducer(state = initialState, action) {
                 favourites: action.payload
             }
         }
+        case UPDATE_PRODUCT: {
+            return {
+                ...state,
+                productDetail: action.payload
+            }
+        } 
         default: return state;
     }
 
