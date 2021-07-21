@@ -70,8 +70,8 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id="navcontainer" className="mr-auto">
-                        <Nav.Link href="#link">OFERTAS</Nav.Link>
-                        <Nav.Link href="#link2">PC ARMADAS</Nav.Link>
+                        <LinkContainer to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
+                        <LinkContainer to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
                         <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
                             {productsReducer.categories.map(element => (
                                 <LinkContainer to={`/Categorias/${element.title}`}>
@@ -120,7 +120,7 @@ function NavBar() {
                                 </Badge>
                             </Nav.Link>
                         </LinkContainer>
-                        <LinkContainer  to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
+                        <LinkContainer to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
                     </div>
                 </Navbar.Collapse>
 

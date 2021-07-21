@@ -127,12 +127,10 @@
         display: flex;
         flex-direction: column;
     }   
-        #Form1_Name{
-        }
+
         #Form1_NameAndX{
             display: flex;
             justify-content: space-between;
-
         }
         #Form1_ImageAndInputs{
             display: flex;
