@@ -69,9 +69,20 @@ const BecomeSeller = () => {
                     <input 
                         name="cuil"
                         type="number"
-                        placeholder="Numero de Identificacion de Empresa"
+                        placeholder="Código Único de Identificación Laboral"
                         className="inputslogin"
                         onChange={onChangeForm} 
+                    />
+                </div>
+                <div className="containerInputBS">
+                    <p
+                    className="subtitleName">CUIT</p>
+                    <input 
+                        name="location"
+                        type="string"
+                        placeholder="Clave Única de Identificación Tributaria "
+                        className="inputslogin" 
+                        onChange={onChangeForm}
                     />
                 </div>
                 <div className="containerInputBS">

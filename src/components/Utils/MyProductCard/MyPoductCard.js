@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
 import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
-import { updateProduct } from '../../../redux/Actions/Products/Actions'
+import { updateProduct } from '../../../redux/Actions/Products/Actions'}
 
 
 export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
@@ -80,7 +80,6 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
             [e.target.name]: e.target.value,
         });
         console.log(inputChange)
-
     }
 
     let addCommas = function (nStr) {
@@ -220,6 +219,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                 <div id='Form1_Left'>
 
                                     <TextField onChange={(e)=>handleInputChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
+
                                     <div id='Form1_ImageAndInputs'>
                                         <div id='Form1_ImageAndInputs_1'>
                                             <img id='Form1_Image' src={images}></img>
@@ -230,7 +230,9 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                                 <Select
                                                     native
                                                     value={input.category}
+
                                                     onChange={(e)=>handleInputChange(e)}
+
                                                     label="Categoria"
                                                     name='category'
                                                     inputProps={{
@@ -244,11 +246,13 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                                     }) : ''}
                                                 </Select>
                                             </FormControl>
+
                                             <TextField name='type' onChange={(e)=>handleInputChange(e)} id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
                                             <TextField name='brand' onChange={(e)=>handleInputChange(e)} id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
                                         </div>
                                     </div>
                                     <TextField name='description' onChange={(e)=>handleInputChange(e)} id='Form1_Description' label={description} variant="outlined" />
+
 
 
                                     <input onChange={(e)=>handleInputChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
@@ -276,11 +280,13 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
 
                                     <div id='Form1_Estadisticas'>
                                         <div>
+
                                             <TextField  disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
                                             <TextField onChange={(e)=>handleInputChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField name='delivery' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
+
                                             <Switch
                                                 checked={inputChange.delivery}
                                                 onChange={(e)=>handleInputChange(e)}
@@ -290,6 +296,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                             />
                                         </div>
                                         <div>
+
                                             <TextField  disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
                                             <TextField onChange={(e)=>handleInputChange(e)} name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
                                         </div>
@@ -300,6 +307,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         <div>
                                             <TextField disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
                                             <TextField onChange={(e)=>handleInputChange(e)} name='price' id="outlined-required" label={price} type='number' variant="outlined" />
+
                                         </div>
 
 
