@@ -1,4 +1,5 @@
 import React , { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './ProductCard.css'
 
 function ProductCard(props) {
@@ -28,8 +29,9 @@ function ProductCard(props) {
         <div className="homeCard" onMouseEnter={mouseEnter} onMouseLeave={MouseLeave}>
             <div className="homeCard_imageContainer">
                 {/*{props.img && <img src={props.img} width="224px" height="224px" alt="" />}*/}
-                {props.img && <img className="homeCard_image" src={props.img} alt="" />}
-            </div>
+                <Link to={`Producto/${props.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    {props.img && <img className="homeCard_image" src={props.img} alt="" />}
+            </Link></div>
             <div className="homeCard_info">
                 {/*{props.discount && props.discount > 0 && show ? <h4 style={{textDecoration:"line-through"}} >${addCommas(Math.floor(props.price*171))}</h4> : show && <br/>}*/}
                 {props.discount && props.discount > 0 && show ? 

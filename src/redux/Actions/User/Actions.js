@@ -9,6 +9,7 @@ import {
     ATTEMPT_REGISTER_SUCCESS,
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
+    ATTEMPT_CONFIRM_ACCOUNT, //AGREGADA
     
     BECOME_SELLER,
     ATTEMPT_BECOME_SELLER,
@@ -54,8 +55,9 @@ export function attemptRegisterAction (attempt) {
             
             toast.success('Se ha enviado un email a su correo electrónico')
         } catch (error) {
-            
-            dispatch(attemptRegisterFailed(error.response.data))
+            // toast.error(error.response.data.error);
+            // dispatch(attemptRegisterFailed(error.response.data))
+            dispatch(attemptRegisterFailed(error.response.data.error))
         }
     }
 }
@@ -71,6 +73,19 @@ const attemptRegisterFailed = (newstate) => ({
     type:ATTEMPT_REGISTER_FAILED,
     payload: newstate
 })
+
+// AGREGADA
+export const confirmAccount = (emailToken) => {
+    return async (dispatch) => {
+        try{
+            const { data } = clientAxios.get(`/auth/confirm-account/${emailToken}`);
+            console.log('LA DATA: ',data);
+        } catch(error){
+            console.log('Error al confirmar la cuenta: ',error.response.data);
+        }
+    }
+}
+
 
 const setToLocalStorage = (token, username) => {
     localStorage.setItem('token', token);
@@ -89,7 +104,6 @@ export function attemptLoginAction (attempt) {
             setToLocalStorage(data.token, data.name);
             
         } catch (error) {            
-            
             dispatch(attemptLoginFailed(error.response.data.error))
             
         }
