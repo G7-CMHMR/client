@@ -1,0 +1,12 @@
+#CardsPC{
+    height: auto;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#CardsPC>*{
+    margin-top: 1rem;
+    margin-left: 0.8rem;
+}

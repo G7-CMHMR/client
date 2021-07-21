@@ -9,7 +9,9 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
+import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
 import { updateProduct } from '../../../redux/Actions/Products/Actions'
+
 
 export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
     const dispatch = useDispatch();
@@ -78,6 +80,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
             [e.target.name]: e.target.value,
         });
         console.log(inputChange)
+
     }
 
     let addCommas = function (nStr) {
@@ -130,10 +133,13 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
         alert('Producto Eliminado')
     }
     function modificateProduct() {
+        dispatch(seller_updateProduct(id, input))
+        console.log(input)
         alert('Producto Modificado')
         dispatch(updateProduct(id,inputChange))
         console.log("paso funcion")
         setOpenM(false)
+       
     }
     function activateProduct() {
         alert('Activar Producto')
@@ -212,6 +218,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                         <div id='ProductInfoContainerForm'>
                             <div id='Form1_Container'>
                                 <div id='Form1_Left'>
+
                                     <TextField onChange={(e)=>handleInputChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
                                     <div id='Form1_ImageAndInputs'>
                                         <div id='Form1_ImageAndInputs_1'>
@@ -222,6 +229,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                                 <InputLabel htmlFor="outlined-age-native-simple">Categoria</InputLabel>
                                                 <Select
                                                     native
+                                                    value={input.category}
                                                     onChange={(e)=>handleInputChange(e)}
                                                     label="Categoria"
                                                     name='category'
@@ -241,6 +249,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         </div>
                                     </div>
                                     <TextField name='description' onChange={(e)=>handleInputChange(e)} id='Form1_Description' label={description} variant="outlined" />
+
 
                                     <input onChange={(e)=>handleInputChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
 
