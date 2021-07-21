@@ -20,12 +20,24 @@ export function seller_getAllProducts(userId, visible) {
             .then(response => {
                 if (visible) {
                     dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
-                }else{
+                } else {
                     dispatch({ type: GET_PRODUCTS_NOVISIBLE, payload: response.data })
                 }
             })
     }
 }
+
+export function seller_updateProduct(productId, producto) {
+    return (dispatch) => {
+        clientAxios.post(`/product/update/${productId}`, producto)
+            .then(response => {
+                console.log(response.data)
+                dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
+            })
+    }
+}
+
+// product/update/:product_id
 
 
 

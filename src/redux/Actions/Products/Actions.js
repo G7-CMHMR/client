@@ -1,4 +1,4 @@
-import axios from 'axios'
+//import axios from 'axios'
 import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
@@ -155,3 +155,11 @@ function filtrarProductos(productos, input, dispatch){
 }
 
 
+export function updateProduct(product_id, product_body) {
+    return (dispatch) => {
+        clientAxios.post(`/product/update/${product_id}`, product_body)
+            .then(response => {
+                dispatch({ type: UPDATE_PRODUCT, payload: response.data })
+            })
+    }
+}

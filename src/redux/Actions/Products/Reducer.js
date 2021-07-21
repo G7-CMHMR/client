@@ -4,7 +4,8 @@ import {
     GET_PRODUCTS_OFFER, 
     GET_CATEGORIES, 
     SORT, 
-    GET_FAVOURITES 
+    GET_FAVOURITES,
+    UPDATE_PRODUCT 
 } from './ActionsName';
 
 const initialState = {
@@ -52,6 +53,12 @@ export default function productsReducer(state = initialState, action) {
                 favourites: action.payload
             }
         }
+        case UPDATE_PRODUCT: {
+            return {
+                ...state,
+                productDetail: action.payload
+            }
+        } 
         default: return state;
     }
 
