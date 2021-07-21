@@ -4,7 +4,6 @@ import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
     return (dispatch) => {
-
         clientAxios.get('/products')
             .then(response => {
                 dispatch({ type: GET_PRODUCTS, payload: response.data })
@@ -12,10 +11,8 @@ export function getAllProducts() {
             })
     }
 }
-
 export function getProductDetail(id) {
     return (dispatch) => {
-
         clientAxios.get(`/product/${id}`)
             .then(response => {
                 dispatch({ type: GET_PRODUCT_DETAIL, payload: response.data })

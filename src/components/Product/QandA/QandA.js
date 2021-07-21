@@ -1,27 +1,76 @@
+import React, { useState } from 'react';
 import Ask from "./Ask/Ask";
 import Question from "./Question/Question.js";
 import './QandA.css'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { changeStateLoginAction } from '../../../redux/Actions/User/Actions'
 
 function QandA() {
+const dispatch = useDispatch();
+const [ question, setQuestion ] = useState('')
+const actualProduct = useSelector((state) => state.productsReducer.productDetail)
+const actualUser = useSelector((state) => state.userReducer.userData)
+const questions = [];
 
-let preguntas = [
+/* let preguntas = [
     {
-        user:"roberto",
+        //iduser 
+        //idproduct 
+        //title:"roberto",
         question:"tenes stock?",
         answer:"ya te dije que sii",
-        date:"15-05-2021"
+        
     },{
-        user:"hola232",
+        //iduser
+        //idproduct
+        
         question:"puedo comprar?",
-        answer:undefined,
-        date:"20-04-2021"
+        answer:null,
+        
     }
-]
+] */
+    const onSubmit = e => {
+        e.preventDefault()
+        if(actualUser && Object.keys(actualUser).length === 0){
+            return dispatch(changeStateLoginAction(true))
+        }
+        if(question === '' || question.length < 10) return;
+        let newQuestion = {
+            question: question,
+            answer: null,
+            productId: actualProduct.id,
+            userId: actualUser.id
+
+        }
+        questions.push(newQuestion)
+        
+        
+    }
 
     return(
         <div>
-            <h3 style={{padding:"1%"}}>Preguntas</h3>
+<h3 style={{padding:"1%"}}>Preguntas</h3>
+    <hr/>
+    <form
+        onSubmit={onSubmit}
+    >
+    <input name="question" onChange={e => setQuestion(e.target.value)}/>
+    <input type="submit" value="Preguntar"/>
+    </form>
+    
+
+    {/* <div id="questionsCards">
+                    {
+                        questions.map((x)=>{
+                            return <Question user={x.user} question={x.question}
+                            date={x.date} answer={x.answer}/>
+                        })
+                    }
+                </div> */}
+    
+
+            {/* 
             <hr></hr>
             <Ask/>
             <div>
@@ -35,7 +84,7 @@ let preguntas = [
                         })
                     }
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }
