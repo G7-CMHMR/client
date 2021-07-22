@@ -3,7 +3,7 @@ import { TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useSelector, useDispatch } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
 
 import { changeDataOfUser } from '../../redux/Actions/User/Actions'
@@ -12,35 +12,31 @@ import { Link } from 'react-router-dom'
 
 function FormProfile() {
 
-    //const userReducer = useSelector (state => state.userReducer.user)
-    //const dispatch = useDispatch()
+    const userData = useSelector (state => state.userReducer.userData)
+    const dispatch = useDispatch()
 
 
 
     const [input, setInput] = useState({
-
-        name: 'Matias',
-        lastName: 'Bloisi',
-        email: 'bloisimatias@hotmail.com    ',
-        mobile: '1138986430',
+        name: userData.name,
+        lastName: userData.lastName,
+        email: userData.email,
+        phone: userData.phone,
         password: '',
 
     })
 
     const [errors, setErrors] = useState({
-        //
         name: '',
         lastName: '',
         email: '',
-        mobile: '',
-        //password: '',
-        //
+        phone: '',
     })
 
 
     useEffect(() => {
         setErrors(validate())
-    }, [input.name, input.lastName, input.email, input.mobile])
+    }, [input.name, input.lastName, input.email, input.phone])
 
 
 
@@ -63,9 +59,9 @@ function FormProfile() {
     function SubmitForm(e) {
         e.preventDefault()
 
-
-        if (errors.name == '' & errors.lastName == '' & errors.email == '' && errors.mobile == '') {
-            changeDataOfUser(input)
+        const isErrors = Object.keys(errors).length;
+        if (!isErrors) {
+            dispatch(changeDataOfUser(input));
         }
 
     }
@@ -82,7 +78,8 @@ function FormProfile() {
                         required
                         id="outlined-disabled"
                         label="Nombre"
-                        helperText=""
+                        helperText=''
+                        value={input.name}
                         name='name'
                         onChange={onHandleChange}
                     />
@@ -90,9 +87,9 @@ function FormProfile() {
                         required
                         id="outlined"
                         label="Apellido"
-                        helperText=""
+                        helperText=''
+                        value={input.lastName}
                         name='lastName'
-
                         onChange={onHandleChange}
                     />
                 </div>
@@ -110,7 +107,8 @@ function FormProfile() {
                         required
                         id="outlined-helperText"
                         label="Email"
-                        helperText=""
+                        helperText=''
+                        value={input.email}
                         name='email'
                         onChange={onHandleChange}
                     />
@@ -120,18 +118,21 @@ function FormProfile() {
                 </div>
                 <br></br>
                 <br></br>
-                <div id='MobileForm'>
+                <div id='PhoneForm'>
                     <TextField
                         id="outlined-helperText"
                         label="Telefono"
-                        helperText=""
-                        name='mobile'
+                        helperText=''
+                        value={input.phone}
+                        name='phone'
                         onChange={onHandleChange}
                     />
                 </div>
                 <br></br>
                 <br></br>
                 <div>
+                { !userData.isGoogleAccount &&
+                <>
                     <TextField
                         required
                         id="outlined-password-input"
@@ -150,6 +151,9 @@ function FormProfile() {
                             Editar
                         </Button>
                     </Link>
+                </>
+                }
+                    
                 </div>
                 <br></br>
                 <br></br>

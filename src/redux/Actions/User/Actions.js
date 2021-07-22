@@ -10,7 +10,9 @@ import {
     ATTEMPT_REGISTER_FAILED,
     ATTEMPT_LOGOUT,
     ATTEMPT_CONFIRM_ACCOUNT, //AGREGADA
-    
+    ATTEMPT_UPDATE_SUCCESS,
+    ATTEMPT_UPDATE_FAILED,
+
     BECOME_SELLER,
     ATTEMPT_BECOME_SELLER,
     ATTEMPT_BECOME_SELLER_SUCCESS,
@@ -79,7 +81,6 @@ export const confirmAccount = (emailToken) => {
     return async (dispatch) => {
         try{
             const { data } = clientAxios.get(`/auth/confirm-account/${emailToken}`);
-            console.log('LA DATA: ',data);
         } catch(error){
             console.log('Error al confirmar la cuenta: ',error.response.data);
         }
@@ -119,28 +120,17 @@ export function attemptLoginGoogle(data) {
 }
 
 export function attemptVerifyLogin () {
-    
     return async (dispatch) => {
-
         try {
             const token = localStorage.getItem('token') || '';
-            //const username = localStorage.getItem('username') || '';
-
-            //if (username) dispatch( attemptLoginSuccess( username ))
-
             if (token) {
 
                 const { data } = await clientAxios.get('/auth/renew-token',
                     { headers: {'x-token': token }}
                 )
-                
                 dispatch( attemptLoginSuccess( data ))
-                /* dispatch( attemptUserData( data )) */
-                
                 setToLocalStorage(data.token, data.name);
             }
-            
-            // alert('Usuario logueado')
         } catch (error) {
             console.log(error)
             dispatch(attemptLoginFailed(error.response.data.error))
@@ -160,25 +150,51 @@ export function attemptLogoutAction() {
 }
 
 export function changeDataOfUser(newData){
-    console.log(newData)
     return async (dispatch) => {
         try {
-            await clientAxios.put(`/auth/update`, newData)
-            
+            const token = localStorage.getItem('token') || '';
+            const { data}  = await clientAxios.put(`/auth/update`, newData, 
+                { headers: {'x-token': token }} )
+            dispatch( changeDataOfUserSucess( data ))
         } catch (error) {
-            console.log('ERROR AL CAMBIAR LOS DATOS: ',error.response.data)
+            console.log(error.response.data.error)
+            dispatch(changeDataOfUserFailed(error.response.data.error));
         }
     }
 }
+
+export function changeDataOfUserSucess(data){
+    toast.success('Se modificaron los datos con éxito');
+    return {
+        type:ATTEMPT_UPDATE_SUCCESS,
+        payload: data
+    }
+}
+
+export function changeDataOfUserFailed(error){
+    if(typeof error === 'object'){
+        for (const err in error){
+            toast.error(error[err])
+        }
+    }
+    toast.error(error);
+    return {
+        type:ATTEMPT_UPDATE_FAILED,
+        payload: error
+    }
+}
+
 
 export function changePasswordOfUser(newData){
     console.log(newData)
     return async (dispatch) => {
         try {
-            await clientAxios.put(`/auth/update`, newData)
-            
+            const token = localStorage.getItem('token') || '';
+            await clientAxios.put(`/auth/update-password`, newData,
+                { headers: {'x-token': token }} )
+            toast.success('Se modificó la contraseña con éxito')
         } catch (error) {
-            console.log('ERROR AL CAMBIAR LOS DATOS: ',error.response.data)
+            toast.error(error.response.data.error)
         }
     }
 }
