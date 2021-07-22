@@ -11,8 +11,11 @@ import Select from '@material-ui/core/Select';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import { Button } from 'react-bootstrap'
-import { createProductAction } from '../../../redux/Actions/Seller/Actions';
+import { createProductAction, uploadImage } from '../../../redux/Actions/Seller/Actions';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -53,6 +56,35 @@ export default function PanelGral({ input, setInput }) {
             toast.success('Producto creado con éxito!')
         }
     }
+
+
+    const [imagenes, setImagenes] = React.useState(false)
+
+    const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/compumundohipermegared/image/upload'
+    const CLOUDINARY_UPLOAD_PRESET = 'ukahx3tl'
+
+    var resultados = []
+
+    function SubirArchivo(images) {
+
+        for (let i = 0; i < images.length; i++) {
+            const formData = new FormData();
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+            formData.append('file', images[i])
+            axios.post(CLOUDINARY_URL, formData, {
+            })
+                .then(response => {
+                    resultados.push(response.data.url)
+                    setInput({
+                        ...input,
+                        images: resultados
+                    })
+                    setImagenes(true)
+                })
+
+        }
+    }
+
 
 
 
@@ -108,7 +140,20 @@ export default function PanelGral({ input, setInput }) {
                 </div>
 
                 <div id='PanelGralSearchImages'>
-                    <input name='images' onChange={handleChange} id="PanelGralFiles" type='file' multiple label="" variant="outlined" />
+                    <div></div>
+                    <input name='images' id="PanelGralFiles" type='file' multiple onChange={(e) => SubirArchivo(e.target.files)} />
+                    <div id='imagenes'>
+                        {
+                            imagenes &&
+
+                            input.images.map((element) => {
+                                return (
+                                    <img id='ImagePreview' src={element}></img>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
                 <div id='PanelGral-Description-Data'>
                     <TextField
@@ -123,7 +168,7 @@ export default function PanelGral({ input, setInput }) {
                     />
 
                     <div id='PanelGralOthers'>
-                        {console.log(input.price)}
+
                         <div>
                             <TextField disabled id="outlined-required" label="" defaultValue="Comision:" variant="outlined" />
                             <TextField disabled id="outlined-disabled" label="" value={`-$${input.price * 0.05}`} variant="outlined" />
