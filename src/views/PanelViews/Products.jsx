@@ -9,13 +9,14 @@ import { seller_getAllProducts } from '../../redux/Actions/Seller/Actions';
 
 function Products() {
     const userReducer = useSelector(state => state.userReducer.userData)
-    const sellerReducer = useSelector(state => state.sellerReducer.Products_NoVisible)
+    const sellerReducer = useSelector(state => state.sellerReducer.ProductsSeller)
     const dispatch = useDispatch();
     var userId = userReducer.id
 
     useEffect(() => {
         dispatch(seller_getAllProducts(userId, false))
-      }, [ dispatch])
+      }, [dispatch])
+
 
     return (
     

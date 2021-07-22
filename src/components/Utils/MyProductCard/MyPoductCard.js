@@ -9,14 +9,15 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
+import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
 
-export default function MyPoductCard({ stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
+
+export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
     const dispatch = useDispatch();
     const userReducer = useSelector(state => state.userReducer.userData)
     const productsReducer = useSelector(state => state.productsReducer)
     var userId = userReducer.id
 
-    console.log(category)
     const [input, setInput] = React.useState({
         name: name,
         status: status,
@@ -35,20 +36,25 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
         category: category,
     })
 
+    console.log(input)
+
     function handleChange(event) {
         if (event.target.name == 'delivery') {
+            console.log(event.target.checked)
             setInput({
                 ...input,
                 [event.target.name]: event.target.checked
             });
-
+            console.log(input)
         } else {
             setInput({
                 ...input,
                 [event.target.name]: event.target.value,
             });
+            
         }
     }
+
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -100,13 +106,14 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
         alert('Producto Eliminado')
     }
     function modificateProduct() {
-        alert('Producto Modificado')
+        dispatch(seller_updateProduct(id,input, userReducer.id, false))
+        console.log("paso funcion")
         setOpenM(false)
     }
-    function activateProduct() {
-        alert('Activar Producto')
-    }
 
+    function activateProduct() {
+        dispatch(seller_updateProduct(id, { visible: true }, userReducer.id, false))
+    }
 
     return (
         <div>
@@ -180,7 +187,9 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                         <div id='ProductInfoContainerForm'>
                             <div id='Form1_Container'>
                                 <div id='Form1_Left'>
-                                    <TextField name='warranty' id='Form1_Name' label={name} variant="outlined" />
+
+                                    <TextField onChange={(e)=>handleChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
+
                                     <div id='Form1_ImageAndInputs'>
                                         <div id='Form1_ImageAndInputs_1'>
                                             <img id='Form1_Image' src={images}></img>
@@ -190,8 +199,10 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                                 <InputLabel htmlFor="outlined-age-native-simple">Categoria</InputLabel>
                                                 <Select
                                                     native
-                                                    value={category}
-                                                    onChange={handleChange}
+                                                    value={input.category}
+
+                                                    onChange={(e)=>handleChange(e)}
+
                                                     label="Categoria"
                                                     name='category'
                                                     inputProps={{
@@ -205,13 +216,16 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                                     }) : ''}
                                                 </Select>
                                             </FormControl>
-                                            <TextField name='warranty' id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
-                                            <TextField name='warranty' id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
+                                                    
+                                            <TextField name='type' onChange={(e)=>handleChange(e)} id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
+                                            <TextField name='brand' onChange={(e)=>handleChange(e)} id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
                                         </div>
                                     </div>
-                                    <TextField name='warranty' id='Form1_Description' label={description} variant="outlined" />
+                                    <TextField name='description' onChange={(e)=>handleChange(e)} id='Form1_Description' label={description} variant="outlined" />
 
-                                    <input name='images' onChange={handleChange} id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
+
+
+                                    <input onChange={(e)=>handleChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
 
                                 </div>
                                 <div id='Form1_Right'>
@@ -219,8 +233,8 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
                                         <InputLabel htmlFor="outlined-age-native-simple">Condición:</InputLabel>
                                         <Select
                                             native
+                                            onChange={(e)=>handleChange(e)}
                                             value={input.status}
-                                            onChange={handleChange}
                                             label="Condition"
                                             name='status'
                                             inputProps={{
@@ -237,30 +251,34 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
 
                                     <div id='Form1_Estadisticas'>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
-                                            <TextField name='warranty' value={input.stock} id="outlined-required" label={stock} type='number' variant="outlined" />
+
+                                            <TextField  disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
+                                            <TextField name='delivery' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
+
                                             <Switch
                                                 checked={input.delivery}
-                                                onChange={handleChange}
+                                                onChange={(e)=>handleChange(e)}
                                                 color="primary"
                                                 name="delivery"
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                             />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
+
+                                            <TextField  disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Descuento %" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
+                                            <TextField  disabled id="outlined-required" label="Descuento %" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='discount' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
                                         </div>
                                         <div>
-                                            <TextField name='warranty' disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
-                                            <TextField name='warranty' id="outlined-required" label={price} type='number' variant="outlined" />
+                                            <TextField disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='price' id="outlined-required" label={price} type='number' variant="outlined" />
+
                                         </div>
 
 

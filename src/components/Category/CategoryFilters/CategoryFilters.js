@@ -21,7 +21,7 @@ function CategoryFilters(props) {
             ...input,
             'type': '',
         })
-        
+
     }
     const handleDeleteCondition = () => {
         setVisible({
@@ -32,7 +32,7 @@ function CategoryFilters(props) {
             ...input,
             'status': '',
         })
-        
+
     }
     const handleDeleteShipping = () => {
         setVisible({
@@ -43,7 +43,7 @@ function CategoryFilters(props) {
             ...input,
             'delivery': '',
         })
-        
+
     }
     const handleDeleteBrand = () => {
         setVisible({
@@ -54,7 +54,7 @@ function CategoryFilters(props) {
             ...input,
             'brand': '',
         })
-        
+
     }
 
     const { categoryName } = useParams()
@@ -105,13 +105,38 @@ function CategoryFilters(props) {
         })
     }
 
+    function limpiarFiltros() {
+        setInput({
+            categoryName: categoryName,
+            type: '',
+            delivery: '',
+            status: '',
+            brand: '',
+            MinPrice: '',
+            MaxPrice: '',
+        })
+        setVisible({
+            type: false,
+            delivery: false,
+            status: false,
+            brand: false
+        })
+    }
+
+    useEffect(() => {
+        limpiarFiltros()
+    }, [categoryName])
+
+
     useEffect(() => {
         if (categoryName) {
-            dispatch(getProductsFilter(input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice))
+            if(input.categoryName != categoryName)alert('HOLA')
+            dispatch(getProductsFilter(input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice));
+            //input.categoryName != categoryName?limpiarFiltros():console.log('')
         }
         if (nombreProducto || offer) {
-            if(nombreProducto){dispatch(getProducts(nombreProducto, input))}
-            if(offer){dispatch(getProductsOffer(input))}
+            if (nombreProducto) { dispatch(getProducts(nombreProducto, input)) }
+            if (offer) { dispatch(getProductsOffer(input)) }
         }
     }, [dispatch, input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice])
 

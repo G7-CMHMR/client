@@ -158,3 +158,11 @@ function filtrarProductos(productos, input, dispatch){
 }
 
 
+// export function updateProduct(product_id, product_body) {
+//     return (dispatch) => {
+//         clientAxios.post(`/product/update/${product_id}`, product_body)
+//             .then(response => {
+//                 dispatch({ type: UPDATE_PRODUCT, payload: response.data })
+//             })
+//     }
+// }

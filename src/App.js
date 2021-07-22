@@ -32,6 +32,8 @@ import { attemptVerifyLogin } from './redux/Actions/User/Actions';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import PCBuilder from './views/PCBuilder';
+import Quiz from './views/Quiz';
 
 
 
@@ -75,8 +77,8 @@ function App() {
       <Route exact path='/Favoritos' component={MyFavorites} />
       <Route exact path='/Carrito' component={MyCart} />
 
-      <Route path="/Success" component={Success}/>
-      {/* <Route path="/Success" component={Success}/> */}
+      <Route exact path='/ArmaTuPc' component={PCBuilder} />
+      <Route exact path='/ArmaTuPc/:Brand' component={PCBuilder} />
 
       <Route exact path='/Panel' component={Panel} />
       <Route exact path='/Panel/Publicaciones' component={Publications} />
@@ -84,6 +86,8 @@ function App() {
       <Route exact path='/Panel/CrearProducto' component={CreateProduct} />
       <Route exact path='/Panel/Ventas' component={Sales} />
       <Route exact path='/Panel/Preguntas' component={Questions} />
+
+      <Route exact path='/Quiz' component={Quiz} />
 
       <Footer></Footer>
       <ToastContainer position="top-center" />

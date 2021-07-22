@@ -22,7 +22,7 @@ function CategoryProductCards() {
         if (nombreProducto) dispatch(getProducts(nombreProducto))
         if (categoryName) dispatch(getProductsOfCategory(categoryName))
         if (offer) dispatch(getProductsOffer()) 
-    }, [/* dispatch, categoryName, nombreProducto, userID */])
+    }, [dispatch, categoryName, nombreProducto, offer])
 
     const productsReducer = useSelector(state => state.productsReducer)
 
