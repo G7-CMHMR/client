@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
 import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
-import { updateProduct } from '../../../redux/Actions/Products/Actions'}
 
 
 export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
@@ -36,29 +35,17 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
         userId: userReducer.id,
         category: category,
     })
-    const [inputChange, setInputChange] = React.useState({
-        name: name,
-        status: status,
-        price: price,
-        stock: stock,
-        description: description,
-        brand: brand,
-        type: type,
-        warranty: warranty.toString(),
-        delivery: delivery,
-        images: images,
-        discount: discount,
-        userId: userReducer.id,
-        category: category,
-    })
+
+    console.log(input)
 
     function handleChange(event) {
         if (event.target.name == 'delivery') {
+            console.log(event.target.checked)
             setInput({
                 ...input,
                 [event.target.name]: event.target.checked
             });
-
+            console.log(input)
         } else {
             setInput({
                 ...input,
@@ -67,20 +54,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
             
         }
     }
-    function handleInputChange(e){
-        if (e.target.name == 'delivery') {
-            setInputChange({
-                ...inputChange,
-                [e.target.name]: e.target.checked
-            });
 
-        }
-        setInputChange({
-            ...inputChange,
-            [e.target.name]: e.target.value,
-        });
-        console.log(inputChange)
-    }
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -132,18 +106,14 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
         alert('Producto Eliminado')
     }
     function modificateProduct() {
-        dispatch(seller_updateProduct(id, input))
-        console.log(input)
-        alert('Producto Modificado')
-        dispatch(updateProduct(id,inputChange))
+        dispatch(seller_updateProduct(id,input, userReducer.id, false))
         console.log("paso funcion")
         setOpenM(false)
-       
-    }
-    function activateProduct() {
-        alert('Activar Producto')
     }
 
+    function activateProduct() {
+        dispatch(seller_updateProduct(id, { visible: true }, userReducer.id, false))
+    }
 
     return (
         <div>
@@ -218,7 +188,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                             <div id='Form1_Container'>
                                 <div id='Form1_Left'>
 
-                                    <TextField onChange={(e)=>handleInputChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
+                                    <TextField onChange={(e)=>handleChange(e)} name='name' id='Form1_Name' label={name} variant="outlined" />
 
                                     <div id='Form1_ImageAndInputs'>
                                         <div id='Form1_ImageAndInputs_1'>
@@ -231,7 +201,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                                     native
                                                     value={input.category}
 
-                                                    onChange={(e)=>handleInputChange(e)}
+                                                    onChange={(e)=>handleChange(e)}
 
                                                     label="Categoria"
                                                     name='category'
@@ -246,16 +216,16 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                                     }) : ''}
                                                 </Select>
                                             </FormControl>
-
-                                            <TextField name='type' onChange={(e)=>handleInputChange(e)} id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
-                                            <TextField name='brand' onChange={(e)=>handleInputChange(e)} id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
+                                                    
+                                            <TextField name='type' onChange={(e)=>handleChange(e)} id='Form1_Type' label={type ? type : 'Tipo:'} variant="outlined" />
+                                            <TextField name='brand' onChange={(e)=>handleChange(e)} id='Form1_Brand' label={brand ? brand : 'Marca:'} variant="outlined" />
                                         </div>
                                     </div>
-                                    <TextField name='description' onChange={(e)=>handleInputChange(e)} id='Form1_Description' label={description} variant="outlined" />
+                                    <TextField name='description' onChange={(e)=>handleChange(e)} id='Form1_Description' label={description} variant="outlined" />
 
 
 
-                                    <input onChange={(e)=>handleInputChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
+                                    <input onChange={(e)=>handleChange(e)} name='images'  id="Form1_LoadImage" type='file' multiple label="" variant="outlined" />
 
                                 </div>
                                 <div id='Form1_Right'>
@@ -263,7 +233,8 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         <InputLabel htmlFor="outlined-age-native-simple">Condición:</InputLabel>
                                         <Select
                                             native
-                                            onChange={(e)=>handleInputChange(e)}
+                                            onChange={(e)=>handleChange(e)}
+                                            value={input.status}
                                             label="Condition"
                                             name='status'
                                             inputProps={{
@@ -282,14 +253,14 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         <div>
 
                                             <TextField  disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
-                                            <TextField onChange={(e)=>handleInputChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField name='delivery' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />
 
                                             <Switch
-                                                checked={inputChange.delivery}
-                                                onChange={(e)=>handleInputChange(e)}
+                                                checked={input.delivery}
+                                                onChange={(e)=>handleChange(e)}
                                                 color="primary"
                                                 name="delivery"
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -298,15 +269,15 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         <div>
 
                                             <TextField  disabled id="outlined-required" label="Meses de Garantía" type='number' variant="outlined" />
-                                            <TextField onChange={(e)=>handleInputChange(e)} name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='warranty' id="outlined-required" label={warranty} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField  disabled id="outlined-required" label="Descuento %" type='number' variant="outlined" />
-                                            <TextField onChange={(e)=>handleInputChange(e)} name='discount' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='discount' id="outlined-required" label={discount.toString()} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField disabled id="outlined-required" label="Precio" type='number' variant="outlined" />
-                                            <TextField onChange={(e)=>handleInputChange(e)} name='price' id="outlined-required" label={price} type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='price' id="outlined-required" label={price} type='number' variant="outlined" />
 
                                         </div>
 

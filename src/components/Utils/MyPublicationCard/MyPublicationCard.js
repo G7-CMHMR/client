@@ -6,9 +6,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
+import { useDispatch } from 'react-redux'
+import { updateProduct } from '../../../redux/Actions/Products/Actions';
+import { seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
 
 
 export default function MyPoductCard({ stock, sold, price, discount, images, name, id }) {
+  const dispatch = useDispatch();
+  const userReducer = useSelector(state => state.userReducer.userData)
 
   let addCommas = function (nStr) {
     nStr += '';
@@ -51,7 +56,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
     alert('Eliminado')
   }
   function pauseProduct() {
-
+    dispatch(seller_updateProduct(id, { visible: false }, userReducer.id, true))
   }
 
 
@@ -77,7 +82,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
           </div>
           <div id="MyProductButtons">
 
-            <Button variant="warning">Pausar</Button>{' '}
+            <Button variant="warning" onClick={pauseProduct}>Pausar</Button>{' '}
             <Link to={`/Producto/${id}`}><Button variant="success">Ir a la publicacion</Button></Link>
           </div>
 

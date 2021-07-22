@@ -1,0 +1,75 @@
+#AppImage{
+    width:70px;
+    height:60px
+}
+.AppsRow{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-top: 13px;
+}
+#AppCard{
+    box-shadow: -4px 3px 10px 0px rgb(128 128 128 / 31%);
+    background: rgb(255 255 255 / 90%);
+    border-radius: 5px;
+    padding: 12px;
+}
+#AppName{
+        display: flex;
+    align-items: flex-end;
+}
+#Applications{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+}
+#progressBar{
+    margin:5%
+}
+#WelcomeQuiz{
+    font-size: 39px;
+    margin-bottom: 7px;
+}
+#empezar{
+    margin-left: 9%;
+    margin-right: 9%;
+}
+#toggle-check{
+    font-size: 2.5rem;
+    margin:5px
+}
+#QuizSelection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#ButtonQuiz{
+    font-size:2rem
+}
+#standard-basic{
+font-size:2rem;
+text-align: center;
+}
+#buttonBackQuiz{
+    display: flex;
+    margin-left: 14%; 
+    border: none;
+    border-radius: 50px;
+    margin: 30px;
+    width: min-content;
+    font-size:2rem
+}
+#buttonDisable{
+    display: flex;
+    margin-left: 14%; 
+    border: none;
+    color:gray;
+    border-radius: 50px;
+    margin: 30px;
+    width: min-content;
+    font-size:2rem
+}

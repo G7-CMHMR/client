@@ -77,3 +77,15 @@ h4{
     margin-top: 4%;
 }
 
+#ImagePreview{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    border-radius: 1rem;
+    width: 10rem;
+    height: 10rem;
+}
+
+#imagenes{
+    display: flex;
+    flex-wrap: nowrap;
+}
