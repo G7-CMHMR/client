@@ -1,6 +1,6 @@
 import axios from 'axios'
 import clientAxios from '../../../config/axios';
-import { POST_PRODUCT, GET_PRODUCTS_VISIBLE, GET_PRODUCTS_NOVISIBLE } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS } from './ActionsName'
 
 
 export function createProductAction(product) {
@@ -14,30 +14,40 @@ export function createProductAction(product) {
 }
 
 export function seller_getAllProducts(userId, visible) {
-    return (dispatch) => {
 
+    return (dispatch) => {
         clientAxios.get(`/products/seller/${userId}/${visible}`)
             .then(response => {
-                if (visible) {
-                    dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
-                } else {
-                    dispatch({ type: GET_PRODUCTS_NOVISIBLE, payload: response.data })
+                console.log(response)
+                dispatch({ type: GET_PRODUCTS, payload: response.data })
+            })
+    }
+}
+
+
+
+export function seller_updateProduct(productId, producto, userId, visiblet) {
+    console.log('Product ID: ' + productId)
+    console.log('Producto: ' + producto)
+    console.log('UserID: ' + userId)
+    console.log('Visible' + visiblet)
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    return (dispatch) => {
+        clientAxios.post(`/product/update/${productId}`, producto)
+            .then(response => {
+                console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+                if (userId) {
+                    console.log('cccccccccccccccccccccccccccccc')
+                    clientAxios.get(`/products/seller/${userId}/${visiblet}`)
+                        .then(response => {
+                            dispatch({ type: GET_PRODUCTS, payload: response.data })
+                        })
                 }
             })
     }
 }
 
-export function seller_updateProduct(productId, producto) {
-    return (dispatch) => {
-        clientAxios.post(`/product/update/${productId}`, producto)
-            .then(response => {
-                console.log(response.data)
-                dispatch({ type: GET_PRODUCTS_VISIBLE, payload: response.data })
-            })
-    }
-}
 
-// product/update/:product_id
 
 
 
