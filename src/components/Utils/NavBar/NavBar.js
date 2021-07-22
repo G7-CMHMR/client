@@ -15,6 +15,7 @@ import { getCart } from '../../../redux/Actions/Cart/Actions';
 
 import { LinkContainer } from 'react-router-bootstrap';
 
+import { client } from '../../../config/url'
 
 function NavBar() {
 
@@ -29,23 +30,12 @@ function NavBar() {
     const productsReducer = useSelector(state => state.productsReducer)
 
 
-
-
-
     useEffect(() => {
         dispatch(getCart(userData.id))
         dispatch(getCategories())
         //eslint-disable-next-line
     }, [])
 
-
-    // useEffect(() => {
-    //     dispatch(changeStateLogin())
-    // },[dispatch])    
-    //  const loggedin = useSelector((state) => state.userReducer.loggedin)
-    //  const cambiar = () => {
-    //      dispatch(changeStateLogin(!loggedin))
-    //  }
     const openBeSeller = () => {
         dispatch(becomeSellerAction(!stateBeSeller))
     }
@@ -58,9 +48,16 @@ function NavBar() {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
 
+    const redirectToHome = () =>{
+        window.location.href = client.urlDevelop;
+    }
+
     const logout = () => {
         dispatch(attemptLogoutAction())
+        redirectToHome();
     }
+
+
 
     // BackgroundColor #14213D;
     return (
