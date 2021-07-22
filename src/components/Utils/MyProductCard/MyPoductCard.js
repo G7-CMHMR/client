@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } from '@material-ui/core'
 import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
-import { updateProduct } from '../../../redux/Actions/Products/Actions'}
+import { updateProduct } from '../../../redux/Actions/Products/Actions'
 
 
 export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
