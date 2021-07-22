@@ -15,7 +15,8 @@ function Images() {
     useEffect(() => {
         dispatch(getProductDetail(idProducto))
     }, [dispatch, idProducto])
-    let productimages=productsReducer.images
+
+    let productimages = productsReducer.images
     
    
 
@@ -23,10 +24,11 @@ function Images() {
         <div id='ContainerImages'>
             <Carousel>
               {productimages? productimages.map((x)=>{
+                console.log(x)
                   return <Carousel.Item>
     <img
       className="d-block w-100"
-      src={x}
+      src={x.image}
       alt="First slide" height="500px"
     />
   </Carousel.Item>

@@ -112,7 +112,7 @@ function ProductInfo() {
             <br></br>
             <div>
                 {productsReducer.discount > 0 ? <span id="oldprice"> ${addCommas(Math.floor(productsReducer.price))}</span> : <p></p>}
-                <h1>${addCommas(Math.floor(productsReducer.price - (productsReducer.price / 100) * productsReducer.discount))}</h1>
+                <h1>${addCommas(Math.floor(productsReducer.price - (productsReducer.price / 100) /* * productsReducer.discount */))}</h1>
 
             </div>
 
