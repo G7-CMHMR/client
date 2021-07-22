@@ -23,7 +23,6 @@ function Home(props) {
   useEffect(() => {
     if (emailToken) {
       dispatch(confirmAccount(emailToken));
-      // clientAxios.get(`/auth/confirm-account/${emailToken}`);
       props.history.replace('/');
       toast.success('La cuenta fue confirmada con éxito');
     }

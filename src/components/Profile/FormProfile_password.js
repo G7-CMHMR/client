@@ -3,7 +3,7 @@ import { TextField, Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useSelector, useDispatch } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react';
 
 import {changePasswordOfUser} from '../../redux/Actions/User/Actions'
@@ -13,29 +13,23 @@ import { Link } from 'react-router-dom'
 function FormProfile_password() {
 
     //const userReducer = useSelector (state => state.userReducer.user)
-    //const dispatch = useDispatch()
-
-
+    const dispatch = useDispatch();
 
     const [input, setInput] = useState({
-
-        password: '',
-        newpassword: '',
-        newpasswordconfirm: '',
-
+        oldPassword: '',
+        newPassword: '',
+        newPasswordConfirm: '',
     })
 
     const [errors, setErrors] = useState({
-        //
-        password: '',
-        newpassword: '',
-        newpasswordconfirm: '',
-        //
+        oldPassword: '',
+        newPassword: '',
+        newPasswordConfirm: '',
     })
 
     useEffect(() => {
         validate()
-    }, [input.newpassword, input.newpasswordconfirm])
+    }, [input.newPassword, input.newPasswordConfirm])
 
 
     function onHandleChange(e) {
@@ -48,23 +42,20 @@ function FormProfile_password() {
     }
 
     function validate() {
-        if (input.newpassword.length > 8 || input.newpassword < 20){
-            if (input.newpassword != input.newpasswordconfirm) {
-                setErrors({...errors, newpassword: 'Las nuevas contraseñas no coinciden'})
-            }else setErrors({ ...errors, newpassword: '' })
-
-        }else{setErrors({...errors, newpassword: 'La contraseña debe tener entre 8 y 20 caracteres'})}
+        if (input.newPassword.length > 8 || input.newPassword < 20){
+            if (input.newPassword !== input.newPasswordConfirm) {
+                setErrors({...errors, newPassword: 'Las nuevas contraseñas no coinciden'})
+            }else setErrors({ ...errors, newPassword: '' })
+        }else{setErrors({...errors, newPassword: 'La contraseña debe tener entre 8 y 20 caracteres'})}
 
     }
 
     function SubmitForm(e) {
         e.preventDefault()
 
-        if(errors.password == '' & errors.newpassword == '' & errors.newpasswordconfirm == ''){
-            changePasswordOfUser(input)
+        if(errors.oldPassword == '' & errors.newPassword == '' & errors.newPasswordConfirm == ''){
+            dispatch(changePasswordOfUser(input))
         }
-
-        
     }
 
 
@@ -81,7 +72,7 @@ function FormProfile_password() {
                         label="Contraseña anterior"
                         type="password"
                         helperText=""
-                        name='password'
+                        name='oldPassword'
                         onChange={onHandleChange}
                     />
                     <TextField
@@ -90,7 +81,7 @@ function FormProfile_password() {
                         label="Nueva contraseña"
                         type="password"
                         helperText=""
-                        name='newpassword'
+                        name='newPassword'
                         onChange={onHandleChange}
                     />
                     <TextField
@@ -99,11 +90,11 @@ function FormProfile_password() {
                         label="Nueva contraseña"
                         type="password"
                         helperText=""
-                        name='newpasswordconfirm'
+                        name='newPasswordConfirm'
                         onChange={onHandleChange}
                     />
                     <div id='PasswordError'>
-                        {errors.newpassword? <p className='PerfilError'>{errors.newpassword}</p> : null}
+                        {errors.newPassword? <p className='PerfilError'>{errors.newPassword}</p> : null}
                     </div>
                     
 
