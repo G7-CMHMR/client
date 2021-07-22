@@ -14,6 +14,7 @@ import Products from '../../../views/PanelViews/Products'
 
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
 import Sales from '../../../views/PanelViews/Sales';
+import { seller_getAllProducts } from '../../../redux/Actions/Seller/Actions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -68,6 +69,8 @@ export default function PanelMenu() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
 
   return (
     <div className={classes.root} id='TestPadding'>

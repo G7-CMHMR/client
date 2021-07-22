@@ -78,7 +78,7 @@ export default function FullWidthTabs() {
         warranty: '',
         delivery: false,
         title: '',
-        images: ['https://economipedia.com/wp-content/uploads/Tipos-de-hardware.png'],
+        images: ['https://intelectouniversal.com/wp-content/uploads/2020/06/funciones-de-la-computadora-1-scaled.jpg'],
         discount: 0,
         userId: userReducer.id,
         category: 'PC',
