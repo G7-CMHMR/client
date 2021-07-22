@@ -12,7 +12,6 @@ import { Modal, Backdrop, TextField, FormControl, InputLabel, Select, Switch } f
 import { seller_getAllProducts, seller_updateProduct } from '../../../redux/Actions/Seller/Actions'
 
 
-
 export default function MyPoductCard({stock, sold, price, discount, images, name, id, warranty, delivery, status, description, brand, category, type }) {
     const dispatch = useDispatch();
     const userReducer = useSelector(state => state.userReducer.userData)
