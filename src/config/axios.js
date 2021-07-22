@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { api } from './url';
 
 const clientAxios = axios.create({
-    baseURL: 'http://localhost:3001'
-//    baseURL: 'https://pg-cmhmr-api.herokuapp.com/'
+    baseURL: api.urlDevelop
+//    baseURL: api.urlProduction
 });
 export default clientAxios;
