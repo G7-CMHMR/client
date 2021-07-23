@@ -8,7 +8,7 @@ import {Button} from 'react-bootstrap'
 import { getProductDetail } from '../../../redux/Actions/Products/Actions'
 import Rating from '@material-ui/lab/Rating';
 import { FaHeart } from 'react-icons/fa'
-import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
+import { addProductNotLogged, addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { useState } from 'react';
 import axios from 'axios';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
@@ -47,8 +47,12 @@ function ProductInfo() {
         },
       }));
     const classes = useStyles();
-    function addToCart() {
+    function addToCart(e) {
+        if(userId){
         dispatch(addProductToCart({ userId: userId, productId: idProducto }))
+        }else{
+            dispatch(addProductNotLogged(idProducto))
+        }
         setOpen(true);
     }
     const handleClose = (event, reason) => {
@@ -112,7 +116,7 @@ function ProductInfo() {
             <br></br>
             <div>
                 {productsReducer.discount > 0 ? <span id="oldprice"> ${addCommas(Math.floor(productsReducer.price))}</span> : <p></p>}
-                <h1>${addCommas(Math.floor(productsReducer.price - (productsReducer.price / 100) * productsReducer.discount))}</h1>
+                <h1>${addCommas(Math.floor(productsReducer.price - (productsReducer.price / 100) /* * productsReducer.discount */))}</h1>
 
             </div>
 

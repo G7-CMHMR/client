@@ -24,6 +24,7 @@ export function MyCart() {
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     var userId = userReducer.id
+    const cartL = JSON.parse(localStorage.getItem("cartu"));
 
 
     const openLogin = () => {
@@ -90,7 +91,9 @@ export function MyCart() {
                 <br></br>
 
                 <div className="secondContainer">
-                    {cart.length > 0 && cart[0].amount && cart[0].product ? cart.map((x) => {
+
+                    
+                    {userId && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
                         return (
                             <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
                                 amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
@@ -98,30 +101,47 @@ export function MyCart() {
                                 status={x.product.status} id={x.product.id} stock={x.product.stock} />
                         )
                     }) : <div></div>}
-
-                    {
-                        userId === undefined &&
-                        <div>
-                            <h5>Para usar el carrito es necesario estar registrado</h5>
-                            <h5>Podes <button onClick={openRegister}>Registrarte</button>
-                                o si ya tenes una cuenta <button onClick={openLogin}>Logueate</button></h5>
-                        </div>
-                    }
+                    {!userId && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
+                        return (
+                            <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images}
+                                amount={x.amount} delivery={x.product.delivery} price={x.product.price}
+                                discount={x.product.discount}
+                                status={x.product.status} id={x.product.id} stock={x.product.stock} />
+                        )
+                    }) : <div></div>}
+                    
 
                 </div>
                 <div id="totalCart">
                     {
-                        cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                        userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
                             totalCart += (x.product.price - (x.product.price / 100) * x.product.promotion.value) * x.amount
 
                         })
-                            : console.log('NO ES UN ARRAY')}{
-                            cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
+                            : console.log('NO ES UN ARRAY')}
+                            {
+                        !userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                            totalCart += (x.product.price - (x.product.price / 100) * x.product.discount) * x.amount
+
+                        })
+                            : console.log('NO ES UN ARRAY')}
+                    {
+                            userId && cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
                             if (x.product.promotion.delivery !== true) {
                                 envio += 400
                             }
                         })
                             : console.log('NO ES UN ARRAY')}
+                     {
+                            !userId && cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
+                            if (x.product.delivery !== true) {
+                                envio += 400
+                            }
+                        })
+                            : console.log('NO ES UN ARRAY')}
+
+
+
                     {cart.length > 0 ?
                         <div id='ShippingMyCart'>
 
@@ -137,7 +157,9 @@ export function MyCart() {
                             <h2> TOTAL : ${addCommas(Math.floor(totalCart + envio))}</h2></div>
                     }
                     {
-                        userId !== undefined && cart.length > 0 && <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>
+                        userId !== undefined && cart.length > 0 ? 
+                        <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>:
+                        <Button variant="warning" >Comprar carrito</Button>
                     }
 
                 </div>

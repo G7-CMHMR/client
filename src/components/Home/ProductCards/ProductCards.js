@@ -15,9 +15,8 @@ import './ProductCards.css'
             {
                props.products ? (
                 props.products.slice(0,5).map((product) => (
-                
                     <ProductCard name={product.name} price={product.price} discount={product.discount} 
-                    valuation={product.valuation} delivery={product.delivery} img={product.images[0]}/>
+                    valuation={product.valuation} delivery={product.delivery} img={product.images[0]} id={product.id}/>
                 
                 ))
                ) : (

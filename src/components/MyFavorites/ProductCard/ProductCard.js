@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { blue, blueGrey } from '@material-ui/core/colors';
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
-import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
+import { addProductNotLogged, addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import React, { useState } from 'react';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions'
 import Button from '@material-ui/core/Button';
@@ -47,8 +47,12 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
             })
     }
 
-    function addToCart() {
+    function addToCart(e) {
+        if(userId){
         dispatch(addProductToCart({ userId: userId, productId: id }))
+        }else{
+            dispatch(addProductNotLogged(id))
+        }
         setOpen(true);
     }
     const handleClose = (event, reason) => {

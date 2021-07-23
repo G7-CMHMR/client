@@ -1,7 +1,7 @@
 import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, CHECKOUT, SUCCESS } from './ActionsName'
 
 const initialState = {
-    cart: [],
+    cart: JSON.parse(localStorage.getItem('cartguest')) || [],
     checkout: [],
 }
 //Combine Reducers
@@ -36,6 +36,12 @@ function cartReducer (state = initialState, action) {
                 
             }
         }
+        case "ADD_ITEM": {
+                return {
+                    ...state,
+                    cart: action.payload
+                }            
+            }
 
         case CHECKOUT : {
             return {

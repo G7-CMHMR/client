@@ -1,10 +1,9 @@
-import axios from 'axios'
+//import axios from 'axios'
 import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
     return (dispatch) => {
-
         clientAxios.get('/products/true')
             .then(response => {
                 dispatch({ type: GET_PRODUCTS, payload: response.data })
@@ -12,10 +11,8 @@ export function getAllProducts() {
             })
     }
 }
-
 export function getProductDetail(id) {
     return (dispatch) => {
-
         clientAxios.get(`/product/${id}`)
             .then(response => {
                 dispatch({ type: GET_PRODUCT_DETAIL, payload: response.data })
@@ -157,6 +154,16 @@ function filtrarProductos(productos, input, dispatch){
         dispatch({ type: GET_PRODUCTS, payload: productos })
 }
 
+export function createQuestionAction(question){
+    return async (dispatch) => {
+        clientAxios.post('/questions/create', question).then(() => dispatch(getProductDetail(question.productId)))       
+    }
+}
+export function publishResponseAction(response){
+    return async (dispatch) => {
+        clientAxios.put('/questions/response', response).then(() => dispatch(getProductDetail(response.productId)))
+    }
+}
 
 // export function updateProduct(product_id, product_body) {
 //     return (dispatch) => {

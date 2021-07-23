@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './ShoppingCard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Badge} from 'react-bootstrap'
+
 import { addProductToCart, decrementProductUnit, getCart, incrementProductUnit, removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -18,7 +19,12 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
         dispatch(getCart(USERID))
 	}, [])
     function deleteItem(e,idproduct){
+        if (USERID){
+            
         dispatch(removeProductFromCart({userId:USERID,productId:idproduct}))
+        }else{
+            dispatch(deleteItemNotLogged(idproduct))
+        }       
     }   
     let addCommas = function(nStr)
     {
@@ -34,8 +40,11 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
     }
     
     function decrementItem(e,idproduct){
+        if (USERID){
         dispatch(decrementProductUnit({userId: USERID, productId: idproduct}))
-       
+        }else{
+        dispatch(decrementItemNotLogged(idproduct))
+        }   
     }
 
     function incrementItem(e,idproduct){
