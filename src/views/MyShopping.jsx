@@ -5,7 +5,10 @@ import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 
+import BuyCards from '../components/MyShopping/BuyCards/BuyCards';
+
 import { getPurchaseOrderHistory } from '../redux/Actions/PurchaseOrder/Actions'
+
 
 function MyShopping() {
     const { data } = useParams()
@@ -44,17 +47,13 @@ function MyShopping() {
 
         <div className='DetailContainer'>
             <Separate></Separate>
-            <div>
+            <div id='HistorialDeCompras'>
                 <h1>Historial de compras</h1>
                 <h2>{payment_type}</h2>
                 <h2>{preference_id}</h2>
                 <h2>{status}</h2>
+                <BuyCards></BuyCards>
             </div>
-            <div id='ContentDetail'>
-                {console.log('sssssssssssssssssssssssssssssssssssssssssssss')}
-
-            </div>
-
             <Separate></Separate>
         </div>
     )
