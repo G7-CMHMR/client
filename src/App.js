@@ -15,7 +15,7 @@ import Profile from './views/Profile';
 import Profile_password from './views/Profile_password'
 import MyShopping from './views/MyShopping'
 import MyFavorites from './views/MyFavorites'
-import MyCart from './views/MyCart'
+import { MyCart } from './views/MyCart';
 
 import Panel from './views/Panel';
 import Products from './views/PanelViews/Products';

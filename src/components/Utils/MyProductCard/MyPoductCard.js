@@ -253,7 +253,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
                                         <div>
 
                                             <TextField  disabled id="outlined-required" label="Stock" type='number' variant="outlined" />
-                                            <TextField onChange={(e)=>handleChange(e)} name='stock' id="outlined-required" label={stock} type='number' variant="outlined" />
+                                            <TextField onChange={(e)=>handleChange(e)} name='stock' id="outlined-required" label={stock.toString()} type='number' variant="outlined" />
                                         </div>
                                         <div>
                                             <TextField name='delivery' disabled id="outlined-required" label="Envio Gratis:" type='number' variant="outlined" />

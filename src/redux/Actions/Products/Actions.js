@@ -5,7 +5,7 @@ import clientAxios from '../../../config/axios';
 export function getAllProducts() {
     return (dispatch) => {
 
-        clientAxios.get('/products')
+        clientAxios.get('/products/true')
             .then(response => {
                 dispatch({ type: GET_PRODUCTS, payload: response.data })
                 console.log(response.data)
