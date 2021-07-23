@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import './ShoppingCard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Badge} from 'react-bootstrap'
-
-import { addProductToCart, decrementProductUnit, getCart, incrementProductUnit, removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
+import { addProductNotLogged, addProductToCart, decrementItemNotLogged, decrementProductUnit, deleteItemNotLogged, getCart, removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {Button} from 'react-bootstrap'
@@ -48,7 +47,12 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
     }
 
     function incrementItem(e,idproduct){
-        dispatch(incrementProductUnit({ userId: USERID, productId: idproduct}))
+       
+        if(USERID){ 
+            dispatch(addProductToCart({ userId: USERID, productId: idproduct}))
+            }else{
+                dispatch(addProductNotLogged(idproduct))
+            }
     }
 
 
