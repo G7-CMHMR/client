@@ -24,7 +24,7 @@ function Images() {
         <div id='ContainerImages'>
             <Carousel>
               {productimages? productimages.map((x)=>{
-                console.log(x)
+                
                   return <Carousel.Item>
     <img
       className="d-block w-100"

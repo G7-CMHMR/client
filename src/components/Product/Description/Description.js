@@ -11,9 +11,10 @@ function Description() {
     const productsReducer = useSelector(state => state.productsReducer.productDetail)
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(getProductDetail(idProducto))
-    }, [dispatch, idProducto])
+
+    }, []) */
 
     return(
         <div id="productDescription">

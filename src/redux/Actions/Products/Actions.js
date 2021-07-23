@@ -154,6 +154,16 @@ function filtrarProductos(productos, input, dispatch){
         dispatch({ type: GET_PRODUCTS, payload: productos })
 }
 
+export function createQuestionAction(question){
+    return async (dispatch) => {
+        clientAxios.post('/questions/create', question).then(() => dispatch(getProductDetail(question.productId)))       
+    }
+}
+export function publishResponseAction(response){
+    return async (dispatch) => {
+        clientAxios.put('/questions/response', response).then(() => dispatch(getProductDetail(response.productId)))
+    }
+}
 
 // export function updateProduct(product_id, product_body) {
 //     return (dispatch) => {
