@@ -27,8 +27,9 @@ export function seller_getAllProducts(userId, visible) {
 
 
 export function seller_updateProduct(productId, producto, userId, visiblet) {
-    console.log('Product ID: ' + productId)
-    console.log('Producto: ' + producto)
+
+    console.log(productId)
+    console.log(producto)
     console.log('UserID: ' + userId)
     console.log('Visible' + visiblet)
     console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
