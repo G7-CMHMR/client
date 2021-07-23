@@ -1,22 +1,27 @@
-import { UPDATE_PRODUCT, GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, SORT, GET_FAVOURITES } from './ActionsName'
-
+import { 
+    GET_PRODUCTS, 
+    GET_PRODUCT_DETAIL, 
+    GET_PRODUCTS_OFFER, 
+    GET_CATEGORIES, 
+    SORT, 
+    GET_FAVOURITES,
+    UPDATE_PRODUCT,
+    
+} from './ActionsName';
 
 const initialState = {
     products: [],
     productsOffer: [],
     productDetail: [],
     categories: [],
-    favourites: [],
+    favourites: [],    
 }
-
-function productsReducer(state = initialState, action) {
-
+export default function productsReducer(state = initialState, action) {
     switch (action.type) {
         case GET_PRODUCTS: {
             return {
                 ...state,
-                products: action.payload
-                
+                products: action.payload                
             }
         }
         case GET_PRODUCT_DETAIL: {
@@ -24,8 +29,7 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 productDetail: action.payload
             }
-        } 
-
+        }
         case GET_PRODUCTS_OFFER: {
             return {
                 ...state,
@@ -43,8 +47,7 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 products: action.payload
             }
-        }     
-
+        }
         case GET_FAVOURITES: {
             return{
                 ...state,
@@ -57,9 +60,9 @@ function productsReducer(state = initialState, action) {
                 productDetail: action.payload
             }
         } 
+       
         default: return state;
     }
 
 }
 
-export default productsReducer
