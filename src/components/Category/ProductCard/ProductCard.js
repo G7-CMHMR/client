@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { getAllFavourites } from '../../../redux/Actions/Products/Actions';
-import { addProductToCart } from '../../../redux/Actions/Cart/Actions';
+import { addProductNotLogged, addProductToCart } from '../../../redux/Actions/Cart/Actions';
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -39,9 +39,12 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
         },
       }));
     const classes = useStyles();
-    function addToCart() {
-        console.log(userId, id)
+    function addToCart(e) {
+        if(userId){
         dispatch(addProductToCart({ userId: userId, productId: id }))
+        }else{
+            dispatch(addProductNotLogged(id))
+        }
         setOpen(true);
     }
     const handleClose = (event, reason) => {
