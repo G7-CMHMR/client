@@ -11,7 +11,7 @@ import { IoCartSharp } from 'react-icons/io5'
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction } from '../../../redux/Actions/User/Actions';
 import { getCategories } from '../../../redux/Actions/Products/Actions'
-import { getCart } from '../../../redux/Actions/Cart/Actions';
+import { getCart, getCartNotLogged } from '../../../redux/Actions/Cart/Actions';
 
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -25,16 +25,20 @@ function NavBar() {
     const userData = useSelector(state => state.userReducer.userData)
     const stateRegister = useSelector((state) => state.userReducer.registerwindow);
     const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
-
+    var userId = userData.id
     const cart = useSelector(state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
 
 
     useEffect(() => {
-        dispatch(getCart(userData.id))
+        if (userId){
+                dispatch(getCart(userId))
+                }else{
+                    dispatch(getCartNotLogged())
+                }
         dispatch(getCategories())
         //eslint-disable-next-line
-    }, [])
+    }, [dispatch,userId])
 
     const openBeSeller = () => {
         dispatch(becomeSellerAction(!stateBeSeller))
@@ -111,7 +115,7 @@ function NavBar() {
                         <LinkContainer to="/Carrito">
                             <Nav.Link >
                                 <Badge badgeContent={
-                                    cart.length
+                                    cart? cart.length : 0
                                 } color="error">
                                     <IoCartSharp />
                                 </Badge>

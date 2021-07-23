@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './ShoppingCard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Badge} from 'react-bootstrap'
-import { addProductNotLogged, addProductToCart, decrementItemNotLogged, decrementProductUnit, deleteItemNotLogged, getCart, removeProductFromCart } from '../../../redux/Actions/Cart/Actions';
+import { incrementProductUnit, addProductNotLogged, addProductToCart, decrementItemNotLogged, decrementProductUnit, deleteItemNotLogged, getCart, removeProductFromCart, getCartNotLogged } from '../../../redux/Actions/Cart/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {Button} from 'react-bootstrap'
@@ -14,9 +14,7 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
     const dispatch = useDispatch()
     const userReducer = useSelector (state => state.userReducer.userData)
     var USERID = userReducer.id
-    useEffect(() => {
-        dispatch(getCart(USERID))
-	}, [])
+ 
     function deleteItem(e,idproduct){
         if (USERID){
             
@@ -49,7 +47,7 @@ function ShoppingCard({price,discount,images,name,amount,delivery,id, stock}) {
     function incrementItem(e,idproduct){
        
         if(USERID){ 
-            dispatch(addProductToCart({ userId: USERID, productId: idproduct}))
+            dispatch(incrementProductUnit({ userId: USERID, productId: idproduct}))
             }else{
                 dispatch(addProductNotLogged(idproduct))
             }
