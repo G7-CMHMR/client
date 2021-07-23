@@ -1,0 +1,98 @@
+#BuyCardContainer{
+    width: 70rem;
+    height: 7rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+#BuyCardContainer>*{
+    margin-right: 1rem;
+}
+
+
+#BuyCard_Image_Container{
+    margin-left: 1rem;
+    width: 12rem;
+}
+#BuyCard_Image{
+    width: 6rem;
+    height: 7rem;
+}
+
+#BuyCard_Name-Price-Shipping{
+    width: 30rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+    #BuyCard_Name{
+        font-size: 1rem;
+    }
+  
+        #BuyCard_PriceAndCount{
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        #BuyCard_Price{
+            font-size: 1.5rem;
+            margin-right: 8rem;
+        }
+        #BuyCard_Amount{
+            margin-top: 0.3rem;
+            margin-left: -3rem;
+            font-size: 1rem;
+        }
+    #BuyCard_Shipping{
+        color: green;
+        font-size: 1.5rem
+    }
+    #BuyCard_Shipping-Help{
+        display: flex;
+        margin-top: -0.3rem;
+    }
+
+#BuyCard_State{
+    max-width: 15rem;
+    width: 15rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+}
+
+#BuyCard_Buttons{
+    width: 15rem;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+#BuyCard_Btn1{
+    width: 12rem;
+    height: 2rem;
+    font-size: 0.7rem;
+}
+#BuyCard_Btn2{
+    width: 12rem;
+    height: 2rem;
+    font-size: 0.7rem;
+    background-color: rgb(0, 161, 0);
+    color: white;
+}
+
+#BuyCard_State-input{
+    width: 11rem;
+    height: 0.3rem;
+    background-color:rgb(211, 211, 211);
+    text-align: center;
+}
+
+#BuyCard_HelpButton{
+    height: 1.6rem;
+    margin-left: 11rem;
+    background-color: rgb(189, 0, 0);
+}
