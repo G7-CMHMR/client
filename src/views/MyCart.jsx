@@ -13,7 +13,8 @@ import { TextField } from '@material-ui/core';
 import { useState } from 'react'
 import { toast } from 'react-toastify';
 
-function MyCart() {
+
+export function MyCart() {
     let totalCart = 0
     let envio = 0
     const cart = useSelector(state => state.cartReducer.cart)
@@ -76,6 +77,8 @@ function MyCart() {
             toast.error('Debes completar los datos de envío para continuar con la compra')
         }
     }
+
+
 
     //MERCADO PAGO TEST END
 
@@ -168,4 +171,9 @@ function MyCart() {
     )
 }
 
-export default MyCart
+export function MensajeError(error){
+    toast.error(error)
+}
+
+
+
