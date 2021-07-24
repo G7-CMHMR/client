@@ -41,7 +41,7 @@ export function MyCart() {
         }else{
             dispatch(getCartNotLogged())
         }
-    }, [])
+    }, [dispatch, userId])
 
     let addCommas = function (nStr) {
         nStr += '';
