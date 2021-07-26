@@ -146,15 +146,15 @@ export function resetCartCheckout() {
 export const addProductNotLogged = (id) => {
     let cartguest = JSON.parse(localStorage.getItem('cartguest'));
     console.log(cartguest)
-    if (!cartguest) {
+    /* if (!cartguest) {
         localStorage.setItem("cartguest", JSON.stringify([]));
-    }
+    } */
     let item = {
         product: {},
         amount: 0
     };
-    let found = cartguest ? cartguest.find((f) => f.product.id === id) : null
-    let index = cartguest ? cartguest.indexOf(found) : null
+    let found = cartguest ? cartguest.find((f) => f.product.id === id) : cartguest
+    let index = cartguest ? cartguest.indexOf(found) : cartguest
 
     if (!found) {
         console.log(cartguest)
