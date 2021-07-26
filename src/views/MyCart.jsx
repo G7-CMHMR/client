@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify';
 
 import MercadoPago from '../components/MercadoPago/MercadoPago'
+import clientAxios from '../config/axios';
 
 
 export function MyCart() {
@@ -28,7 +29,7 @@ export function MyCart() {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     var userId = userReducer.id
     const cartL = JSON.parse(localStorage.getItem("cartu"));
-
+    const [show, setshow] = useState(false)
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -36,15 +37,21 @@ export function MyCart() {
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
-    
+    const changeState = () => {
+        setshow(true)
+    }
     useEffect(() => {
         if (userId){
+            let cartguest = JSON.parse(localStorage.getItem('cartguest'));
+        if (cartguest.length>0)
+            cartguest.forEach(x=> clientAxios.post('/cart/add', {productId:x.product.id, userId:userId}) )
+        
         dispatch(getCart(userId))
         
         }else{
             dispatch(getCartNotLogged())
         }
-    }, [dispatch, userId])
+    }, [ userId])
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -101,15 +108,8 @@ export function MyCart() {
                 <div className="secondContainer">
 
 
-                    {userId && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
-                        return (
-                            <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
-                                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
-                                discount={x.product.promotion.value}
-                                status={x.product.status} id={x.product.id} stock={x.product.stock} />
-                        )
-                    }) : <div></div>}
-                    {!userId && cart && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
+                    
+                    {cart && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
                         return (
                             <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images}
                                 amount={x.amount} delivery={x.product.delivery} price={x.product.price}
@@ -164,9 +164,12 @@ export function MyCart() {
                     {
                         userId !== undefined && cart.length > 0 ?
                             <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> :
-                            <Button variant="warning" >Comprar carrito</Button>
+                            <Button variant="warning" onClick={changeState}>Comprar carrito</Button>
                     }
-
+                    { show && 
+                        <h6> Para comprar es necesario ser un usuario! <Button variant="warning" onClick={openLogin}>LOGUEATE</Button>
+                        o si no tenes cuenta todavía, <Button variant="warning" onClick={openRegister}>REGISTRATE</Button></h6>
+                    }
                     {
                         isReadyToPay && <MercadoPago></MercadoPago>
                     }

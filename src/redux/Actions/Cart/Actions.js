@@ -11,7 +11,6 @@ export function getCart(userID) {
         clientAxios.get(`/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
-
             })
     }
 }
