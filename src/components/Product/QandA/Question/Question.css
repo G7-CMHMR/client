@@ -1,16 +1,26 @@
 #QuestionCard{
     display: flex;
-    text-align: left;
+    text-align: left;    
     flex-direction: column;
     background-color: #e5e5e5;
-    width: -webkit-fill-available;
+    width: 70rem;
     border-radius: 6px;
-    margin:1%
+    margin:1%;    
 }
-
 #answerCard{
     background-color: white;
     margin: 1%;
     border-radius: 4px;
-    text-align: end;
+    text-align: end;    
+}
+#eliminarPregunta {
+    align-self: flex-end;
+    width: 2rem;
+    height: 2rem;
+}
+
+#contenedorQuestion {
+    display: flex;
+    flex-direction: column;
+    width: 70rem;
 }

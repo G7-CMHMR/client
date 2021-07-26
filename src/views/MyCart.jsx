@@ -122,14 +122,14 @@ export function MyCart() {
                 </div>
                 <div id="totalCart">
                     {
-                       cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                      cart && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
                             totalCart += (x.product.price - (x.product.price / 100) * x.product.promotion.value) * x.amount
 
                         })
                             : console.log('NO ES UN ARRAY')}
 
                     {
-                        userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                        cart && userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
                             if (x.product.promotion.delivery !== true) {
                                 envio += 400
                             }
@@ -142,7 +142,7 @@ export function MyCart() {
                                 envio += 400
                             }
                         })
-                            : console.log('NO ES UN ARRAY')}
+                            : console.log('NO ES UN ARRAY') }
 
 
 

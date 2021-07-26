@@ -2,9 +2,10 @@ import './Question.css'
 
 function Question({user, question, answer, date}) {
     return(
-        <div id="QuestionCard">
-            <div>
-                <p style={{color:"gray"}}>{date}</p><h4>{user} preguntó: <span style={{color:"black"}}>{question}</span></h4>
+        <div id="QuestionCard" >
+            <button id="eliminarPregunta">X</button>
+            <div id="contenedorQuestion">
+                <p style={{color:"gray"}}>{date}</p><h4>{user} preguntó:<br /> <span id="spanPregunta" style={{color:"black"}}>{question}</span></h4>
                 
             </div>
             

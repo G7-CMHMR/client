@@ -11,7 +11,7 @@ import { IoCartSharp } from 'react-icons/io5'
 
 import { changeStateLoginAction, changeStateLogin, changeStateRegisterAction, attemptLogoutAction, becomeSellerAction } from '../../../redux/Actions/User/Actions';
 import { getCategories } from '../../../redux/Actions/Products/Actions'
-import { getCart, getCartNotLogged } from '../../../redux/Actions/Cart/Actions';
+import { getCart, getCartNotLogged, checkCartLocal } from '../../../redux/Actions/Cart/Actions';
 
 import { LinkContainer } from 'react-router-bootstrap';
 
