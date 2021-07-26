@@ -2,22 +2,23 @@ import axios from 'axios'
 import { GET_CART, ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, CHECKOUT } from './ActionsName'
 import clientAxios from '../../../config/axios';
 import { MensajeError } from '../../../views/MyCart';
-
+import React from 'react';
+import { useMercadopago } from 'react-sdk-mercadopago';
+import {setListoCheckout} from '../../../views/MyCart';
 
 export function getCart(userID) {
     return (dispatch) => {
         clientAxios.get(`/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
-
             })
     }
 }
 
 export function addProductToCart(productId_userId) {
-  
+
     return (dispatch) => {
-      
+
         clientAxios.post('/cart/add', productId_userId)
             .then(response => {
 
@@ -77,7 +78,7 @@ export function checkout(cart, direction, userId) {
                                 MensajeError(response.data.error)
                             )
 
-                        //EN CASO DE QUE HAY MENOS STOCK DEL QUE TENIA, MODIFICA AMOUNT DEL PRODUCTO Y ACTUALIZA CARRITO Y ENVIA MSJ
+                            //EN CASO DE QUE HAY MENOS STOCK DEL QUE TENIA, MODIFICA AMOUNT DEL PRODUCTO Y ACTUALIZA CARRITO Y ENVIA MSJ
                         }
                         if (response.data.errorChangeAmount) {
                             //cart.itemId
@@ -89,7 +90,7 @@ export function checkout(cart, direction, userId) {
                             }
                             clientAxios.put('/cart/adjustItemAmount', objectAmount)
                                 .then(response => {
-                                    dispatch({type: GET_CART, payload: response.data})
+                                    dispatch({ type: GET_CART, payload: response.data })
                                 })
                             return (
                                 MensajeError(response.data.errorChangeAmount)
@@ -100,7 +101,11 @@ export function checkout(cart, direction, userId) {
                         //EN CASO DE NINGUN ERROR, ABRE EL MODAL DE MERCADOPAGO CON TODOS LOS ITEMS
                         if (!response.data.error || !response.data.errorChangeAmount) {
                             dispatch({ type: CHECKOUT, payload: response.data })
-                            window.location.href = (response.data.body.sandbox_init_point)
+                            //window.location.href = (response.data.body.sandbox_init_point)
+                            setTimeout(function () {
+                                
+                            }, 120000);
+
                             var orderUser = {
                                 userId: userId,
                                 id: response.data.body.id,
@@ -120,36 +125,47 @@ export function checkout(cart, direction, userId) {
                     })
             })
 
-
-
-
-
     }
 }
 
+
+export function resetCartCheckout() {
+    return (dispatch) => {
+         dispatch({type: 'RESETCHECKOUT'})
+    }
+}
+
+
+
+
+
+
+
+
+
 export const addProductNotLogged = (id) => {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest')) ;
+    let cartguest = JSON.parse(localStorage.getItem('cartguest'));
     console.log(cartguest)
     if (!cartguest) {
         localStorage.setItem("cartguest", JSON.stringify([]));
     }
     let item = {
         product: {},
-        amount:0
+        amount: 0
     };
-    let found =  cartguest? cartguest.find((f) => f.product.id === id) :null 
-    let index = cartguest? cartguest.indexOf(found) :null
-   
+    let found = cartguest ? cartguest.find((f) => f.product.id === id) : null
+    let index = cartguest ? cartguest.indexOf(found) : null
+
     if (!found) {
         console.log(cartguest)
         return async function (dispatch) {
             await clientAxios.get(`/product/${id}`).then((response) => {
-                    item.product = response.data;
-                    item.amount=1
-                    console.log(response.data)
-                    console.log('item'+item)
-                    return item
-                })
+                item.product = response.data;
+                item.amount = 1
+                console.log(response.data)
+                console.log('item' + item)
+                return item
+            })
                 .then((item) => {
                     console.log(item)
                     cartguest = [...cartguest, item]

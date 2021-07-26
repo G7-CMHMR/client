@@ -3,6 +3,7 @@ import {GET_CART,ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, DECREMENT_PRODUCT_UNIT, 
 const initialState = {
     cart: JSON.parse(localStorage.getItem('cartguest')) || [],
     checkout: [],
+    isReadyToPay: false,
 }
 //Combine Reducers
 function cartReducer (state = initialState, action) {
@@ -46,7 +47,15 @@ function cartReducer (state = initialState, action) {
         case CHECKOUT : {
             return {
                 ...state,
-                checkout: action.payload
+                checkout: action.payload,
+                isReadyToPay: true,
+            }
+        }
+
+        case 'RESETCHECKOUT' : {
+            return {
+                ...state,
+                isReadyToPay: false,
             }
         }
       
