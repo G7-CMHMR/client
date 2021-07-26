@@ -8,10 +8,13 @@ import {setListoCheckout} from '../../../views/MyCart';
 
 export function getCart(userID) {
     return (dispatch) => {
+        let cartguest = JSON.parse(localStorage.getItem('cartguest'));
+        if (cartguest.length>0){
+            cartguest.forEach(x=> clientAxios.post('/cart/add', {productId:x.product.id, userId:userID}) )
+        }
         clientAxios.get(`/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
-
             })
     }
 }

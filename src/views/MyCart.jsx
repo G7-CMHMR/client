@@ -101,15 +101,8 @@ export function MyCart() {
                 <div className="secondContainer">
 
 
-                    {userId && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
-                        return (
-                            <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images ? x.product.images : ''}
-                                amount={x.amount} delivery={x.product.promotion.delivery} price={x.product.price}
-                                discount={x.product.promotion.value}
-                                status={x.product.status} id={x.product.id} stock={x.product.stock} />
-                        )
-                    }) : <div></div>}
-                    {!userId && cart && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
+                    
+                    {cart && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
                         return (
                             <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images}
                                 amount={x.amount} delivery={x.product.delivery} price={x.product.price}
