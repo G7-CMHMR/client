@@ -28,7 +28,7 @@ export function MyCart() {
     const stateLogin = useSelector((state) => state.userReducer.loginwindow);
     var userId = userReducer.id
     const cartL = JSON.parse(localStorage.getItem("cartu"));
-
+    const [show, setshow] = useState(false)
 
     const openLogin = () => {
         dispatch(changeStateLoginAction(!stateLogin))
@@ -36,7 +36,9 @@ export function MyCart() {
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
-    
+    const changeState = () => {
+        setshow(true)
+    }
     useEffect(() => {
         if (userId){
         dispatch(getCart(userId))
@@ -157,9 +159,12 @@ export function MyCart() {
                     {
                         userId !== undefined && cart.length > 0 ?
                             <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> :
-                            <Button variant="warning" >Comprar carrito</Button>
+                            <Button variant="warning" onClick={changeState}>Comprar carrito</Button>
                     }
-
+                    { show && 
+                        <h6> Para comprar es necesario ser un usuario! <Button variant="warning" onClick={openLogin}>LOGUEATE</Button>
+                        o si no tenes cuenta todavía, <Button variant="warning" onClick={openRegister}>REGISTRATE</Button></h6>
+                    }
                     {
                         isReadyToPay && <MercadoPago></MercadoPago>
                     }
