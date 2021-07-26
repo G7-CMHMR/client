@@ -1,6 +1,6 @@
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router'
+import { Route } from 'react-router'
 import { useEffect } from 'react';
 
 import Nav from './components/Utils/Nav/Nav'
@@ -18,12 +18,6 @@ import MyFavorites from './views/MyFavorites'
 import { MyCart } from './views/MyCart';
 
 import Panel from './views/Panel';
-import Products from './views/PanelViews/Products';
-import Publications from './views/PanelViews/Publications';
-import CreateProduct from './views/PanelViews/CreateProduct';
-import Sales from './views/PanelViews/Sales';
-import Questions from './views/PanelViews/Questions';
-import Success from './views/Success';
 
 import Login from './views/_Modals/Login/Login';
 import Register from './views/_Modals/Register/Register';
@@ -34,6 +28,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import PCBuilder from './views/PCBuilder';
 import Quiz from './views/Quiz';
+import AdminPanel from './views/AdminPanel';
 
 
 
@@ -52,7 +47,6 @@ function App() {
   const stateRegister = useSelector((state) => state.userReducer.registerwindow);
   const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
   //const userData = useSelector((state) => state.userReducer.userData)
-  const success = useSelector((state) => state.cartReducer.success)
 
   return (
     <div className="App">
@@ -81,11 +75,8 @@ function App() {
       <Route exact path='/ArmaTuPc/:Brand' component={PCBuilder} />
 
       <Route exact path='/Panel' component={Panel} />
-      <Route exact path='/Panel/Publicaciones' component={Publications} />
-      <Route exact path='/Panel/Productos' component={Products} />
-      <Route exact path='/Panel/CrearProducto' component={CreateProduct} />
-      <Route exact path='/Panel/Ventas' component={Sales} />
-      <Route exact path='/Panel/Preguntas' component={Questions} />
+
+      <Route exact path='/AdminPanel' component={AdminPanel} />
 
       <Route exact path='/Quiz' component={Quiz} />
 

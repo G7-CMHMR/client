@@ -8,7 +8,6 @@ import {setListoCheckout} from '../../../views/MyCart';
 
 export function getCart(userID) {
     return (dispatch) => {
-
         clientAxios.get(`/cart/${userID}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
@@ -39,8 +38,10 @@ export function removeProductFromCart(productId_userId) {
 }
 
 export function decrementProductUnit(productId_userId) {
+    console.log(productId_userId)
     return (dispatch) => {
         clientAxios.post('/cart/decrement', productId_userId)
+        clientAxios.get(`/cart/${productId_userId.userId}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
             })
@@ -49,6 +50,7 @@ export function decrementProductUnit(productId_userId) {
 export function incrementProductUnit(productId_userId) {
     return (dispatch) => {
         clientAxios.post('/cart/increment', productId_userId)
+        clientAxios.get(`/cart/${productId_userId.userId}`)
             .then(response => {
                 dispatch({ type: GET_CART, payload: response.data })
             })
@@ -191,24 +193,29 @@ export const addProductNotLogged = (id) => {
     }
 }
 export const decrementItemNotLogged = (id) => {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest'));
-    let found = cartguest.find((f) => f.product.id === id)
-    let index = cartguest.indexOf(found)
-    let stock = cartguest[index].product.stock;
-    if (cartguest[index].amount < stock) {
-        cartguest[index].amount -= 1;
-    }
-    localStorage.setItem('cartguest', JSON.stringify(cartguest));
+    let cartguest = JSON.parse(localStorage.getItem('cartguest')) ;
+    let found =  cartguest.find((f) => f.product.id === id)
+    let index = cartguest.indexOf(found) 
+            cartguest[index].amount -= 1;
+        
+        localStorage.setItem('cartguest', JSON.stringify(cartguest));
+        return {
+            type: GET_CART,
+            payload: cartguest
+        }
+}
+export const deleteItemNotLogged = (id) => {
+    let cartguest = JSON.parse(localStorage.getItem('cartguest')) ;
+    let filter =  cartguest.filter((f) => f.product.id !== id)
+   localStorage.setItem('cartguest', JSON.stringify(filter));
+   cartguest = JSON.parse(localStorage.getItem('cartguest'))
     return {
         type: GET_CART,
         payload: cartguest
     }
 }
-export const deleteItemNotLogged = (id) => {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest'));
-    let filter = cartguest.filter((f) => f.product.id !== id)
-
-    localStorage.setItem('cartguest', JSON.stringify(filter));
+export function getCartNotLogged() {
+    let cartguest = JSON.parse(localStorage.getItem('cartguest')) 
     return {
         type: GET_CART,
         payload: cartguest
