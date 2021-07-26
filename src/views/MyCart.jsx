@@ -3,7 +3,7 @@ import './MyCart.css'
 import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect, } from 'react';
 import ShoppingCard from '../components/Utils/ShoppingCard/ShoppingCard';
-import { addProductToCart, getCart } from '../redux/Actions/Cart/Actions';
+import { addProductToCart, getCart, getCartNotLogged } from '../redux/Actions/Cart/Actions';
 import { changeStateLoginAction, changeStateRegisterAction } from '../redux/Actions/User/Actions';
 import { Button } from 'react-bootstrap'
 import { checkout } from '../redux/Actions/Cart/Actions';
@@ -33,9 +33,14 @@ export function MyCart() {
     const openRegister = () => {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
-
+    
     useEffect(() => {
+        if (userId){
         dispatch(getCart(userId))
+        
+        }else{
+            dispatch(getCartNotLogged())
+        }
     }, [dispatch, userId])
 
     let addCommas = function (nStr) {
@@ -101,11 +106,11 @@ export function MyCart() {
                                 status={x.product.status} id={x.product.id} stock={x.product.stock} />
                         )
                     }) : <div></div>}
-                    {!userId && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
+                    {!userId && cart && cart.length && cart[0].amount && cart[0].product ? cart.map((x) => {
                         return (
                             <ShoppingCard className="CartCard" name={x.product.name} images={x.product.images}
                                 amount={x.amount} delivery={x.product.delivery} price={x.product.price}
-                                discount={x.product.discount}
+                                discount={x.product.promotion.value}
                                 status={x.product.status} id={x.product.id} stock={x.product.stock} />
                         )
                     }) : <div></div>}
@@ -114,17 +119,12 @@ export function MyCart() {
                 </div>
                 <div id="totalCart">
                     {
-                        userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
+                       cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
                             totalCart += (x.product.price - (x.product.price / 100) * x.product.promotion.value) * x.amount
 
                         })
                             : console.log('NO ES UN ARRAY')}
-                            {
-                        !userId && cart.length > 0 && cart[0].amount && cart[0].product ? cart.forEach((x) => {
-                            totalCart += (x.product.price - (x.product.price / 100) * x.product.discount) * x.amount
-
-                        })
-                            : console.log('NO ES UN ARRAY')}
+                        
                     {
                             userId && cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
                             if (x.product.promotion.delivery !== true) {
@@ -133,7 +133,7 @@ export function MyCart() {
                         })
                             : console.log('NO ES UN ARRAY')}
                      {
-                            !userId && cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
+                            !userId && cart && cart.length > 0 && cart[0].amount && cart[0].product? cart.forEach((x) => {
                             if (x.product.delivery !== true) {
                                 envio += 400
                             }
@@ -156,6 +156,7 @@ export function MyCart() {
                         cart.length > 0 && <div><h4> Envio : ${addCommas(Math.floor(envio))}</h4>
                             <h2> TOTAL : ${addCommas(Math.floor(totalCart + envio))}</h2></div>
                     }
+                    
                     {
                         userId !== undefined && cart.length > 0 ? 
                         <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button>:
