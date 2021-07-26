@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify';
 
 import MercadoPago from '../components/MercadoPago/MercadoPago'
+import clientAxios from '../config/axios';
 
 
 export function MyCart() {
@@ -41,12 +42,16 @@ export function MyCart() {
     }
     useEffect(() => {
         if (userId){
+            let cartguest = JSON.parse(localStorage.getItem('cartguest'));
+        if (cartguest.length>0)
+            cartguest.forEach(x=> clientAxios.post('/cart/add', {productId:x.product.id, userId:userId}) )
+        
         dispatch(getCart(userId))
         
         }else{
             dispatch(getCartNotLogged())
         }
-    }, [dispatch, userId])
+    }, [ userId])
 
     let addCommas = function (nStr) {
         nStr += '';
