@@ -11,6 +11,7 @@ import { Media } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
 import Publications from '../../../views/PanelViews/Publications'
 import Products from '../../../views/PanelViews/Products'
+import Questions from '../../../views/PanelViews/Questions'
 
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
 import Sales from '../../../views/PanelViews/Sales';
@@ -118,7 +119,7 @@ export default function PanelMenu() {
         <Sales></Sales>
       </TabPanel>
       <TabPanel value={value} index={5}>
-        Item Six
+        <Questions></Questions>
       </TabPanel>
     </div>
   );

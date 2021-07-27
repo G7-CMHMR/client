@@ -37,7 +37,7 @@ if(actualUser && Object.keys(actualUser).length > 0){
                     
 
                     return <div><Question 
-                            user={x.user} 
+                            user={x.userName} 
                             question={x.question}
                             date={x.date}
                             answer={x.response}

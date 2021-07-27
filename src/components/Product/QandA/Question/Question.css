@@ -24,3 +24,7 @@
     flex-direction: column;
     width: 70rem;
 }
+#contenedorimagen {
+    display: flex;
+    flex-direction: row;
+}
