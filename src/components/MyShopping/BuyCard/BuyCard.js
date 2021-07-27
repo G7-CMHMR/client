@@ -1,31 +1,43 @@
 //card que se renderiza en Shoppin History (historial del compras)
 import './BuyCard.css'
 import { Button, TextField } from '@material-ui/core'
-
-function BuyCard(params) {
+import { Link } from 'react-router-dom'
+// id={x.id} amount={x.amount}
+// cartId={x.cartId} productId={x.productId} purchaseOrderId={x.purchaseOrderId}
+// name={x.product.name} status={x.product.status} price={x.product.price}
+// valuation={x.product.valuation} stock={x.product.stock} brand={x.product.brand}
+// description = {x.product.description} type={x.product.type} warranty={x.product.warranty} 
+// sellerId={x.product.sellerId} promotion={x.product.promotion} images={x.product.images}
+// category={x.product.categories}
+function BuyCard(props) {
     return (
         <div id='BuyCardContainer'>
-
-            <div id='BuyCard_Image_Container'>
-                <img id='BuyCard_Image' src='https://http2.mlstatic.com/D_NQ_NP_702136-MLA31062619961_062019-O.webp'></img>
-            </div>
-            <div id='BuyCard_Name-Price-Shipping'>
-                <h3 id='BuyCard_Name'>Nombre del producto</h3>
-                <div id='BuyCard_PriceAndCount'>
-                    <h1 id='BuyCard_Price'>$8500</h1>
-                    <h3 id='BuyCard_Amount'>Cantidad: 4</h3>
+            <Link to={'Producto/' + props.productId} >
+                <div id='BuyCard_Image_Container'>
+                    <img id='BuyCard_Image' src={props.images[0].image}></img>
                 </div>
+            </Link>
+
+            <div id='BuyCard_Name-Price-Shipping'>
+                <Link to={'Producto/' + props.productId} >
+                    <h3 id='BuyCard_Name'>{props.name}</h3>
+                </Link>
+                <div id='BuyCard_PriceAndCount'>
+                    <h1 id='BuyCard_Price'>{'$' + props.price}</h1>
+                    <h3 id='BuyCard_Amount'>Cantidad: {props.amount}</h3>
+                </div>
+
                 <div id='BuyCard_Shipping-Help'>
-                    <h3 id='BuyCard_Shipping'>Envio Gratis</h3>
+                    <h3 id='BuyCard_Shipping'>{props.promotion.delivery ? 'Envio Gratis' : 'Envio: $400'}</h3>
                     <Button id='BuyCard_HelpButton' variant="contained" color="primary">AYUDA</Button>
                 </div>
             </div>
             <div id='BuyCard_State'>
-                <TextField disabled id="BuyCard_State-input" label="ESTADO: PERDIDO" variant="outlined" />
+                <TextField disabled id="BuyCard_State-input" label={'Estado:'} variant="outlined" />
             </div>
             <div id='BuyCard_Buttons'>
-            <Button id='BuyCard_Btn1' variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
-            <Button id='BuyCard_Btn2'variant="contained" color="secundary">Ir a la publicación</Button>
+                <Button id='BuyCard_Btn1' variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
+                <Link to={'Producto/' + props.productId} ><Button id='BuyCard_Btn2' variant="contained" color="secundary">Ir a la publicación</Button></Link>
             </div>
 
         </div>

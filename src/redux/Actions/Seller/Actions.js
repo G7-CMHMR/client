@@ -1,6 +1,6 @@
 import axios from 'axios'
 import clientAxios from '../../../config/axios';
-import { POST_PRODUCT, GET_PRODUCTS } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS, GET_SOLD } from './ActionsName'
 
 
 export function createProductAction(product) {
@@ -49,7 +49,15 @@ export function seller_updateProduct(productId, producto, userId, visiblet) {
 }
 
 
+export function seller_GetSolds(sellerId) {
 
+    return (dispatch) => {
+        clientAxios.get(`sellerSells/all/${sellerId}` )
+            .then(response => {
+                dispatch({ type: GET_SOLD, payload: response.data })
+            })
+    }
+}
 
 
 

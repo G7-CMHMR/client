@@ -1,16 +1,24 @@
-import {GET_PURCHASE_ORDER} from './ActionsName'
+import {GET_PURCHASE_ORDER, GET_ITEMS} from './ActionsName'
 
 const initialState = {
-    purchaseOrderHistory: []
+    purchaseOrderHistory: [],
+    ProductsHistory: [],
 }
 //Combine Reducers
 function purchaseOrderReducer (state = initialState, action) {
     switch (action.type){
+
         case GET_PURCHASE_ORDER: {
             return {
                 ...state,
-                purchaseOrderHistory: action.payload
-                
+                purchaseOrderHistory: action.payload 
+            }
+        }
+
+        case GET_ITEMS: {
+            return{
+                ...state,
+                ProductsHistory: action.payload
             }
         }
 

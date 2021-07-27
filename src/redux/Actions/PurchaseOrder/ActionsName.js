@@ -1,1 +1,4 @@
 export let GET_PURCHASE_ORDER = 'GET_PURCHASE_ORDER'
+
+
+export let GET_ITEMS = 'GET_ITEMS'

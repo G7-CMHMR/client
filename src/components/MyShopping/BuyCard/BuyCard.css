@@ -14,7 +14,7 @@
 
 #BuyCard_Image_Container{
     margin-left: 1rem;
-    width: 12rem;
+    width: 8rem;
 }
 #BuyCard_Image{
     width: 6rem;
@@ -29,7 +29,9 @@
     align-items: flex-start;
 }
     #BuyCard_Name{
-        font-size: 1rem;
+        font-size: 1rem; 
+        width: 40rem;
+        text-align: start;
     }
   
         #BuyCard_PriceAndCount{
@@ -41,7 +43,7 @@
             margin-right: 8rem;
         }
         #BuyCard_Amount{
-            margin-top: 0.3rem;
+            margin-top: 0.4rem;
             margin-left: -3rem;
             font-size: 1rem;
         }

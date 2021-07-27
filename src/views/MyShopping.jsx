@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 
 import BuyCards from '../components/MyShopping/BuyCards/BuyCards';
-
-import { getPurchaseOrderHistory } from '../redux/Actions/PurchaseOrder/Actions'
+import { getUserItems } from '../redux/Actions/PurchaseOrder/Actions';
+import { getPurchaseOrderHistory, setPurchaseOrderStatus } from '../redux/Actions/PurchaseOrder/Actions'
 
 
 function MyShopping() {
@@ -16,8 +16,7 @@ function MyShopping() {
     const dispatch = useDispatch();
     const productsReducer = useSelector(state => state.productsReducer)
 
-    const userReducer = useSelector(state => state.userReducer.userData)
-
+    const userReducer = useSelector(state => state.userReducer)
 
     var query = window.location.search.substring(1);
     var payment_type = ''
@@ -33,14 +32,8 @@ function MyShopping() {
 
     //const purchaseOrderHistory = useSelector(state => state.purchaseOrderReducer.purchaseOrderHistory)
     if (preference_id) {
-
+        dispatch(setPurchaseOrderStatus(preference_id, status, payment_type, userReducer.id))
     }
-
-    useEffect(() => {
-        dispatch(getPurchaseOrderHistory({
-            userId: "2"
-        }))
-    }, [])
 
 
     return (
