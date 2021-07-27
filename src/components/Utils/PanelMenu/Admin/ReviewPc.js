@@ -7,18 +7,19 @@ export default function ReviewPc() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.products)
     useEffect(() => {
-        dispatch(getProductsOfCategory('Monitor'))
+        dispatch(getProductsOfCategory('Procesador'))
     }, [dispatch])
     return (
         <div>
             
-            <h5>se esta msotrando monitores pero se mostraria lista de PC que haria falta evaluar. (Para quiz)</h5>
+            <h5>se esta msotrando procesador pero se mostraria lista de PC que haria falta evaluar. (Para quiz)</h5>
+            <div id="ReviewContainer" style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around'}}>
             {
                 products.map((x)=>{
-                    return <CardPC id={x.id} name={x.name} images={x.images}/>
+                    return <CardPC id={x.id} name={x.name} images={x.images} description={x.description}/>
                 })
             }
-        
+            </div>
         </div>
     )
 }

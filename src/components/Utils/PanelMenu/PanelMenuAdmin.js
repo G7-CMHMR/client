@@ -11,7 +11,7 @@ import { Media } from 'react-bootstrap';
 import { useSelector } from 'react-redux'
 import Publications from '../../../views/PanelViews/Publications'
 import Products from '../../../views/PanelViews/Products'
-
+import Badge from '@material-ui/core/Badge';
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
 import Sales from '../../../views/PanelViews/Sales';
 import { seller_getAllProducts } from '../../../redux/Actions/Seller/Actions';
@@ -87,10 +87,10 @@ export default function PanelMenuAdmin() {
         className='Test1'
         id='pepe'
       > 
-        <Tab label="U S U A R I O S" {...a11yProps(0)} />
+        <Tab label="U S U A R I O S" {...a11yProps(0)}></Tab>
         <Tab label="C A T E G O R I A S" {...a11yProps(1)} />
         <Tab label="R E V I E W  PC" {...a11yProps(2)} />
-        <Tab label="S U P E R  A D M I N " {...a11yProps(3)} />
+        <Tab style={{color:'red'}} label="S U P E R  A D M I N " {...a11yProps(3)} />
 
       </Tabs>
       <TabPanel value={value} index={0}>

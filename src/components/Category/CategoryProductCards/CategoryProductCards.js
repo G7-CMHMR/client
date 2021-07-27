@@ -31,14 +31,14 @@ function CategoryProductCards() {
     return (
         <div id="CategoryProductCards">
             <CategoryOrder></CategoryOrder>
-            {productsReducer.products.map((x) => {
+            {productsReducer.products.length>0 ? productsReducer.products.map((x) => {
                 return (
                     <ProductCard name={x.name} images={x.images}
                         valuation={x.valuation} delivery={x.delivery} price={x.price}
                         discount={x.discount} seller={x.seller}
                         status={x.status} id={x.id} />
                 )
-            })}
+            }): <h4>No hay productos que coincidan!</h4> }
         </div>
     )
 }
