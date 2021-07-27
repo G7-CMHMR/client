@@ -1,13 +1,38 @@
 import Separate from '../../components/Utils/Separate/Separate';
 import './Questions.css'
 
+import Question from '../../components/Product/QandA/Question/Question';
 
-import React, { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 
 
 function Questions() {
+
+    const questions = [
+        {
+            id: 1,
+            userName: 'Jaroth',
+            question: 'JUST LOOK LIKE YOU KNOW!',
+            response: 'null',
+            date: "2021-07-27T16:23:33.052Z",
+            productId: 15,
+            userId: 6,
+            sellerId:"7ed66268-383b-4f15-bdc3-3b0213d1a18d"
+        },
+        {
+            id: 2,
+            userName: 'Jaroth',
+            question: 'JUST LOOK LIKE YOU KNOW SOMETHING I SHOULD!',
+            response: 'null',
+            date: "2021-07-27T17:52:07.510Z",
+            productId: 15,
+            userId: 6,
+            sellerId:"7ed66268-383b-4f15-bdc3-3b0213d1a18d"
+        }
+    
+    ];
 
     //const dispatch = useDispatch();
     //const productsReducer = useSelector(state => state.productsReducer)
@@ -24,7 +49,14 @@ function Questions() {
             <Separate></Separate>
 
             <div id='PanelContentDetail'>
-               
+                <div>
+               {questions ? questions.map(x => <Question 
+                            user={x.userName} 
+                            question={x.question}
+                            date={x.date}
+                            answer={x.response}
+                        />):null}
+                        </div>
             </div>
 
             <Separate></Separate>
