@@ -4,7 +4,10 @@ import clientAxios from '../../../config/axios';
 import { MensajeError } from '../../../views/MyCart';
 import React from 'react';
 import { useMercadopago } from 'react-sdk-mercadopago';
-import {setListoCheckout} from '../../../views/MyCart';
+import { setListoCheckout } from '../../../views/MyCart';
+import { Link, Redirect, Router, BrowserRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { setPurchaseOrderStatus } from '../PurchaseOrder/Actions';
 
 export function getCart(userID) {
     return (dispatch) => {
@@ -101,11 +104,10 @@ export function checkout(cart, direction, userId) {
 
                         //EN CASO DE NINGUN ERROR, ABRE EL MODAL DE MERCADOPAGO CON TODOS LOS ITEMS
                         if (!response.data.error || !response.data.errorChangeAmount) {
-                            dispatch({ type: CHECKOUT, payload: response.data })
+                            dispatch({ type: CHECKOUT, payload: response.data });
                             //window.location.href = (response.data.body.sandbox_init_point)
-                            setTimeout(function () {
-                                
-                            }, 120000);
+                            //window.location.replace(`http://localhost:3000/Compras?preference_id=${response.data.body.id}&status=Approbed`)
+                            let status = "Approbed"
 
                             var orderUser = {
                                 userId: userId,
@@ -116,12 +118,23 @@ export function checkout(cart, direction, userId) {
                             //CREA LA ORDEN DE COMPRA
                             clientAxios.post('/purchaseOrder/create', orderUser)
                                 .then(purchaseorder => {
-                                    console.log(purchaseorder)
+                                    console.log(purchaseorder);
+                                    // .Push('/Compras')
+                                    dispatch(setPurchaseOrderStatus(response.data.body.id, status, '', userId))
+                                    let objEraseCart = {
+                                        userId: userId,
+                                        productId: response.data.productid,
+                                    }
+                                    clientAxios.post('/cart/eraseCart', objEraseCart)
+                                        .then(response => {
+                                            dispatch({ type: GET_CART, payload: response.data })
+                                        })
                                 })
                                 .catch(error => {
                                     console.log(error)
 
                                 })
+
                         }
                     })
             })
@@ -132,7 +145,7 @@ export function checkout(cart, direction, userId) {
 
 export function resetCartCheckout() {
     return (dispatch) => {
-         dispatch({type: 'RESETCHECKOUT'})
+        dispatch({ type: 'RESETCHECKOUT' })
     }
 }
 
@@ -193,29 +206,29 @@ export const addProductNotLogged = (id) => {
     }
 }
 export const decrementItemNotLogged = (id) => {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest')) ;
-    let found =  cartguest.find((f) => f.product.id === id)
-    let index = cartguest.indexOf(found) 
-            cartguest[index].amount -= 1;
-        
-        localStorage.setItem('cartguest', JSON.stringify(cartguest));
-        return {
-            type: GET_CART,
-            payload: cartguest
-        }
+    let cartguest = JSON.parse(localStorage.getItem('cartguest'));
+    let found = cartguest.find((f) => f.product.id === id)
+    let index = cartguest.indexOf(found)
+    cartguest[index].amount -= 1;
+
+    localStorage.setItem('cartguest', JSON.stringify(cartguest));
+    return {
+        type: GET_CART,
+        payload: cartguest
+    }
 }
 export const deleteItemNotLogged = (id) => {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest')) ;
-    let filter =  cartguest.filter((f) => f.product.id !== id)
-   localStorage.setItem('cartguest', JSON.stringify(filter));
-   cartguest = JSON.parse(localStorage.getItem('cartguest'))
+    let cartguest = JSON.parse(localStorage.getItem('cartguest'));
+    let filter = cartguest.filter((f) => f.product.id !== id)
+    localStorage.setItem('cartguest', JSON.stringify(filter));
+    cartguest = JSON.parse(localStorage.getItem('cartguest'))
     return {
         type: GET_CART,
         payload: cartguest
     }
 }
 export function getCartNotLogged() {
-    let cartguest = JSON.parse(localStorage.getItem('cartguest')) 
+    let cartguest = JSON.parse(localStorage.getItem('cartguest'))
     return {
         type: GET_CART,
         payload: cartguest

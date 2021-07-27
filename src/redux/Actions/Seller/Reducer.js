@@ -1,9 +1,9 @@
-import { POST_PRODUCT, GET_PRODUCTS } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS, GET_SOLD } from './ActionsName'
 
 
 const initialState = {
     ProductsSeller: [],
-
+    ProductsSold: [],
 }
 
 function sellerReducer(state = initialState, action) {
@@ -19,6 +19,13 @@ function sellerReducer(state = initialState, action) {
             return {
                 ...state,
                 ProductsSeller: action.payload
+            }
+        }
+
+        case GET_SOLD: {
+            return {
+                ...state,
+                ProductsSold: action.payload
             }
         }
 
