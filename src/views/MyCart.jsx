@@ -116,7 +116,7 @@ export function MyCart() {
                                 discount={x.product.promotion.value}
                                 status={x.product.status} id={x.product.id} stock={x.product.stock} />
                         )
-                    }) : <div></div>}
+                    }) : <div>Todavía no agregaste productos al carrito!</div>}
 
 
                 </div>
@@ -162,11 +162,14 @@ export function MyCart() {
                     }
                     
                     {
-                        userId !== undefined && cart.length > 0 ?
-                            <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> :
+                        userId !== undefined && cart && cart.length > 0 &&
+                            <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> 
+                    }
+                    {
+                        cart && cart.length > 0 &&
                             <Button variant="warning" onClick={changeState}>Comprar carrito</Button>
                     }
-                    { show && 
+                    { show &&cart &&
                         <h6> Para comprar es necesario ser un usuario! <Button variant="warning" onClick={openLogin}>LOGUEATE</Button>
                         o si no tenes cuenta todavía, <Button variant="warning" onClick={openRegister}>REGISTRATE</Button></h6>
                     }

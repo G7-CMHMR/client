@@ -4,9 +4,23 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import {Button} from 'react-bootstrap'
+import {Button, Modal} from 'react-bootstrap'
 import { makeStyles } from '@material-ui/core/styles';
+import { Form, FormControl } from 'react-bootstrap'
+import { BsSearch } from 'react-icons/bs'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+
+export default function Usuarios() {
+    const [open, setOpen] = React.useState(false);
+    const [show, setshow] = React.useState(false);
+    const handleCloseDelete = () => setshow(false);
+    const handleShowDelete = () => setshow(true);
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
@@ -14,9 +28,13 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.background.paper,
     },
   }));
-  
-export default function Usuarios() {
-    const classes = useStyles(); 
+  const classes = useStyles(); 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    } 
+    setOpen(false);
+  };
     let prueba=[
     {
         id:3,
@@ -40,10 +58,21 @@ export default function Usuarios() {
     }]
 
 
-
+    const passwordResetShow = ()=>{
+        setOpen(true)
+    }
 
     return (
         <div>
+            <Form className="d-flex">
+      <FormControl
+        type="search"
+        placeholder="Buscar un usuario por mail"
+        className="mr-2"
+        aria-label="Search"
+      />
+      <Button variant="outline-success"><BsSearch/></Button>
+    </Form>
             <List className={classes.root}>
                 {
                     prueba.map((x)=>{
@@ -53,9 +82,8 @@ export default function Usuarios() {
                     <Avatar src="/broken-image.jpg" />
                     </ListItemAvatar>
                     <ListItemText primary={x.name} secondary={x.mail} />
-                    <Button style={{margin:'3px'}} variant="secondary">Password reset</Button>
-             <Button style={{margin:'3px'}} variant="info">Hacer Admin</Button>
-             <Button style={{margin:'3px'}} variant="danger">Eliminar</Button>
+                    <Button onClick={passwordResetShow} style={{margin:'3px'}} variant="info">Password reset</Button>
+             <Button onClick={handleShowDelete} style={{margin:'3px'}} variant="danger">Eliminar</Button>
                     
                     </ListItem>
 
@@ -65,6 +93,28 @@ export default function Usuarios() {
                 }
              
       </List>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success">
+                            Se realizó password reset al usuario
+                            </Alert>
+                        </Snackbar>
+      <Modal 
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered show={show} onHide={handleCloseDelete}>
+        <Modal.Header closeButton>
+          <Modal.Title>Esta acción eliminará al usuario definitivamente</Modal.Title>
+        </Modal.Header>
+        
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleCloseDelete}>
+            VOLVER
+          </Button>
+          <Button variant="secondary" onClick={handleCloseDelete}>
+            ELIMINAR
+          </Button>
+        </Modal.Footer>
+      </Modal>
         </div>
     )
 }
