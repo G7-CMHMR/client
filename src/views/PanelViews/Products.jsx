@@ -21,6 +21,7 @@ function Products() {
     return (
     
         <div className='ProductPanelContainer'>
+            <br></br>
             <h1>Mis productos</h1>
             <br></br>
                 {

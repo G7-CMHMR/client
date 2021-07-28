@@ -1,0 +1,34 @@
+#PanelPublicationsContainer{
+    background-color: blue;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+   
+.ProductPanelContainer{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.makeStyles-root-1{
+    height: auto !important;
+}
+
+#SellerPanelStadistics{
+    width: 100%;
+    display: flex;
+}
+
+#SellerPanelStadisticsCircular{
+    width: 50%
+}
+
+
+#SellerPanelData{
+    margin-left: 4rem;
+    width: 50%;
+    text-align: start;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

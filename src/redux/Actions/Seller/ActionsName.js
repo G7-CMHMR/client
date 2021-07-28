@@ -1,5 +1,5 @@
 export let POST_PRODUCT = 'POST_PRODUCT';
-export let GET_PRODUCTS = 'GET_PRODUCTS';
+export let GET_PRODUCTS_seller = 'GET_PRODUCTS_seller';
 
 export let POST_PRODUCT_VISIBLE = 'POST_PRODUCT_VISIBLE';
 

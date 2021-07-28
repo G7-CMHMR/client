@@ -1,0 +1,32 @@
+#SalesFilter{
+    background-color: beige;
+    display: flex;
+    width: 100%;
+    height: 4rem;
+}
+
+#FiltrosName{
+    margin-right: 4rem;
+    text-align: center;
+}
+
+#SalesFilter_Container{
+    display: flex;
+    align-items: center;
+}
+
+#SalesFilter_Container>*{
+    margin-right: 5rem;
+}
+
+#SalesFilter_Search{
+    width: 12rem;
+}
+
+#StatusFilterSales{
+    width: 7rem;
+}
+
+#CategoryFilterSales{
+    width: 11rem;
+}
