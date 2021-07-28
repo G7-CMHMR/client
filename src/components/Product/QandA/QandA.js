@@ -9,19 +9,28 @@ import { LeakAddTwoTone } from "@material-ui/icons";
 function QandA() {
 
 const actualUser = useSelector((state) => state.userReducer.userData);
-const actualSeller = useSelector((state) => state.sellerReducer.ProductsSeller);
+//const actualSeller = useSelector((state) => state.sellerReducer.ProductsSeller);9
 const actualProduct = useSelector((state) => state.productsReducer.productDetail); 
-
+let existeQuestions = false;
 let mostrarAnswer = false;
 
 if(actualUser && Object.keys(actualUser).length > 0){
-    if(actualUser && actualUser.idSeller === actualProduct.seller.id){
-        mostrarAnswer = true;
-    }     
-    else {
-        mostrarAnswer = false 
+    if(actualProduct.questions && Array.isArray(actualProduct.questions)){
+        existeQuestions = true;
+        if(actualProduct && actualUser && actualUser.idSeller === actualProduct.seller.id){
+            mostrarAnswer = true;
+            
+        }     
+        else {
+            mostrarAnswer = false 
+            
+        }
     }
+    
 }
+//if(actualProduct.questions === []){
+    //console.log(actualProduct.questions)
+//}
 
 //console.log(coincidence.sellerId)
     return(
@@ -31,16 +40,19 @@ if(actualUser && Object.keys(actualUser).length > 0){
             <Ask />
             <div id="questionsCards">
                 {
-                actualProduct.questions && 
+                existeQuestions && 
                 actualProduct.questions.map((x) => {
                     
                     
 
                     return <div><Question 
+                            id={x.id}
                             user={x.userName} 
                             question={x.question}
                             date={x.date}
                             answer={x.response}
+                            imagen={null}
+                            key={x.id}
                         />
                         {mostrarAnswer ?
                                         x.response ? null  : <Answer id={x.id}/> : null}

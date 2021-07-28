@@ -47,7 +47,7 @@ export default function PanelGral({ input, setInput }) {
     }
 
     function createProduct(e) {
-        console.log(input)
+        //console.log(input)
         e.preventDefault()
         if (input.name == '' || input.status == '' || input.price == '' || input.stock == '' || input.description == '' || input.type == '' || input.warranty == '') {
             toast.error('Por favor completa todos los campos')

@@ -61,10 +61,10 @@ export default function PanelForm({input, setInput}) {
 
     const handleChange = (e, newValue) => {
         setValue(newValue);
+        /* console.log(e.target.name)
         console.log(e.target.name)
         console.log(e.target.name)
-        console.log(e.target.name)
-        console.log(e.target.name)
+        console.log(e.target.name) */
         setInput({
             ...input,
            'type' : e.target.textContent,

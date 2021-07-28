@@ -27,9 +27,9 @@ function ProductsCards() {
     return (
 
         <div id='CategoryProductCards'>
-            {console.log(favouritesReducer)}
+            {/* {console.log(favouritesReducer)}
             {console.log(userId)}
-            {console.log(userReducer)}
+            {console.log(userReducer)} */}
             {productsReducer.products ? productsReducer.products.map((x) => {
                 return (
                     <ProductCard name={x.name} images={x.images}

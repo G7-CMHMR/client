@@ -40,7 +40,7 @@ function Sales() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(userReducer.idSeller)
+        //console.log(userReducer.idSeller)
         dispatch(seller_GetSolds(userReducer.idSeller))
     }, [dispatch])
 

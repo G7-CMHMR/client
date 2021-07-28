@@ -36,16 +36,16 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
         category: category,
     })
 
-    console.log(input)
+    //console.log(input)
 
     function handleChange(event) {
         if (event.target.name == 'delivery') {
-            console.log(event.target.checked)
+            //console.log(event.target.checked)
             setInput({
                 ...input,
                 [event.target.name]: event.target.checked
             });
-            console.log(input)
+            //console.log(input)
         } else {
             setInput({
                 ...input,
@@ -107,7 +107,7 @@ export default function MyPoductCard({stock, sold, price, discount, images, name
     }
     function modificateProduct() {
         dispatch(seller_updateProduct(id,input, userReducer.id, false))
-        console.log("paso funcion")
+        //console.log("paso funcion")
         setOpenM(false)
     }
 
