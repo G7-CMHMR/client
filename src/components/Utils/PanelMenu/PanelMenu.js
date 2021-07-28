@@ -16,6 +16,7 @@ import Questions from '../../../views/PanelViews/Questions'
 import CrearProducto from '../../../views/PanelViews/CreateProduct';
 import Sales from '../../../views/PanelViews/Sales';
 import { seller_getAllProducts } from '../../../redux/Actions/Seller/Actions';
+import PanelSeller from '../../../views/PanelViews/PanelSeller';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,18 +94,7 @@ export default function PanelMenu() {
 
       </Tabs>
       <TabPanel value={value} index={0}>
-        <h2>{user.name}, te presentamos tu panel 💻</h2>
-        <hr></hr>
-        <h4>Vas a poder controlar todo lo relacionado con tus ventas y productos</h4><br></br>
-        <div>
-         
-            <h5>PUBLICACIONES</h5>
-            <h5>PRODUCTOS</h5>
-            <h5>CREAR PRODUCTO</h5 >
-            <h5>VENTAS</h5>
-            <h5>PREGUNTAS</h5>
-          
-        </div>
+        <PanelSeller></PanelSeller>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Publications></Publications>

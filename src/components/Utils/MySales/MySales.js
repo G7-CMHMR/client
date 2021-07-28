@@ -1,10 +1,17 @@
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {Button} from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import React from 'react';
-                                    //unidad user y estado son de una variable de prueba. 
-export default function MySales({ unidad, user, estado, price, discount, images, name, id }) {
-    
+// date={e.date} id_buyer={e.id_buyer} product_status={e.product_status}
+//  address={e.address} productId={e.productId} amount={e.amount} sellerId={e.sellerId}
+// item={e.item}
+// Faltan: images,price,discount,name
+export default function MySales({date, id_buyer, product_status, address,
+    productId, amount, sellerId, item, images, price, discount, name, buyer}) {
+
+    console.log(date, id_buyer, product_status, address,
+        productId, amount, sellerId, item, images, price, discount, name)
+
     const userReducer = useSelector(state => state.userReducer.userData)
 
     let addCommas = function (nStr) {
@@ -19,42 +26,42 @@ export default function MySales({ unidad, user, estado, price, discount, images,
         return x1 + x2;
     }
 
-    
+
 
     return (
         <div>
             <div id="MyProductCard">
                 <div id='MyProductCardContainer'>
-                    <img id="MyProductImage" src={images[0]} alt="Omar Dsoky" />
-                    <Link id="link" to={`/Producto/${id}`}>
+                    <img id="MyProductImage" src={images[0].image} alt="Omar Dsoky" />
+                    <Link id="link" to={`/Producto/${productId}`}>
                         <div class="MyProduct-details">
                             <h4 id="MyProductName">{name}</h4>
-                            
+
                             <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
-                                <p>{unidad} unidad </p>
+                                <p>{amount} unidad </p>
                             </div>
                         </div>
-                    </Link>    
-                        <div id="SalesAndStock">
-                            <p>Estado:</p>
-                            <p> {estado}</p>
-                            <p>Comprador:</p>
-                            <p>{user}</p>
-                        </div>
-                        <div id="MyProductButtons">
-                            {estado==='entregado'? <Button variant="danger">Cancelar</Button>
+                    </Link>
+                    <div id="SalesAndStock">
+                        <p>Estado: {product_status}</p>
+
+                        <p>Comprador: {buyer}</p>
+
+                    </div>
+                    <div id="MyProductButtons">
+                        {product_status === 'entregado' ? <Button variant="danger">Cancelar</Button>
                             : ' '}
-                        
+
                         <Button variant="info">Enviar mensaje</Button>
                         <Button variant="dark">Ver detalle</Button>
-                        </div>
-                    
-                   
+                    </div>
+
+
                 </div>
             </div>
-        
-          
-       
+
+
+
         </div>
     )
 }
