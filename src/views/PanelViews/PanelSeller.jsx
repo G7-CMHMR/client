@@ -4,6 +4,7 @@ import React, { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
 import MyPublicationCard from '../../components/Utils/MyPublicationCard/MyPublicationCard'
+import { Pie } from 'react-chartjs-2'
 
 
 function PanelSeller() {
@@ -13,9 +14,19 @@ function PanelSeller() {
     var userId = userReducer.id
 
     useEffect(() => {
-        
+
     }, [dispatch])
 
+
+    const data = {
+        labels: ['Google', 'Bing', 'Firefox', 'Baidu', 'Otros'],
+        datasets: [{
+            data: [35, 11, 22, 9]
+        }]
+    }
+    const opciones = {
+        responsive: true
+    }
 
 
     return (
@@ -24,9 +35,9 @@ function PanelSeller() {
             <br></br>
             <h1>¡Bienvenido {userReducer.name} a tu panel! 💻</h1>
             <h4>Podrás controlar todas tus ventas y publicaciones</h4><br></br>
-            <div>
 
-       
+            <div id='SellerPanelStadistics'>
+                <Pie data={data} options={opciones}></Pie>
 
             </div>
 
