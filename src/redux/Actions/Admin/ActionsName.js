@@ -1,0 +1,10 @@
+export const GET_USERS = 'GET_USERS';
+export const DELETE_USER = 'DELETE_USER';
+export const PASSWORD_RESET = 'PASSWORD_RESET';
+export const BECOME_ADMIN = 'BECOME_ADMIN';
+export const BECOME_SUPERADMIN = 'BECOME_SUPERADMIN';
+export const DELETE_ADMIN= 'DELETE_ADMIN';
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const EDIT_CATEGORY = 'EDIT_CATEGORY';
+export const REVIEW_PC= 'REVIEW_PC';
+export const GET_PC= 'GET_PC';

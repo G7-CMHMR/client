@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -6,10 +6,12 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import {Button, Modal} from 'react-bootstrap'
 import { makeStyles } from '@material-ui/core/styles';
-import { Form, FormControl } from 'react-bootstrap'
+import { Form, FormControl, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { BsSearch } from 'react-icons/bs'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers, DeleteUser } from '../../../../redux/Actions/Admin/Actions';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -17,47 +19,43 @@ function Alert(props) {
 
 
 export default function Usuarios() {
+    const dispatch = useDispatch()
     const [open, setOpen] = React.useState(false);
     const [show, setshow] = React.useState(false);
+    const [idUser, setIdUser] = React.useState(0)  
+    const user = useSelector(state => state.userReducer.userData)
+    let userId = user.id
     const handleCloseDelete = () => setshow(false);
-    const handleShowDelete = () => setshow(true);
-const useStyles = makeStyles((theme) => ({
+    const handleCloseDeleteAction = ()=>{
+      console.log(userId,idUser)
+      dispatch(DeleteUser({adminId:userId , userId:idUser}))
+      setshow(false)
+    }
+    const handleShowDelete = (e) => {
+      setIdUser(e.target.value)
+      setshow(true)
+      }
+    
+    const users = useSelector(state => state.adminReducer.users)
+   
+    useEffect(() => {
+      dispatch(getUsers(userId))
+    }, [dispatch, userId])
+    const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
       maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
-  }));
-  const classes = useStyles(); 
-  const handleClose = (event, reason) => {
+    }));
+      const classes = useStyles(); 
+    const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     } 
     setOpen(false);
-  };
-    let prueba=[
-    {
-        id:3,
-        mail:'sdas@gmail.com',
-        name:'ricardo fort',
-    },
-    {
-        id:5,
-        mail:'sdas@gmail.com',
-        name:'susana gimenez',
-    },
-    {
-        id:6,
-        mail:'sdas@gmail.com',
-        name:'messi',
-    },
-    {
-        id:7,
-        mail:'sdas@gmail.com',
-        name:'roberto',
-    }]
-
-
+    };
+    
     const passwordResetShow = ()=>{
         setOpen(true)
     }
@@ -75,17 +73,31 @@ const useStyles = makeStyles((theme) => ({
     </Form>
             <List className={classes.root}>
                 {
-                    prueba.map((x)=>{
+                    users.map((x)=>{
             return (
             <ListItem style={{width:'180%'}}>
                     <ListItemAvatar>
                     <Avatar src="/broken-image.jpg" />
                     </ListItemAvatar>
-                    <ListItemText primary={x.name} secondary={x.mail} />
+                    <ListItemText primary={x.name} secondary={x.email} />
+                    {!x.isAdmin && !x.superAdmin && 
                     <Button onClick={passwordResetShow} style={{margin:'3px'}} variant="info">Password reset</Button>
-             <Button onClick={handleShowDelete} style={{margin:'3px'}} variant="danger">Eliminar</Button>
-                    
-                    </ListItem>
+                    }
+                    {
+                      !x.isAdmin && !x.superAdmin &&
+                      <Button onClick={(e)=>handleShowDelete(e)} value={x.id} style={{margin:'3px'}} variant="danger">Eliminar</Button>
+                    }
+                  { !x.superAdmin && x.isAdmin &&
+                    <OverlayTrigger placement='top' overlay={<Tooltip>
+                    Este usuario es Admin. No tienes derechos </Tooltip> } >
+                    <Button variant="warning">ADMIN </Button>
+                  </OverlayTrigger>}
+                  { x.superAdmin &&
+                    <OverlayTrigger placement='top' overlay={<Tooltip>
+                    Este usuario es Superadmin. No tienes derechos </Tooltip> } >
+                    <Button variant="dark">SUPERADMIN </Button>
+                  </OverlayTrigger>}
+                  </ListItem>
 
                     
             )
@@ -110,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
           <Button variant="danger" onClick={handleCloseDelete}>
             VOLVER
           </Button>
-          <Button variant="secondary" onClick={handleCloseDelete}>
+          <Button variant="secondary" onClick={handleCloseDeleteAction}>
             ELIMINAR
           </Button>
         </Modal.Footer>
