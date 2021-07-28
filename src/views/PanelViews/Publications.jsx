@@ -22,6 +22,7 @@ function Publications() {
     return (
     
         <div className='ProductPanelContainer'>
+            <br></br>
             <h1>Mis publicaciones</h1>
             <br></br>
                 {

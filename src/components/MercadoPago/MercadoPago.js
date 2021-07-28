@@ -14,18 +14,18 @@ export default function CheckoutV2() {
     const cartCheckout = useSelector(state => state.cartReducer.checkout)
 
     useEffect(() => {
-        // if (mercadopago && isReadyToPay) {
-        //     console.log(cartCheckout)
-        //     const data = mercadopago.checkout({
-        //         preference: {
-        //             id: cartCheckout.response.id
-        //         },
-        //         autoOpen: true,
-        //     })
-        //     console.log(data)
-        //     dispatch(resetCartCheckout())
-        // }
-        // console.log('ENTRO AL USE EFFECT')
+        if (mercadopago && isReadyToPay) {
+            console.log(cartCheckout)
+            const data = mercadopago.checkout({
+                preference: {
+                    id: cartCheckout.response.id
+                },
+                autoOpen: true,
+            })
+            console.log(data)
+            dispatch(resetCartCheckout())
+        }
+        console.log('ENTRO AL USE EFFECT')
     }, [mercadopago])
 
     return (
