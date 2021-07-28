@@ -51,7 +51,7 @@ export function attemptRegisterAction (attempt) {
         dispatch(attemptRegister() );
         try {
             const { data } = await clientAxios.post('/auth/create', attempt)
-            console.log(data)
+            //console.log(data)
             
             dispatch(attemptRegisterSuccess())
             
@@ -186,7 +186,7 @@ export function changeDataOfUserFailed(error){
 
 
 export function changePasswordOfUser(newData){
-    console.log(newData)
+    //console.log(newData)
     return async (dispatch) => {
         try {
             const token = localStorage.getItem('token') || '';
@@ -239,7 +239,7 @@ export function attemptBecomeSellerAction (attempt) {
         try {
             
             const {data} = await clientAxios.post('/seller/create/', attempt)
-            console.log(data)
+           // console.log(data)
             dispatch(becomeSellerSuccess(data))
         } catch (error) {
             console.error(error.response)

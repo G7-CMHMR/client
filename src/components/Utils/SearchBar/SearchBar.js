@@ -18,7 +18,7 @@ function SearchBar() {
 
 
   function CleanResults(e) {
-    console.log(e)
+    //console.log(e)
     dispatch(CleanProducts())
     dispatch(putOnSearchBar(e))
   }
@@ -33,13 +33,13 @@ function SearchBar() {
           placeholder="Buscar..."
           aria-label="Search"
           value={search}
-          autoComplete='false'
-          autocomplete="off"
+          
+          autoComplete="off"
           onChange={(e) => dispatch(onChangeSearchAction(e.target.value))}
         />
         <Link to={`/Buscar/${search}`}><Button onClick={() => CleanResults(search)} variant="outline-warning" id='SearchbarButton' ><BsSearch /></Button></Link>
       </Form>
-      {console.log(results)}
+      {/* console.log(results) */}
       <ul id='ResultsUL'>
         {results.length !== 0 ? results.map((result) => (<Link onClick={() => CleanResults(result.name)} to={`/Producto/${result.id}`}><li id='ResultsSearchbar'  >{result.name.length > maxCharactersResults ? result.name.substring(0, maxCharactersResults) : result.name}</li></Link>)) : null}
       </ul>

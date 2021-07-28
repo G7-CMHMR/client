@@ -58,8 +58,8 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     var CheckFavorite = favourites.find((e) => e.id == id)
 
     function AddToFavorites(e, productId) {
-        console.log('****************************')
-        console.log({userId, productId})
+        /* console.log('****************************')
+        console.log({userId, productId}) */
         let fav = e.target.style
         if (fav.color) {
             if (fav.color == "grey") {
@@ -120,11 +120,11 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                         {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
                     </div>
                     <div id="icons">
-                        {CheckFavorite ? <button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button> :
-                            <button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></button>
+                        {CheckFavorite ? <Button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></Button> :
+                            <Button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => AddToFavorites(e, id)}><FaHeart /></Button>
                         }
-                        <button className="buttons2" onClick={(e) => addToCart(e)}>
-                            <IoCartSharp id='btncart' ></IoCartSharp></button>
+                        <Button className="buttons2" onClick={(e) => addToCart(e)}>
+                            <IoCartSharp id='btncart' ></IoCartSharp></Button>
                     </div>
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                             <Alert onClose={handleClose} severity="success">

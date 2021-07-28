@@ -37,7 +37,7 @@ function PCBuilder() {
     })
 
     useEffect(() => {
-        console.log(display)
+        //console.log(display)
         dispatch(getProductsOfCategory(display))
     }, [display])
 

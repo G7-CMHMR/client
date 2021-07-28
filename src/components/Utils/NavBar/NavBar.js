@@ -62,7 +62,7 @@ function NavBar() {
     }
 
 
-
+    
     // BackgroundColor #14213D;
     return (
 
@@ -71,11 +71,13 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id="navcontainer" className="mr-auto">
-                        <LinkContainer to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
-                        <LinkContainer to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
-                        <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
+                        <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
+                        <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
+                        <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
+                            
                             {productsReducer.categories.map(element => (
-                                <LinkContainer to={`/Categorias/${element.title}`}>
+                                
+                                <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
                                     <NavDropdown.Item>{element.title}</NavDropdown.Item>
                                 </LinkContainer>
                             ))//<Link to={`/categorias/${element}`}>
@@ -97,11 +99,11 @@ function NavBar() {
 
                             {userData.name ?
                                 <NavDropdown title={userData.name} id="NavDropDownUser">
-                                    <LinkContainer to="/Perfil"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Favoritos"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Compras"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
-                                    {userData.isSeller ? null : <NavDropdown.Item href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-                                    <NavDropdown.Item href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+                                    <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
+                                    <LinkContainer to="/Favoritos" key="favorites"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
+                                    <LinkContainer to="/Compras" key="sells"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
+                                    {userData.isSeller ? null : <NavDropdown.Item key="isSeller" href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
+                                    <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
                                 </NavDropdown>
                                 :
                                 <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
@@ -137,16 +139,3 @@ function NavBar() {
 
 
 export default NavBar
-
-//
-{/* <NavDropdown title="CATEGORIAS" id="basic-nav-dropdown">
-<NavDropdown.Item href="#action/3.1">Equipos y Notebooks</NavDropdown.Item>
-<NavDropdown.Item href="#action/3.2">Procesadores y coolers cpus</NavDropdown.Item>
-<NavDropdown.Item href="#action/3.3">Memorias Ram</NavDropdown.Item>
-<NavDropdown.Item href="#action/3.4">Almacenamiento</NavDropdown.Item>
-<NavDropdown.Item href="#action/3.5">Placas de video</NavDropdown.Item>
-<NavDropdown.Item href="#action/3.6">Gabinetes </NavDropdown.Item>
-<NavDropdown.Item href="#action/3.7">Monitores </NavDropdown.Item>
-<NavDropdown.Item href="#action/3.8">Teclados y mouse </NavDropdown.Item>
-<NavDropdown.Item href="#action/3.9">Audio </NavDropdown.Item>
-</NavDropdown>  */}
