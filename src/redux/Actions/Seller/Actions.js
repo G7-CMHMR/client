@@ -17,13 +17,9 @@ export function seller_getAllProducts(userId, visible) {
     return (dispatch) => {
         clientAxios.get(`/products/seller/${userId}/${visible}`)
             .then(response => {
-<<<<<<< HEAD
+
                 //console.log(response)
-                dispatch({ type: GET_PRODUCTS, payload: response.data })
-=======
-                console.log(response)
                 dispatch({ type: GET_PRODUCTS_seller, payload: response.data })
->>>>>>> a7ce183af9ece536bfff057bebc2852b27c0422b
             })
     }
 }
@@ -31,6 +27,7 @@ export function seller_getAllProducts(userId, visible) {
 
 
 export function seller_updateProduct(productId, producto, userId, visiblet) {
+
     return (dispatch) => {
         clientAxios.post(`/product/update/${productId}`, producto)
             .then(response => {
