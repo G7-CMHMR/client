@@ -1,0 +1,17 @@
+#PanelPublicationsContainer{
+    background-color: blue;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+   
+.ProductPanelContainer{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.makeStyles-root-1{
+    height: auto !important;
+}

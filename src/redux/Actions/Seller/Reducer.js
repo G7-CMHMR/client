@@ -1,4 +1,4 @@
-import { POST_PRODUCT, GET_PRODUCTS, GET_SOLD } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS_seller, GET_SOLD } from './ActionsName'
 
 
 const initialState = {
@@ -15,7 +15,7 @@ function sellerReducer(state = initialState, action) {
                 ProductsSeller: action.payload
             }
         }
-        case GET_PRODUCTS: {
+        case GET_PRODUCTS_seller: {
             return {
                 ...state,
                 ProductsSeller: action.payload
