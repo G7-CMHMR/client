@@ -119,7 +119,8 @@ export function checkout(cart, direction, userId) {
                                 .then(purchaseorder => {
                                     console.log(purchaseorder);
                                     // .Push('/Compras')
-                                    dispatch(setPurchaseOrderStatus(response.data.body.id, status, '', userId))
+                                    //PAGA EL PRODUCTO:
+                                    //dispatch(setPurchaseOrderStatus(response.data.body.id, status, '', userId))
                                     let objEraseCart = {
                                         userId: userId,
                                         productId: response.data.productid,
