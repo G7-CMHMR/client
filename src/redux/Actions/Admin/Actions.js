@@ -1,4 +1,5 @@
-import { GET_USERS, DELETE_USER, PASSWORD_RESET, BECOME_ADMIN, GET_PC, REVIEW_PC} from './ActionsName'
+import { GET_USERS, DELETE_USER, PASSWORD_RESET, BECOME_ADMIN, 
+    GET_PC, REVIEW_PC, ADD_CATEGORY, EDIT_CATEGORY} from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getUsers(idAdmin) {
@@ -50,6 +51,22 @@ export function ReviewPC(data) { //{userId, productId, valuation}
         clientAxios.put('/admin/giveMeAReview', data)
             .then(response => {
                 dispatch({ type: REVIEW_PC, payload: response.data })
+            })
+    }
+}
+export function addCategory(category_name) { 
+    return (dispatch) => {
+        clientAxios.post('/category/category', category_name)
+            .then(response => {
+                dispatch({ type: ADD_CATEGORY, payload: response.data })
+            })
+    }
+}
+export function editCategory(data) { //{category, newTitle}
+    return (dispatch) => {
+        clientAxios.post('/category/edit', data)
+            .then(response => {
+                dispatch({ type: EDIT_CATEGORY, payload: response.data })
             })
     }
 }

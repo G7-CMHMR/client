@@ -23,3 +23,72 @@
     padding:0px;
 }
 
+#ProductsCategoryAdmin{
+    display: flex;
+    background-color: gainsboro;
+    border-radius: 23px;
+    height: auto;
+    min-height: 658px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: flex-start;
+    max-width: 99%;
+}
+
+#FiltersCategoryAdmin{
+    display: flex;
+    justify-content: space-around;
+    margin: 2%;
+    align-items: center;
+}
+
+#headerCategoryADmin{
+display: flex;
+    justify-content: space-between;
+    width: 57%;
+}
+
+#selectCategoryAdmin{
+    display: flex;
+    align-items: center;
+}
+#buttonsCategoryAdmin{
+    display: flex;
+    flex-direction: column;
+}
+#ProductAdminCard{
+    margin-top: 2%;
+    width: 42%
+}
+#MyProductCardOfPublicationAdmin{
+    background-color: white;
+    /* width: 96%; */
+    border-radius: 14px;
+}
+#MyProductCardContainerPublicationAdmin{
+    display: flex;
+    box-shadow: -4px 3px 10px 0px rgb(128 128 128 / 31%);
+    background: rgb(255 255 255 / 90%);
+    border-radius: 5px;
+    /* width: 50%; */
+    height: auto;
+    justify-content: space-evenly;
+}
+#MyProductButtonsAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: flex-end;
+}
+#SelectCategoryAdmin{
+    width: 229px;
+    font-size: 2rem;
+}
+.MuiTabs-root{
+overflow: inherit !important;
+    min-width: 204px !important
+}
+.makeStyles-root-173{
+    height: auto !important
+}
