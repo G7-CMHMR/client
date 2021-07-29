@@ -1,6 +1,6 @@
 import axios from 'axios'
 import clientAxios from '../../../config/axios';
-import { POST_PRODUCT, GET_PRODUCTS_seller, GET_SOLD } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS_SELLER, GET_SOLD, GET_ALL_QUESTIONS } from './ActionsName'
 
 
 export function createProductAction(product) {
@@ -19,7 +19,7 @@ export function seller_getAllProducts(userId, visible) {
             .then(response => {
 
                 //console.log(response)
-                dispatch({ type: GET_PRODUCTS_seller, payload: response.data })
+                dispatch({ type: GET_PRODUCTS_SELLER, payload: response.data })
             })
     }
 }
@@ -34,7 +34,7 @@ export function seller_updateProduct(productId, producto, userId, visiblet) {
                 if (userId) {
                     clientAxios.get(`/products/seller/${userId}/${visiblet}`)
                         .then(response => {
-                            dispatch({ type: GET_PRODUCTS_seller, payload: response.data })
+                            dispatch({ type: GET_PRODUCTS_SELLER, payload: response.data })
                         })
                 }
             })
@@ -52,6 +52,15 @@ export function seller_GetSolds_WithFilter(params) {
                 console.log(response.data)
                 dispatch({ type: GET_SOLD, payload: response.data })
             })
+    }
+}
+
+export function getAllQuestionsAction(idseller){
+    return (dispatch) => {
+        clientAxios.post('/questions/AnswerMe', idseller)
+        .then(response => {
+            dispatch({type: GET_ALL_QUESTIONS, payload: response.data})
+        })
     }
 }
 

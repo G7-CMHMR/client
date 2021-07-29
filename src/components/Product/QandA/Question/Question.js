@@ -13,8 +13,10 @@ function Question({id, user, question, answer, date, imagen}) {
       }, [dispatch, idProducto]) 
 
     const deleteQuestion = () => {
-        
-        dispatch(deleteQuestionAction(id, idProducto))        
+        const porEliminar = {
+            questionId: id
+        }
+        dispatch(deleteQuestionAction(porEliminar, idProducto))        
     }
     if(imagen === 'null'){
         imagen = null
