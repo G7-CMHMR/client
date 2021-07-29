@@ -4,7 +4,9 @@ import {
     PASSWORD_RESET,
     BECOME_ADMIN,
     GET_PC,
-    REVIEW_PC
+    REVIEW_PC,
+    ADD_CATEGORY,
+    EDIT_CATEGORY
     
 } from './ActionsName';
 
@@ -49,6 +51,18 @@ export default function adminReducer(state = initialState, action) {
             return {
                 ...state,
                 pc: action.payload
+            }
+        }
+        case ADD_CATEGORY: {
+            return {
+                ...state,
+                categories: action.payload
+            }
+        }
+        case EDIT_CATEGORY: {
+            return {
+                ...state,
+                categories: action.payload
             }
         }
        
