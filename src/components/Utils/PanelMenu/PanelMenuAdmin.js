@@ -1,5 +1,5 @@
 import React from 'react';
-import './PanelMenu.css';
+import './PanelMenuAdmin.css';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -86,26 +86,32 @@ export default function PanelMenuAdmin() {
         aria-label="Vertical tabs example"
         className='Test1'
         id='pepe'
-      > 
+      >
         <Tab label="U S U A R I O S" {...a11yProps(0)}></Tab>
         <Tab label="C A T E G O R I A S" {...a11yProps(1)} />
         <Tab label="R E V I E W  PC" {...a11yProps(2)} />
-        <Tab style={{color:'red'}} label="S U P E R  A D M I N " {...a11yProps(3)} />
+        <Tab style={{ color: 'red' }} label="S U P E R  A D M I N " {...a11yProps(3)} />
 
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Usuarios/>
+        <br></br>
+        <h1 id='h1UsuariosPanel'>Usuarios</h1>
+        <br></br>
+        <Usuarios id='PanelMenuAdminUsuarios' />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Categorias/>
+        <Categorias />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ReviewPc/>
+        <ReviewPc />
       </TabPanel>
-      <TabPanel value={value} index={3}>
-        <SuperAdmin/>
+      <TabPanel id='TestTabPanelSuperAdmin' value={value} index={3}>
+        <br></br>
+        <h1 id='h1SuperAdminPanel'>Usuarios</h1>
+        <br></br>
+        <SuperAdmin />
       </TabPanel>
-      
+
     </div>
   );
 }
