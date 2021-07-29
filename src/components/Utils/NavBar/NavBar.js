@@ -87,29 +87,30 @@ function NavBar() {
                                 }
                             </NavDropdown>
 
-                        <div id='UserPanelNavBar'>
-                            {userData.isAdmin ?  <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer> :null}
-                           
+                            <div id='UserPanelNavBar'>
+                                {userData.isAdmin ? <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer> : null}
 
-                            {userData.isSeller ?
 
-                                <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
-                                :
-                                null
-                            }
+                                {userData.isSeller ?
+
+                                    <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
+                                    :
+                                    null
+                                }
                                 <NavDropdown ></NavDropdown>
-                            {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
-                                
-                            {userData.name ?
-                                <NavDropdown title={userData.name} id="NavDropDownUser">
-                                    <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Favoritos" key="favorites"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Compras" key="sells"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
-                                    {userData.isSeller ? null : <NavDropdown.Item key="isSeller" href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-                                    <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
-                                </NavDropdown>
-                                :
-                                <Nav.Link key="register"href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                                {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
+
+                                {userData.name ?
+                                    <NavDropdown title={userData.name} id="NavDropDownUser">
+                                        <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
+                                        <LinkContainer to="/Favoritos" key="favorites"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
+                                        <LinkContainer to="/Compras" key="sells"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
+                                        {userData.isSeller ? null : <NavDropdown.Item key="isSeller" href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
+                                        <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+                                    </NavDropdown>
+                                    :
+                                    <Nav.Link key="register" href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                            </div>
                         </div>
                         {/* botones para probar si cambia usuario-registrado , no-registrado */}
                         {/* {username ? 
@@ -134,7 +135,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-<Notifications />
+            <Notifications />
         </div >
     )
 }
