@@ -31,14 +31,14 @@ function NavBar() {
 
 
     useEffect(() => {
-        if (userId){
-                dispatch(getCart(userId))
-                }else{
-                    dispatch(getCartNotLogged())
-                }
+        if (userId) {
+            dispatch(getCart(userId))
+        } else {
+            dispatch(getCartNotLogged())
+        }
         dispatch(getCategories())
         //eslint-disable-next-line
-    }, [dispatch,userId])
+    }, [dispatch, userId])
 
     const openBeSeller = () => {
         dispatch(becomeSellerAction(!stateBeSeller))
@@ -52,7 +52,7 @@ function NavBar() {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
 
-    const redirectToHome = () =>{
+    const redirectToHome = () => {
         window.location.href = client.urlDevelop;
     }
 
@@ -62,7 +62,7 @@ function NavBar() {
     }
 
 
-    
+
     // BackgroundColor #14213D;
     return (
 
@@ -71,19 +71,20 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id="navcontainer" className="mr-auto">
-                        <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
-                        <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
-                        <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
-                            
-                            {productsReducer.categories.map(element => (
-                                
-                                <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
-                                    <NavDropdown.Item>{element.title}</NavDropdown.Item>
-                                </LinkContainer>
-                            ))//<Link to={`/categorias/${element}`}>
-                            }
-                        </NavDropdown>
+                        <div id='OfertasPCyCategorias'>
+                            <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
+                            <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
+                            <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
 
+                                {productsReducer.categories.map(element => (
+
+                                    <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
+                                        <NavDropdown.Item>{element.title}</NavDropdown.Item>
+                                    </LinkContainer>
+                                ))//<Link to={`/categorias/${element}`}>
+                                }
+                            </NavDropdown>
+                        </div>
                         <div id='UserPanelNavBar'>
                             {/* aca vendria el condicional isAdmin  */}
                             <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer>
@@ -120,7 +121,7 @@ function NavBar() {
                         <LinkContainer to="/Carrito">
                             <Nav.Link >
                                 <Badge badgeContent={
-                                    cart? cart.length : 0
+                                    cart ? cart.length : 0
                                 } color="error">
                                     <IoCartSharp />
                                 </Badge>

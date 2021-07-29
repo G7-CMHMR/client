@@ -30,9 +30,9 @@ export function PasswordReset(adminId, userId) { //{userId, adminId, password}
     }
 }
 
-export function BecomeAdmin(adminId, userId) { //{userId, adminId}
+export function BecomeAdmin(adminId, userId, status, superAdmin = false) { //{userId, adminId} //STATUS TRUE LE DOY ADMIN, FALSE SE LO QUITO, SUPER ADMIN ( TRUE SE LO DOY)
     return (dispatch) => {
-        clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId })
+        clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId, status: '', superAdmin: superAdmin})
             .then(response => {
                 //ACA NEHUEN ME TENES QUE TRAER LA LISTA DE USUARIOS
                 //dispatch({ type: BECOME_ADMIN, payload: response.data })
