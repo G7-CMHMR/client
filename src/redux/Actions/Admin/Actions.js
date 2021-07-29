@@ -3,35 +3,36 @@ import clientAxios from '../../../config/axios';
 
 export function getUsers(idAdmin) {
     return (dispatch) => {
-        clientAxios.get(`/admin/Users?adminId=${idAdmin}`)
+        clientAxios.post('/admin/Users', {adminId: idAdmin})
             .then(response => {
                 dispatch({ type: GET_USERS, payload: response.data })
-                console.log(response.data)
             })
     }
 }
 export function DeleteUser(adminId_userId) {
     return (dispatch) => {
         console.log(adminId_userId)
-        clientAxios.delete('/admin/User', {data: adminId_userId})
+        clientAxios.post('/admin/User', adminId_userId)
             .then(response => {
-                dispatch({ type: DELETE_USER, payload: response.data })
+                dispatch({ type: GET_USERS, payload: response.data })
             })
     }
 }
-export function PasswordReset(data) { //{userId, adminId, password}
+export function PasswordReset(adminId, userId) { //{userId, adminId, password}
     return (dispatch) => {
-        clientAxios.put('/admin/Pass', data)
+        clientAxios.put('/admin/Pass', {adminId: adminId, userId: userId})
             .then(response => {
-                dispatch({ type: PASSWORD_RESET, payload: response.data })
+               // dispatch({ type: PASSWORD_RESET, payload: response.data })
             })
     }
 }
-export function BecomeAdmin(data) { //{userId, adminId}
+
+export function BecomeAdmin(adminId, userId) { //{userId, adminId}
     return (dispatch) => {
-        clientAxios.PasswordReset('/admin/MakeMeUser', data)
+        clientAxios.post('/admin/MakeMeUser', {adminId: adminId, userId: userId})
             .then(response => {
-                dispatch({ type: BECOME_ADMIN, payload: response.data })
+                //ACA NEHUEN ME TENES QUE TRAER LA LISTA DE USUARIOS
+                //dispatch({ type: BECOME_ADMIN, payload: response.data })
             })
     }
 }
@@ -50,6 +51,16 @@ export function ReviewPC(data) { //{userId, productId, valuation}
         clientAxios.put('/admin/giveMeAReview', data)
             .then(response => {
                 dispatch({ type: REVIEW_PC, payload: response.data })
+            })
+    }
+}
+
+export function SearchUser(idAdmin, name) {
+    return (dispatch) => {
+        clientAxios.post('/admin/Search', {adminId: idAdmin, name: name})
+            .then(response => {
+                dispatch({ type: GET_USERS, payload: response.data })
+                console.log(response.data)
             })
     }
 }
