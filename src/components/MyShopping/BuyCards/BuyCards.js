@@ -33,7 +33,7 @@ function BuyCards() {
 
                     if (x.save_product_state) {
                         return (
-                            <BuyCard productId={x.save_product_state.productId} images={{ image: '0' }} price={x.save_product_state.price}
+                            <BuyCard productId={x.save_product_state.productId} images={x.save_product_state.images[0].image} price={x.save_product_state.price}
                                 amount={x.amount} promotion={{ delivery: x.save_product_state.prom_delivery }} status={x.save_product_state.status}
                                 name={x.save_product_state.name} />
                         )
