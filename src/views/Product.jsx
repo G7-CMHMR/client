@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 
 import {getAllProducts, getProductDetail, getProductsOfCategory} from '../redux/Actions/Products/Actions'
+import { getSellerReview } from '../redux/Actions/Review/Actions';
 
 function Product() {
 
@@ -20,6 +21,8 @@ function Product() {
     const dispatch = useDispatch();
     const productDetail= useSelector(state => state.productsReducer.productDetail)
     const products = useSelector(state => state.productsReducer.products)
+    const productReview = useSelector(state => state.reviewReducer.productReview)
+    const sellerReview = useSelector(state => state.reviewReducer.sellerReview)
     const category = productDetail.categories
   
     useEffect(() => {
@@ -27,6 +30,11 @@ function Product() {
       dispatch(getProductDetail(idProducto))
       dispatch(getProductsOfCategory(category))
     }, [dispatch,idProducto ])
+
+    useEffect(() => {
+        const isProductLoaded = Object.keys(productDetail).length > 0;
+        if(isProductLoaded) dispatch(getSellerReview(productDetail.seller.id))
+    },[productDetail])
 
     let similarsproducts = products.filter(x=>x.id!==idProducto)
 

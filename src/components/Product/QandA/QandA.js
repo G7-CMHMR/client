@@ -14,14 +14,14 @@ const actualProduct = useSelector((state) => state.productsReducer.productDetail
 
 let mostrarAnswer = false;
 
-if(actualUser && Object.keys(actualUser).length > 0){
-    if(actualUser && actualUser.idSeller === actualProduct.seller.id){
-        mostrarAnswer = true;
-    }     
-    else {
-        mostrarAnswer = false 
-    }
-}
+// if(actualUser && Object.keys(actualUser).length > 0){
+//     if(actualUser && actualUser.idSeller === actualProduct.seller.id){
+//         mostrarAnswer = true;
+//     }     
+//     else {
+//         mostrarAnswer = false 
+//     }
+// }
 
 //console.log(coincidence.sellerId)
     return(

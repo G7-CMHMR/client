@@ -2,6 +2,10 @@
 import './BuyCard.css'
 import { Button, TextField } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import Review from '../../../views/_Modals/SellerReview/SellerReview';
+import { useSelector } from 'react-redux';
+
+
 // id={x.id} amount={x.amount}
 // cartId={x.cartId} productId={x.productId} purchaseOrderId={x.purchaseOrderId}
 // name={x.product.name} status={x.product.status} price={x.product.price}
@@ -10,6 +14,8 @@ import { Link } from 'react-router-dom'
 // sellerId={x.product.sellerId} promotion={x.product.promotion} images={x.product.images}
 // category={x.product.categories}
 function BuyCard(props) {
+
+    const userData = useSelector(state => state.userReducer.userData)
     return (
         <div id='BuyCardContainer'>
             <Link to={'Producto/' + props.productId} >
@@ -38,6 +44,9 @@ function BuyCard(props) {
             <div id='BuyCard_Buttons'>
                 <Button id='BuyCard_Btn1' variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
                 <Link to={'Producto/' + props.productId} ><Button id='BuyCard_Btn2' variant="contained" color="secundary">Ir a la publicación</Button></Link>
+            </div>
+            <div>
+                <Review idUser={userData.id} idProduct={props.productId} idSeller={props.sellerId}/>
             </div>
 
         </div>
