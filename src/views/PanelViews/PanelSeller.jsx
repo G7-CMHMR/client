@@ -5,17 +5,14 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 import MyPublicationCard from '../../components/Utils/MyPublicationCard/MyPublicationCard'
 import { Pie } from 'react-chartjs-2'
+import { seller_getAllProducts, seller_GetSolds_WithFilter} from '../../redux/Actions/Seller/Actions';
+
 
 
 function PanelSeller() {
     const userReducer = useSelector(state => state.userReducer.userData)
-    const sellerReducer = useSelector(state => state.sellerReducer.ProductsSeller)
+    const sellerReducer = useSelector(state => state.sellerReducer)
     const dispatch = useDispatch();
-    var userId = userReducer.id
-
-    useEffect(() => {
-
-    }, [dispatch])
 
 
     const data = {

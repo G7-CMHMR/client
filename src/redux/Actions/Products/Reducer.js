@@ -6,6 +6,7 @@ import {
     SORT, 
     GET_FAVOURITES,
     UPDATE_PRODUCT,
+    CLEAR_PRODUCTS,
     
 } from './ActionsName';
 
@@ -22,6 +23,12 @@ export default function productsReducer(state = initialState, action) {
             return {
                 ...state,
                 products: action.payload                
+            }
+        }
+        case CLEAR_PRODUCTS: {
+            return {
+                ...state,
+                products: []  
             }
         }
         case GET_PRODUCT_DETAIL: {

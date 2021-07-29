@@ -6,7 +6,7 @@ import Separate from '../components/Utils/Separate/Separate'
 import { TabContext } from '@material-ui/lab'
 import { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { getAllProducts, getProductsOfferInHome } from '../redux/Actions/Products/Actions'
+import { getAllProducts, getProductsOfferInHome, ClearProducts } from '../redux/Actions/Products/Actions'
 import { confirmAccount } from '../redux/Actions/User/Actions'
 
 import { useParams } from 'react-router-dom'
@@ -28,9 +28,14 @@ function Home(props) {
     }
   }, []);
 
+
+
   useEffect(() => {
     dispatch(getAllProducts())
     dispatch(getProductsOfferInHome())
+    return () => {
+      dispatch(ClearProducts())
+    }
   }, [dispatch])
 
 

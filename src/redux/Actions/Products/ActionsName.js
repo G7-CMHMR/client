@@ -8,3 +8,5 @@ export const POST_PRODUCT = 'POST_PRODUCT';
 export const SORT = 'SORT';
 
 export const GET_FAVOURITES = 'GET_FAVOURITES';
+
+export const CLEAR_PRODUCTS = 'CLEAR_PRODUCTS'

@@ -1,5 +1,5 @@
 //import axios from 'axios'
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES, CLEAR_PRODUCTS } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
@@ -11,6 +11,14 @@ export function getAllProducts() {
             })
     }
 }
+export function ClearProducts() {
+    return (dispatch) => {
+        dispatch({ type: CLEAR_PRODUCTS})
+    }
+}
+
+
+
 export function getProductDetail(id) {
     return (dispatch) => {
         clientAxios.get(`/product/${id}`)
@@ -93,7 +101,7 @@ export function getCategories() {
     }
 }
 export function getProductsOfCategory(categoryName) {     
-    return (dispatch) => {          
+    return (dispatch) => {       
         clientAxios.get(`/products/category/${categoryName}`)
             .then(response => {                 
                 dispatch({ type: GET_PRODUCTS, payload: response.data })             
