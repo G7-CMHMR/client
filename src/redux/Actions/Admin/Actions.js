@@ -1,10 +1,12 @@
-import { GET_USERS, DELETE_USER, PASSWORD_RESET, BECOME_ADMIN, 
-    GET_PC, REVIEW_PC, ADD_CATEGORY, EDIT_CATEGORY} from './ActionsName'
+import {
+    GET_USERS, DELETE_USER, PASSWORD_RESET, BECOME_ADMIN,
+    GET_PC, REVIEW_PC, ADD_CATEGORY, EDIT_CATEGORY
+} from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getUsers(idAdmin) {
     return (dispatch) => {
-        clientAxios.post('/admin/Users', {adminId: idAdmin})
+        clientAxios.post('/admin/Users', { adminId: idAdmin })
             .then(response => {
                 dispatch({ type: GET_USERS, payload: response.data })
             })
@@ -21,16 +23,16 @@ export function DeleteUser(adminId_userId) {
 }
 export function PasswordReset(adminId, userId) { //{userId, adminId, password}
     return (dispatch) => {
-        clientAxios.put('/admin/Pass', {adminId: adminId, userId: userId})
+        clientAxios.put('/admin/Pass', { adminId: adminId, userId: userId })
             .then(response => {
-               // dispatch({ type: PASSWORD_RESET, payload: response.data })
+                // dispatch({ type: PASSWORD_RESET, payload: response.data })
             })
     }
 }
 
 export function BecomeAdmin(adminId, userId) { //{userId, adminId}
     return (dispatch) => {
-        clientAxios.post('/admin/MakeMeUser', {adminId: adminId, userId: userId})
+        clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId })
             .then(response => {
                 //ACA NEHUEN ME TENES QUE TRAER LA LISTA DE USUARIOS
                 //dispatch({ type: BECOME_ADMIN, payload: response.data })
@@ -58,12 +60,16 @@ export function ReviewPC(data) { //{userId, productId, valuation}
 
 export function SearchUser(idAdmin, name) {
     return (dispatch) => {
-        clientAxios.post('/admin/Search', {adminId: idAdmin, name: name})
+        clientAxios.post('/admin/Search', { adminId: idAdmin, name: name })
             .then(response => {
                 dispatch({ type: GET_USERS, payload: response.data })
                 console.log(response.data)
+            })
+        }
+}
 
-export function addCategory(category_name) { 
+
+export function addCategory(category_name) {
     return (dispatch) => {
         clientAxios.post('/category/category', category_name)
             .then(response => {
