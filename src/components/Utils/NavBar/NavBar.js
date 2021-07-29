@@ -97,7 +97,7 @@ function NavBar() {
                                     :
                                     null
                                 }
-                       
+
                                 {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
 
                                 {userData.name ?
@@ -118,7 +118,7 @@ function NavBar() {
              : 
              <button onClick={cambiar}>ENTRAR</button>    
              } */}
-            </div>
+
                     </Nav>
                     <div id='CarritoAndFavorito'>
                         <LinkContainer to="/Carrito">
