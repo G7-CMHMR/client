@@ -61,27 +61,6 @@ function PCBuilder() {
         dispatch(getProductsFilter(display))
     }, [display])
 
-    useEffect(() => {
-
-        // setInput((input) => setInput({
-        //     ...input,
-        //     "Total": 10000,
-        // }))
-        console.log(input.Procesador.price)
-        console.log(input.CoolersCPU.price)
-        console.log(input.PlacaMadre.price)
-        console.log(input.PlacadeVideo.price)
-        console.log(input.Gabinete.price)
-        console.log(input.Fuentedealimentación.price)
-        console.log(input.Monitor.price)
-
-        // setInput({
-        //     ...input,
-        //     "Total": input.Procesador.price + input.CoolersCPU.price + input.PlacaMadre.price + input.PlacadeVideo.price +
-        //    input.Gabinete.price + input.Fuentedealimentación.price + input.Monitor.price
-        // })
-
-    }, [counter])
 
     useEffect(() => {
 
@@ -98,9 +77,6 @@ function PCBuilder() {
             case 10: setDisplay('Monitor'); setInput({ ...input, 'Monitor': { price: 0, id: 0 } }); break;
             default: console.log('ERROR')
         }
-
-
-
 
     }, [counter])
 
@@ -160,16 +136,16 @@ function PCBuilder() {
                         <div id='SelectContentArmaTuPc'>
 
                             <div id='ArmaTuPc_Left'>
-                                {input.Procesador == 0 ? <img name='1' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso2.png' onClick={(e) => ComponenteExacto(e)}></img> : <img name='1' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso2_sel.png' onClick={(e) => ComponenteExacto(e)}></img>}
-                                {input.CoolersCPU == 0 ? <img name='2' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso3.png' onClick={(e) => ComponenteExacto(e)}></img> : <img name='2' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso3_sel.png' onClick={(e) => ComponenteExacto(e)}></img>}
-                                {input.PlacaMadre == 0 ? <img name='3' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso1.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='3' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso1_sel.png' onClick={() => setCounter(parseInt(3))}></img>}
+                                {input.Procesador.price == 0 ? <img name='1' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso2.png' onClick={(e) => ComponenteExacto(e)}></img> : <img name='1' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso2_sel.png' onClick={(e) => ComponenteExacto(e)}></img>}
+                                {input.CoolersCPU.price == 0 ? <img name='2' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso3.png' onClick={(e) => ComponenteExacto(e)}></img> : <img name='2' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso3_sel.png' onClick={(e) => ComponenteExacto(e)}></img>}
+                                {input.PlacaMadre.price == 0 ? <img name='3' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso1.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='3' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso1_sel.png' onClick={() => setCounter(parseInt(3))}></img>}
                                 {input.Ram.length == 0 ? <img name='4' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso4.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='4' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso4_sel.png' onClick={() => setCounter(parseInt(4))}></img>}
-                                {input.PlacadeVideo == 0 ? <img name='5' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso5.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='5' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso5_sel.png' onClick={() => setCounter(parseInt(5))}></img>}
+                                {input.PlacadeVideo.price == 0 ? <img name='5' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso5.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='5' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso5_sel.png' onClick={() => setCounter(parseInt(5))}></img>}
                                 {input.Almacenamiento.length == 0 ? <img name='6' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso6.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='6' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso6_sel.png' onClick={() => setCounter(parseInt(6))}></img>}
-                                {input.Gabinete == 0 ? <img name='7' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso10.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='7' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso10_sel.png' onClick={() => setCounter(parseInt(7))}></img>}
-                                {input.Fuentedealimentación == 0 ? <img name='8' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso11.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='8' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso11_sel.png' onClick={() => setCounter(parseInt(8))}></img>}
+                                {input.Gabinete.price == 0 ? <img name='7' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso10.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='7' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso10_sel.png' onClick={() => setCounter(parseInt(7))}></img>}
+                                {input.Fuentedealimentación.price == 0 ? <img name='8' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso11.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='8' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso11_sel.png' onClick={() => setCounter(parseInt(8))}></img>}
                                 {input.Accesorios.length == 0 ? <img name='9' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso9.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='9' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso9_sel.png' onClick={() => setCounter(parseInt(9))}></img>}
-                                {input.Monitor == 0 ? <img name='10' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso12.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='10' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso12_sel.png' onClick={() => setCounter(parseInt(10))}></img>}
+                                {input.Monitor.price == 0 ? <img name='10' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso12.png' onClick={() => setCounter(parseInt(1))}></img> : <img name='10' id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso12_sel.png' onClick={() => setCounter(parseInt(10))}></img>}
                                 {/* {input.Procesador == 0 ? <img id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso8.png' onClick={() => setCounter(parseInt(1))}></img> : <img id='ArmaTuPc_ImageLeft' src='https://compragamer.net/img_armado/paso8_sel.png' onClick={() => setCounter(parseInt(11))}></img>} */}
                             </div>
                             <div id='ArmaTuPc_Right'>

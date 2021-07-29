@@ -44,7 +44,7 @@ function Sales() {
 
                     if (x.item.save_product_state) {
                         return (
-                            <MySales productId={x.item.save_product_state.productId} images={'0'} price={x.item.save_product_state.price}
+                            <MySales productId={x.item.save_product_state.productId} images={x.item.save_product_state.images[0].image} price={x.item.save_product_state.price}
                                 amount={x.amount} promotion={{delivery: x.item.save_product_state.prom_delivery}} status={x.item.save_product_state.status}
                                 name={x.item.save_product_state.name} discount={x.item.save_product_state.prom_value} buyer={x.buyer} />
                         )
