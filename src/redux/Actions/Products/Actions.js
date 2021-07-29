@@ -17,7 +17,15 @@ export function ClearProducts() {
     }
 }
 
-
+export function seller_hideProduct(productId) {
+    return (dispatch) => {
+        clientAxios.post('/product/hide', productId)
+        clientAxios.get('/products/true')
+            .then(response => {
+                dispatch({ type: GET_PRODUCTS, payload: response.data })
+            })
+    }
+}
 
 export function getProductDetail(id) {
     return (dispatch) => {

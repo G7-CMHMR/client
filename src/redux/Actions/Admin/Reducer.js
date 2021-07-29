@@ -6,7 +6,8 @@ import {
     GET_PC,
     REVIEW_PC,
     ADD_CATEGORY,
-    EDIT_CATEGORY
+    EDIT_CATEGORY,
+    DELETE_CATEGORY
     
 } from './ActionsName';
 
@@ -65,7 +66,12 @@ export default function adminReducer(state = initialState, action) {
                 categories: action.payload
             }
         }
-       
+       case DELETE_CATEGORY: {
+        return {
+            ...state,
+            categories: action.payload
+        }
+    }
         default: return state;
     }
 

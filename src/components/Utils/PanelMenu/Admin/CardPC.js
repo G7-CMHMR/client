@@ -8,31 +8,37 @@ import { useDispatch } from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import StarBorderIcon from '@material-ui/icons/StarBorder'; 
 import Rating from '@material-ui/lab/Rating';
-import { ReviewPC } from '../../../../redux/Actions/Admin/Actions';
-
-
-
-
+import { GetPcNotValidate, incompletePC, ReviewPC } from '../../../../redux/Actions/Admin/Actions';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+  
 export default function CardPC({images, name, id, description, brand, type, seller}) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.userReducer.userData)
-  const [productselect,setproductselect]= React.useState('')
   const [open, setOpen] = React.useState(false);
+  const [open1, setOpen1] = React.useState(false);
   const [val, setVal] = React.useState(0)
+  const [valuated, setValuated] = React.useState(false)
   let iduser= user.id
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {setOpen(false);setValuated(false);setOpen1(false)}
   const Valuate = (e) =>{
     setVal(e.target.value)
   }
   const ValuatePC = (e) =>{
-    dispatch(ReviewPC({adminId:iduser, productId:productselect, valuation:val}))
+    dispatch(ReviewPC({adminId:iduser, productId:id, valuation:val}))
     setOpen(false)
+    setValuated(true)
+  }
+  const incompleteVal = (e) => { 
+    dispatch(incompletePC({adminId:iduser, productId:id, valuation:val}))
+    setOpen1(true)
   }
   const handleShow = (e) => {
-    setproductselect(e.target.value)
     setOpen(true)
   }
- console.log(name,id,images,brand)
   return (
     <div>
       
@@ -51,7 +57,7 @@ export default function CardPC({images, name, id, description, brand, type, sell
     <p>Descripción:</p>    
     <p style={{marginLeft:'5%', marginRight:'5%'}}>{description}</p>
    </div>
-    <div id='btnAdminPc' ><Button value={id}  variant="danger">INCOMPLETO</Button></div>    
+    <div id='btnAdminPc' ><Button value={id}  onClick={incompleteVal} variant="danger">INCOMPLETO</Button></div>    
   </Card.Body>
 </Card>
 <Modal 
@@ -71,6 +77,16 @@ export default function CardPC({images, name, id, description, brand, type, sell
           </Button>
         </Modal.Footer>
       </Modal>
+      <Snackbar open={valuated} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Listo
+        </Alert>
+      </Snackbar>
+      <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          Listo
+        </Alert>
+      </Snackbar>
     </div>
   )
 }

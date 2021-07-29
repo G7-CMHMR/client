@@ -118,7 +118,7 @@ function NavBar() {
              : 
              <button onClick={cambiar}>ENTRAR</button>    
              } */}
-
+            </div>
                     </Nav>
                     <div id='CarritoAndFavorito'>
                         <LinkContainer to="/Carrito">

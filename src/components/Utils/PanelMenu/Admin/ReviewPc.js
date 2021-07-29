@@ -4,6 +4,7 @@ import { GetPcNotValidate } from '../../../../redux/Actions/Admin/Actions'
 import { getProductsOfCategory } from '../../../../redux/Actions/Products/Actions'
 import CardPC from './CardPC'
 
+
 export default function ReviewPc() {
     const dispatch = useDispatch()
     const products = useSelector(state => state.productsReducer.products)

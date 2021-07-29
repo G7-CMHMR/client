@@ -82,7 +82,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
           </div>
           <div id="MyProductButtons">
 
-            <Button variant="warning" onClick={pauseProduct}>Pausar</Button>{' '}
+            <Button variant="warning" onClick={pauseProduct}>Pausar</Button>
             <Link to={`/Producto/${id}`}><Button variant="success">Ir a la publicacion</Button></Link>
           </div>
 
