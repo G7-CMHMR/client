@@ -31,8 +31,9 @@ export function PasswordReset(adminId, userId) { //{userId, adminId, password}
 }
 
 export function BecomeAdmin(adminId, userId, status, superAdmin = false) { //{userId, adminId} //STATUS TRUE LE DOY ADMIN, FALSE SE LO QUITO, SUPER ADMIN ( TRUE SE LO DOY)
+    console.log(adminId, userId, status, superAdmin)
     return (dispatch) => {
-        clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId, status: '', superAdmin: superAdmin})
+        clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId, status: status, superAdmin: superAdmin})
             .then(response => {
                 //ACA NEHUEN ME TENES QUE TRAER LA LISTA DE USUARIOS
                 //dispatch({ type: BECOME_ADMIN, payload: response.data })
@@ -82,7 +83,7 @@ export function addCategory(category_name) {
     return (dispatch) => {
         clientAxios.post('/category/category', category_name)
             .then(response => {
-                dispatch({ type: ADD_CATEGORY, payload: response.data })
+                dispatch({ type: 'GET_CATEGORIES', payload: response.data })
             })
     }
 }

@@ -5,14 +5,18 @@ import { useEffect } from 'react';
 import { useParams } from "react-router";
 import MyPublicationCard from '../../components/Utils/MyPublicationCard/MyPublicationCard'
 import { Pie } from 'react-chartjs-2'
-import { seller_getAllProducts, seller_GetSolds_WithFilter} from '../../redux/Actions/Seller/Actions';
+import { seller_getAllProducts, seller_GetSolds_WithFilter, getDataOfSeller } from '../../redux/Actions/Seller/Actions';
 
 
 
 function PanelSeller() {
     const userReducer = useSelector(state => state.userReducer.userData)
-    const sellerReducer = useSelector(state => state.sellerReducer)
+    const sellerReducer = useSelector(state => state.sellerReducer.SellerInfo)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getDataOfSeller(userReducer.idSeller))
+    }, [dispatch])
 
 
     const data = {
@@ -40,15 +44,18 @@ function PanelSeller() {
                     <br></br>
                     <br></br>
                     <h3>Productos</h3>
-                    <h3>vendidos: 8 </h3>
+                    <h3>vendidos: {sellerReducer.ventas} </h3>
                     <br></br>
                     <br></br>
                     <h3>Calificación </h3>
-                    <h3>del vendedor: BUENA </h3>
+                    <div id='CalificacionVendedorFlex'>
+                        <h3>del vendedor:</h3>
+                        <h5 id='h5VenderProducto'> {sellerReducer.ventas < 10 ? '¡Vende al menos 10 productos!' : sellerReducer.calificación} </h5>
+                    </div>
                     <br></br>
                     <br></br>
                     <h3>Cantidad de </h3>
-                    <h3>publicaciones: 18 </h3>
+                    <h3>publicaciones: {sellerReducer.publicaciones} </h3>
 
                 </div>
                 <div id='SellerPanelStadisticsCircular' >

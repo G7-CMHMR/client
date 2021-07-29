@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Button, Modal} from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCategory from './ProductCategory';
 import { getAllProducts, getProductsOfCategory } from '../../../../redux/Actions/Products/Actions';
@@ -70,12 +70,9 @@ export default function Categorias() {
                 <div id='buttonsCategoryAdmin'>
                 <Button onClick={(e)=>handleShowEdit(e)} style={{margin:'3px'}} 
                 variant="info">Modificar</Button>
-                <Button style={{margin:'3px'}} onClick={(e)=>handleShowDelete(e)} 
+              <Button style={{ margin: '3px' }} onClick={(e) => handleShowDelete(e)}
                 variant="danger">Eliminar</Button>
-              </div>
-              </div>
-                  <Button style={{margin:'4%'}} onClick={handleShowAdd} variant="success">AGREGAR CATEGORIA</Button>
-              </div>
+            </div>
           </div>
           <div id='ProductsCategoryAdmin'>
             { productsReducer.products && productsReducer.products.map((x) => {return ( <ProductCategory id={x.id} 
@@ -90,7 +87,7 @@ export default function Categorias() {
         <Modal.Header closeButton>
           <Modal.Title>Añadir nombre de la nueva categoria</Modal.Title>
         </Modal.Header>
-       <Modal.Body><input onChange={(e)=>AddCategoryName(e)}/></Modal.Body>
+        <Modal.Body><input onChange={(e) => AddCategoryName(e)} /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseAdd}>VOLVER</Button>
           <Button variant="success" onClick={handleCloseAddx}> CREAR </Button>
@@ -100,14 +97,14 @@ export default function Categorias() {
         <Modal.Header closeButton>
           <Modal.Title>Nuevo nombre para la categoria {categoryName}</Modal.Title>
         </Modal.Header>
-        <Modal.Body><input onChange={(e)=>AddCategoryName(e)}/></Modal.Body>
+        <Modal.Body><input onChange={(e) => AddCategoryName(e)} /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseEdit}> VOLVER </Button>
           <Button variant="success" onClick={handleCloseEditX}> MODIFICAR</Button>
         </Modal.Footer>
       </Modal>
       <Modal size="lg" aria-labelledby="contained-modal-title-vcenter"
-      centered show={showDelete} onHide={handleCloseDelete}>
+        centered show={showDelete} onHide={handleCloseDelete}>
         <Modal.Header closeButton>
           <Modal.Title>Esta acción eliminará la categoria {categoryName} </Modal.Title>
         </Modal.Header>
@@ -117,14 +114,14 @@ export default function Categorias() {
         </Modal.Footer>
       </Modal>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      <Alert onClose={handleClose} severity="success">Se creo la categoria con éxito </Alert>
+        <Alert onClose={handleClose} severity="success">Se creo la categoria con éxito </Alert>
       </Snackbar>
-    | <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose}>
+     <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success">Se cambio el nombre a {addcategory}</Alert>
-      <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose}>
+      </Snackbar>
+<Snackbar open={open2} autoHideDuration={6000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success">Se eliminó la categoria </Alert>
       </Snackbar>
-      </Snackbar>
-        </div>
-    )
+    </div>
+  )
 }

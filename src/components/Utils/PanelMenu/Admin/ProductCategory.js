@@ -82,6 +82,7 @@ export default function ProductCategory({images,id,name,sellerId,
             setOpenM(false)
         }
         const classes = useStyles();
+
     return (
         <div id='ProductAdminCard'>
             <div id="MyProductCardOfPublicationAdmin">
