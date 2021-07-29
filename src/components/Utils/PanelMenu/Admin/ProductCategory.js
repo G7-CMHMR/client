@@ -2,8 +2,8 @@ import React from 'react'
 import {Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-export default function ProductCategory(images,id,name,seller) {
-    console.log(name)
+export default function ProductCategory({images,id,name,seller}) {
+
     return (
         <div id='ProductAdminCard'>
             <div id="MyProductCardOfPublicationAdmin">

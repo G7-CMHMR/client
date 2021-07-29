@@ -32,3 +32,13 @@
     text-align: start;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+#CalificacionVendedorFlex{
+    display: flex;
+    flex-direction: row;
+}
+
+#h5VenderProducto{
+    margin-top: 0.25rem;
+    color: rgb(0, 170, 0)
+}

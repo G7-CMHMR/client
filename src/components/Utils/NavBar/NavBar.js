@@ -97,7 +97,7 @@ function NavBar() {
                                     :
                                     null
                                 }
-                                <NavDropdown ></NavDropdown>
+                       
                                 {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
 
                                 {userData.name ?

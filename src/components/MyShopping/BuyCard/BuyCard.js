@@ -11,6 +11,9 @@ import { useDispatch,useSelector } from 'react-redux'
 // sellerId={x.product.sellerId} promotion={x.product.promotion} images={x.product.images}
 // category={x.product.categories}
 function BuyCard(props) {
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    console.log(props)
+
     const userReducer = useSelector(state => state.userReducer.userData)
 
     const dispatch = useDispatch()
@@ -25,7 +28,7 @@ function BuyCard(props) {
         <div id='BuyCardContainer'>
             <Link to={'Producto/' + props.productId} >
                 <div id='BuyCard_Image_Container'>
-                    <img id='BuyCard_Image' src={props.images[0].image}></img>
+                    <img id='BuyCard_Image' src={props.images}></img>
                 </div>
             </Link>
 

@@ -7,3 +7,6 @@ export const PUT_PRODUCT = 'PUT_PRODUCT';
 
 export const GET_SOLD = 'GET_SOLD'
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
+
+
+export const SELLER_INFO = 'SELLER_INFO'
