@@ -85,8 +85,8 @@ function NavBar() {
                         </NavDropdown>
 
                         <div id='UserPanelNavBar'>
-                            {/* aca vendria el condicional isAdmin  */}
-                            <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer>
+                            {userData.isAdmin ?  <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer> :null}
+                           
 
                             {userData.isSeller ?
 

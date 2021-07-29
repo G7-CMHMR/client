@@ -90,7 +90,7 @@ export default function PanelMenuAdmin() {
         <Tab label="U S U A R I O S" {...a11yProps(0)}></Tab>
         <Tab label="C A T E G O R I A S" {...a11yProps(1)} />
         <Tab label="R E V I E W  PC" {...a11yProps(2)} />
-        <Tab style={{ color: 'red' }} label="S U P E R  A D M I N " {...a11yProps(3)} />
+        {user.isSuperAdmin ? <Tab style={{ color: 'red' }} label="S U P E R  A D M I N " {...a11yProps(3)} /> : null}
 
       </Tabs>
       <TabPanel value={value} index={0}>
