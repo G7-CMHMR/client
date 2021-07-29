@@ -22,21 +22,42 @@ function PCBuilder() {
     const dispatch = useDispatch()
 
     const [input, setInput] = useState({
-        Procesador: 0,
-        CoolersCPU: 0,
-        PlacaMadre: 0,
-        PlacadeVideo: 0,
+        Procesador: {
+            price: 0,
+            id: 0
+        },
+        CoolersCPU: {
+            price: 0,
+            id: 0
+        },
+        PlacaMadre: {
+            price: 0,
+            id: 0
+        },
+        PlacadeVideo: {
+            price: 0,
+            id: 0
+        },
         Ram: [],
         Almacenamiento: [],
         Accesorios: [],
-        Gabinete: 0,
-        Fuentedealimentación: 0,
-        Monitor: 0,
+        Gabinete: {
+            price: 0,
+            id: 0
+        },
+        Fuentedealimentación: {
+            price: 0,
+            id: 0
+        },
+        Monitor: {
+            price: 0,
+            id: 0
+        },
         Total: 0,
     })
 
     useEffect(() => {
-        //console.log(display)
+        console.log(display)
         dispatch(getProductsFilter(display))
     }, [display])
 
@@ -46,28 +67,63 @@ function PCBuilder() {
         //     ...input,
         //     "Total": 10000,
         // }))
-        setInput({
-            ...input,
-            'Total': input.Procesador + input.CoolersCPU + input.PlacaMadre + input.PlacadeVideo +
-                input.Gabinete + input.Fuentedealimentación + input.Monitor
-        })
+        console.log(input.Procesador.price)
+        console.log(input.CoolersCPU.price)
+        console.log(input.PlacaMadre.price)
+        console.log(input.PlacadeVideo.price)
+        console.log(input.Gabinete.price)
+        console.log(input.Fuentedealimentación.price)
+        console.log(input.Monitor.price)
+
+        // setInput({
+        //     ...input,
+        //     "Total": input.Procesador.price + input.CoolersCPU.price + input.PlacaMadre.price + input.PlacadeVideo.price +
+        //    input.Gabinete.price + input.Fuentedealimentación.price + input.Monitor.price
+        // })
+
     }, [counter])
 
     useEffect(() => {
+
         switch (counter) {
-            case 1: setDisplay('Procesador'); setInput({ ...input, "Procesador": 0 }); break;
-            case 2: setDisplay('Coolers CPU'); setInput({ ...input, "CoolersCPU": 0 }); break;
-            case 3: setDisplay('Placa Madre'); setInput({ ...input, "PlacaMadre": 0 }); break;
-            case 4: setDisplay('Ram'); setInput({ ...input, 'Ram': [0] }); break;
-            case 5: setDisplay('Placa de Video'); setInput({ ...input, 'PlacadeVideo': 0 }); break;
-            case 6: setDisplay('Almacenamiento'); setInput({ ...input, 'Almacenamiento': [0] }); break;
-            case 7: setDisplay('Gabinete'); setInput({ ...input, 'Gabinete': 0 }); break;
-            case 8: setDisplay('Fuente de alimentación'); setInput({ ...input, 'Fuentedealimentación': 0 }); break;
-            case 9: setDisplay('Accesorios'); setInput({ ...input, 'Accesorios': [0] }); break;
-            case 10: setDisplay('Monitor'); setInput({ ...input, 'Monitor': 0 }); break;
+            case 1: setDisplay('Procesador'); setInput({ ...input, "Procesador": { price: 0, id: 0 } });break;
+            case 2: setDisplay('Coolers CPU'); setInput({ ...input, "CoolersCPU": { price: 0, id: 0 } }); break;
+            case 3: setDisplay('Placa Madre'); setInput({ ...input, "PlacaMadre": { price: 0, id: 0 } }); break;
+            case 4: setDisplay('Ram'); setInput({ ...input, 'Ram': [] }); break;
+            case 5: setDisplay('Placa de Video'); setInput({ ...input, 'PlacadeVideo': { price: 0, id: 0 } }); break;
+            case 6: setDisplay('Almacenamiento'); setInput({ ...input, 'Almacenamiento': [] }); break;
+            case 7: setDisplay('Gabinete'); setInput({ ...input, 'Gabinete': { price: 0, id: 0 } }); break;
+            case 8: setDisplay('Fuente de alimentación'); setInput({ ...input, 'Fuentedealimentación': { price: 0, id: 0 } }); break;
+            case 9: setDisplay('Accesorios'); setInput({ ...input, 'Accesorios': [] }); break;
+            case 10: setDisplay('Monitor'); setInput({ ...input, 'Monitor': { price: 0, id: 0 } }); break;
             default: console.log('ERROR')
         }
+
+
+
+
     }, [counter])
+
+   
+    useEffect(() => {
+        let suma = 0 
+        let ram = input.Ram.map((e) => {
+            suma += e.price
+        })
+        let Almacenamiento = input.Ram.map((e) => {
+            suma += e.price
+        })
+        let Accesorios = input.Ram.map((e) => {
+            suma += e.price
+        })
+        alert(suma)
+        setInput({
+            ...input,
+            Total: input.Procesador.price + input.CoolersCPU.price + input.PlacaMadre.price + input.PlacadeVideo.price +
+                input.Gabinete.price + input.Fuentedealimentación.price + input.Monitor.price + suma,
+        })
+    }, [input.Procesador.price , input.CoolersCPU.price , input.PlacaMadre.price , input.PlacadeVideo.price ,
+        input.Gabinete.price , input.Fuentedealimentación.price, input.Monitor.price, input.Ram] ) 
 
     function Siguiente() {
         if (counter < 11) { setCounter(counter + 1) }
@@ -75,7 +131,7 @@ function PCBuilder() {
     function SiguienteDespuesDeAgregar() {
         if (display == 'Ram' || display == 'Almacenamiento' || display == 'Accesorios') {
             alert('LLEGUE')
-        }else{
+        } else {
             if (counter < 11) { setCounter(counter + 1) }
         }
     }
@@ -99,7 +155,7 @@ function PCBuilder() {
                             <Button id='ArmaTuPc_Selector_Btn' onClick={Anterior} variant="contained" color="primary">Anterior</Button>
                             <TextField id="filled-basic" disabled label={display} variant="filled" />
                             <Button id='ArmaTuPc_Selector_Btn2' onClick={Siguiente} variant="contained" color="primary">Siguiente</Button>
-                            <Button id="Total2" variant="contained" color="primary" href="#contained-buttons">{`Total: $${input.Total ? input.Total : '0'}`}</Button>
+                            <Button id="Total2" variant="contained" color="primary" href="#contained-buttons">{`Total: $${input?.Total ? input.Total : '0'}`}</Button>
                         </div>
                         <div id='SelectContentArmaTuPc'>
 
