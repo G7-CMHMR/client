@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Notifications from '../Notifications/Notifications';
 
 import React, { useEffect } from 'react';
 import Badge from '@material-ui/core/Badge';
@@ -71,6 +72,7 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id="navcontainer" className="mr-auto">
+
                         <div id='OfertasPCyCategorias'>
                             <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
                             <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
@@ -84,10 +86,10 @@ function NavBar() {
                                 ))//<Link to={`/categorias/${element}`}>
                                 }
                             </NavDropdown>
-                        </div>
+
                         <div id='UserPanelNavBar'>
-                            {/* aca vendria el condicional isAdmin  */}
-                            <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer>
+                            {userData.isAdmin ?  <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer> :null}
+                           
 
                             {userData.isSeller ?
 
@@ -95,9 +97,9 @@ function NavBar() {
                                 :
                                 null
                             }
-
+                                <NavDropdown ></NavDropdown>
                             {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
-
+                                
                             {userData.name ?
                                 <NavDropdown title={userData.name} id="NavDropDownUser">
                                     <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
@@ -107,7 +109,7 @@ function NavBar() {
                                     <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
                                 </NavDropdown>
                                 :
-                                <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                                <Nav.Link key="register"href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
                         </div>
                         {/* botones para probar si cambia usuario-registrado , no-registrado */}
                         {/* {username ? 
@@ -132,7 +134,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-
+<Notifications />
         </div >
     )
 }

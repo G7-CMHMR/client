@@ -175,7 +175,7 @@ export function publishResponseAction(response){
 
 export function deleteQuestionAction(idquestion, idproducto){
     return async (dispatch) => {
-        clientAxios.delete('/questions/' + idquestion).then(() => dispatch(getProductDetail(idproducto)))
+        clientAxios.post('/questions/', idquestion).then(() => dispatch(getProductDetail(idproducto)))
     }
 }
 
