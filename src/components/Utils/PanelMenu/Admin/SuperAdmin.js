@@ -78,10 +78,7 @@ export default function SuperAdmin() {
     setsuperadmin(true)
   }
 
-  const handleDeshacer = (e) => {
-    setname(e.target.value)
-    setdeshacer(true)
-  }
+
   const handleSuperAdminx = () => setsuperadmin(false);
   //*********************************PASA A ADMIN
   const handleAdmin = (e) => {
@@ -90,10 +87,20 @@ export default function SuperAdmin() {
   }
   const handleAdminx = () => {
     setadmin(false)
-    dispatch(BecomeAdmin(userReducer.id, name))
+    dispatch(BecomeAdmin(userReducer.id, name, true))
   };
-  //************************************************
-  const handleDeshacerx = () => setdeshacer(false);
+  //************************************************DESHACER ADMIN
+  const handleDeshacer = (e) => {
+    setname(e.target.value)
+    setdeshacer(true)
+  }
+  const handleDeshacerx = () => {
+    setdeshacer(false);
+  }
+  function deshacerAdmin (e) {
+    setdeshacer(false);
+    dispatch(BecomeAdmin(userReducer.id, name, false))
+  }
 
   //**************************SEARCH BAR
   function handleChange(e) {
@@ -118,7 +125,7 @@ export default function SuperAdmin() {
           onChange={handleChange}
 
         />
-        <Button id='BotonUserAdminPanel'  onClick={SearchUsers} variant="outline-success"><BsSearch /></Button>
+        <Button id='BotonUserAdminPanel' onClick={SearchUsers} variant="outline-success"><BsSearch /></Button>
       </Form>
       <List>
         {
@@ -128,18 +135,19 @@ export default function SuperAdmin() {
               count++;
               return (
                 <div id='CardUserSuperAdmin'>
+                  {console.log(x)}
                   <ListItem style={{ width: '180%' }}>
                     <ListItemAvatar>
                       <Avatar src="/broken-image.jpg" />
                     </ListItemAvatar>
-                    <ListItemText primary={x.name} secondary={x.isSuperAdmin ? x.mail + '   SUPERADMIN' : x.isAdmin ? x.mail + '   ADMIN' : x.mail} />
+                    <ListItemText primary={x.name} secondary={x.superAdmin ? x.email + '   SUPERADMIN' : x.isAdmin ? x.email + '   ADMIN' : x.mail} />
                     <div id='BotonesSuperAdminBTN'>
                       {!x.isAdmin && <Button onClick={(e) => handleAdmin(e)} value={x.id} style={{ margin: '3px' }} variant="info">Convertir Admin</Button>}
-                      {x.isAdmin && !x.isSuperAdmin && <Button id='BTN_SuperAdmin' onClick={(e) => handleSuperAdmin(e)} value={x.name} style={{ margin: '3px' }} variant="dark">Convertir SuperAdmin</Button>}
-                      {x.isAdmin && !x.isSuperAdmin && <Button onClick={(e) => handleDeshacer(e)} value={x.name} style={{ margin: '3px' }} variant="warning">Deshacer Admin</Button>}
+                      {x.isAdmin && !x.superAdmin && <Button id='BTN_SuperAdmin' onClick={(e) => handleSuperAdmin(e)} value={x.name} style={{ margin: '3px' }} variant="dark">Convertir SuperAdmin</Button>}
+                      {x.isAdmin && !x.superAdmin && <Button onClick={(e) => handleDeshacer(e)} value={x.id} style={{ margin: '3px' }} variant="warning">Deshacer Admin</Button>}
                       <Button value={x.id} onClick={(e) => passwordResetShow(e)} style={{ margin: '3px' }} variant="secondary">Password reset</Button>
 
-                      {!x.isSuperAdmin && <Button value={x.id} onClick={(e) => handleShowDelete(e)} style={{ margin: '3px' }} variant="danger">Eliminar</Button>}
+                      {!x.superAdmin && <Button value={x.id} onClick={(e) => handleShowDelete(e)} style={{ margin: '3px' }} variant="danger">Eliminar</Button>}
                     </div>
                   </ListItem>
 
@@ -219,7 +227,7 @@ export default function SuperAdmin() {
           <Button variant="secondary" onClick={handleDeshacerx}>
             VOLVER
           </Button>
-          <Button variant="success" onClick={handleDeshacerx}>
+          <Button variant="success" onClick={deshacerAdmin}>
             ACEPTAR
           </Button>
         </Modal.Footer>

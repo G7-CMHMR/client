@@ -1,10 +1,11 @@
-import { POST_PRODUCT, GET_PRODUCTS_SELLER, GET_SOLD, GET_ALL_QUESTIONS } from './ActionsName'
+import { POST_PRODUCT, GET_PRODUCTS_SELLER, GET_SOLD, GET_ALL_QUESTIONS, SELLER_INFO } from './ActionsName'
 
 
 const initialState = {
     ProductsSeller: [],
     ProductsSold: [],
-    AllQuestions: []
+    AllQuestions: [],
+    SellerInfo: [],
 }
 
 function sellerReducer(state = initialState, action) {
@@ -32,6 +33,13 @@ function sellerReducer(state = initialState, action) {
             return {
                 ...state,
                 ProductsSold: action.payload
+            }
+        }
+
+        case SELLER_INFO: {
+            return{
+                ...state,
+                SellerInfo: action.payload
             }
         }
 
