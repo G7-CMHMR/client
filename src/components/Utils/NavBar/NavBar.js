@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Notifications from '../Notifications/Notifications';
 
 import React, { useEffect } from 'react';
 import Badge from '@material-ui/core/Badge';
@@ -75,7 +76,7 @@ function NavBar() {
                         <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
                         <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
                             
-                            {productsReducer.categories.map(element => (
+                            {productsReducer.categories && productsReducer.categories.map(element => (
                                 
                                 <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
                                     <NavDropdown.Item>{element.title}</NavDropdown.Item>
@@ -94,9 +95,9 @@ function NavBar() {
                                 :
                                 null
                             }
-
+                                <NavDropdown ></NavDropdown>
                             {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
-
+                                
                             {userData.name ?
                                 <NavDropdown title={userData.name} id="NavDropDownUser">
                                     <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
@@ -106,7 +107,7 @@ function NavBar() {
                                     <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
                                 </NavDropdown>
                                 :
-                                <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                                <Nav.Link key="register"href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
                         </div>
                         {/* botones para probar si cambia usuario-registrado , no-registrado */}
                         {/* {username ? 
@@ -131,7 +132,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-
+<Notifications />
         </div >
     )
 }
