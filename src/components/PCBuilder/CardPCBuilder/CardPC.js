@@ -11,19 +11,33 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
          console.log(parseInt(input.Total + price))
          input.Total? console.log('SI HAY'): console.log(input.Total) */
 
-        setInput((all) => {
+        setInput((input) => {
+
             if (category.replace(/ /g, "") == 'Ram' || category.replace(/ /g, "") == 'Almacenamiento' || category.replace(/ /g, "") == 'Accesorios') {
                 var category2 = category.replace(/ /g, "")
-                return (
-                    input[category2].push(parseInt(price))
-                )
+                return ({
+                    ...input,
+                    [category2]:
+                        [
+                            ...input[category2],
+                            {
+                                id: id,
+                                price: parseInt(price),
+                            }
+                        ]
+                })
             } else {
                 return ({
-                    ...all,
-                    [category.replace(/ /g, "")]: parseInt(price),
+                    ...input,
+                    [category.replace(/ /g, "")]: {
+                        id: id,
+                        price: parseInt(price),
+                    },
+
                 })
             }
         })
+  
         Siguiente()
 
     }
