@@ -34,6 +34,7 @@
     justify-content: space-around;
     align-content: flex-start;
     max-width: 99%;
+    box-shadow: 0 1px 8px 3px rgb(123 119 119 / 51%);
 }
 
 #FiltersCategoryAdmin{
@@ -80,10 +81,17 @@ display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-content: flex-end;
+    margin-right: 1%;
 }
 #SelectCategoryAdmin{
-    width: 229px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    width: 16rem;
+    margin: 2%;
+    border: none;
+    background-color: #e6e6e6;
+    padding: 3%;
+    border-radius: 9px;
+    box-shadow: 0 1px 8px 3px rgb(123 119 119 / 51%);
 }
 .MuiTabs-root{
 overflow: inherit !important;
@@ -91,4 +99,29 @@ overflow: inherit !important;
 }
 .makeStyles-root-173{
     height: auto !important
+}
+.card-body{
+    flex: 1 1 auto;
+    margin: 1% !important;
+    min-height: 1px;
+    display: flex;
+    padding: 1.25rem;
+    flex-direction: row;
+    justify-content: space-around !important;
+    align-items: center !important;
+    
+}
+#descriptionPC{
+    display: flex;
+    width: 51%;
+    flex-direction: column;
+    background-color: #80808021;
+    justify-content: space-between;
+    padding: 1%;
+    border-radius: 16px;
+}
+#btnAdminPc{
+    display: flex;
+    height: 8rem;
+    align-items: flex-end;
 }

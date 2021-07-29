@@ -53,7 +53,7 @@ export default function Categorias() {
           <div id='FiltersCategoryAdmin'>
             <div id='headerCategoryADmin'>
               <div id='selectCategoryAdmin'>
-              <select onChange={(e)=>handleChange(e)} style={{ fontSize:'2rem',width:'16rem'}} id='SelectCategoryAdmin'>
+              <select onChange={(e)=>handleChange(e)} id='SelectCategoryAdmin'>
                 <option>Elegir categoria</option>
                 {categories.map((x)=>{return (<option value={x.title}>{x.title}</option>)})}
               </select>
@@ -64,7 +64,7 @@ export default function Categorias() {
                 variant="danger">Eliminar</Button>
               </div>
               </div>
-                  <Button onClick={handleShowAdd} variant="success">AGREGAR CATEGORIA</Button>
+                  <Button style={{margin:'4%'}} onClick={handleShowAdd} variant="success">AGREGAR CATEGORIA</Button>
               </div>
           </div>
           <div id='ProductsCategoryAdmin'>
