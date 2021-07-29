@@ -3,13 +3,15 @@ import {Button, Modal} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCategory from './ProductCategory';
 import { getAllProducts, getProductsOfCategory } from '../../../../redux/Actions/Products/Actions';
-import { addCategory, editCategory } from '../../../../redux/Actions/Admin/Actions';
+import { addCategory, deleteCategory, editCategory } from '../../../../redux/Actions/Admin/Actions';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 export default function Categorias() {
+    const user = useSelector(state => state.userReducer.userData)
+    var userId= user.id
     const categories = useSelector(state => state.productsReducer.categories)
     const productsReducer = useSelector(state => state.productsReducer)
     const [showAdd, setShowAdd] = useState(false);
@@ -19,6 +21,7 @@ export default function Categorias() {
     const [addcategory, setaddcategory] = useState(false);
     const [open, setOpen] = React.useState(false);
     const [open1, setOpen1] = React.useState(false);
+    const [open2, setOpen2] = React.useState(false);
     const handleCloseAdd = () => setShowAdd(false);
     const handleCloseAddx = () => {
       dispatch(addCategory({category_name:addcategory}))
@@ -29,6 +32,7 @@ export default function Categorias() {
       if (reason === 'clickaway') { return} 
       setOpen(false);
       setOpen1(false)
+      setOpen2(false)
       };
     const handleShowAdd = () => setShowAdd(true);
     const handleCloseEdit = () => setShowEdit(false);
@@ -40,6 +44,12 @@ export default function Categorias() {
     const handleShowEdit = (e) => setShowEdit(true);
     const dispatch = useDispatch()
     const handleCloseDelete = () => setShowDelete(false);
+    const handleCloseDeletex = () => {
+      dispatch(deleteCategory({adminId:userId,category:categoryName,status:false}))
+      setShowDelete(false)
+      setOpen2(true)
+    }
+    
     const handleShowDelete = (e) => setShowDelete(true);
     function AddCategoryName(e){ setaddcategory(e.target.value)}
     useEffect(() => {
@@ -68,8 +78,12 @@ export default function Categorias() {
               </div>
           </div>
           <div id='ProductsCategoryAdmin'>
-            { productsReducer.products.map((x) => {return ( <ProductCategory id={x.id} 
-            seller={x.seller} name={x.name} images={x.images}/>) }) }
+            { productsReducer.products && productsReducer.products.map((x) => {return ( <ProductCategory id={x.id} 
+            seller={x.seller} name={x.name} images={x.images} sellerId={x.sellerId} 
+            brand={x.brand} description={x.description}
+             type={x.type} category={x.category} 
+            />) }) }
+            
           </div>
           <Modal size="lg" aria-labelledby="contained-modal-title-vcenter"
       centered show={showAdd} onHide={handleCloseAdd}>
@@ -99,7 +113,7 @@ export default function Categorias() {
         </Modal.Header>
         <Modal.Footer>
           <Button variant="danger" onClick={handleCloseDelete}> VOLVER </Button>
-          <Button variant="secondary" onClick={handleCloseDelete}> ELIMINAR </Button>
+          <Button variant="secondary" onClick={handleCloseDeletex}> ELIMINAR </Button>
         </Modal.Footer>
       </Modal>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -107,6 +121,9 @@ export default function Categorias() {
       </Snackbar>
     | <Snackbar open={open1} autoHideDuration={6000} onClose={handleClose}>
       <Alert onClose={handleClose} severity="success">Se cambio el nombre a {addcategory}</Alert>
+      <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose}>
+      <Alert onClose={handleClose} severity="success">Se eliminó la categoria </Alert>
+      </Snackbar>
       </Snackbar>
         </div>
     )

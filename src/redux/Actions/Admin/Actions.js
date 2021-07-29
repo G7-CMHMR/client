@@ -1,6 +1,6 @@
 import {
     GET_USERS, DELETE_USER, PASSWORD_RESET, BECOME_ADMIN,
-    GET_PC, REVIEW_PC, ADD_CATEGORY, EDIT_CATEGORY
+    GET_PC, REVIEW_PC, ADD_CATEGORY, EDIT_CATEGORY,DELETE_CATEGORY
 } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
@@ -52,6 +52,15 @@ export function GetPcNotValidate() {
 export function ReviewPC(data) { //{userId, productId, valuation}
     return (dispatch) => {
         clientAxios.put('/admin/giveMeAReview', data)
+        
+            .then(response => {
+                dispatch({ type: REVIEW_PC, payload: response.data })
+            })
+    }
+}
+export function incompletePC(data) { //{userId, productId, valuation}
+    return (dispatch) => {
+        clientAxios.put('/admin/giveMeAReview', data)
             .then(response => {
                 dispatch({ type: REVIEW_PC, payload: response.data })
             })
@@ -82,6 +91,15 @@ export function editCategory(data) { //{category, newTitle}
         clientAxios.post('/category/edit', data)
             .then(response => {
                 dispatch({ type: EDIT_CATEGORY, payload: response.data })
+
+            })
+    }
+}
+export function deleteCategory(data) { //{category, status, adminId}
+    return (dispatch) => {
+        clientAxios.post('/admin/Category', data)
+            .then(response => {
+                dispatch({ type: DELETE_CATEGORY, payload: response.data })
 
             })
     }

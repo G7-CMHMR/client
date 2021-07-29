@@ -124,3 +124,10 @@ overflow: inherit !important;
     height: 8rem;
     align-items: flex-end;
 }
+#ModalContainer3{
+    height: 39rem;
+    width: 50rem;
+}
+.MuiInputBase-root {
+    width: 103% !important
+}

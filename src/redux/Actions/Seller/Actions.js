@@ -26,6 +26,7 @@ export function seller_getAllProducts(userId, visible) {
 
 
 
+
 export function seller_updateProduct(productId, producto, userId, visiblet) {
 
     return (dispatch) => {
