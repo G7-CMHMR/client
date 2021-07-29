@@ -17,9 +17,9 @@ export function seller_getAllProducts(userId, visible) {
     return (dispatch) => {
         clientAxios.get(`/products/seller/${userId}/${visible}`)
             .then(response => {
-                console.log(response)
-                dispatch({ type: GET_PRODUCTS_seller, payload: response.data })
 
+                //console.log(response)
+                dispatch({ type: GET_PRODUCTS_seller, payload: response.data })
             })
     }
 }
