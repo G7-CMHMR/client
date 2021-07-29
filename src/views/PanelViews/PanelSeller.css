@@ -15,3 +15,20 @@
 .makeStyles-root-1{
     height: auto !important;
 }
+
+#SellerPanelStadistics{
+    width: 100%;
+    display: flex;
+}
+
+#SellerPanelStadisticsCircular{
+    width: 50%
+}
+
+
+#SellerPanelData{
+    margin-left: 4rem;
+    width: 50%;
+    text-align: start;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

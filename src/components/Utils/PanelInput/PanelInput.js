@@ -14,7 +14,7 @@ export default function PanelInput({input, setInput}) {
     return (
 
         <div id='TextFieldPanelInputContainer'>
-            <TextField id="TextFieldPanelInput" autocomplete="off" name='name' value={input.name} label="Nombre del producto" variant="outlined" onChange={handleChange} />
+            <TextField id="TextFieldPanelInput" autoComplete="off" name='name' value={input.name} label="Nombre del producto" variant="outlined" onChange={handleChange} />
         </div>
     )
 }

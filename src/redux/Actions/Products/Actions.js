@@ -7,7 +7,7 @@ export function getAllProducts() {
         clientAxios.get('/products/true')
             .then(response => {
                 dispatch({ type: GET_PRODUCTS, payload: response.data })
-                console.log(response.data)
+                //console.log(response.data)
             })
     }
 }
@@ -103,7 +103,7 @@ export function getProductsOfCategory(categoryName) {
 
 
 export function getProductsFilter(categoryName='', type='', shipping='', condition='', brand='', MinPrice='', MaxPrice='') {
-    console.log('Categoria: ' + categoryName,'Tipo: '+ type,'Envio: ' + shipping,'Condicion: ' + condition, 'Marca: ' +brand,'PrecioMinimo: ' + MinPrice,'PrecioMaximo: ' + MaxPrice)
+    //console.log('Categoria: ' + categoryName,'Tipo: '+ type,'Envio: ' + shipping,'Condicion: ' + condition, 'Marca: ' +brand,'PrecioMinimo: ' + MinPrice,'PrecioMaximo: ' + MaxPrice)
     return (dispatch) => {
         clientAxios.get(`/filterMetods?category=${categoryName}&shipping=${shipping}&condition=${condition}&min_price=${MinPrice}&max_price=${MaxPrice}&type=${type}&brand=${brand}`)
             .then(response => {
@@ -162,6 +162,12 @@ export function createQuestionAction(question){
 export function publishResponseAction(response){
     return async (dispatch) => {
         clientAxios.put('/questions/response', response).then(() => dispatch(getProductDetail(response.productId)))
+    }
+}
+
+export function deleteQuestionAction(idquestion, idproducto){
+    return async (dispatch) => {
+        clientAxios.delete('/questions/' + idquestion).then(() => dispatch(getProductDetail(idproducto)))
     }
 }
 

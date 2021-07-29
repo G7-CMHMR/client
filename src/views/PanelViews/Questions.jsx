@@ -6,10 +6,13 @@ import Question from '../../components/Product/QandA/Question/Question';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from "react-router";
+import { getProductDetail } from '../../redux/Actions/Products/Actions'
 
 
 function Questions() {
-
+    const dispatch = useDispatch();
+    const idProducto = useSelector((state) => state.productsReducer.productDetail.id)
+    
     const questions = [
         {
             id: 1,
@@ -34,13 +37,12 @@ function Questions() {
     
     ];
 
-    //const dispatch = useDispatch();
-    //const productsReducer = useSelector(state => state.productsReducer)
+    
 
   
-    // useEffect(() => {
-    //   //dispatch(getProductDetail(idProducto))
-    // }, [dispatch, idProducto])
+     useEffect(() => {
+      dispatch(getProductDetail(idProducto))
+    }, [dispatch, idProducto]) 
 
 
     return (
@@ -51,10 +53,13 @@ function Questions() {
             <div id='PanelContentDetail'>
                 <div>
                {questions ? questions.map(x => <Question 
+                            id={x.id}
                             user={x.userName} 
                             question={x.question}
                             date={x.date}
                             answer={x.response}
+                            imagen={"x.imagen"}
+                            key={x.id}
                         />):null}
                         </div>
             </div>

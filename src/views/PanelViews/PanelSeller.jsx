@@ -19,9 +19,10 @@ function PanelSeller() {
 
 
     const data = {
-        labels: ['Google', 'Bing', 'Firefox', 'Baidu', 'Otros'],
+        labels: ['PC', 'Monitores', 'Procesadores', 'Memorias Ram', 'Otros'],
         datasets: [{
-            data: [35, 11, 22, 9]
+            data: [35, 11, 22, 9, 2, 8, 9],
+            backgroundColor: ['cadetblue', 'cornflowerblue', 'limegreen', 'dodgerblue', 'maroon', 'pink', 'wheat']
         }]
     }
     const opciones = {
@@ -35,9 +36,27 @@ function PanelSeller() {
             <br></br>
             <h1>¡Bienvenido {userReducer.name} a tu panel! 💻</h1>
             <h4>Podrás controlar todas tus ventas y publicaciones</h4><br></br>
-
+            <br></br>
             <div id='SellerPanelStadistics'>
-                <Pie data={data} options={opciones}></Pie>
+                <div id='SellerPanelData'>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h3>Productos</h3>
+                    <h3>vendidos: 8 </h3>
+                    <br></br>
+                    <br></br>
+                    <h3>Calificación </h3>
+                    <h3>del vendedor: BUENA </h3>
+                    <br></br>
+                    <br></br>
+                    <h3>Cantidad de </h3>
+                    <h3>publicaciones: 18 </h3>
+
+                </div>
+                <div id='SellerPanelStadisticsCircular' >
+                    <Pie data={data} options={opciones} ></Pie>
+                </div>
 
             </div>
 

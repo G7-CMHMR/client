@@ -48,7 +48,7 @@ function App() {
   const stateBeSeller = useSelector((state) => state.userReducer.becomeseller);
   //const userData = useSelector((state) => state.userReducer.userData)
   let cartguest = JSON.parse(localStorage.getItem('cartguest'));
-    console.log(cartguest)
+    //console.log(cartguest)
     if(!cartguest) {
         localStorage.setItem("cartguest", JSON.stringify([]));
     } 

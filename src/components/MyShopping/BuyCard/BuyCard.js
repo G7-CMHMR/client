@@ -3,8 +3,7 @@ import './BuyCard.css'
 import { Button, TextField } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Review from '../../../views/_Modals/SellerReview/SellerReview';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux'
 
 // id={x.id} amount={x.amount}
 // cartId={x.cartId} productId={x.productId} purchaseOrderId={x.purchaseOrderId}
@@ -15,7 +14,14 @@ import { useSelector } from 'react-redux';
 // category={x.product.categories}
 function BuyCard(props) {
 
-    const userData = useSelector(state => state.userReducer.userData)
+    const userReducer = useSelector(state => state.userReducer.userData)
+
+    const dispatch = useDispatch()
+
+
+    function ChangeProductState () {
+        //dispatch(setPurchaseOrderStatus( ,userReducer.id))
+    }
     return (
         <div id='BuyCardContainer'>
             <Link to={'Producto/' + props.productId} >
@@ -26,7 +32,7 @@ function BuyCard(props) {
 
             <div id='BuyCard_Name-Price-Shipping'>
                 <Link to={'Producto/' + props.productId} >
-                    <h3 id='BuyCard_Name'>{props.name}</h3>
+                    <h3 id='BuyCard_Name'>{props.name.substring(0,65)}</h3>
                 </Link>
                 <div id='BuyCard_PriceAndCount'>
                     <h1 id='BuyCard_Price'>{'$' + props.price}</h1>
@@ -42,11 +48,11 @@ function BuyCard(props) {
                 <TextField disabled id="BuyCard_State-input" label={'Estado:'} variant="outlined" />
             </div>
             <div id='BuyCard_Buttons'>
-                <Button id='BuyCard_Btn1' variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
+                {props.status == 'Entregado' ? <Button>Nico</Button>:<Button id='BuyCard_Btn1' onClick={ChangeProductState} variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>}
                 <Link to={'Producto/' + props.productId} ><Button id='BuyCard_Btn2' variant="contained" color="secundary">Ir a la publicación</Button></Link>
             </div>
             <div>
-                <Review idUser={userData.id} idProduct={props.productId} idSeller={props.sellerId}/>
+                <Review idUser={userReducer.id} idProduct={props.productId} idSeller={props.sellerId}/>
             </div>
 
         </div>

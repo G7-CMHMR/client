@@ -1,7 +1,7 @@
 import './CategoryFilters.css'
 //import TextField from '@material-ui/inputs/TextField'
 import { getProductsFilter, getProducts, getProductsOffer, setProductsFilter } from '../../../redux/Actions/Products/Actions'
-import { useEffect, useState, setState, React } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -185,7 +185,8 @@ function CategoryFilters(props) {
 
     return (
         <div id="CategoryFilters">
-            {console.log(countingOfProducts)}
+            {//console.log(countingOfProducts)
+            }
             <div id='CategoryAndResults'>
                 <br></br>
                 <h2>{categoryName ? categoryName : nombreProducto ? 'Resultados:' : 'Ofertas'}</h2>

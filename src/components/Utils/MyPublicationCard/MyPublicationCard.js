@@ -48,7 +48,7 @@ export default function MyPoductCard({ stock, sold, price, discount, images, nam
   };
 
   const handleClose = (e) => {
-    console.log(open)
+    //console.log(open)
     setOpen(false);
   };
 

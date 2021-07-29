@@ -40,7 +40,7 @@ export function removeProductFromCart(productId_userId) {
 }
 
 export function decrementProductUnit(productId_userId) {
-    console.log(productId_userId)
+    //console.log(productId_userId)
     return (dispatch) => {
         clientAxios.post('/cart/decrement', productId_userId)
         clientAxios.get(`/cart/${productId_userId.userId}`)
@@ -60,7 +60,7 @@ export function incrementProductUnit(productId_userId) {
 }
 
 export function checkout(cart, direction, userId) {
-    console.log(cart[0].product.id)
+    //console.log(cart[0].product.id)
     return (dispatch) => {
         //ACTUALIZA EL CARRITO
         let userID = userId
@@ -70,7 +70,7 @@ export function checkout(cart, direction, userId) {
                 //HACE EL CHECKOUT A MERCADOPAGO API 
                 clientAxios.post('/checkout', response.data)
                     .then(response => {
-                        console.log(response.data)
+                        //console.log(response.data)
                         //EN CASO DE QUE NO HAY MAS STOCK DEL PRODUCTO, REMUEVE DEL CARRITO, ACTUALIZA CARRITO Y ENVIA MSJ
                         if (response.data.error) {
                             clientAxios.post('/cart/remove', { userId: userId, productId: response.data.productid })
@@ -85,7 +85,7 @@ export function checkout(cart, direction, userId) {
                         }
                         if (response.data.errorChangeAmount) {
                             //cart.itemId
-                            console.log(cart.product)
+                            //console.log(cart.product)
                             let objectAmount = {
                                 userId: userId,
                                 productId: response.data.productid,
@@ -117,9 +117,10 @@ export function checkout(cart, direction, userId) {
                             //CREA LA ORDEN DE COMPRA
                             clientAxios.post('/purchaseOrder/create', orderUser)
                                 .then(purchaseorder => {
-                                    console.log(purchaseorder);
+                                    //console.log(purchaseorder);
                                     // .Push('/Compras')
-                                    dispatch(setPurchaseOrderStatus(response.data.body.id, status, '', userId))
+                                    //PAGA EL PRODUCTO:
+                                    //dispatch(setPurchaseOrderStatus(response.data.body.id, status, '', userId))
                                     let objEraseCart = {
                                         userId: userId,
                                         productId: response.data.productid,
@@ -158,7 +159,7 @@ export function resetCartCheckout() {
 
 export const addProductNotLogged = (id) => {
     let cartguest = JSON.parse(localStorage.getItem('cartguest'));
-    console.log(cartguest)
+    //console.log(cartguest)
     /* if (!cartguest) {
         localStorage.setItem("cartguest", JSON.stringify([]));
     } */
@@ -170,19 +171,19 @@ export const addProductNotLogged = (id) => {
     let index = cartguest ? cartguest.indexOf(found) : cartguest
 
     if (!found) {
-        console.log(cartguest)
+        //console.log(cartguest)
         return async function (dispatch) {
             await clientAxios.get(`/product/${id}`).then((response) => {
                 item.product = response.data;
                 item.amount = 1
-                console.log(response.data)
-                console.log('item' + item)
+                //console.log(response.data)
+                //console.log('item' + item)
                 return item
             })
                 .then((item) => {
-                    console.log(item)
+                    //console.log(item)
                     cartguest = [...cartguest, item]
-                    console.log(cartguest)
+                    //console.log(cartguest)
                     localStorage.setItem('cartguest', JSON.stringify(cartguest));
                     dispatch({
                         type: "ADD_ITEM",

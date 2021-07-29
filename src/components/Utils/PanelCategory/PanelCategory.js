@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PanelCategory({ input, setInput }) {
-    console.log(input)
+    //console.log(input)
 
     const dispatch = useDispatch();
 

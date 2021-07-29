@@ -61,7 +61,7 @@ function Product() {
                             <Similars name={x.name} images={x.images} 
                             valuation={x.valuation} delivery={x.delivery} price={x.price}
                             discount={x.discount} seller={x.seller}
-                            status={x.status} id={x.id}/>
+                            status={x.status} id={x.id} key={x.id}/>
                             )}
                             </div>
                                                       

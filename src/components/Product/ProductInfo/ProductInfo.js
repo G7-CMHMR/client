@@ -31,7 +31,7 @@ function ProductInfo() {
         dispatch(getFavourites(userId))
         dispatch(getProductDetail(idProducto))
     }, [dispatch, idProducto, userId])
-    console.log("ELIDDD" + idProducto, "ELUSEER" + userId)
+    //console.log("ELIDDD" + idProducto, "ELUSEER" + userId)
     const [open, setOpen] = React.useState(false);
     
     

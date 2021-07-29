@@ -130,7 +130,7 @@ export default function FullWidthTabs() {
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <PanelInput input={input} setInput={setInput}></PanelInput>
                     <PanelCategory input={input} setInput={setInput}></PanelCategory>
-                    {console.log(input)}
+                    {/* console.log(input) */}
                     <PanelBrand input={input} setInput={setInput}></PanelBrand>
                     <PanelGral input={input} setInput={setInput}></PanelGral>
                     

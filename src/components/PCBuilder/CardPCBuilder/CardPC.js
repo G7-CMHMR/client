@@ -6,10 +6,10 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
 
 
     function onClickFunction(e) {
-        console.log(price)
+       /*  console.log(price)
         console.log(input.Total)
         console.log(parseInt(input.Total + price))
-        input.Total? console.log('SI HAY'): console.log(input.Total)
+        input.Total? console.log('SI HAY'): console.log(input.Total) */
 
         setInput((all) => {
             return ({
