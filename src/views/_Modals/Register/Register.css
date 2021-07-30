@@ -1,11 +1,10 @@
 #register {
-    background:#8fb8ff;
-    font-size: 1.3rem;
-    font-weight:lighter;
-    margin: 0;
+    font-size: 3.3rem;
+    font-weight: lighter;
     padding: 1rem;
-    display: block;    
+    display: block;
     width: 100%;
+    font-family: 'Bebas Neue';
     
 }
 #botonFacebook {
@@ -37,16 +36,16 @@
     color: red;
 }
 #registerBox {    
-    width: 30rem;
-    height: 38rem;  
+    width: 31rem;
+    height: 40rem;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    
-    background: white;   
-    z-index: 999999;
+    background: white;
+    border-radius: 11px;
+    box-shadow: 1px 1px 11px 6px #717171;
 }
 #containerName {
     display: flex;
@@ -124,17 +123,25 @@
     justify-content: space-between
 }
 .inputsRegister {
-    width: 100%;
+    width: 80%;
+    border: 1px solid rgb(202, 191, 191);
     margin-bottom: 1.5rem;
     font-size: 0.8rem;
+    border-radius: 10px;
     padding: 0.5rem;
-    border-style: dashed;
+}
+.inputsRegister:hover{
+    border-color: darkorange;
 }
 .buttonInitiate{
-    width: 8rem;
+    width: 12rem;
     height: 3rem;
-    background: #0e8bfe;
+    background: #ffc107;
     border: none;
     color: white;
+    border-radius: 10px;
     font-size: 1.5rem;
+}
+.buttonInitiate:hover{
+    background-color: black;
 }

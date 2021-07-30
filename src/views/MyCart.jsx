@@ -147,7 +147,7 @@ export function MyCart() {
 
 
 
-                    {cart.length > 0 ?
+                    {cart && cart.length > 0 ?
                         <div id='ShippingMyCart'>
 
                             <h4 id='ShippingText0'>Datos de Envío:</h4>
@@ -167,7 +167,9 @@ export function MyCart() {
                             <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> 
                     }
                     {
+
                         userId == undefined && cart && cart.length > 0 &&
+
                             <Button variant="warning" onClick={changeState}>Comprar carrito</Button>
                     }
                     {  userId == undefined && show &&cart && 

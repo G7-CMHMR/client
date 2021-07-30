@@ -14,9 +14,13 @@
     width: 2rem;
     height: 2rem;
     font-size: 1.2rem;
-    color: red;
-    border-radius: 50%;
+    background-color: coral;
+    border-radius: 22%;
     border-color: transparent;
+    color: white;
+}
+#X:hover{
+    background-color: #ffc107;
 }
 #becomeseller {
     background:#8fb8ff;

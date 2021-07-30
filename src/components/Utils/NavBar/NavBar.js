@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Notifications from '../Notifications/Notifications';
+
 
 import React, { useEffect } from 'react';
 import Badge from '@material-ui/core/Badge';
@@ -135,7 +135,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-            {/* <Notifications /> */}
+            
         </div >
     )
 }
