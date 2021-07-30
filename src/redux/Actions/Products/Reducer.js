@@ -7,6 +7,7 @@ import {
     GET_FAVOURITES,
     UPDATE_PRODUCT,
     CLEAR_PRODUCTS,
+    GET_PRODUCTS_INTERESTED,
     
 } from './ActionsName';
 
@@ -15,7 +16,8 @@ const initialState = {
     productsOffer: [],
     productDetail: [],
     categories: [],
-    favourites: [],    
+    favourites: [],  
+    productsInterested: [],
 }
 export default function productsReducer(state = initialState, action) {
     switch (action.type) {
@@ -65,6 +67,13 @@ export default function productsReducer(state = initialState, action) {
             return {
                 ...state,
                 productDetail: action.payload
+            }
+        } 
+
+        case GET_PRODUCTS_INTERESTED: {
+            return {
+                ...state,
+                productsInterested: action.payload
             }
         } 
        
