@@ -28,7 +28,7 @@ function Product() {
   
     useEffect(() => {
       dispatch(getProductDetail(idProducto))
-      dispatch(getProductsOfCategory(category))
+      //dispatch(getProductsOfCategory(category)) HACE QUE NO APARESCAN LOS SIMILARS
     }, [dispatch,idProducto ])
 
     useEffect(() => {
@@ -61,7 +61,7 @@ function Product() {
                             <hr></hr>
                             <div id="similarCard">
                                 {similarsproducts && similarsproducts.slice(0, 3).map((x)=>
-                            <Similars name={x.name} images={x.images} 
+                            <Similars name={x.name} images={x.images[0]} 
                             valuation={x.valuation} delivery={x.delivery} price={x.price}
                             discount={x.discount} seller={x.seller}
                             status={x.status} id={x.id} key={x.id}/>

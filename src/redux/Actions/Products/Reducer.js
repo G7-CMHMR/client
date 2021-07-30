@@ -8,6 +8,8 @@ import {
     UPDATE_PRODUCT,
     CLEAR_PRODUCTS,
     GET_PRODUCTS_INTERESTED,
+    GET_PRODUCTS_PCBUILDER,
+
     
 } from './ActionsName';
 
@@ -18,6 +20,7 @@ const initialState = {
     categories: [],
     favourites: [],  
     productsInterested: [],
+    productsPCBUILDER: [],
 }
 export default function productsReducer(state = initialState, action) {
     switch (action.type) {
@@ -76,7 +79,15 @@ export default function productsReducer(state = initialState, action) {
                 productsInterested: action.payload
             }
         } 
-       
+
+
+        case GET_PRODUCTS_PCBUILDER: {
+            return {
+                ...state,
+                productsPCBUILDER: action.payload
+            }
+        } 
+        
         default: return state;
     }
 
