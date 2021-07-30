@@ -1,5 +1,6 @@
 const api = {
-	urlDevelop:'http://localhost:3001',
+	// urlDevelop:'http://localhost:3001',
+	urlDevelop: 'https://pg-cmhmr-api.herokuapp.com/',
 	urlProduction: 'https://pg-cmhmr-api.herokuapp.com/'
 }
 
