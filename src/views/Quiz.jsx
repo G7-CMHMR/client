@@ -173,7 +173,9 @@ export default function Quiz() {
                         checked.gaming && 
                         gaming_app.map((e)=>{
                          return (
+
                              <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card> 
+
                          )
                         })
                     }</div>

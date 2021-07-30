@@ -18,11 +18,22 @@ function PanelSeller() {
         dispatch(getDataOfSeller(userReducer.idSeller))
     }, [dispatch])
 
+    let labelsKeys = []
+    let dataKeys = []
+
+    if(sellerReducer.ventasCat && sellerReducer.ventasCat.length > 0){
+        labelsKeys = Object.keys(sellerReducer.ventasCat)
+        dataKeys = Object.values(sellerReducer.ventasCat)
+    }else{
+        labelsKeys = ['No hay ventas']
+        dataKeys = [1]
+    }
+
 
     const data = {
-        labels: ['PC', 'Monitores', 'Procesadores', 'Memorias Ram', 'Otros'],
+        labels: labelsKeys,
         datasets: [{
-            data: [35, 11, 22, 9, 2, 8, 9],
+            data: dataKeys,
             backgroundColor: ['cadetblue', 'cornflowerblue', 'limegreen', 'dodgerblue', 'maroon', 'pink', 'wheat']
         }]
     }
@@ -50,7 +61,7 @@ function PanelSeller() {
                     <h3>Calificación </h3>
                     <div id='CalificacionVendedorFlex'>
                         <h3>del vendedor:</h3>
-                        <h5 id='h5VenderProducto'> {sellerReducer.ventas < 10 ? '¡Vende al menos 10 productos!' : sellerReducer.calificación} </h5>
+                        <h5 id='h5VenderProducto'> {sellerReducer.ventas < 3 ? '¡Vende al menos 3 productos!' : sellerReducer.calificación} </h5>
                     </div>
                     <br></br>
                     <br></br>

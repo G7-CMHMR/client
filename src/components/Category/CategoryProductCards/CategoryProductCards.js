@@ -22,10 +22,10 @@ function CategoryProductCards() {
         if (nombreProducto) dispatch(getProducts(nombreProducto))
         if (categoryName) dispatch(getProductsOfCategory(categoryName))
         if (offer) dispatch(getProductsOffer()) 
-        return () => {
-            alert('Clear')
-            dispatch(ClearProducts())
-          }
+        // return () => {
+        //     alert('Clear')
+        //     dispatch(ClearProducts())
+        //   }
     }, [dispatch, categoryName, nombreProducto, offer])
 
     const productsReducer = useSelector(state => state.productsReducer)

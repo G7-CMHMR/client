@@ -6,6 +6,7 @@ import {getProductsOfCategory, getProductQuiz} from '../../redux/Actions/Product
 export default function Card({title, key, img, games, setGames, valuation}) {
  
   const handleChange = (event) => {
+
   }
 
     return (

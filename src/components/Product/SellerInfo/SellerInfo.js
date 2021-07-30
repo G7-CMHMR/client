@@ -1,54 +1,80 @@
-import './SellerInfo.css'
+import './SellerInfo.css';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Rating from '@material-ui/lab/Rating';
 import { IoLocationSharp } from "react-icons/io5";
 import Opinions from './Opinions/Opinions';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
+
+
+
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: "transparent",
+    border: 0,
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
+
+
 function SellerInfo() {
 
-    const userId = useSelector((state) => state.productsReducer.productDetail.seller)
-    
-    
-    /* let seller = {
-        name:"nachoG454",
-        valuation:3,
-        location:"Buenos Aires",
-        sales:2633,
-        opinions:[{
-            user:"pirulito123",
-            valuation:1,
-            description:"pesimo vendedor"
-        },
-        {
-            user:"raulAlonso",
-            valuation:5,
-            description:"el mejor vendedor del mundo"
-        }]
-    } */
+    const sellerData = useSelector(state => state.productsReducer.productDetail.seller);
+    const sellerReview = useSelector(state => state.reviewReducer.sellerReview);
+
+  const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
+
 
     return(
         <div>
-            {/* <h3 id="infoseller">Información del vendedor</h3>
-            <hr/>
-            <p style={{color:"red"}}>info de prueba hasta tener modelo seller</p>
-            <h4>Vendido por "{ seller.name}"</h4>
-            <h4><IoLocationSharp/> {seller.location}</h4>
-            <h4>{seller.sales} Ventas concretadas</h4>
-            <h4>Reputación del vendedor: </h4>
-            <Rating name="half-rating-read" defaultValue={seller.valuation} precision={0.5} readOnly />
-            <hr/>
-            <h4>Opiniones</h4>
-            <div id="OpinionsCards">
-            {
-            seller.opinions.map((x)=>{
-                return <Opinions user={x.user} description={x.description} valuation={x.valuation}/>
-            })
-            }
-            </div> */}
+	<Card className={classes.root} variant='outlined'>
+		<CardContent>
+			<Typography className={classes.title} color="textSecondary" gutterBottom>
+			Información del vendedor
+			</Typography>
+			<Typography variant="h5" component="h2">
+			{sellerData.user.name} {sellerData.user.lastName}
+			</Typography>
+			<br />			
+			<Typography className={classes.title} variant="h6" color="textSecondary">
+			Localizacion del vendedor: {sellerData.location}
+			</Typography>
+			<br />			
+			<Typography className={classes.title} variant="h6" color="textSecondary">
+			Reputación del vendedor:
+			</Typography>
+		        <Rating name="half-rating-read" value={sellerData.reputation} precision={1} readOnly />
+		</CardContent>
+           	<h4 variant="h5" component="h2">Opiniones</h4>
+		<hr/>
+            	<div id="OpinionsCards">
+		  <Opinions props={sellerReview}/>	  
+	        </div>
+		<hr/>	
+
+	</Card>
         </div>
     )
 }
 
 
 
-export default SellerInfo
+export default SellerInfo;    
+

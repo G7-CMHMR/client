@@ -16,7 +16,7 @@ import {
     BECOME_SELLER,
     ATTEMPT_BECOME_SELLER,
     ATTEMPT_BECOME_SELLER_SUCCESS,
-    ATTEMPT_BECOME_SELLER_FAILED
+    ATTEMPT_BECOME_SELLER_FAILED,
   } from './ActionsName';
 
 import clientAxios from '../../../config/axios';

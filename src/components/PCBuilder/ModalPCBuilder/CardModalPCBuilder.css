@@ -1,0 +1,82 @@
+#CardModalPCBuilderContainer{
+    width: 78rem;
+    height: 2.4rem;
+    background-color: rgb(211, 211, 211);
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+    
+    #CardModalPCBuilder_text{
+        background-color: rgb(4, 0, 54);
+        color: white;
+        height: 100%;
+        width: 12rem;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    #CardModalPCBuilder_info{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 2rem;
+    }
+    #CardModalPCBuilder_info>*{
+        margin-left: 1rem;
+    }
+
+    #EnvioYtipoPCBUILDER{
+        display:flex;
+        flex-direction: row;
+        margin-top: 0.8rem;
+    }
+
+    #PCBUILDER_Envio{
+        margin-top: -0.2rem;
+        margin-right: 2rem;
+        color: green;
+    }
+
+    #PCBUILDER_Type{
+        margin-top: -0.2rem;
+        margin-right: 2rem;
+        width: 15rem;
+    }
+
+    #transition-modal-title22{
+        text-align: center;
+        margin-left: 30rem;
+    }
+
+    #BotonVolverYTitulo{
+        display: flex;
+
+    }
+
+    #NombreYBotonCerrarPCBUILDER{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    #BotonEliminarPCBUILDER{
+        color: red;
+       
+    }
+
+    #BotonYEliminarPCBUILDER{
+        display: flex;
+        margin-left: 5rem;
+    }
+
+    #NombrePCBUILDER{
+        margin-left: 1rem;
+        width: 27rem;
+        max-width: 22rem;
+    }
+
+    #PCBUILDER_Envio{
+        min-width: 9rem;
+    }
