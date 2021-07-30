@@ -21,14 +21,15 @@ function PanelSeller() {
     let labelsKeys = []
     let dataKeys = []
 
-    if(sellerReducer.ventas == 0){
-        labelsKeys = ['Sin ventas']
-        dataKeys = [1]
-    }else{
+    if (sellerReducer.ventas) {
+        if (sellerReducer.ventas == 0) {
+            labelsKeys = ['Sin ventas']
+            dataKeys = [1]
+        } else {
             labelsKeys = Object.keys(sellerReducer.ventasCat)
             dataKeys = Object.values(sellerReducer.ventasCat)
+        }
     }
-
 
 
 
