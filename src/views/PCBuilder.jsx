@@ -12,6 +12,7 @@ import Icon from '@material-ui/core/Icon';
 import CardsPC from '../components/PCBuilder/CardsPCBuilder/CardsPC';
 import { getProductsFilter } from '../redux/Actions/Products/Actions'
 import { InputTwoTone } from '@material-ui/icons';
+import ModalPCBuilder from '../components/PCBuilder/ModalPCBuilder/ModalPCBuilder';
 
 
 function PCBuilder() {
@@ -19,12 +20,26 @@ function PCBuilder() {
     const { Brand } = useParams()
     const [counter, setCounter] = useState(1)
     const [display, setDisplay] = useState('')
+    const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
+
+
+    const [input2, setInput2] = useState({})
+    
+    let key = 'pia'
+
+    setInput2({
+        ...input2,
+        [key] : 2
+    })
+
+    console.log(input2)
+
 
     const [input, setInput] = useState({
         Procesador: {
             price: 0,
-            id: 0
+            id: 0,
         },
         CoolersCPU: {
             price: 0,
@@ -54,6 +69,7 @@ function PCBuilder() {
             id: 0
         },
         Total: 0,
+        Envios: 0,
     })
 
     useEffect(() => {
@@ -102,7 +118,10 @@ function PCBuilder() {
         input.Gabinete.price , input.Fuentedealimentación.price, input.Monitor.price, input.Ram] ) 
 
     function Siguiente() {
-        if (counter < 11) { setCounter(counter + 1) }
+        if (counter < 10) { setCounter(counter + 1) }
+        else{
+            setModal(true)
+        }
     }
     function SiguienteDespuesDeAgregar() {
         if (display == 'Ram' || display == 'Almacenamiento' || display == 'Accesorios') {
@@ -151,6 +170,7 @@ function PCBuilder() {
                             <div id='ArmaTuPc_Right'>
                                 { }
                                 <CardsPC input={input} setInput={setInput} Siguiente={SiguienteDespuesDeAgregar} display={display}></CardsPC>
+                                {modal ? <ModalPCBuilder modal={modal} setModal={setModal} input={input}></ModalPCBuilder>:''}
                             </div>
                         </div>
                     </div>
@@ -167,6 +187,7 @@ function PCBuilder() {
                             </div>
                         </div>
                     </div>
+                   
                 }
             </div>
 
