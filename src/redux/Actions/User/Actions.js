@@ -101,9 +101,9 @@ export function attemptLoginAction (attempt) {
             const { data } = await clientAxios.post('/auth/login', attempt)
             
             dispatch( attemptLoginSuccess( data ))
-
-            setToLocalStorage(data.token, data.name);
             
+            setToLocalStorage(data.token, data.name);
+            localStorage.removeItem('cartguest');
         } catch (error) {            
             dispatch(attemptLoginFailed(error.response.data.error))
             
@@ -142,7 +142,7 @@ export function attemptLogoutAction() {
     return (dispatch) => {
         
         dispatch(attemptLogout());
-        
+        localStorage.removeItem('cartguest');
         localStorage.removeItem('token');
         localStorage.removeItem('username');
     
