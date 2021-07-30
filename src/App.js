@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route } from 'react-router'
 import { useEffect } from 'react';
 
+import Notifications from './components/Utils/Notifications/Notifications';
 import Nav from './components/Utils/Nav/Nav'
 import NavBar from './components/Utils/NavBar/NavBar'
 import Footer from './components/Utils/footer/Footer'
@@ -55,8 +56,10 @@ function App() {
 
   return (
     <div className="App">
+      
       <Nav></Nav>
       <NavBar></NavBar>
+      
       {stateLogin ? <Login /> : null}
       {stateRegister ? <Register /> : null}
 
@@ -64,6 +67,7 @@ function App() {
       {stateBeSeller ? <BecomeSeller /> : null}
 
       <Route exact path='/' component={Home} />
+      
       <Route exact path='/Categorias' component={Categories} />
       <Route path='/Categorias/:categoryName' component={Categories} />
       <Route path='/Buscar/:nombreProducto' component={Categories} />
@@ -87,7 +91,7 @@ function App() {
 
       <Footer></Footer>
       <ToastContainer position="top-center" />
-
+      <Notifications />
     </div>
   );
 }
