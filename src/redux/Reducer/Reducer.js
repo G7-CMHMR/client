@@ -8,6 +8,7 @@ import favouritesReducer from '../Actions/Favourites/Reducer'
 import cartReducer from '../Actions/Cart/Reducer'
 import purchaseOrderReducer from '../Actions/PurchaseOrder/Reducer'
 import sellerReducer from '../Actions/Seller/Reducer'
+import reviewReducer from '../Actions/Review/Reducer'
 
 export default combineReducers({
   productsReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
   cartReducer,
   purchaseOrderReducer,
   sellerReducer,
-  adminReducer
+  adminReducer,
+  reviewReducer
 })

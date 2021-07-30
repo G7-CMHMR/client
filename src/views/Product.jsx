@@ -8,25 +8,36 @@ import SellerInfo from '../components/Product/SellerInfo/SellerInfo'
 import Similars from '../components/Product/Similars/Similars'
 
 import React, { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 
 import {getAllProducts, getProductDetail, getProductsOfCategory} from '../redux/Actions/Products/Actions'
+import { getSellerReview } from '../redux/Actions/Review/Actions';
 
 function Product() {
 
     const { idProducto } = useParams()
+    const [sellerLoaded, setSellerLoaded] = useState(false);
 
     const dispatch = useDispatch();
     const productDetail= useSelector(state => state.productsReducer.productDetail)
     const products = useSelector(state => state.productsReducer.products)
+    const productReview = useSelector(state => state.reviewReducer.productReview)
+    const sellerReview = useSelector(state => state.reviewReducer.sellerReview)
     const category = productDetail.categories
   
     useEffect(() => {
-        
       dispatch(getProductDetail(idProducto))
       dispatch(getProductsOfCategory(category))
     }, [dispatch,idProducto ])
+
+    useEffect(() => {
+        const isProductLoaded = Object.keys(productDetail).length > 0;
+        if(isProductLoaded) {
+		dispatch(getSellerReview(productDetail.seller.id))
+		setSellerLoaded(true)
+	}
+    },[productDetail])
 
     let similarsproducts = products.filter(x=>x.id!==idProducto)
 
@@ -69,7 +80,11 @@ function Product() {
                         <Description/>
                     </div>
                     <div id='SellerInfo'>
-                        <SellerInfo/>
+			{ !sellerLoaded ?
+			  <h6>...cargando informacion del vendedor</h6>
+			  :
+			  <SellerInfo />			  
+			}
                     </div>
                 </div>
 
