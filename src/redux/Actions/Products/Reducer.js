@@ -9,13 +9,14 @@ import {
     CLEAR_PRODUCTS,
     GET_PRODUCTS_INTERESTED,
     GET_PRODUCTS_PCBUILDER,
+
     
 } from './ActionsName';
 
 const initialState = {
     products: [],
     productsOffer: [],
-    productDetail: [],
+    productDetail: {},
     categories: [],
     favourites: [],  
     productsInterested: [],
@@ -78,6 +79,7 @@ export default function productsReducer(state = initialState, action) {
                 productsInterested: action.payload
             }
         } 
+
 
         case GET_PRODUCTS_PCBUILDER: {
             return {

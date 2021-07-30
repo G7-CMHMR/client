@@ -56,19 +56,19 @@ export function seller_GetSolds_WithFilter(params) {
     }
 }
 
-export function getAllQuestionsAction(idseller) {
+export function getAllQuestionsAction(idSeller) {
     return (dispatch) => {
-        clientAxios.post('/questions/AnswerMe', idseller)
+        clientAxios.post('/questions/answerMe', idSeller)
             .then(response => {
                 dispatch({ type: GET_ALL_QUESTIONS, payload: response.data })
             })
     }
 }
 
-export function getDataOfSeller(sellerId) {
-    console.log(sellerId)
+export function getDataOfSeller(idSeller) {
+    console.log(idSeller)
     return (dispatch) => {
-        clientAxios.post('/seller/info', {sellerId: sellerId})
+        clientAxios.post('/seller/info', {sellerId: idSeller})
             .then(response => {
                 dispatch({ type: SELLER_INFO, payload: response.data })
                 console.log(response.data)
@@ -76,10 +76,15 @@ export function getDataOfSeller(sellerId) {
     }
 }
 
+export function publishResponseAction(response){
+    console.log(response)
+    return async (dispatch) => {
+        clientAxios.put('/questions/response', response).then(() => dispatch(getAllQuestionsAction({sellerId: response.sellerId})))
+    }
+}
 
-
-
-
-
-
-
+export function deleteQuestionAction(idquestion, idseller){
+    return async (dispatch) => {
+        clientAxios.post('/questions/', idquestion).then(() => dispatch(getAllQuestionsAction(idseller)))
+    }
+}

@@ -14,6 +14,7 @@ const actualProduct = useSelector((state) => state.productsReducer.productDetail
 let existeQuestions = false;
 let mostrarAnswer = false;
 
+
 if(actualUser && Object.keys(actualUser).length > 0){
     if(actualProduct.questions && Array.isArray(actualProduct.questions)){
         existeQuestions = true;

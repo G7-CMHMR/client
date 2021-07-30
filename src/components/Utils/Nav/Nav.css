@@ -1,18 +1,25 @@
 #ContainerNav{
-    background-color:#14213D;
+    background-color:#ffffff;
     display:flex;
     justify-content: space-around;
     align-items: center;
 }
 
 #logo{
-    text-decoration: none;
-    text-decoration-style: inherit;
-    color: white;
     margin-left: -30rem;
-
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3rem;
+}
+#logo:hover{
+    color: #fca42e  !important;
+    text-decoration: none !important
 }
 
+.h2{
+    font-family: 'Bebas Neue', cursive;
+}
 #logo-hover{
     text-decoration: none;
 }

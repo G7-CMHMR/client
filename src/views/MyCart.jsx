@@ -43,15 +43,16 @@ export function MyCart() {
     useEffect(() => {
         if (userId){
             let cartguest = JSON.parse(localStorage.getItem('cartguest'));
-        if (cartguest.length>0)
-            cartguest.forEach(x=> clientAxios.post('/cart/add', {productId:x.product.id, userId:userId}) )
-        
+        if (cartguest.length>0){
+            cartguest.forEach(x=> 
+                clientAxios.post('/cart/add', {productId:x.product.id, userId:userId}) )
+        localStorage.clear()
         dispatch(getCart(userId))
-        
+        }
         }else{
             dispatch(getCartNotLogged())
         }
-    }, [ userId])
+    }, [dispatch, userId])
 
     let addCommas = function (nStr) {
         nStr += '';

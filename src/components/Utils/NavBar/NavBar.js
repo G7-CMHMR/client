@@ -135,7 +135,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-            <Notifications />
+            {/* <Notifications /> */}
         </div >
     )
 }

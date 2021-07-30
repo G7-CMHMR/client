@@ -17,8 +17,6 @@ import {
     ATTEMPT_BECOME_SELLER_SUCCESS,
     ATTEMPT_BECOME_SELLER_FAILED
 
-
-
   } from './ActionsName'
 
   const initialState = {

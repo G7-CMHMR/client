@@ -1,0 +1,6 @@
+// Buttons for Opening Login and Register
+
+export const ATTEMP_REVIEW_SELLER = "ATTEMP_REVIEW_SELLER";
+export const ATTEMP_REVIEW_PRODUCT = "ATTEMP_REVIEW_PRODUCT";
+export const GET_SELLER_REVIEW = "GET_SELLER_REVIEW";
+export const GET_PRODUCT_REVIEW = "GET_PRODUCT_REVIEW";

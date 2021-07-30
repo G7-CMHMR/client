@@ -1,5 +1,7 @@
 //import axios from 'axios'
+
 import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES, CLEAR_PRODUCTS, GET_PRODUCTS_INTERESTED, GET_PRODUCTS_PCBUILDER } from './ActionsName'
+
 import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
