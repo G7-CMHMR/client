@@ -48,7 +48,7 @@ function Home(props) {
         <QuizAndBuild></QuizAndBuild>
         <Carousel></Carousel>
         <br></br>
-        {productsReducer.productsInterested.length > 0 ?  <ProductCards products={productsReducer.productsInterested} title={"Según tu interés TODO"}></ProductCards> : ''}
+        {productsReducer.productsInterested.length > 0 ?  <ProductCards products={productsReducer.productsInterested} title={"Según tu interés"}></ProductCards> : ''}
         <ProductCards products={productsReducer.productsOffer} title={"Ofertas"}></ProductCards>
         <ProductCards products={productsReducer.products} title={"Destacados"}></ProductCards>
       </div>
