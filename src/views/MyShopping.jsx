@@ -16,7 +16,7 @@ function MyShopping() {
     const dispatch = useDispatch();
     const productsReducer = useSelector(state => state.productsReducer)
 
-    const userReducer = useSelector(state => state.userReducer)
+    const userReducer = useSelector(state => state.userReducer.userData)
 
     var query = window.location.search.substring(1);
     var payment_type = ''

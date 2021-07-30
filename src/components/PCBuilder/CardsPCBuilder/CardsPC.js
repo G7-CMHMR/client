@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getAllProducts, getProductsOfCategory } from '../../../redux/Actions/Products/Actions'
 
-export default function CardsPC({input, setInput, Siguiente}) {
+export default function CardsPC({input, setInput, Siguiente, display}) {
 
     const productsReducer = useSelector(state => state.productsReducer) 
-
+    
 
     return (
         <div id='CardsPC'>

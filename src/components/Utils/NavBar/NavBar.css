@@ -18,7 +18,7 @@
 }
 
 #UserContainer{
-    margin-left: 750px;
+    margin-left: 70px;
 }
 
 #CarritoAndFavorito{
@@ -27,9 +27,17 @@
 
 #UserPanelNavBar{
     display: flex;
-    margin-left: 47rem;
+    margin-left: 30rem;
 }
 
 #UserPanelNavBar>*{
     margin-left: 1rem;
+}
+
+#OfertasPCyCategorias{
+    display: flex;
+}
+
+#OfertasPCyCategorias>*{
+    margin-left: 15rem;
 }

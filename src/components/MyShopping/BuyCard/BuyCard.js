@@ -26,7 +26,7 @@ function BuyCard(props) {
         <div id='BuyCardContainer'>
             <Link to={'Producto/' + props.productId} >
                 <div id='BuyCard_Image_Container'>
-                    <img id='BuyCard_Image' src={props.images[0].image}></img>
+                    <img id='BuyCard_Image' src={props.images}></img>
                 </div>
             </Link>
 
@@ -48,11 +48,15 @@ function BuyCard(props) {
                 <TextField disabled id="BuyCard_State-input" label={'Estado:'} variant="outlined" />
             </div>
             <div id='BuyCard_Buttons'>
-                {props.status == 'Entregado' ? <Button>Nico</Button>:<Button id='BuyCard_Btn1' onClick={ChangeProductState} variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>}
+                {  props.status == 'Entregado' ? 
+                  <Review idUser={userReducer.id} idProduct={props.productId} idSeller={props.sellerId}/>
+                  :
+                  <Button id='BuyCard_Btn1' onClick={ChangeProductState} variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
+                }
                 <Link to={'Producto/' + props.productId} ><Button id='BuyCard_Btn2' variant="contained" color="secundary">Ir a la publicación</Button></Link>
             </div>
             <div>
-                <Review idUser={userReducer.id} idProduct={props.productId} idSeller={props.sellerId}/>
+                
             </div>
 
         </div>

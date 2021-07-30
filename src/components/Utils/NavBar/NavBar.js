@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Notifications from '../Notifications/Notifications';
 
 import React, { useEffect } from 'react';
 import Badge from '@material-ui/core/Badge';
@@ -31,14 +32,14 @@ function NavBar() {
 
 
     useEffect(() => {
-        if (userId){
-                dispatch(getCart(userId))
-                }else{
-                    dispatch(getCartNotLogged())
-                }
+        if (userId) {
+            dispatch(getCart(userId))
+        } else {
+            dispatch(getCartNotLogged())
+        }
         dispatch(getCategories())
         //eslint-disable-next-line
-    }, [dispatch,userId])
+    }, [dispatch, userId])
 
     const openBeSeller = () => {
         dispatch(becomeSellerAction(!stateBeSeller))
@@ -52,7 +53,7 @@ function NavBar() {
         dispatch(changeStateRegisterAction(!stateRegister))
     }
 
-    const redirectToHome = () =>{
+    const redirectToHome = () => {
         window.location.href = client.urlDevelop;
     }
 
@@ -62,7 +63,7 @@ function NavBar() {
     }
 
 
-    
+
     // BackgroundColor #14213D;
     return (
 
@@ -71,42 +72,45 @@ function NavBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id="navcontainer" className="mr-auto">
-                        <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
-                        <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
-                        <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
-                            
-                            {productsReducer.categories.map(element => (
-                                
-                                <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
-                                    <NavDropdown.Item>{element.title}</NavDropdown.Item>
-                                </LinkContainer>
-                            ))//<Link to={`/categorias/${element}`}>
-                            }
-                        </NavDropdown>
 
-                        <div id='UserPanelNavBar'>
-                            {/* aca vendria el condicional isAdmin  */}
-                            <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer>
+                        <div id='OfertasPCyCategorias'>
+                            <LinkContainer key="offers" to='/Ofertas'><Nav.Link>OFERTAS</Nav.Link></LinkContainer>
+                            <LinkContainer key="builded" to='/Categorias/PC'><Nav.Link>PC ARMADAS</Nav.Link></LinkContainer>
+                            <NavDropdown key="categories" title="CATEGORIAS" id="basic-nav-dropdown">
 
-                            {userData.isSeller ?
+                                {productsReducer.categories.map(element => (
 
-                                <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
-                                :
-                                null
-                            }
+                                    <LinkContainer key={element.title} to={`/Categorias/${element.title}`}>
+                                        <NavDropdown.Item>{element.title}</NavDropdown.Item>
+                                    </LinkContainer>
+                                ))//<Link to={`/categorias/${element}`}>
+                                }
+                            </NavDropdown>
 
-                            {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
+                            <div id='UserPanelNavBar'>
+                                {userData.isAdmin ? <LinkContainer to="/AdminPanel"><Nav.Link href="">ADMIN </Nav.Link></LinkContainer> : null}
 
-                            {userData.name ?
-                                <NavDropdown title={userData.name} id="NavDropDownUser">
-                                    <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Favoritos" key="favorites"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
-                                    <LinkContainer to="/Compras" key="sells"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
-                                    {userData.isSeller ? null : <NavDropdown.Item key="isSeller" href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
-                                    <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
-                                </NavDropdown>
-                                :
-                                <Nav.Link href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+
+                                {userData.isSeller ?
+
+                                    <LinkContainer to="/Panel"><Nav.Link href="">PANEL</Nav.Link></LinkContainer>
+                                    :
+                                    null
+                                }
+
+                                {userData.name ? null : <Nav.Link onClick={openLogin}>LOGIN</Nav.Link>}
+
+                                {userData.name ?
+                                    <NavDropdown title={userData.name} id="NavDropDownUser">
+                                        <LinkContainer to="/Perfil" key="profile"><NavDropdown.Item >MI CUENTA</NavDropdown.Item></LinkContainer>
+                                        <LinkContainer to="/Favoritos" key="favorites"><NavDropdown.Item >MIS FAVORITOS </NavDropdown.Item></LinkContainer>
+                                        <LinkContainer to="/Compras" key="sells"><NavDropdown.Item >HISTORIAL DE COMPRAS </NavDropdown.Item></LinkContainer>
+                                        {userData.isSeller ? null : <NavDropdown.Item key="isSeller" href="" onClick={openBeSeller}>SER VENDEDOR </NavDropdown.Item>}
+                                        <NavDropdown.Item key="logout" href="" onClick={logout}>CERRAR SESIÓN </NavDropdown.Item>
+                                    </NavDropdown>
+                                    :
+                                    <Nav.Link key="register" href="" onClick={openRegister}>REGISTRATE</Nav.Link>}
+                            </div>
                         </div>
                         {/* botones para probar si cambia usuario-registrado , no-registrado */}
                         {/* {username ? 
@@ -120,7 +124,7 @@ function NavBar() {
                         <LinkContainer to="/Carrito">
                             <Nav.Link >
                                 <Badge badgeContent={
-                                    cart? cart.length : 0
+                                    cart ? cart.length : 0
                                 } color="error">
                                     <IoCartSharp />
                                 </Badge>
@@ -131,7 +135,7 @@ function NavBar() {
                 </Navbar.Collapse>
 
             </Navbar>
-
+            {/* <Notifications /> */}
         </div >
     )
 }

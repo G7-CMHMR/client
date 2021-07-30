@@ -6,19 +6,40 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
 
 
     function onClickFunction(e) {
-       /*  console.log(price)
-        console.log(input.Total)
-        console.log(parseInt(input.Total + price))
-        input.Total? console.log('SI HAY'): console.log(input.Total) */
+        /*  console.log(price)
+         console.log(input.Total)
+         console.log(parseInt(input.Total + price))
+         input.Total? console.log('SI HAY'): console.log(input.Total) */
 
-        setInput((all) => {
-            return ({
-                ...all,
-                [category]: parseInt(price),
-                //Total: all.Procesador + all.CoolerCPU + all.PlacaMadre + all.MemoriaRam + all.PlacaDeVideo,
-            })
+        setInput((input) => {
+
+            if (category.replace(/ /g, "") == 'Ram' || category.replace(/ /g, "") == 'Almacenamiento' || category.replace(/ /g, "") == 'Accesorios') {
+                var category2 = category.replace(/ /g, "")
+                return ({
+                    ...input,
+                    [category2]:
+                        [
+                            ...input[category2],
+                            {
+                                id: id,
+                                price: parseInt(price),
+                            }
+                        ]
+                })
+            } else {
+                return ({
+                    ...input,
+                    [category.replace(/ /g, "")]: {
+                        id: id,
+                        price: parseInt(price),
+                    },
+
+                })
+            }
         })
+  
         Siguiente()
+
     }
 
     return (

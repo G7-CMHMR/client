@@ -9,9 +9,6 @@ import React from 'react';
 export default function MySales({date, id_buyer, product_status, address,
     productId, amount, sellerId, item, images, price, discount, name, buyer}) {
 
-    console.log(date, id_buyer, product_status, address,
-        productId, amount, sellerId, item, images, price, discount, name)
-
     const userReducer = useSelector(state => state.userReducer.userData)
 
     let addCommas = function (nStr) {
@@ -32,7 +29,7 @@ export default function MySales({date, id_buyer, product_status, address,
         <div>
             <div id="MyProductCard">
                 <div id='MyProductCardContainer'>
-                    <img id="MyProductImage" src={images[0].image} alt="Omar Dsoky" />
+                    <img id="MyProductImage" src={images} alt="Omar Dsoky" />
                     <Link id="link" to={`/Producto/${productId}`}>
                         <div class="MyProduct-details">
                             <h4 id="MyProductName">{name}</h4>

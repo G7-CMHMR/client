@@ -1,5 +1,5 @@
 //import axios from 'axios'
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES, CLEAR_PRODUCTS, GET_PRODUCTS_INTERESTED } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
@@ -11,6 +11,22 @@ export function getAllProducts() {
             })
     }
 }
+export function ClearProducts() {
+    return (dispatch) => {
+        dispatch({ type: CLEAR_PRODUCTS})
+    }
+}
+
+export function seller_hideProduct(productId) {
+    return (dispatch) => {
+        clientAxios.post('/product/hide', productId)
+        clientAxios.get('/products/true')
+            .then(response => {
+                dispatch({ type: GET_PRODUCTS, payload: response.data })
+            })
+    }
+}
+
 export function getProductDetail(id) {
     return (dispatch) => {
         clientAxios.get(`/product/${id}`)
@@ -73,11 +89,22 @@ export function getProductsOffer(input) {
 
 export function getProductsOfferInHome() {
     return (dispatch) => {
-
         clientAxios.get(`/products/offer`)
             .then(response => {
                 //GET_PRODUCTS_OFFER
                 dispatch({ type: GET_PRODUCTS_OFFER, payload: response.data })
+
+            })
+    }
+}
+
+export function getProductsInterested(userId) {
+    console.log(userId)
+    return (dispatch) => {
+        clientAxios.post(`products/interest`, {userId: userId})
+            .then(response => {
+                console.log(response)
+                dispatch({ type: GET_PRODUCTS_INTERESTED, payload: response.data })
             })
     }
 }
@@ -93,7 +120,7 @@ export function getCategories() {
     }
 }
 export function getProductsOfCategory(categoryName) {     
-    return (dispatch) => {          
+    return (dispatch) => {       
         clientAxios.get(`/products/category/${categoryName}`)
             .then(response => {                 
                 dispatch({ type: GET_PRODUCTS, payload: response.data })             
@@ -167,7 +194,7 @@ export function publishResponseAction(response){
 
 export function deleteQuestionAction(idquestion, idproducto){
     return async (dispatch) => {
-        clientAxios.delete('/questions/' + idquestion).then(() => dispatch(getProductDetail(idproducto)))
+        clientAxios.post('/questions/', idquestion).then(() => dispatch(getProductDetail(idproducto)))
     }
 }
 

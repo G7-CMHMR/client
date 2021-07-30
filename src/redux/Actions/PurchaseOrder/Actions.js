@@ -29,12 +29,11 @@ export function createPurchaseOrder(params) {
 }
 
 export function getUserItems(id) {
-    /* console.log(id)
     console.log(id)
-    console.log(id) */
+    console.log(id)
+    console.log(id) 
     return (dispatch) => {
-
-        clientAxios.get(`/purchaseOrder/user/${id}`,)
+        clientAxios.post(`/purchaseOrder/user`, {userId: id})
             .then(response => {
                 //console.log(response.data)
                 dispatch({ type: GET_ITEMS, payload: response.data })
@@ -44,8 +43,8 @@ export function getUserItems(id) {
 
 
 export function setPurchaseOrderStatus(preference_id, status, payment_type, userId) {
-    /* console.log(preference_id)
-    console.log(status) */
+    console.log(preference_id)
+     console.log(userId) 
     return (dispatch) => {
 
         clientAxios.put(`/purchaseOrder/`, { mercadopagoId: preference_id, userId: userId })

@@ -1,8 +1,12 @@
-export let POST_PRODUCT = 'POST_PRODUCT';
-export let GET_PRODUCTS_seller = 'GET_PRODUCTS_seller';
+export const POST_PRODUCT = 'POST_PRODUCT';
+export const GET_PRODUCTS_SELLER = 'GET_PRODUCTS_SELLER';
 
-export let POST_PRODUCT_VISIBLE = 'POST_PRODUCT_VISIBLE';
+export const POST_PRODUCT_VISIBLE = 'POST_PRODUCT_VISIBLE';
 
-export let PUT_PRODUCT = 'PUT_PRODUCT';
+export const PUT_PRODUCT = 'PUT_PRODUCT';
 
-export let GET_SOLD = 'GET_SOLD'
+export const GET_SOLD = 'GET_SOLD'
+export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
+
+
+export const SELLER_INFO = 'SELLER_INFO'
