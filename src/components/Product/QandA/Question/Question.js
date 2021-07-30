@@ -7,10 +7,11 @@ function Question({id, user, question, answer, date, imagen}) {
 
     const dispatch = useDispatch();
     const idProducto = useSelector((state) => state.productsReducer.productDetail.id)
-    
-    useEffect(() => {
+    const actualUser = useSelector((state) => state.userReducer.userData)
+
+    /* useEffect(() => {
         dispatch(getProductDetail(idProducto))
-      }, [dispatch, idProducto]) 
+      }, [dispatch, idProducto])  */
 
     const deleteQuestion = () => {
         const porEliminar = {
@@ -24,12 +25,13 @@ function Question({id, user, question, answer, date, imagen}) {
     if(answer === 'null'){
         answer = null
     }
+    
     return(
         <div id="QuestionCard" >
-            <button id="eliminarPregunta" onClick={deleteQuestion}>X</button>
+            {actualUser.isAdmin ?<button id="eliminarPregunta" onClick={deleteQuestion}>X</button> : null}
             <div id="contenedorimagen">
 
-            {imagen ?<img alt="soyunaimagen" src={imagen}/> :null}
+            {imagen ?<img alt="soyunaimagen" src={imagen[0]}/> :null}
             
             <div id="contenedorQuestion">
                 <p style={{color:"gray"}}>{date}</p><h4>{user} preguntó:<br /> <span id="spanPregunta" style={{color:"black"}}>{question}</span></h4>
