@@ -6,11 +6,14 @@ import {Button, ToggleButton, ToggleButtonGroup, ProgressBar} from 'react-bootst
 import { gaming_app, student_app, programming_app, graphic_app, audiovisual_app, diary_app } from '../components/Quiz/Apps';
 import Card from '../components/Quiz/Card';
 import {FaArrowLeft} from 'react-icons/fa'
+import { Objectfilter } from '../components/Utils/aux';
+import {getProductsOfCategory, getProductQuiz} from '../redux/Actions/Products/Actions'
+import ProductCard from '../components/Category/ProductCard/ProductCard';
 
 
 export default function Quiz() {
     const name = useSelector(state => state.userReducer.userData.name)
-    
+    const productsReducer = useSelector(state => state.productsReducer)
     const [counter, setCounter]= useState(1)
     const [progress, setProgress]= useState(25)
     const [display, setDisplay] = useState('')
@@ -29,7 +32,6 @@ export default function Quiz() {
     const [input, setInput] = useState({
         name: name,
     })
-
 
     useEffect(() => {
         switch (counter) {
@@ -61,7 +63,19 @@ export default function Quiz() {
             [e.currentTarget.value]:e.currentTarget.checked
         })
     }
-
+    Object.filter = function(mainObject, filterFunction){
+        return Object.keys(mainObject)
+              .filter( function(ObjectKey){
+                  return filterFunction(mainObject[ObjectKey])
+              } )
+              .reduce( function (result, ObjectKey){
+                  result[ObjectKey] = mainObject[ObjectKey];
+                  return result;
+                }, {} );
+    }
+    
+    let valuationo;
+    let valuationmax;
     return (
         <div className='DetailContainer'>
             <Separate></Separate>
@@ -159,7 +173,7 @@ export default function Quiz() {
                         checked.gaming && 
                         gaming_app.map((e)=>{
                          return (
-                             <Card  key={e.key}></Card> 
+                             <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card> 
                          )
                         })
                     }</div>
@@ -168,39 +182,60 @@ export default function Quiz() {
                      { 
                         checked.programming && 
                         programming_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>  
                            })
                     }</div>
                      <div className='AppsRow'>
                      {
                         checked.audiovisual && 
                         audiovisual_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>    
                            })
                     }</div>
                     <div className='AppsRow'>
                      {
                          checked.homeoffice || checked.university || checked.escolar &&  
                         student_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card> 
                            })
                     }</div>
                       <div className='AppsRow'>
                      {
                         checked.graphicdesign && 
                         graphic_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card> 
                            })
                     }</div>
                      <div className='AppsRow'>
                      {
                         checked.diary && 
                         diary_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card> 
                            })
                     } </div><Button onClick={changeState} variant="info">CONTINUAR</Button></div>
                     </div>
                     
+                }
+                {
+                    display==='Resultados' && 
+                    <div>
+                        {
+                               dispatch(getProductQuiz(Objectfilter(games)))  
+                        }
+                        {name? <h4>{name}</h4>:<h4>{input.name}</h4>}
+                        <h4>Estas son las computadoras que se adecuan a los programas y/o juegos
+                            que elegiste</h4> 
+                            {productsReducer.products.length>0 && productsReducer.products.map((x) => {
+                return (
+                    <ProductCard name={x.name} images={x.images}
+                        valuation={x.valuation} delivery={x.delivery} price={x.price}
+                        discount={x.discount} seller={x.seller}
+                        status={x.status} id={x.id} />
+                )
+                })
+                            }
+
+                    </div>
                 }
             </div>
             <Separate></Separate>

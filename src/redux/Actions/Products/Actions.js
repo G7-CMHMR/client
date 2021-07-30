@@ -127,6 +127,17 @@ export function getProductsOfCategory(categoryName) {
             })     
         } 
     }
+    export function getProductQuiz(num) {     
+        return (dispatch) => {       
+            clientAxios.get('/products/category/PC')
+                .then(response => { 
+                    let filters;
+                    filters= response.data.filter((x)=>x.valuationpc>=num)                    
+                    dispatch({ type: GET_PRODUCTS, payload: filters })             
+                })     
+            } 
+        }
+    
 
 
 export function getProductsFilter(categoryName='', type='', shipping='', condition='', brand='', MinPrice='', MaxPrice='') {
