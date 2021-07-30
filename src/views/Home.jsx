@@ -6,7 +6,7 @@ import Separate from '../components/Utils/Separate/Separate'
 import { TabContext } from '@material-ui/lab'
 import { useEffect } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { getAllProducts, getProductsOfferInHome, ClearProducts } from '../redux/Actions/Products/Actions'
+import { getAllProducts, getProductsOfferInHome, ClearProducts, getProductsInterested } from '../redux/Actions/Products/Actions'
 import { confirmAccount } from '../redux/Actions/User/Actions'
 
 import { useParams } from 'react-router-dom'
@@ -16,7 +16,7 @@ import { toast } from 'react-toastify'
 function Home(props) {
 
   const { emailToken } = useParams();
-
+  const userReducer = useSelector(state => state.userReducer.userData)
   const productsReducer = useSelector(state => state.productsReducer)
   const dispatch = useDispatch()
 
@@ -33,10 +33,11 @@ function Home(props) {
   useEffect(() => {
     dispatch(getAllProducts())
     dispatch(getProductsOfferInHome())
+    dispatch(getProductsInterested(userReducer.id))
     return () => {
       dispatch(ClearProducts())
     }
-  }, [dispatch])
+  }, [userReducer])
 
 
   return (
@@ -47,7 +48,7 @@ function Home(props) {
         <QuizAndBuild></QuizAndBuild>
         <Carousel></Carousel>
         <br></br>
-        <ProductCards products={productsReducer.productsOffer} title={"Según tu interés TODO"}></ProductCards>
+        {productsReducer.productsInterested.length > 0 ?  <ProductCards products={productsReducer.productsInterested} title={"Según tu interés TODO"}></ProductCards> : ''}
         <ProductCards products={productsReducer.productsOffer} title={"Ofertas"}></ProductCards>
         <ProductCards products={productsReducer.products} title={"Destacados"}></ProductCards>
       </div>

@@ -35,8 +35,8 @@ export function BecomeAdmin(adminId, userId, status, superAdmin = false) { //{us
     return (dispatch) => {
         clientAxios.post('/admin/MakeMeUser', { adminId: adminId, userId: userId, status: status, superAdmin: superAdmin})
             .then(response => {
-                //ACA NEHUEN ME TENES QUE TRAER LA LISTA DE USUARIOS
-                //dispatch({ type: BECOME_ADMIN, payload: response.data })
+                
+                dispatch({ type: BECOME_ADMIN, payload: response.data })
             })
     }
 }

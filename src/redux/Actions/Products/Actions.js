@@ -1,5 +1,5 @@
 //import axios from 'axios'
-import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES, CLEAR_PRODUCTS } from './ActionsName'
+import { GET_PRODUCTS, GET_PRODUCT_DETAIL, GET_PRODUCTS_OFFER, GET_CATEGORIES, UPDATE_PRODUCT, POST_PRODUCT, SORT, GET_FAVOURITES, CLEAR_PRODUCTS, GET_PRODUCTS_INTERESTED } from './ActionsName'
 import clientAxios from '../../../config/axios';
 
 export function getAllProducts() {
@@ -89,11 +89,22 @@ export function getProductsOffer(input) {
 
 export function getProductsOfferInHome() {
     return (dispatch) => {
-
         clientAxios.get(`/products/offer`)
             .then(response => {
                 //GET_PRODUCTS_OFFER
                 dispatch({ type: GET_PRODUCTS_OFFER, payload: response.data })
+
+            })
+    }
+}
+
+export function getProductsInterested(userId) {
+    console.log(userId)
+    return (dispatch) => {
+        clientAxios.post(`products/interest`, {userId: userId})
+            .then(response => {
+                console.log(response)
+                dispatch({ type: GET_PRODUCTS_INTERESTED, payload: response.data })
             })
     }
 }
