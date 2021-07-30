@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import './Card.css'
-
+import { useDispatch, useSelector } from 'react-redux';
+import {getProductsOfCategory, getProductQuiz} from '../../redux/Actions/Products/Actions'
 export default function Card({title, key, img, games, setGames, valuation}) {
-    let hola='hola'
-    console.log(key)
+ 
   const handleChange = (event) => {
-   setGames({
-     ...games,
-     [valuation]:event.target.checked
-   })
-   console.log(games)
+
   }
 
     return (
