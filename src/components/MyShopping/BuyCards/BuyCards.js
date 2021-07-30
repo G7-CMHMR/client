@@ -17,7 +17,7 @@ function BuyCards() {
     }, [])
 
     const purchaseOrder = useSelector(state => state.purchaseOrderReducer.ProductsHistory)
-
+	console.log('PURCHASEORDER: ',purchaseOrder);
     return (
         <div id='Container_Cards'>
             <br></br>

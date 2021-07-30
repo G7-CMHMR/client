@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './Similars.css'
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getProductsOfCategory } from '../../../redux/Actions/Products/Actions';
 
 function Similars({price,discount,images,name,seller,status,valuation,delivery,id}) {
     
@@ -24,6 +26,10 @@ function Similars({price,discount,images,name,seller,status,valuation,delivery,i
         }
         return x1 + x2;
     }
+
+    // useEffect(() => {
+    //     dispatch(getProductsOfCategory())
+    // }, [dispatch])
 
     return (
         <div className="HomeCard" onMouseEnter={mouseEnter} onMouseLeave={MouseLeave}>

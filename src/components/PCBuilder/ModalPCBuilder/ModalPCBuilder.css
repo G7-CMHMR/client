@@ -1,0 +1,33 @@
+#ModalPCBUILDER{
+    margin-top: 4rem;
+    margin-left: 9rem;
+    height: 50rem;
+    width: 100rem;
+}
+
+#CardsComponentesAñadidos{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#TotalMODALPCBUILDER{
+    background-color: rgb(0, 0, 70);
+    color: white;
+    position: absolute;
+    left: 20rem;
+    top: 50rem;
+    width: 78rem;
+    display: flex;
+    text-align: center;
+}
+
+#TotalMODALPCBUILDER>*{
+    margin-left: 5rem;
+}
+
+#AgregarAlcarritoPCBUILDER{
+    margin-left: 5rem;
+    color: white;
+    background-color: green;
+}

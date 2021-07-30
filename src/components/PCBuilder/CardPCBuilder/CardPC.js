@@ -10,9 +10,14 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
          console.log(input.Total)
          console.log(parseInt(input.Total + price))
          input.Total? console.log('SI HAY'): console.log(input.Total) */
-
+         function Envioss(){
+            if(delivery == false){setInput({
+                ...input,
+                Envios: input.Envios + 400
+            })}
+        }
+        Envioss()
         setInput((input) => {
-
             if (category.replace(/ /g, "") == 'Ram' || category.replace(/ /g, "") == 'Almacenamiento' || category.replace(/ /g, "") == 'Accesorios') {
                 var category2 = category.replace(/ /g, "")
                 return ({
@@ -23,6 +28,9 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
                             {
                                 id: id,
                                 price: parseInt(price),
+                                name: name,
+                                delivery: delivery,
+                                type: type,
                             }
                         ]
                 })
@@ -32,15 +40,20 @@ export default function CardPC({ name, type, images, delivery, price, discount, 
                     [category.replace(/ /g, "")]: {
                         id: id,
                         price: parseInt(price),
+                        name: name,
+                        delivery: delivery,
+                        type: type,
                     },
 
                 })
             }
         })
-  
+        //
         Siguiente()
 
     }
+
+  
 
     return (
         <Link onClick={onClickFunction}>

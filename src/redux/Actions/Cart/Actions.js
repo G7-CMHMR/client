@@ -185,6 +185,7 @@ export const addProductNotLogged = (id) => {
                     cartguest = [...cartguest, item]
                     //console.log(cartguest)
                     localStorage.setItem('cartguest', JSON.stringify(cartguest));
+                    getCartNotLogged()
                     dispatch({
                         type: "ADD_ITEM",
                         payload: item
@@ -198,7 +199,7 @@ export const addProductNotLogged = (id) => {
         }
         localStorage.setItem('cartguest', JSON.stringify(cartguest));
         item = cartguest[index];
-
+        getCartNotLogged()
         return {
             type: GET_CART,
             payload: cartguest
