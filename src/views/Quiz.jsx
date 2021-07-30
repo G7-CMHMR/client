@@ -25,6 +25,7 @@ export default function Quiz() {
         university:false,
         escolar:false
     });
+    const [games, setGames] = useState({});
     const [input, setInput] = useState({
         name: name,
     })
@@ -157,9 +158,9 @@ export default function Quiz() {
                     {
                         checked.gaming && 
                         gaming_app.map((e)=>{
-                         return <div> 
-                             <Card title={e.title} img={e.img} ></Card> 
-                             </div>
+                         return (
+                             <Card  key={e.key}></Card> 
+                         )
                         })
                     }</div>
                     <div>

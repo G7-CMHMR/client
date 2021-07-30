@@ -20,7 +20,10 @@
 }
 
 .titleCardHome{
-    background: #FCA311;
+    background: #000000;
+    border-radius: 9px;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
 } 
 
 #cardsbottom{
