@@ -17,23 +17,10 @@ import ModalPCBuilder from '../components/PCBuilder/ModalPCBuilder/ModalPCBuilde
 
 function PCBuilder() {
 
-    const { Brand } = useParams()
     const [counter, setCounter] = useState(1)
     const [display, setDisplay] = useState('')
     const [modal, setModal] = useState(false)
     const dispatch = useDispatch()
-
-
-    const [input2, setInput2] = useState({})
-    
-    let key = 'pia'
-
-    setInput2({
-        ...input2,
-        [key] : 2
-    })
-
-    console.log(input2)
 
 
     const [input, setInput] = useState({
@@ -73,15 +60,15 @@ function PCBuilder() {
     })
 
     useEffect(() => {
-        console.log(display)
-        dispatch(getProductsFilter(display))
+        dispatch(getProductsFilter(display?display:'Procesador'))
     }, [display])
+
 
 
     useEffect(() => {
 
         switch (counter) {
-            case 1: setDisplay('Procesador'); setInput({ ...input, "Procesador": { price: 0, id: 0 } });break;
+            case 1: setDisplay('Procesador'); setInput({ ...input, "Procesador": { price: 0, id: 0 } }); break;
             case 2: setDisplay('Coolers CPU'); setInput({ ...input, "CoolersCPU": { price: 0, id: 0 } }); break;
             case 3: setDisplay('Placa Madre'); setInput({ ...input, "PlacaMadre": { price: 0, id: 0 } }); break;
             case 4: setDisplay('Ram'); setInput({ ...input, 'Ram': [] }); break;
@@ -96,9 +83,9 @@ function PCBuilder() {
 
     }, [counter])
 
-   
+
     useEffect(() => {
-        let suma = 0 
+        let suma = 0
         let ram = input.Ram.map((e) => {
             suma += e.price
         })
@@ -108,24 +95,35 @@ function PCBuilder() {
         let Accesorios = input.Ram.map((e) => {
             suma += e.price
         })
-        alert(suma)
         setInput({
             ...input,
             Total: input.Procesador.price + input.CoolersCPU.price + input.PlacaMadre.price + input.PlacadeVideo.price +
                 input.Gabinete.price + input.Fuentedealimentación.price + input.Monitor.price + suma,
         })
-    }, [input.Procesador.price , input.CoolersCPU.price , input.PlacaMadre.price , input.PlacadeVideo.price ,
-        input.Gabinete.price , input.Fuentedealimentación.price, input.Monitor.price, input.Ram] ) 
+    }, [input.Procesador.price, input.CoolersCPU.price, input.PlacaMadre.price, input.PlacadeVideo.price,
+    input.Gabinete.price, input.Fuentedealimentación.price, input.Monitor.price, input.Ram])
 
     function Siguiente() {
         if (counter < 10) { setCounter(counter + 1) }
-        else{
+        else {
             setModal(true)
         }
     }
+
+
+
     function SiguienteDespuesDeAgregar() {
+
         if (display == 'Ram' || display == 'Almacenamiento' || display == 'Accesorios') {
-            alert('LLEGUE')
+            if (display == 'Ram' && input.Ram.length > 0) {
+                Siguiente()
+            }
+            if(display == 'Almacenamiento' && input.Almacenamiento.length > 0){
+                Siguiente()
+            }
+            if(display == 'Accesorios' && input.Accesorios.length > 0){
+                Siguiente()
+            }
         } else {
             if (counter < 11) { setCounter(counter + 1) }
         }
@@ -141,10 +139,9 @@ function PCBuilder() {
     return (
 
         <div className='DetailContainer'>
-            {console.log(input)}
             <Separate></Separate>
             <div id='ContentDetail'>
-                {Brand ?
+                {
                     <div>
                         <div id='ArmaTuPc_Selector'>
                             <Button id='ArmaTuPc_Selector_Btn' onClick={Anterior} variant="contained" color="primary">Anterior</Button>
@@ -170,24 +167,13 @@ function PCBuilder() {
                             <div id='ArmaTuPc_Right'>
                                 { }
                                 <CardsPC input={input} setInput={setInput} Siguiente={SiguienteDespuesDeAgregar} display={display}></CardsPC>
-                                {modal ? <ModalPCBuilder modal={modal} setModal={setModal} input={input}></ModalPCBuilder>:''}
+                                {modal ? <ModalPCBuilder modal={modal} setModal={setModal} input={input} setInput={setInput}></ModalPCBuilder> : ''}
                             </div>
                         </div>
                     </div>
-                    :
-                    <div>
 
-                        <h1>¡Armá tu PC!</h1>
-                        <div id='SelectContent'>
-                            <div id='Content_Intel'>
-                                <Link to='/ArmaTuPc/Intel'><button id='ButtonContentIntel'>INTEL</button></Link>
-                            </div>
-                            <div id='Content_Amd'>
-                                <Link to='/ArmaTuPc/Amd' ><button id='ButtonContentAmd'>AMD</button></Link>
-                            </div>
-                        </div>
-                    </div>
-                   
+
+
                 }
             </div>
 

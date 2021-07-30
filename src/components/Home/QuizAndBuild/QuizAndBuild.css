@@ -6,3 +6,25 @@
     height: 560px;
     background-repeat: no-repeat;
 }
+
+
+#Quiz_z{
+    height: 15rem;
+    width: 52rem;
+    background-color: transparent;
+    margin-bottom: 5rem;
+}
+#Quiz_z2{
+    position: absolute;
+    top: 26rem;
+    height: 8rem;
+    width: 22rem;
+    background-color: transparent;
+}
+
+#BuildPC_z{
+    margin-left: 21rem;
+    height: 15rem;
+    width: 58rem;
+    background-color: transparent;
+}

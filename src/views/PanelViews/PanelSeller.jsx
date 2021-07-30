@@ -21,13 +21,15 @@ function PanelSeller() {
     let labelsKeys = []
     let dataKeys = []
 
-    if(sellerReducer.ventasCat && sellerReducer.ventasCat.length > 0){
-        labelsKeys = Object.keys(sellerReducer.ventasCat)
-        dataKeys = Object.values(sellerReducer.ventasCat)
-    }else{
-        labelsKeys = ['No hay ventas']
+    if(sellerReducer.ventas == 0){
+        labelsKeys = ['Sin ventas']
         dataKeys = [1]
+    }else{
+            labelsKeys = Object.keys(sellerReducer.ventasCat)
+            dataKeys = Object.values(sellerReducer.ventasCat)
     }
+
+
 
 
     const data = {
@@ -61,7 +63,7 @@ function PanelSeller() {
                     <h3>Calificación </h3>
                     <div id='CalificacionVendedorFlex'>
                         <h3>del vendedor:</h3>
-                        <h5 id='h5VenderProducto'> {sellerReducer.ventas < 3 ? '¡Vende al menos 3 productos!' : sellerReducer.calificación} </h5>
+                        <h5 id='h5VenderProducto'> {sellerReducer.ventas < 3 ? '¡Vende al menos 3 productos!' : sellerReducer.calificación < 3 ? 'Esperando reviews!' : 'Muy buena!'} </h5>
                     </div>
                     <br></br>
                     <br></br>

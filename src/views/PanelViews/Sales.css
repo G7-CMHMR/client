@@ -4,4 +4,12 @@
     min-height: 747;
     height: auto;
    }
+
+   .ProductPanelContainer{
+       height: auto;
+       display: flex;
+   }
+   .ProductPanelContainer>*{
+       
+   }
    

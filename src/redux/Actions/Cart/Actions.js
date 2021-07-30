@@ -8,6 +8,8 @@ import { setListoCheckout } from '../../../views/MyCart';
 import { Link, Redirect, Router, BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { setPurchaseOrderStatus } from '../PurchaseOrder/Actions';
+import { client } from '../../../config/url';
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 export function getCart(userID) {
     return (dispatch) => {
@@ -233,5 +235,16 @@ export function getCartNotLogged() {
     return {
         type: GET_CART,
         payload: cartguest
+    }
+}
+
+export function setCart(userID, idProductos) {
+    return (dispatch) => {
+        clientAxios.post(`/cart/addMe`, {userId: userID, array: idProductos})
+            .then(response => {
+                console.log('AAAAAAAAAAAAAAA')
+                dispatch({ type: GET_CART, payload: response.data })
+                window.location.href = `${client.urlDevelop}/Carrito`
+            })
     }
 }

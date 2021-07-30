@@ -42,9 +42,7 @@ function MyShopping() {
             <Separate></Separate>
             <div id='HistorialDeCompras'>
                 <h1>Historial de compras</h1>
-                <h2>{payment_type}</h2>
-                <h2>{preference_id}</h2>
-                <h2>{status}</h2>
+                 <br></br>
                 <BuyCards></BuyCards>
             </div>
             <Separate></Separate>

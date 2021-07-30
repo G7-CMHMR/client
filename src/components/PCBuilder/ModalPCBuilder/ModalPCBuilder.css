@@ -1,7 +1,7 @@
 #ModalPCBUILDER{
-    margin-top: 4rem;
+    margin-top: 3.5rem;
     margin-left: 9rem;
-    height: 50rem;
+    height: 53rem;
     width: 100rem;
 }
 
@@ -12,11 +12,9 @@
 }
 
 #TotalMODALPCBUILDER{
-    background-color: rgb(0, 0, 70);
-    color: white;
     position: absolute;
     left: 20rem;
-    top: 50rem;
+    top: 53rem;
     width: 78rem;
     display: flex;
     text-align: center;
