@@ -2,12 +2,13 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import React from 'react';
+import './MySales.css'
 // date={e.date} id_buyer={e.id_buyer} product_status={e.product_status}
 //  address={e.address} productId={e.productId} amount={e.amount} sellerId={e.sellerId}
 // item={e.item}
 // Faltan: images,price,discount,name
-export default function MySales({date, id_buyer, product_status, address,
-    productId, amount, sellerId, item, images, price, discount, name, buyer}) {
+export default function MySales({ date, id_buyer, product_status, address,
+    productId, amount, sellerId, item, images, price, discount, name, buyer }) {
 
     const userReducer = useSelector(state => state.userReducer.userData)
 
@@ -27,34 +28,32 @@ export default function MySales({date, id_buyer, product_status, address,
 
     return (
         <div>
-            <div id="MyProductCard">
-                <div id='MyProductCardContainer'>
-                    <img id="MyProductImage" src={images} alt="Omar Dsoky" />
-                    <Link id="link" to={`/Producto/${productId}`}>
-                        <div class="MyProduct-details">
-                            <h4 id="MyProductName">{name}</h4>
+            <div id="MyProductCardMySales">
+                <img id="MyProductImage" src={images} alt="Omar Dsoky" />
+                <Link id="link" to={`/Producto/${productId}`}>
+                    <div class="MyProduct-details">
+                        <h4 id="MyProductName">{name}</h4>
 
-                            <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
-                                <p>{amount} unidad </p>
-                            </div>
+                        <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
+                            <p>{amount} unidad </p>
                         </div>
-                    </Link>
-                    <div id="SalesAndStock">
-                        <p>Estado: {product_status}</p>
-
-                        <p>Comprador: {buyer}</p>
-
                     </div>
-                    <div id="MyProductButtons">
-                        {product_status === 'entregado' ? <Button variant="danger">Cancelar</Button>
-                            : ' '}
+                </Link>
+                <div id="SalesAndStock">
+                    <p>Estado: {product_status}</p>
 
-                        <Button variant="info">Enviar mensaje</Button>
-                        <Button variant="dark">Ver detalle</Button>
-                    </div>
-
+                    <p>Comprador: {buyer}</p>
 
                 </div>
+                <div id="MyProductButtons">
+                    {product_status === 'entregado' ? <Button variant="danger">Cancelar</Button>
+                        : ' '}
+                    <Button variant="info">Enviar mensaje</Button>
+                    <Button variant="dark">Ver detalle</Button>
+                </div>
+
+
+
             </div>
 
 

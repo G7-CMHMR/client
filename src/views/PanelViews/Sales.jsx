@@ -6,7 +6,7 @@ import MySales from '../../components/Utils/MySales/MySales'
 import { getFavourites } from '../../redux/Actions/Favourites/Actions';
 import { seller_GetSolds_WithFilter } from '../../redux/Actions/Seller/Actions';
 import SalesFilter from '../../components/Sales/SalesFilter';
-
+import './Sales.css'
 
 function Sales() {
     const sellerReducer = useSelector(state => state.sellerReducer.ProductsSold)

@@ -167,10 +167,10 @@ export function MyCart() {
                             <Button variant="warning" onClick={mercadoPago}>Comprar carrito</Button> 
                     }
                     {
-                        cart && cart.length > 0 &&
+                        userId == undefined && cart && cart.length > 0 &&
                             <Button variant="warning" onClick={changeState}>Comprar carrito</Button>
                     }
-                    { show &&cart &&
+                    {  userId == undefined && show &&cart && 
                         <h6> Para comprar es necesario ser un usuario! <Button variant="warning" onClick={openLogin}>LOGUEATE</Button>
                         o si no tenes cuenta todavía, <Button variant="warning" onClick={openRegister}>REGISTRATE</Button></h6>
                     }
