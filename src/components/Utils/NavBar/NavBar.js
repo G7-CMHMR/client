@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Badge from '@material-ui/core/Badge';
 import './NavBar.css'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
@@ -29,9 +29,14 @@ function NavBar() {
     var userId = userData.id
     const cart = useSelector(state => state.cartReducer.cart)
     const productsReducer = useSelector(state => state.productsReducer)
+    const favouritesReducer = useSelector(state => state.favouritesReducer.favourites)
 
+
+
+    
 
     useEffect(() => {
+        const fav = document.getElementById('CorazonNavBar').style
         if (userId) {
             dispatch(getCart(userId))
         } else {
@@ -39,7 +44,17 @@ function NavBar() {
         }
         dispatch(getCategories())
         //eslint-disable-next-line
-    }, [dispatch, userId])
+        if (favouritesReducer.length > 0) {
+            fav.color = 'red';
+        }else{
+            fav.color = '#007bff';
+        }
+        return () => {
+
+        }
+    }, [dispatch, userId, favouritesReducer])
+
+
 
     const openBeSeller = () => {
         dispatch(becomeSellerAction(!stateBeSeller))
@@ -130,12 +145,15 @@ function NavBar() {
                                 </Badge>
                             </Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to='/Favoritos'><Nav.Link href=''><FaHeart /></Nav.Link></LinkContainer>
+
+                        <LinkContainer to='/Favoritos'><Nav.Link><FaHeart id='CorazonNavBar' /></Nav.Link></LinkContainer>
+
+
                     </div>
                 </Navbar.Collapse>
 
             </Navbar>
-            
+
         </div >
     )
 }

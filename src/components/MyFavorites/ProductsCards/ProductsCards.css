@@ -7,3 +7,8 @@
     align-items: flex-end;
     min-height: 747px;
 }
+
+#FavoritesProductCards>*{
+    width: 100%;
+    height: 15rem;
+}

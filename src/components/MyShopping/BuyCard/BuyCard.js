@@ -18,8 +18,10 @@ function BuyCard(props) {
 
     const dispatch = useDispatch()
 
+    let manuelita = false
 
-    function ChangeProductState () {
+    function ChangeProductState() {
+        manuelita = true
         //dispatch(setPurchaseOrderStatus( ,userReducer.id))
     }
     return (
@@ -32,7 +34,7 @@ function BuyCard(props) {
 
             <div id='BuyCard_Name-Price-Shipping'>
                 <Link to={'Producto/' + props.productId} >
-                    <h3 id='BuyCard_Name'>{props.name.substring(0,65)}</h3>
+                    <h3 id='BuyCard_Name'>{props.name.substring(0, 65)}</h3>
                 </Link>
                 <div id='BuyCard_PriceAndCount'>
                     <h1 id='BuyCard_Price'>{'$' + props.price}</h1>
@@ -48,15 +50,13 @@ function BuyCard(props) {
                 <TextField disabled id="BuyCard_State-input" label={'Estado:'} variant="outlined" />
             </div>
             <div id='BuyCard_Buttons'>
-                {  props.status == 'Entregado' ? 
-                  <Review idUser={userReducer.id} idProduct={props.productId} idSeller={props.sellerId}/>
-                  :
-                  <Button id='BuyCard_Btn1' onClick={ChangeProductState} variant="contained" color="primary">YA RECIBI EL PRODUCTO</Button>
-                }
+                
+                 <Review idUser={userReducer.id} idProduct={props.productId} idSeller={props.sellerId} />
+                 
                 <Link to={'Producto/' + props.productId} ><Button id='BuyCard_Btn2' variant="contained" color="secundary">Ir a la publicación</Button></Link>
             </div>
             <div>
-                
+
             </div>
 
         </div>
