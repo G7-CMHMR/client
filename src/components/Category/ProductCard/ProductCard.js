@@ -9,13 +9,14 @@ import axios from 'axios'
 import { useEffect, useState } from 'react';
 import { getAllFavourites } from '../../../redux/Actions/Products/Actions';
 import { addProductNotLogged, addProductToCart } from '../../../redux/Actions/Cart/Actions';
-import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
+import { AddFavourites, getFavourites, RemoveFavourites } from '../../../redux/Actions/Favourites/Actions';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import clientAxios from '../../../config/axios';
+
 
 function ProductCard({ price, discount, images, name, seller, status, valuation, delivery, id }) {
 
@@ -64,19 +65,19 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
         if (fav.color) {
             if (fav.color == "grey") {
                 fav.color = 'red';
-                clientAxios.post('/favourite/add', { userId, productId })
+                dispatch(AddFavourites({userId, productId}))
             }
             else {
                 fav.color = 'grey';
-                clientAxios.post('/favourite/remove', { userId, productId })
+                dispatch(RemoveFavourites({userId, productId}))
             }
         }else{
             if(CheckFavorite){
                 fav.color = 'grey';
-                clientAxios.post('/favourite/remove', { userId, productId })
+                dispatch(RemoveFavourites({userId, productId}))
             }else {
                 fav.color = 'red';
-                clientAxios.post('/favourite/add', { userId, productId })
+                dispatch(AddFavourites({userId, productId}))
             }
         }
     }

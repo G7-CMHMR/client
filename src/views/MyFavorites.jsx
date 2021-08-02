@@ -1,47 +1,25 @@
-import Separate from '../components/Utils/Separate/Separate'
 import './MyFavorites.css'
 
+//Librerias / Frameworks
+import React from 'react-redux';
 
-
-import React, { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useParams } from "react-router";
-
-import {getProductDetail} from '../redux/Actions/Products/Actions'
-
+//*Componentes
+import Separate from '../components/Utils/Separate/Separate'
 import ProductsCards from '../components/MyFavorites/ProductsCards/ProductsCards'
-import { getFavourites } from '../redux/Actions/Favourites/Actions';
-import ProductCard from '../components/MyFavorites/ProductCard/ProductCard';
+
 
 function MyFavorites() {
 
-    
-    const userReducer = useSelector(state => state.userReducer.userData)
-    const favourites = useSelector(state => state.favouritesReducer.favourites)
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getFavourites(userReducer.id))
-    }, [])
-        
-
     return (
-    
+
         <div className='DetailContainer'>
             <Separate></Separate>
+
             <div id='ContentDetail'>
-                <h1>Mis favoritos</h1>
+                <h1>Mis favoritos ♥</h1>
                 <br></br>
                 <br></br>
-                {
-                    favourites.length>0 ? favourites.map((x) => {
-                        return <ProductCard 
-                        price={x.price} discount={x.discount} images={x.images}
-                         name={x.name} seller={x.seller} status={x.status} valuation={x.valuation}
-                          delivery={x.delivery} id={x.id} 
-                        /> 
-                    }): <p>Aun no agregaste favoritos</p>
-                }
+                <ProductsCards />
             </div>
 
             <Separate></Separate>

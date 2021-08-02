@@ -17,7 +17,7 @@ export function AddFavourites(productID_UserID){
     return (dispatch) => {
         clientAxios.post('/favourite/add', productID_UserID)
         .then (response => {
-            dispatch({type: POST_FAVOURITES, payload: response.data})
+            dispatch({type: GET_FAVOURITES, payload: response.data})
         })
         .catch (error => {console.log(error)})
     }
@@ -28,7 +28,7 @@ export function RemoveFavourites(productID_UserID){
     return (dispatch) => {
         clientAxios.post(`/favourite/remove`, productID_UserID)
         .then(response => {
-            dispatch({type: REMOVE_FAVOURITES, payload: response.data})
+            dispatch({type: GET_FAVOURITES, payload: response.data})
         })
     }
 }

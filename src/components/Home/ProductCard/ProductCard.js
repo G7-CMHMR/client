@@ -35,11 +35,11 @@ function ProductCard(props) {
             <div className="homeCard_info">
                 {/*{props.discount && props.discount > 0 && show ? <h4 style={{textDecoration:"line-through"}} >${addCommas(Math.floor(props.price*171))}</h4> : show && <br/>}*/}
                 {props.discount && props.discount > 0 && show ? 
-                    <h4 className="homeCard_price">${addCommas(Math.floor(props.price*171))}</h4> 
+                    <h4 className="homeCard_price">${addCommas(Math.floor((props.price * props.discount)/10))}</h4> 
                     : show && 
                     <br/>}
                 <div className="homeCard_price_discountCointainer">
-                    {props.price && <h2 className="homeCard_price_discount">${addCommas(Math.floor(props.price*171 - (props.price*171/100)*props.discount))}</h2>}
+                    {props.price && <h2 className="homeCard_price_discount">${addCommas(Math.floor(props.price))}</h2>}
                     { props.discount > 0 && <h4 className="homeCard_discount">{props.discount}% OFF</h4>}
                 </div>
                 {props.delivery ? <span style={{color: 'green'}}>envío gratis</span> : (!show && <br></br>)}

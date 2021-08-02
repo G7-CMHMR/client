@@ -3,41 +3,37 @@ import ProductCard from '../ProductCard/ProductCard'
 
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { getProductsOfCategory, getAllFavourites } from '../../../redux/Actions/Products/Actions'
-import { useParams } from "react-router";
-import axios from 'axios' 
+
 import { getFavourites } from '../../../redux/Actions/Favourites/Actions';
-
-
 
 
 function ProductsCards() {
 
     const favouritesReducer = useSelector(state => state.favouritesReducer)
-    const productsReducer = useSelector(state => state.productsReducer)
+    const userReducer = useSelector(state => state.userReducer.userData)
+    const idUser = userReducer.id
     const dispatch = useDispatch()
 
-    const userReducer = useSelector(state => state.userReducer.userData)
-    var userId = userReducer.id
-
     useEffect(() => {
-        dispatch(getFavourites(userId))
-    }, [dispatch])
+        if (userReducer.id) {
+            dispatch(getFavourites(idUser))
+        }
+        return () => {
+
+        }
+    }, [dispatch, userReducer])
+
 
     return (
 
-        <div id='CategoryProductCards'>
-            {/* {console.log(favouritesReducer)}
-            {console.log(userId)}
-            {console.log(userReducer)} */}
-            {productsReducer.products ? productsReducer.products.map((x) => {
+        <div id='FavoritesProductCards'>
+            {favouritesReducer.favourites.length != 0 ? favouritesReducer.favourites.map((x) => {
                 return (
-                    <ProductCard name={x.name} images={x.images}
-                        valuation={x.valuation} delivery={x.delivery} price={x.price}
-                        discount={x.discount} seller={x.seller}
-                        status={x.status} id={x.id} />
+                    <ProductCard price={x.price} discount={x.discount} images={x.images}
+                        name={x.name} seller={x.seller} status={x.status} valuation={x.valuation}
+                        delivery={x.delivery} id={x.id} />
                 )
-            }) : <h5>No hay productos en favoritos</h5>}
+            }) : <h5>¡Aún no tienes, Agrega productos a favoritos!</h5>}
         </div>
     )
 }

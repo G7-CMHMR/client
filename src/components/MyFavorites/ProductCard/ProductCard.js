@@ -22,23 +22,23 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     const favourites = useSelector(state => state.favouritesReducer.favourites)
     const [active, setActive] = useState(FavOrNot(id))
     var userId = userReducer.id
-    
-  const [open, setOpen] = React.useState(false);
+
+    const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch()
-    
+
     function Alert(props) {
         return <MuiAlert elevation={6} variant="filled" {...props} />;
-      }
+    }
     const useStyles = makeStyles((theme) => ({
         root: {
-          width: '100%',
-          '& > * + *': {
-            marginTop: theme.spacing(2),
-          },
+            width: '100%',
+            '& > * + *': {
+                marginTop: theme.spacing(2),
+            },
         },
-      }));
+    }));
     const classes = useStyles();
-    
+
     function RemoveFavorites(e, productId) {
         /* console.log({userId, productId}) */
         clientAxios.post('/favourite/remove', { userId, productId })
@@ -48,25 +48,25 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
     }
 
     function addToCart(e) {
-        if(userId){
-        dispatch(addProductToCart({ userId: userId, productId: id }))
-        }else{
+        if (userId) {
+            dispatch(addProductToCart({ userId: userId, productId: id }))
+        } else {
             dispatch(addProductNotLogged(id))
         }
         setOpen(true);
     }
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
-          return;
-        } 
+            return;
+        }
         setOpen(false);
-      };
+    };
 
     function FavOrNot(productid) {
         let si = favourites.map((x) => x.id === productid)
         if (si.length > 0) { return true } else { return false }
     }
-   
+
 
     let addCommas = function (nStr) {
         nStr += '';
@@ -86,31 +86,33 @@ function ProductCard({ price, discount, images, name, seller, status, valuation,
                 <div id='ContainerFav'>
                     <img id="imageFav" src={images[0]} alt="Omar Dsoky" />
                     <Link id="link" to={`/Producto/${id}`}>
-                        <div class="product-details">
+                        <div class="favorites_product-details">
                             <h4>{name}</h4>
                             <p id="seller">Vendido por {seller}</p>
-                            <div id="price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
-                                {discount > 0 ? <span> ${addCommas(Math.floor(price))}</span> : <p></p>}
+                            <div id="favorites_price"><h3>${addCommas(Math.floor(price - (price / 100) * discount))}</h3>
+                                {discount > 0 ? <span id='favorites_discountPrice'> ${addCommas(Math.floor(price))}</span> : <p></p>}
                             </div>
                             <p class="information">{status}</p>
                             <Rating name="half-rating-read" defaultValue={valuation} precision={0.5} readOnly />
                         </div>
                     </Link>
-                    <div id="offandship">
-                        {delivery ? <div id="ship">Envio gratis</div> : <p></p>}
-                        {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
-                    </div>
-                    <div id="icons">
-                        {active === false ? <button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button> :
-                            <button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button>
-                        }
-                        <button className="buttons2" onClick={addToCart}>
-                            <IoCartSharp id='btncart' ></IoCartSharp></button>
-                                                       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                            Producto agregado al carrito
-                            </Alert>
-                        </Snackbar>
+                    <div id='BotonesEnvioDescuentoAndCorazonCarrito'>
+                        <div id="offandship">
+                            {delivery ? <div id="ship">Envio gratis</div> : <p></p>}
+                            {discount > 0 ? <div id="off">{discount}% OFF</div> : <p></p>}
+                        </div>
+                        <div id="icons">
+                            {active === false ? <button style={{ color: "grey" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button> :
+                                <button style={{ color: "red" }} id="btnheart" name={id} onClick={(e) => RemoveFavorites(e, id)}><FaHeart /></button>
+                            }
+                            <button className="buttons2" onClick={addToCart}>
+                                <IoCartSharp id='btncart' ></IoCartSharp></button>
+                            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                                <Alert onClose={handleClose} severity="success">
+                                    Producto agregado al carrito
+                                </Alert>
+                            </Snackbar>
+                        </div>
                     </div>
                 </div>
             </div>
