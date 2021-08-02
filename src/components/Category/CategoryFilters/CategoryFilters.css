@@ -43,6 +43,7 @@
 }
 
 #CategoryBrand{
+    margin-top: 2rem;
     width: 239px;
     height: auto;
 
@@ -72,7 +73,7 @@ li{
 }
 
 #outlined-basic{
-    width: 70px;
+    width: 89px;
     height: 1px;
     margin-bottom: 5px;
     
@@ -81,6 +82,8 @@ li{
 #ButtonPrice{
     max-width: 500rem;
     min-width: 0px;
+    width: 12rem;
+    margin-left: 1.5rem;
     margin-top: 3px;
 }
 
