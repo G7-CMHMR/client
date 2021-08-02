@@ -9,6 +9,17 @@ import { TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 
+let addCommas = function (nStr) {
+    nStr += '';
+    let x = nStr.split('.');
+    let x1 = x[0];
+    let x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
 
 
 function CategoryFilters(props) {
@@ -97,7 +108,6 @@ function CategoryFilters(props) {
 
     function onChangePrice(e) {
         e.preventDefault()
-
         setInput({
             ...input,
             MinPrice: e.target[0].value,
@@ -130,7 +140,7 @@ function CategoryFilters(props) {
 
     useEffect(() => {
         if (categoryName) {
-            if(input.categoryName != categoryName)alert('HOLA')
+            if (input.categoryName != categoryName) alert('HOLA')
             dispatch(getProductsFilter(input.categoryName, input.type, input.delivery, input.status, input.brand, input.MinPrice, input.MaxPrice));
             //input.categoryName != categoryName?limpiarFiltros():console.log('')
         }
@@ -151,7 +161,22 @@ function CategoryFilters(props) {
     let countingOfProductsBrand = {}
 
     let countingOfProductsShipping = 0
+    let PrecioMinimo = 9999999;
+    let PrecioMaximo = 0;
     productsReducer.products.forEach((element) => {
+        
+        if (element.discount > 0) {
+            console.log((element.price * element.discount) / 100)
+            if ((element.price - ((element.price * element.discount) / 100) > PrecioMaximo)) { PrecioMaximo = (element.price * element.discount) / 100 }
+        }
+
+        if (element.discount == 0) {
+            console.log(element.price)
+            if (element.price > PrecioMaximo) { PrecioMaximo = element.price }
+        }
+
+
+        if (element.price < PrecioMinimo) { PrecioMinimo = element.price }
 
         if (!productTypeArray.includes(element.type)) {
             productTypeArray.push(element.type)
@@ -182,6 +207,12 @@ function CategoryFilters(props) {
             countingOfProductsBrand[element.brand] += 1
         }
     })
+
+
+
+
+
+
 
     return (
         <div id="CategoryFilters">
@@ -253,9 +284,9 @@ function CategoryFilters(props) {
                         <h4>Rango de precio:</h4>
                         <div id='formPrice'>
                             <form onSubmit={onChangePrice} noValidate autoComplete="off" >
-                                <TextField id="outlined-basic" label="Mínimo" variant="outlined" />
-                                <TextField id="outlined-basic" label="Maximo" variant="outlined" />
-                                <Button id='ButtonPrice' type='submit' variant="contained" color="primary">˃</Button>
+                                <TextField id="outlined-basic" label={'Mín:$' + addCommas(PrecioMinimo)} variant="outlined" />
+                                <TextField id="outlined-basic" label={'Máx:$12' + addCommas(PrecioMaximo)} variant="outlined" />
+                                <Button id='ButtonPrice' type='submit' variant="contained" color="primary">A p l i c a r ˃</Button>
                             </form>
                         </div>
                     </ul>
