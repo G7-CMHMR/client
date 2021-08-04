@@ -166,14 +166,18 @@ function CategoryFilters(props) {
     productsReducer.products.forEach((element) => {
         
         if (element.discount > 0) {
-            console.log((element.price * element.discount) / 100)
-            if ((element.price - ((element.price * element.discount) / 100) > PrecioMaximo)) { PrecioMaximo = (element.price * element.discount) / 100 }
+            if ((element.price - ((element.price * element.discount) / 100) > PrecioMaximo)) { PrecioMaximo = element.price -(element.price * element.discount) / 100 }
+            if ((element.price - ((element.price * element.discount) / 100) < PrecioMinimo)) { PrecioMinimo = element.price - (element.price * element.discount) / 100 }
         }
 
         if (element.discount == 0) {
             console.log(element.price)
             if (element.price > PrecioMaximo) { PrecioMaximo = element.price }
+            if (element.price < PrecioMinimo) { PrecioMinimo = element.price }
         }
+
+
+
 
 
         if (element.price < PrecioMinimo) { PrecioMinimo = element.price }
@@ -284,8 +288,8 @@ function CategoryFilters(props) {
                         <h4>Rango de precio:</h4>
                         <div id='formPrice'>
                             <form onSubmit={onChangePrice} noValidate autoComplete="off" >
-                                <TextField id="outlined-basic" label={'Mín:$' + addCommas(PrecioMinimo)} variant="outlined" />
-                                <TextField id="outlined-basic" label={'Máx:$12' + addCommas(PrecioMaximo)} variant="outlined" />
+                                <TextField id="outlined-basic" label={'Mín:$' + addCommas(Math.floor(PrecioMinimo))} variant="outlined" />
+                                <TextField id="outlined-basic" label={'Máx:$' + addCommas(Math.ceil(PrecioMaximo))} variant="outlined" />
                                 <Button id='ButtonPrice' type='submit' variant="contained" color="primary">A p l i c a r ˃</Button>
                             </form>
                         </div>
