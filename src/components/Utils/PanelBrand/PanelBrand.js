@@ -14,8 +14,8 @@ export default function PanelBrand({input, setInput}) {
     return (
         <div id='PanelBrandForm'>
             <form noValidate autoComplete="off">
-                <TextField name='brand' value={input.brand} onChange={handleChange} className='TextFieldPanelBrand' label="Marca" variant="outlined" />
-                <TextField name='type' value={input.type}  onChange={handleChange} className='TextFieldPanelBrand' label="Tipo" variant="outlined" />
+                <TextField  error={input.brand===""}  name='brand' value={input.brand} onChange={handleChange} className='TextFieldPanelBrand' label="Marca" variant="outlined" />
+                <TextField  error={input.type===""}  name='type' value={input.type}  onChange={handleChange} className='TextFieldPanelBrand' label="Tipo" variant="outlined" />
             </form>
         </div>
     )

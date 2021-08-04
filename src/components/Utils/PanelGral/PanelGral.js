@@ -96,6 +96,7 @@ export default function PanelGral({ input, setInput }) {
                         <div id='PanelGralConditionAndStock'>
                             <InputLabel htmlFor="outlined-age-native-simple">Condicion</InputLabel>
                             <Select
+                            error={input.status===""}
                                 native
                                 value={input.status}
                                 onChange={handleChange}
@@ -111,13 +112,14 @@ export default function PanelGral({ input, setInput }) {
                                 <option value={'Usado'}>Usado</option>
                                 <option value={'Reacondicionado'}>Reacondicionado</option>
                             </Select>
-                            <div id="StockPanelGral"><TextField name='stock' onChange={handleChange} value={input.stock} id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
+                            <div id="StockPanelGral"><TextField error={!input.stock} name='stock' onChange={handleChange} value={input.stock} id='PanelGralStock' label="Stock" type='number' variant="outlined" /></div>
                         </div>
                         <div id='Warranty'>
-                            <TextField name='warranty' value={input.warranty} onChange={handleChange} id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
+                            <TextField name='warranty' error={input.warranty.length<1} value={input.warranty} onChange={handleChange} id='WarrantyTextField' label="Meses de Garantia" type='number' variant="outlined" />
                             <FormControl variant="outlined">
                                 <InputLabel variant='outlined' htmlFor="outlined-adornment-amount">Precio</InputLabel>
                                 <OutlinedInput
+                                error={input.price===""}
                                     id='PanelGralPrice'
                                     value={input.price}
                                     name='price'
@@ -156,7 +158,9 @@ export default function PanelGral({ input, setInput }) {
 
                 </div>
                 <div id='PanelGral-Description-Data'>
+                    <div>
                     <TextField
+                    error={input.description.length<49}
                         id="PanelGralDescription"
                         label="Descripcion"
                         multiline
@@ -166,7 +170,11 @@ export default function PanelGral({ input, setInput }) {
                         value={input.description}
                         onChange={handleChange}
                     />
-
+                        {
+                        input.description.length<49?  
+                    <FormHelperText id="component-error-text" style={{color:'red'}}>Mìnimo 50 caracteres</FormHelperText> : null
+                    }
+                    </div>
                     <div id='PanelGralOthers'>
 
                         <div>
@@ -183,7 +191,7 @@ export default function PanelGral({ input, setInput }) {
                         </div>
                     </div>
                 </div>
-                <Button id='CreateProduct' onClick={(e) => createProduct(e)} variant="info">CREAR PRODUCTO</Button>
+                <button className='buttonCreateP' onClick={(e) => createProduct(e)} >CREAR PRODUCTO</button>
             </FormControl>
         </div>
     )

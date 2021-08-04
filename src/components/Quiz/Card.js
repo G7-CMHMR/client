@@ -4,13 +4,11 @@ import './Card.css'
 
 export default function Card({title, key, img, games, setGames, valuation}) {
     let hola='hola'
-    console.log(key)
   const handleChange = (event) => {
    setGames({
      ...games,
      [valuation]:event.target.checked
    })
-   console.log(games)
   }
 
     return (

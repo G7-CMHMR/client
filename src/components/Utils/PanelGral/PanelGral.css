@@ -14,7 +14,19 @@
     display: flex;
     margin-right: 4%;
 }
-
+.buttonCreateP{
+    background: #ffc107;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    width: 48%;
+    height: auto;
+    margin-top: 3%;
+}
+.buttonCreateP:hover{
+    background-color: black;
+}
 #PanelGralStock{
     width: 6rem;
 }

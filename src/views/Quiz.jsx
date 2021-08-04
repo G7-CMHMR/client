@@ -6,11 +6,13 @@ import {Button, ToggleButton, ToggleButtonGroup, ProgressBar} from 'react-bootst
 import { gaming_app, student_app, programming_app, graphic_app, audiovisual_app, diary_app } from '../components/Quiz/Apps';
 import Card from '../components/Quiz/Card';
 import {FaArrowLeft} from 'react-icons/fa'
-
+import './Quiz.css'
+import {getProductsOfCategory, getProductQuiz} from '../redux/Actions/Products/Actions'
+import ProductCard from '../components/Category/ProductCard/ProductCard';
 
 export default function Quiz() {
     const name = useSelector(state => state.userReducer.userData.name)
-    
+    const productsReducer = useSelector(state => state.productsReducer)
     const [counter, setCounter]= useState(1)
     const [progress, setProgress]= useState(25)
     const [display, setDisplay] = useState('')
@@ -30,8 +32,8 @@ export default function Quiz() {
         name: name,
     })
 
-
     useEffect(() => {
+      
         switch (counter) {
             case 1: setDisplay('Empezar'); break;
             case 2: setDisplay('Seleccionar'); break;
@@ -51,6 +53,11 @@ export default function Quiz() {
         setCounter(counter+1)
         setProgress(progress+25)
     }
+    function changeStateUlt(){
+        setCounter(counter+1)
+        setProgress(progress+25)
+        dispatch(getProductQuiz(Objectfilter(games)))
+    }
     function changeState2(){
         setCounter(counter-1)
         setProgress(progress-25)
@@ -61,7 +68,14 @@ export default function Quiz() {
             [e.currentTarget.value]:e.currentTarget.checked
         })
     }
-
+    function Objectfilter(object){
+        let array=[]
+        for (const property in object) {
+            if (object[property]===true){
+                array.push(property)
+            }console.log(array)
+          }return Math.max(...array)
+        }
     return (
         <div className='DetailContainer'>
             <Separate></Separate>
@@ -81,7 +95,7 @@ export default function Quiz() {
                 <h3>De forma fácil te  vamos a ayudar a elegir la computadora que mas te convenga 
                     según el uso que le quieras dar 
                 </h3>
-                <Button onClick={changeState} variant="info">EMPEZAR</Button>
+                <button id='btnquizcontinue' onClick={changeState} >EMPEZAR</button>
                 </div>
                 }
                 { 
@@ -147,7 +161,7 @@ export default function Quiz() {
                     </ToggleButton>
                      </ToggleButtonGroup><br></br>
                      </div>
-                     <Button id="ButttonQuiz" onClick={changeState} variant="info">CONTINUAR</Button>
+                     <button id='btnquizcontinue' onClick={changeState} >CONTINUAR</button>
                 </div>
                 }
                 {
@@ -159,7 +173,7 @@ export default function Quiz() {
                         checked.gaming && 
                         gaming_app.map((e)=>{
                          return (
-                             <Card  key={e.key}></Card> 
+                            <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>  
                          )
                         })
                     }</div>
@@ -168,39 +182,59 @@ export default function Quiz() {
                      { 
                         checked.programming && 
                         programming_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>  
                            })
                     }</div>
                      <div className='AppsRow'>
                      {
                         checked.audiovisual && 
                         audiovisual_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>    
                            })
                     }</div>
                     <div className='AppsRow'>
                      {
                          checked.homeoffice || checked.university || checked.escolar &&  
                         student_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>  
                            })
                     }</div>
                       <div className='AppsRow'>
                      {
                         checked.graphicdesign && 
                         graphic_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>  
                            })
                     }</div>
                      <div className='AppsRow'>
                      {
                         checked.diary && 
                         diary_app.map((e)=>{
-                            return <Card title={e.title} img={e.img} ></Card>   
+                            return <Card title={e.title} key={e.key} img={e.img} games={games} valuation={e.valuation} setGames={setGames}></Card>   
                            })
-                    } </div><Button onClick={changeState} variant="info">CONTINUAR</Button></div>
+                    } </div><button id='btnquizcontinue' onClick={changeStateUlt}>CONTINUAR</button></div>
                     </div>
                     
+                }
+                 {
+                    display==='Resultados' && 
+                    <div id='containerQuizPcsResult'>
+                        
+                        {name? <h4>{name}</h4>:<h4>{input.name}</h4>}
+                        <h4>Estas son las computadoras que se adecuan a los programas y/o juegos
+                            que elegiste</h4> 
+                            
+                            {productsReducer.products.length>0 && productsReducer.products.map((x) => {
+                return (
+                    <ProductCard name={x.name} images={x.images}
+                        valuation={x.valuation} delivery={x.delivery} price={x.price}
+                        discount={x.discount} seller={x.seller}
+                        status={x.status} id={x.id} />
+                )
+                })
+                            }
+
+                    </div>
                 }
             </div>
             <Separate></Separate>
