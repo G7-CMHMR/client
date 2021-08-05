@@ -1,0 +1,34 @@
+#containerQuizPcsResult{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#btnquizcontinue{
+    width: 10rem;
+    height: 3rem;
+    background: #ffc107;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    font-size: 1.5rem;
+}
+#btnquizcontinue:hover{
+    background-color:black
+}
+.progress-bar {
+    background-color: #ffc107 !important
+}
+.btn-outline-primary {
+    color: #000000 !important;
+    border-color: #ffc107 !important;
+    border-radius: 14px !important;
+}
+.btn-outline-primary:hover {
+    background-color: #ffc107 !important;
+}
+.btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
+ 
+    background-color: #ffc107 !important;
+}
+    

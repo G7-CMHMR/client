@@ -20,7 +20,7 @@ export default function ReviewPc() {
         <div id="ReviewContainer" >
             {
                 pc && pc[0] ? pc[0].products.map((x)=>{
-                    return <CardPC id={x.id} name={x.name} images={x.images} 
+                    return <CardPC id={x.id} name={x.name} images={x.images[0].image} 
                     description={x.description} brand={x.name} type={x.type} seller={x.seller}/>
                 }) : ''
             }

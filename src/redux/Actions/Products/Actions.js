@@ -219,3 +219,13 @@ export function deleteQuestionAction(idquestion, idproducto){
 //             })
 //     }
 // }
+export function getProductQuiz(num) {     
+    return function (dispatch) {       
+        return clientAxios.get('/products/category/PC')
+            .then(response => { 
+                let filters;
+                filters= response.data.filter((x)=>x.valuationpc>=num)                    
+                dispatch({ type: GET_PRODUCTS, payload: filters })             
+            })     
+        } 
+    }

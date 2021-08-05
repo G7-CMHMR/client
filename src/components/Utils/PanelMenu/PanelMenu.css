@@ -44,14 +44,11 @@
 }
 
 #headerCategoryADmin{
-display: flex;
-    justify-content: space-between;
-    width: 57%;
-}
-
-#selectCategoryAdmin{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+.makeStyles-root-13 {
+    height: auto !important;
 }
 #buttonsCategoryAdmin{
     display: flex;
@@ -59,20 +56,18 @@ display: flex;
 }
 #ProductAdminCard{
     margin-top: 2%;
-    width: 42%
+    width: 49%;
 }
-#MyProductCardOfPublicationAdmin{
-    background-color: white;
-    /* width: 96%; */
-    border-radius: 14px;
-}
+
 #MyProductCardContainerPublicationAdmin{
     display: flex;
     box-shadow: -4px 3px 10px 0px rgb(128 128 128 / 31%);
     background: rgb(255 255 255 / 90%);
     border-radius: 5px;
-    /* width: 50%; */
+    width: 100%;
     height: auto;
+    border-radius: 14px;
+    background-color: white;
     justify-content: space-evenly;
 }
 #MyProductButtonsAdmin{
@@ -82,7 +77,15 @@ display: flex;
     align-content: flex-end;
     margin-right: 1%;
 }
+#selectCategoryAdmin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #SelectCategoryAdmin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 1.5rem;
     width: 16rem;
     margin: 2%;

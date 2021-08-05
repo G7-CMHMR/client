@@ -44,6 +44,7 @@ export function BecomeAdmin(adminId, userId, status, superAdmin = false) { //{us
 
 export function GetPcNotValidate() {
     return (dispatch) => {
+        console.log('entroo')
         clientAxios.get('/admin/notValidePC')
             .then(response => {
                 dispatch({ type: GET_PC, payload: response.data })
