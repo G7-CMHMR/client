@@ -44,7 +44,7 @@ export default function CardPC({images, name, id, description, brand, type, sell
       
         <Card style={{flexDirection:'row', alignItems:'flex-end'}}><div>
           <Link  style={{ width: '0'}} id="link" to={`/Producto/${id}`}>
-  <Card.Img style={{ width: '180px',heigth:'150px'}} variant="top" src={images?images[0]:'https://www.altonivel.com.mx/wp-content/uploads/2020/05/amazon1.jpg'} />
+  <Card.Img style={{ width: '180px',heigth:'150px'}} variant="top" src={images?images:'https://www.altonivel.com.mx/wp-content/uploads/2020/05/amazon1.jpg'} />
   </Link>
   </div>
   <Card.Body>
